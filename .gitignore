@@ -1,0 +1,59 @@
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Production
+/build
+dist*.zip
+/dist
+/.next
+/out
+
+# Testing
+/coverage
+
+# Misc
+.DS_Store
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# TypeScript
+*.tsbuildinfo
+
+# Logs
+logs
+*.log
+
+# Optional - if using Vite
+.vite
+
+# Optional - if using Turbo
+.turbo
+
+# Optional - if using Storybook
+storybook-static
+
+# Cache
+.cache/
+.eslintcache
+
+# OS files
+Thumbs.db
+.DS_Store

@@ -1,0 +1,1 @@
+export { ConfirmDeleteAlert } from './ConfirmDeleteAlert'

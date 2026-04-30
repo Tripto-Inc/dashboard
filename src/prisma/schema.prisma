@@ -1,0 +1,202 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ListingType {
+  HOUSE
+  HOTEL
+}
+
+enum Season {
+  SPRING
+  SUMMER
+  AUTUMN
+  WINTER
+}
+
+model Destination {
+  id          String  @id @default(uuid())
+  description String
+  season      Season
+  isActive    Boolean @default(true)
+
+  addressId String
+  address   Address @relation(fields: [addressId], references: [id], onDelete: Restrict)
+
+  listings Listing[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([season])
+  @@index([isActive])
+  @@index([addressId])
+}
+
+model Activity {
+  id       String  @id @default(uuid())
+  title    String  @unique
+  isActive Boolean @default(true)
+  price    Float
+  discount Float?
+
+  currencyId String
+  currency   Currency @relation(fields: [currencyId], references: [id], onDelete: Restrict)
+
+  addressId String
+  address   Address @relation(fields: [addressId], references: [id], onDelete: Restrict)
+
+  activityTypeId String
+  activityType   ActivityType @relation(fields: [activityTypeId], references: [id], onDelete: Restrict)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  @@unique([title, activityTypeId])
+  @@index([isActive])
+  @@index([activityTypeId])
+  @@index([currencyId])
+  @@index([addressId])
+}
+
+model Address {
+  id          String @id @default(uuid())
+  country     String
+  countryCode String
+  city        String
+  details     String
+  latitude    Float?
+  longitude   Float?
+
+  destinations Destination[]
+  activities   Activity[]
+  listings     Listing[]
+
+  @@unique([countryCode, city, details])
+  @@index([countryCode])
+  @@index([city])
+}
+
+model Currency {
+  id        String   @id @default(uuid())
+  title     String   @default("United States Dollar")
+  isoCode   String   @default("USD")
+  symbol    String   @default("$")
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  activities Activity[]
+  houses     HouseListing[]
+  rooms      Room[]
+
+  @@unique([title, isoCode])
+  @@index([title])
+  @@index([isActive])
+}
+
+model ActivityType {
+  id        String   @id @default(uuid())
+  name      String
+  title     String
+  emoji     String?
+  icon      String   @default("IconQuestionMark")
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  activities Activity[]
+
+  @@unique([name, title])
+  @@index([name])
+  @@index([isActive])
+}
+
+model Listing {
+  id          String      @id @default(uuid())
+  type        ListingType
+  title       String      @unique
+  description String      @db.Text
+
+  addressId String
+  address   Address @relation(fields: [addressId], references: [id], onDelete: Restrict)
+
+  destinationId String?
+  destination   Destination? @relation(fields: [destinationId], references: [id], onDelete: SetNull)
+
+  amenities Json
+  policies  Json
+
+  house HouseListing?
+  hotel HotelListing?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([title, addressId])
+  @@index([type])
+  @@index([addressId])
+  @@index([destinationId])
+}
+
+model HouseListing {
+  id        String @id @default(uuid())
+  price     Float
+  discount  Float?
+  capacity  Int
+  area      Int
+  floors    Int
+  bedrooms  Int
+  bathrooms Int
+
+  currencyId String
+  currency   Currency @relation(fields: [currencyId], references: [id], onDelete: Restrict)
+
+  availableDates Json?
+
+  listingId String  @unique
+  listing   Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+
+  @@index([currencyId])
+}
+
+model HotelListing {
+  id    String @id @default(uuid())
+  rooms Room[]
+
+  listingId String  @unique
+  listing   Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+}
+
+model Room {
+  id        String @id @default(uuid())
+  title     String
+  count     Int
+  area      Int
+  price     Float
+  discount  Float?
+  capacity  Int
+  bedrooms  Int
+  bathrooms Int
+
+  amenities Json
+  beds      Json
+
+  hotelId String
+  hotel   HotelListing @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+
+  currencyId String
+  currency   Currency @relation(fields: [currencyId], references: [id], onDelete: Restrict)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([hotelId, title])
+  @@index([hotelId])
+  @@index([currencyId])
+}
