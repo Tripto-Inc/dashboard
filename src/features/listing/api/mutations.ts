@@ -1,7 +1,7 @@
 'use server';
 
 import { deleteDocument } from '@/features/document';
-import prisma from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
 import { LISTING_ERRORS } from '../constants';
 
 export const deleteListing = async (id: string) => {

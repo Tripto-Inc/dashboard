@@ -1,7 +1,7 @@
 'use server';
 
 import { ServerTableParams, ServerTableResponse } from '@/components/shared/DataTable/types';
-import prisma from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
 import { ACTIVITY_TYPE_ERRORS } from '../constants';
 import { ActivityType, ActivityTypeOption } from '../types';
 
@@ -15,13 +15,13 @@ export const getActivityTypes = async (
   const sortOrder = sort[0]?.desc ? 'desc' : 'asc';
   const where = filter
     ? {
-        OR: [
-          { name: { contains: filter, mode: 'insensitive' as const } },
-          { icon: { contains: filter, mode: 'insensitive' as const } },
-          { emoji: { contains: filter, mode: 'insensitive' as const } },
-          { title: { contains: filter, mode: 'insensitive' as const } },
-        ],
-      }
+      OR: [
+        { name: { contains: filter, mode: 'insensitive' as const } },
+        { icon: { contains: filter, mode: 'insensitive' as const } },
+        { emoji: { contains: filter, mode: 'insensitive' as const } },
+        { title: { contains: filter, mode: 'insensitive' as const } },
+      ],
+    }
     : {};
 
   const orderBy = sortBy ? { [sortBy]: sortOrder } : { id: 'desc' as const };

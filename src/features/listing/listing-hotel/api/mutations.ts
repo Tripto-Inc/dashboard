@@ -1,7 +1,7 @@
 'use server';
 
 import { deleteDocument, uploadDocument } from '@/features/document';
-import prisma from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import { LISTING_ERRORS } from '../../constants';
 import { CreateListingHotelPayload, UpdateListingHotelPayload } from '../types/mutations';

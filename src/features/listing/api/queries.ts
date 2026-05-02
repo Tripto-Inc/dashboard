@@ -1,7 +1,7 @@
 'use server';
 
 import { ServerTableParams, ServerTableResponse } from '@/components/shared/DataTable/types';
-import prisma from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
 import { LISTING_ERRORS } from '../constants';
 import { ListingColumns, ListingDetails } from '../types/listing';
 
@@ -15,20 +15,20 @@ export const getListings = async (
   const sortOrder = sort[0]?.desc ? 'desc' : 'asc';
   const where = filter
     ? {
-        OR: [
-          { title: { contains: filter, mode: 'insensitive' as const } },
-          {
-            address: {
-              country: { contains: filter, mode: 'insensitive' as const },
-            },
+      OR: [
+        { title: { contains: filter, mode: 'insensitive' as const } },
+        {
+          address: {
+            country: { contains: filter, mode: 'insensitive' as const },
           },
-          {
-            address: {
-              city: { contains: filter, mode: 'insensitive' as const },
-            },
+        },
+        {
+          address: {
+            city: { contains: filter, mode: 'insensitive' as const },
           },
-        ],
-      }
+        },
+      ],
+    }
     : {};
 
   const orderBy = sortBy ? { [sortBy]: sortOrder } : { id: 'desc' as const };

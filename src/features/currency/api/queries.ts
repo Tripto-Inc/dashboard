@@ -1,7 +1,7 @@
 'use server';
 
 import { ServerTableParams, ServerTableResponse } from '@/components/shared/DataTable/types';
-import prisma from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
 import { Currency, CurrencyOption } from '../types';
 import { CURRENCY_ERRORS } from '../constants';
 
@@ -15,12 +15,12 @@ export const getCurrencies = async (
   const sortOrder = sort[0]?.desc ? 'desc' : 'asc';
   const where = filter
     ? {
-        OR: [
-          { title: { contains: filter, mode: 'insensitive' as const } },
-          { symbol: { contains: filter, mode: 'insensitive' as const } },
-          { isoCode: { contains: filter, mode: 'insensitive' as const } },
-        ],
-      }
+      OR: [
+        { title: { contains: filter, mode: 'insensitive' as const } },
+        { symbol: { contains: filter, mode: 'insensitive' as const } },
+        { isoCode: { contains: filter, mode: 'insensitive' as const } },
+      ],
+    }
     : {};
 
   const orderBy = sortBy ? { [sortBy]: sortOrder } : { id: 'desc' as const };

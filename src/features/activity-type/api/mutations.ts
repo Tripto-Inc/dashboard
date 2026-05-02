@@ -1,6 +1,6 @@
 'use server';
 
-import prisma from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import { ACTIVITY_TYPE_ERRORS } from '../constants';
 import { ActivityTypeFormData } from '../types';
