@@ -1,6 +1,7 @@
 'use server';
 
 import { minioClient } from '@/lib/minio';
+import { supabase } from '@/lib/supabase';
 import { DOCUMENT_ERRORS } from '../constants';
 import { DeleteDocumentParams, UploadDocumentParams } from '../types';
 
@@ -9,43 +10,69 @@ export const uploadDocument = async ({ bucket, object, file }: UploadDocumentPar
   if (!object) throw new Error(DOCUMENT_ERRORS.OBJECT_REQUIRED);
   if (!file) throw new Error(DOCUMENT_ERRORS.FILE_REQUIRED);
 
+  const provider = process.env.STORAGE_PROVIDER;
+
+  if (!provider) {
+    throw new Error('STORAGE_PROVIDER is not defined');
+  }
+
   try {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    await minioClient.putObject(bucket, object, buffer, buffer.length, {
-      'Content-Type': file.type || 'application/octet-stream',
-    });
+    if (provider === 'minio') {
+      await minioClient.putObject(bucket, object, buffer, buffer.length, {
+        'Content-Type': file.type || 'application/octet-stream',
+      });
 
-    return {
-      success: true,
-    };
+      return { success: true };
+    }
+
+    if (provider === 'supabase') {
+      const { error } = await supabase.storage.from(bucket).upload(object, buffer, {
+        contentType: file.type || 'application/octet-stream',
+        upsert: true,
+      });
+
+      if (error) throw error;
+
+      return { success: true };
+    }
+
+    throw new Error(`Unsupported storage provider: ${provider}`);
   } catch (err) {
-    const error = err as Error & { code?: string; statusCode?: number };
-
-    const errorMap: Record<string, { message: string; statusCode: number }> = {
-      NoSuchBucket: { message: 'Bucket not found', statusCode: 404 },
-      AccessDenied: { message: 'Access denied', statusCode: 403 },
-      InvalidBucketName: { message: 'Invalid bucket name', statusCode: 400 },
-      InvalidObjectName: { message: 'Invalid object name', statusCode: 400 },
-      SignatureDoesNotMatch: { message: 'Authentication failed', statusCode: 401 },
-      EntityTooLarge: { message: 'File is too large', statusCode: 413 },
-      SlowDown: { message: 'Too many requests', statusCode: 429 },
-      InternalError: { message: 'Storage internal error', statusCode: 500 },
-    };
-
-    const mapped = error.code ? errorMap[error.code] : undefined;
-
-    throw new Error(mapped?.message || error.message || 'Unexpected storage error');
+    throw err instanceof Error ? err : new Error('Unexpected storage error', { cause: err });
   }
 };
 
-export const deleteDocument = async (params: DeleteDocumentParams) => {
-  const { bucket, object } = params;
-
+export const deleteDocument = async ({ bucket, object }: DeleteDocumentParams) => {
   if (!bucket) throw new Error(DOCUMENT_ERRORS.BUCKET_REQUIRED);
   if (!object) throw new Error(DOCUMENT_ERRORS.OBJECT_REQUIRED);
 
-  minioClient.statObject(bucket, object);
-  minioClient.removeObject(bucket, object);
+  const provider = process.env.STORAGE_PROVIDER;
+
+  if (!provider) {
+    throw new Error('STORAGE_PROVIDER is not defined');
+  }
+
+  try {
+    if (provider === 'minio') {
+      await minioClient.removeObject(bucket, object);
+      return { success: true };
+    }
+
+    if (provider === 'supabase') {
+      const res = await supabase.storage.from(bucket).list('', { limit: 10 });
+
+      console.log(res);
+      const result = await supabase.storage.from(bucket).remove([object]);
+      console.log(result);
+
+      return { success: true };
+    }
+
+    throw new Error(`Unsupported storage provider: ${provider}`);
+  } catch (err) {
+    throw err instanceof Error ? err : new Error('Unexpected storage error', { cause: err });
+  }
 };

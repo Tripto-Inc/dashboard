@@ -22,7 +22,7 @@ export type UseDataTableQuery<TData> = (params: ServerTableParams) => {
   error?: unknown;
 };
 
-export interface DataTableProps<TData, TValue> {
+export type DataTableProps<TData, TValue> = {
   columns: ColumnDef<TData, TValue>[];
   initialSort?: { id: string; desc: boolean };
   initialPageSize?: number;
@@ -41,51 +41,54 @@ export interface DataTableProps<TData, TValue> {
   showActionColumn?: boolean;
   showCreateButton?: boolean;
   entityName: string;
-}
+};
 
-export interface ServerTableQuery {
+export type ServerTableQuery = {
   pageIndex: number;
   pageSize: number;
   globalFilter: string;
   sorting: SortingState;
-}
+};
 
-export interface ServerSideQueryParams {
+export type ServerSideQueryParams = {
   sortBy: any;
   filter: any;
   pageSize: number;
   pageNumber: number;
   sortDirection: string;
-}
+};
 
-export interface ServerSideTableData<T> {
+export type ServerSideTableData<T> = {
   data: T[];
   totalItems: number;
   totalPages: number;
   currentPage: number;
-}
+};
 
-export interface DataTableToolbarProps {
+export type DataTableToolbarProps = {
   entityName: string;
   globalFilter: string;
   showCreateButton?: boolean;
   showRefetchButton?: boolean;
   onRefetch?: () => void;
   onGlobalFilterChange: (value: string) => void;
-}
+};
 
-export interface DataTablePaginationProps<TData> {
+export type DataTablePaginationProps<TData> = {
   table: Table<TData>;
   total: number;
-}
+};
 
-export interface DataTableColumnHeaderProps<TData, TValue> {
+export type DataTableColumnHeaderProps<TData, TValue> = {
   column: Column<TData, TValue>;
   title: string;
-}
+};
 
-export interface DataTableImageCellProps {
+export type DataTableImageCellProps = {
   id: string;
   title: string;
   bucket: DocumentBucket;
-}
+  placeholderPatternUrl?: string;
+  placeholderPatternSize?: number;
+  placeholderPatternOpacity?: number;
+};

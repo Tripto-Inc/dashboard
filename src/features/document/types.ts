@@ -24,10 +24,12 @@ export type GetDocumentsParams = {
 
 export type GetDocumentResponse = {
   url?: string;
+  isSuccess: boolean;
 };
 
 export type GetDocumentsResponse = {
   urls?: Array<string>;
+  isSuccess: boolean;
 };
 
 export type DeleteDocumentParams = {

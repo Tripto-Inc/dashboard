@@ -1,5 +1,7 @@
 'use server';
 
+'use server';
+
 import { minioClient } from '@/lib/minio';
 import { DOCUMENT_ERRORS } from '../constants';
 import {
@@ -8,6 +10,7 @@ import {
   GetDocumentsParams,
   GetDocumentsResponse,
 } from '../types';
+import { supabase } from '@/lib/supabase';
 
 export const getDocument = async (params: GetDocumentParams): Promise<GetDocumentResponse> => {
   const { bucket, object } = params;
@@ -15,29 +18,35 @@ export const getDocument = async (params: GetDocumentParams): Promise<GetDocumen
   if (!bucket) throw new Error(DOCUMENT_ERRORS.BUCKET_REQUIRED);
   if (!object) throw new Error(DOCUMENT_ERRORS.OBJECT_REQUIRED);
 
+  const provider = process.env.STORAGE_PROVIDER;
+
+  if (!provider) {
+    throw new Error('STORAGE_PROVIDER is not defined');
+  }
+
   try {
-    await minioClient.statObject(bucket, object);
-    const url = await minioClient.presignedGetObject(bucket, object);
+    if (provider === 'minio') {
+      const url = await minioClient.presignedGetObject(bucket, object);
 
-    return { url };
+      return { isSuccess: true, url };
+    }
+
+    if (provider === 'supabase') {
+      const { data } = supabase.storage.from(bucket).getPublicUrl(object);
+
+      if (!data?.publicUrl) {
+        return { isSuccess: false };
+      }
+
+      return {
+        isSuccess: true,
+        url: data.publicUrl,
+      };
+    }
+
+    throw new Error(`Unsupported storage provider: ${provider}`);
   } catch (err) {
-    const error = err as Error & { code?: string; statusCode?: number };
-
-    const errorMap: Record<string, { message: string; statusCode: number }> = {
-      NotFound: { message: 'File not found', statusCode: 404 },
-      NoSuchKey: { message: 'File not found', statusCode: 404 },
-      NoSuchBucket: { message: 'Bucket not found', statusCode: 404 },
-      AccessDenied: { message: 'Access denied', statusCode: 403 },
-      InvalidBucketName: { message: 'Invalid bucket name', statusCode: 400 },
-      InvalidObjectName: { message: 'Invalid object name', statusCode: 400 },
-      SignatureDoesNotMatch: { message: 'Authentication failed', statusCode: 401 },
-      SlowDown: { message: 'Too many requests', statusCode: 429 },
-      InternalError: { message: 'Storage internal error', statusCode: 500 },
-    };
-
-    const mapped = error.code ? errorMap[error.code] : undefined;
-
-    throw new Error(mapped?.message || error.message || 'Unexpected storage error');
+    throw err instanceof Error ? err : new Error('Unexpected storage error', { cause: err });
   }
 };
 
@@ -47,43 +56,57 @@ export const getDocuments = async (params: GetDocumentsParams): Promise<GetDocum
   if (!bucket) throw new Error(DOCUMENT_ERRORS.BUCKET_REQUIRED);
   if (!prefix) throw new Error(DOCUMENT_ERRORS.PREFIX_REQUIRED);
 
+  const provider = process.env.STORAGE_PROVIDER;
+
+  if (!provider) {
+    throw new Error('STORAGE_PROVIDER is not defined');
+  }
+
   try {
-    const objects: string[] = [];
+    let objects: string[] = [];
 
-    await new Promise<void>((resolve, reject) => {
-      const stream = minioClient.listObjects(bucket, prefix, true);
+    if (provider === 'minio') {
+      await new Promise<void>((resolve, reject) => {
+        const stream = minioClient.listObjects(bucket, prefix, true);
 
-      stream.on('data', (obj) => {
-        if (obj.name) objects.push(obj.name);
+        stream.on('data', (obj) => {
+          if (obj.name) objects.push(obj.name);
+        });
+
+        stream.on('end', resolve);
+        stream.on('error', reject);
+      });
+    }
+
+    if (provider === 'supabase') {
+      const { data, error } = await supabase.storage.from(bucket).list(prefix, {
+        limit: 100,
+        sortBy: { column: 'name', order: 'asc' },
       });
 
-      stream.on('end', resolve);
-      stream.on('error', reject);
-    });
+      if (error) throw error;
+
+      objects = (data ?? []).filter((file) => file.name).map((file) => `${prefix}/${file.name}`);
+    }
 
     if (!objects.length) {
-      return { urls: [] };
+      return { isSuccess: false, urls: [] };
     }
 
     const urls = await Promise.all(
-      objects.map((object) => minioClient.presignedGetObject(bucket, object)),
+      objects.map(async (object) => {
+        if (provider === 'minio') {
+          return minioClient.presignedGetObject(bucket, object);
+        }
+
+        const { data } = supabase.storage.from(bucket).getPublicUrl(object);
+
+        return data.publicUrl;
+      }),
     );
 
-    return { urls };
+    return { isSuccess: true, urls };
   } catch (err) {
-    const error = err as Error & { code?: string; statusCode?: number };
-
-    const errorMap: Record<string, { message: string; statusCode: number }> = {
-      NoSuchBucket: { message: 'Bucket not found', statusCode: 404 },
-      AccessDenied: { message: 'Access denied', statusCode: 403 },
-      InvalidBucketName: { message: 'Invalid bucket name', statusCode: 400 },
-      SignatureDoesNotMatch: { message: 'Authentication failed', statusCode: 401 },
-      SlowDown: { message: 'Too many requests', statusCode: 429 },
-      InternalError: { message: 'Storage internal error', statusCode: 500 },
-    };
-
-    const mapped = error.code ? errorMap[error.code] : undefined;
-
-    throw new Error(mapped?.message || error.message || 'Unexpected storage error');
+    throw err instanceof Error ? err : new Error('Unexpected storage error', { cause: err });
   }
 };

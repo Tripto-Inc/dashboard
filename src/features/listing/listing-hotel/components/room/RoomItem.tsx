@@ -15,6 +15,7 @@ import {
 } from '@tabler/icons-react';
 import { FC, Fragment, useMemo } from 'react';
 import { RoomItemProps } from '../../types/room';
+import { SafeImage } from '@/components/shared/SafeImage';
 
 export const RoomItem: FC<RoomItemProps> = (props) => {
   const { item, listingId, onRemove, onEdit } = props;
@@ -70,24 +71,18 @@ export const RoomItem: FC<RoomItemProps> = (props) => {
           <IconTrash size={14} />
         </button>
       </div>
-      <div className="relative h-48 w-full shrink-0 overflow-hidden rounded-tl-lg rounded-tr-lg bg-slate-100">
-        {previews.length > 0 ? (
-          <Fragment>
-            <img
-              alt={item.title}
-              src={previews[0]}
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-              referrerPolicy="no-referrer"
-            />
-            {previews.length > 1 && (
-              <div className="absolute right-2 bottom-2 rounded-md border border-white/20 bg-black/50 px-1.5 py-0.5 text-[8px] font-bold text-white uppercase backdrop-blur-md">
-                +{previews.length - 1} photos
-              </div>
-            )}
-          </Fragment>
-        ) : (
-          <div className="flex h-full w-full flex-col items-center justify-center bg-slate-50 text-slate-300">
-            <IconPhoto size={64} stroke={1.5} />
+      <div className="relative h-48 w-full shrink-0 overflow-hidden rounded-tl-lg rounded-tr-lg">
+        <SafeImage
+          fill
+          alt={item.title}
+          src={previews[0]}
+          placeholderPatternSize={80}
+          placeholderPatternOpacity={0.4}
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+        {previews.length > 1 && (
+          <div className="absolute right-2 bottom-2 rounded-md border border-white/20 bg-black/50 px-1.5 py-0.5 text-[8px] font-bold text-white uppercase backdrop-blur-md">
+            +{previews.length - 1} photos
           </div>
         )}
         {discount > 0 && (

@@ -12,8 +12,16 @@ export const activityListColumns: ColumnDef<ActivityColumnDTO>[] = [
     size: 150,
     cell: ({ row }) => {
       const { id, title } = row.original;
+      const placeholderPatternUrl = '/icons/patterns/image-placeholer/activity.svg';
 
-      return <DataTableImageCell id={id} title={title} bucket="activities" />;
+      return (
+        <DataTableImageCell
+          id={id}
+          title={title}
+          bucket="activities"
+          placeholderPatternUrl={placeholderPatternUrl}
+        />
+      );
     },
   },
   {
