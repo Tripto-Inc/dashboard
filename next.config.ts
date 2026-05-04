@@ -1,10 +1,6 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  output: 'standalone',
-
-  productionBrowserSourceMaps: true, // 👈 enable source maps in production
-
   experimental: {
     serverActions: {
       bodySizeLimit: '100mb',
