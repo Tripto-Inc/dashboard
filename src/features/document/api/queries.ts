@@ -12,6 +12,8 @@ import {
 } from '../types';
 import { supabase } from '@/lib/supabase';
 
+console.log(process.env.STORAGE_PROVIDER)
+
 export const getDocument = async (params: GetDocumentParams): Promise<GetDocumentResponse> => {
   const { bucket, object } = params;
 

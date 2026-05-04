@@ -5,6 +5,8 @@ import { supabase } from '@/lib/supabase';
 import { DOCUMENT_ERRORS } from '../constants';
 import { DeleteDocumentParams, UploadDocumentParams } from '../types';
 
+console.log(process.env.STORAGE_PROVIDER)
+
 export const uploadDocument = async ({ bucket, object, file }: UploadDocumentParams) => {
   if (!bucket) throw new Error(DOCUMENT_ERRORS.BUCKET_REQUIRED);
   if (!object) throw new Error(DOCUMENT_ERRORS.OBJECT_REQUIRED);
