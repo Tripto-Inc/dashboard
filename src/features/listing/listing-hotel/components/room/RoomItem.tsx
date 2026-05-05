@@ -24,7 +24,7 @@ export const RoomItem: FC<RoomItemProps> = (props) => {
     bucket: 'listings',
     id: item.id as string,
     category: 'roomGallery',
-    prefix: `${listingId}/rooms/${item.id}/images/gallery`,
+    prefix: `${listingId}/rooms/${item.id}/gallery`,
   });
 
   const previews = useMemo<string[]>(() => {

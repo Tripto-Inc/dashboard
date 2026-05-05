@@ -57,8 +57,8 @@ export const ListingHouseForm: FC<ListingHouseFormProps> = ({ initialData }) => 
   const createListingHouseMutation = useCreateListingHouse();
   const updateListingHouseMutation = useUpdateListingHouse();
 
-  const heroImageObject = `${initialData?.id}/images/hero.webp`;
-  const galleryImagesPrefix = `${initialData?.id}/images/gallery`;
+  const heroImageObject = `${initialData?.id}/hero.webp`;
+  const galleryImagesPrefix = `${initialData?.id}/gallery`;
   const isSubmitting = updateListingHouseMutation.isPending || createListingHouseMutation.isPending;
 
   const form = useForm<ListingHouseSchema>({

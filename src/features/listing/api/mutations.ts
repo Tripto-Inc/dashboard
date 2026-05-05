@@ -6,8 +6,8 @@ import { LISTING_ERRORS } from '../constants';
 
 export const deleteListing = async (id: string) => {
   const bucket = 'listings';
-  const heroImageObject = `${id}/images/hero.webp`;
-  const galleryImagesObject = `${id}/images/gallery`;
+  const heroImageObject = `${id}/hero.webp`;
+  const galleryImagesObject = `${id}/gallery`;
 
   const existing = await prisma.listing.findUnique({ where: { id } });
 

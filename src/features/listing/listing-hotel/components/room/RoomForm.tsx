@@ -52,7 +52,7 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
     },
   });
 
-  const galleryImagesPrefix = `${listingId}/rooms/${currentItem.room?.id}/images/gallery`;
+  const galleryImagesPrefix = `${listingId}/rooms/${currentItem.room?.id}/gallery`;
 
   const {
     fields: amenityFields,

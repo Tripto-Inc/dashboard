@@ -34,7 +34,7 @@ export const ActivityForm: FC<ActivityFormProps> = ({ initialData }) => {
   const createActivityMutation = useCreateActivity();
   const updateActivityMutation = useUpdateActivity();
 
-  const object = `${initialData?.id}/images/hero.webp`;
+  const object = `${initialData?.id}/hero.webp`;
   const isSubmitting = updateActivityMutation.isPending || createActivityMutation.isPending;
 
   const {

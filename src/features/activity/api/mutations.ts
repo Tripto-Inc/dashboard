@@ -58,7 +58,7 @@ export const createActivity = async (data: ActivityFormData, heroImage?: File | 
     const uploadResult = await uploadDocument({
       bucket,
       file: heroImage,
-      object: `${activity.id}/images/hero.webp`,
+      object: `${activity.id}/hero.webp`,
     });
 
     if (!uploadResult.success)
@@ -74,7 +74,7 @@ export const updateActivity = async (
   heroImage?: File | null,
 ) => {
   const bucket = 'activities';
-  const object = `${id}/images/hero.webp`;
+  const object = `${id}/hero.webp`;
 
   if (!id) throw new Error(ACTIVITY_ERRORS.ID_REQUIRED);
 
@@ -136,7 +136,7 @@ export const updateActivity = async (
 
 export const deleteActivity = async (id: string) => {
   const bucket = 'activities';
-  const object = `${id}/images/hero.webp`;
+  const object = `${id}/hero.webp`;
 
   const existing = await prisma.activity.findUnique({ where: { id } });
 

@@ -12,7 +12,7 @@ import { ImagesPreviewWrapperSkeleton } from './ImagesPreviewWrapperSkeleton';
 
 export const ImagesPreviewWrapper: FC<ImagesPreviewWrapperProps> = (props) => {
   const { id, title, bucket, prefix, category = 'gallery', className, skeletonCount } = props;
-  const { data, isLoading } = useGetDocuments({
+  const { data, isFetching } = useGetDocuments({
     id,
     bucket,
     prefix,
@@ -21,7 +21,7 @@ export const ImagesPreviewWrapper: FC<ImagesPreviewWrapperProps> = (props) => {
 
   const deleteDocumentMutation = useDeleteDocument();
 
-  if (isLoading)
+  if (isFetching)
     return <ImagesPreviewWrapperSkeleton count={skeletonCount} className={className} />;
 
   return (

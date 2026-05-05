@@ -48,8 +48,8 @@ export const ListingHotelForm: FC<ListingHotelFormProps> = ({ initialData }) => 
   const createListingHotelMutation = useCreateListingHotel();
   const updateListingHotelMutation = useUpdateListingHotel();
 
-  const heroImageObject = `${initialData?.id}/images/hero.webp`;
-  const galleryImagesPrefix = `${initialData?.id}/images/gallery`;
+  const heroImageObject = `${initialData?.id}/hero.webp`;
+  const galleryImagesPrefix = `${initialData?.id}/gallery`;
   const isSubmitting = updateListingHotelMutation.isPending || createListingHotelMutation.isPending;
 
   const form = useForm<ListingHotelSchema>({

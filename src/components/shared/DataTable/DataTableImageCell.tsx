@@ -18,7 +18,7 @@ export const DataTableImageCell: FC<DataTableImageCellProps> = (props) => {
     id,
     bucket,
     category: 'hero',
-    object: `${id}/images/hero.webp`,
+    object: `${id}/hero.webp`,
   });
 
   return (

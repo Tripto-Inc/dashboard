@@ -1,10 +1,12 @@
 'use server';
 
-import { deleteDocument, uploadDocument } from '@/features/document';
+import { deleteDocument, listKeysByPrefix, uploadDocument } from '@/features/document';
 import { prisma } from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import { LISTING_ERRORS } from '../../constants';
 import { ListingHouseFormData } from '../types/listingHouseForm';
+import { createHash } from 'crypto';
+import { extractHash } from '@/utils/extractHash';
 
 export const createListingHouse = async (
   data: ListingHouseFormData,
@@ -72,7 +74,7 @@ export const createListingHouse = async (
     const uploadResult = await uploadDocument({
       bucket,
       file: heroImage,
-      object: `${listing.id}/images/hero.webp`,
+      object: `${listing.id}/hero.webp`,
     });
 
     if (!uploadResult.success)
@@ -81,13 +83,18 @@ export const createListingHouse = async (
 
   if (galleryImages?.length) {
     const results = await Promise.allSettled(
-      galleryImages.map((file, index) =>
-        uploadDocument({
+      galleryImages.map(async (file) => {
+        const bytes = await file.arrayBuffer();
+        const buffer = Buffer.from(bytes);
+
+        const hash = createHash('sha256').update(buffer).digest('hex');
+
+        return uploadDocument({
           bucket,
-          object: `${listing.id}/images/gallery/${Date.now()}-${index + 1}.webp`,
+          object: `${listing.id}/gallery/${hash}.webp`,
           file,
-        }),
-      ),
+        });
+      })
     );
 
     const failed = results.some((r) => r.status === 'rejected');
@@ -106,7 +113,7 @@ export const updateListingHouse = async (
   galleryImages?: Array<File> | null,
 ) => {
   const bucket = 'listings';
-  const heroImageObject = `${id}/images/hero.webp`;
+  const heroImageObject = `${id}/hero.webp`;
 
   if (!id) throw new Error(LISTING_ERRORS.ID_REQUIRED);
 
@@ -169,25 +176,55 @@ export const updateListingHouse = async (
   }
 
   if (galleryImages?.length) {
-    await deleteDocument({
-      bucket,
-      object: `${id}/images/gallery`,
-    });
+    const prefix = `${id}/gallery/`;
 
-    const results = await Promise.allSettled(
-      galleryImages.map((file, index) =>
-        uploadDocument({
-          bucket,
-          object: `${id}/images/gallery/${Date.now()}-${index + 1}.webp`,
-          file,
-        }),
-      ),
+    // 1. Existing objects in S3
+    const existingKeys = await listKeysByPrefix(bucket, prefix);
+    const existingHashes = new Set(existingKeys.map(extractHash));
+
+    // 2. Incoming files → hashes
+    const incoming = await Promise.all(
+      galleryImages.map(async (file) => {
+        const buffer = Buffer.from(await file.arrayBuffer());
+        const hash = createHash('sha256').update(buffer).digest('hex');
+        return { file, hash };
+      })
     );
 
-    const failed = results.some((r) => r.status === 'rejected');
+    const incomingHashes = new Set(incoming.map((i) => i.hash));
 
-    if (failed)
-      throw new Error('Listing updated successfully, but hero some gallery uploads failed');
+    // 3. Diff
+    const toUpload = incoming.filter((i) => !existingHashes.has(i.hash));
+    const toDelete = existingKeys.filter(
+      (key) => !incomingHashes.has(extractHash(key))
+    );
+
+    // 4. Upload missing
+    const uploadResults = await Promise.allSettled(
+      toUpload.map(({ file, hash }) =>
+        uploadDocument({
+          bucket,
+          object: `${prefix}${hash}.webp`,
+          file,
+        })
+      )
+    );
+
+    if (uploadResults.some((r) => r.status === 'rejected')) {
+      throw new Error(
+        'Listing updated successfully, but some gallery uploads failed'
+      );
+    }
+
+    // 5. Remove orphaned
+    await Promise.all(
+      toDelete.map((key) =>
+        deleteDocument({
+          bucket,
+          object: key,
+        })
+      )
+    );
   }
 
   revalidatePath(`/listings/edit/${id}`);

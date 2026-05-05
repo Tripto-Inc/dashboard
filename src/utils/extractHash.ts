@@ -1,0 +1,1 @@
+export const extractHash = (key: string) => key.split('/').pop()?.replace('.webp', '') ?? '';

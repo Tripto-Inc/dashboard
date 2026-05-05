@@ -1,11 +1,13 @@
 'use server';
 
-import { deleteDocument, uploadDocument } from '@/features/document';
+import { deleteDocument, listKeysByPrefix, uploadDocument } from '@/features/document';
+import { BUCKETS } from '@/features/document/constants';
 import { prisma } from '@/lib/prisma';
+import { createHash } from 'crypto';
 import { revalidatePath } from 'next/cache';
 import { LISTING_ERRORS } from '../../constants';
 import { CreateListingHotelPayload, UpdateListingHotelPayload } from '../types/mutations';
-import { BUCKETS } from '@/features/document/constants';
+import { extractHash } from '@/utils/extractHash';
 
 export const createListingHotel = async (payload: CreateListingHotelPayload) => {
   const { data, heroImage, galleryImages, roomsGalleryImages } = payload;
@@ -64,7 +66,7 @@ export const createListingHotel = async (payload: CreateListingHotelPayload) => 
     const uploadResult = await uploadDocument({
       bucket,
       file: heroImage,
-      object: `${listing.id}/images/hero.webp`,
+      object: `${listing.id}/hero.webp`,
     });
 
     if (!uploadResult.success) throw new Error('Listing created, but hero image upload failed.');
@@ -72,13 +74,18 @@ export const createListingHotel = async (payload: CreateListingHotelPayload) => 
 
   if (galleryImages?.length) {
     const results = await Promise.allSettled(
-      galleryImages.map((file, index) =>
-        uploadDocument({
+      galleryImages.map(async (file) => {
+        const bytes = await file.arrayBuffer();
+        const buffer = Buffer.from(bytes);
+
+        const hash = createHash('sha256').update(buffer).digest('hex');
+
+        return uploadDocument({
           bucket,
-          object: `${listing.id}/images/gallery/${Date.now()}-${index + 1}.webp`,
+          object: `${listing.id}/gallery/${hash}.webp`,
           file,
-        }),
-      ),
+        });
+      })
     );
 
     const failed = results.some((r) => r.status === 'rejected');
@@ -92,14 +99,20 @@ export const createListingHotel = async (payload: CreateListingHotelPayload) => 
       if (roomImages?.length) {
         const roomId = listing.hotel?.rooms[roomIndex].id;
         const roomTitle = listing.hotel?.rooms[roomIndex].title;
+
         const results = await Promise.allSettled(
-          roomImages.map((file, index) =>
-            uploadDocument({
+          roomImages.map(async (file) => {
+            const bytes = await file.arrayBuffer();
+            const buffer = Buffer.from(bytes);
+
+            const hash = createHash('sha256').update(buffer).digest('hex');
+
+            return uploadDocument({
               bucket,
-              object: `${listing.id}/rooms/${roomId}/images/gallery/${Date.now()}-${index + 1}.webp`,
+              object: `${listing.id}/rooms/${roomId}/gallery/${hash}.webp`,
               file,
-            }),
-          ),
+            });
+          })
         );
 
         const failed = results.some((r) => r.status === 'rejected');
@@ -113,8 +126,9 @@ export const createListingHotel = async (payload: CreateListingHotelPayload) => 
 
 export const updateListingHotel = async (payload: UpdateListingHotelPayload) => {
   const { id, data, heroImage, galleryImages, roomsGalleryImages } = payload;
+
   const bucket = 'listings';
-  const heroImageObject = `${id}/images/hero.webp`;
+  const heroImageObject = `${id}/hero.webp`;
 
   if (!id) throw new Error(LISTING_ERRORS.ID_REQUIRED);
 
@@ -127,13 +141,11 @@ export const updateListingHotel = async (payload: UpdateListingHotelPayload) => 
 
   const result = await prisma.$transaction(async (prisma) => {
     const roomsToDelete = existing.hotel?.rooms.filter(
-      (room) => !data.rooms.some((r) => r.id === room.id),
+      (room) => !data.rooms.some((r) => r.id === room.id)
     );
 
     const deleteRooms = roomsToDelete?.map((room) =>
-      prisma.room.delete({
-        where: { id: room.id },
-      }),
+      prisma.room.delete({ where: { id: room.id } })
     );
 
     const roomUpdates = data.rooms.map((room) => {
@@ -155,7 +167,9 @@ export const updateListingHotel = async (payload: UpdateListingHotelPayload) => 
             updatedAt: new Date(),
           },
         });
-      } else if (!room.id && existing.hotel) {
+      }
+
+      if (!room.id && existing.hotel) {
         return prisma.room.create({
           data: {
             title: room.title,
@@ -203,6 +217,9 @@ export const updateListingHotel = async (payload: UpdateListingHotelPayload) => 
       },
     });
 
+    // -------------------------
+    // HERO IMAGE
+    // -------------------------
     if (heroImage) {
       const uploadResult = await uploadDocument({
         bucket,
@@ -210,53 +227,108 @@ export const updateListingHotel = async (payload: UpdateListingHotelPayload) => 
         object: heroImageObject,
       });
 
-      if (!uploadResult.success) throw new Error('Listing updated, but hero image upload failed.');
+      if (!uploadResult.success) {
+        throw new Error('Listing updated, but hero image upload failed.');
+      }
     }
 
+    // -------------------------
+    // GALLERY (LISTING)
+    // -------------------------
     if (galleryImages?.length) {
-      await deleteDocument({
-        bucket,
-        object: `${id}/images/gallery`,
-      });
+      const prefix = `${id}/gallery/`;
 
-      const uploadResults = await Promise.allSettled(
-        galleryImages.map((file, index) =>
-          uploadDocument({
-            bucket,
-            object: `${id}/images/gallery/${Date.now()}-${index + 1}.webp`,
-            file,
-          }),
-        ),
+      const existingKeys = await listKeysByPrefix(bucket, prefix);
+      const existingHashes = new Set(existingKeys.map(extractHash));
+
+      const incoming = await Promise.all(
+        galleryImages.map(async (file) => {
+          const buffer = Buffer.from(await file.arrayBuffer());
+          const hash = createHash('sha256').update(buffer).digest('hex');
+          return { file, hash };
+        })
       );
 
-      const failed = uploadResults.some((r) => r.status === 'rejected');
-      if (failed) throw new Error('Listing updated, but some gallery uploads failed.');
+      const incomingHashes = new Set(incoming.map((i) => i.hash));
+
+      const toUpload = incoming.filter((i) => !existingHashes.has(i.hash));
+      const toDelete = existingKeys.filter(
+        (key) => !incomingHashes.has(extractHash(key))
+      );
+
+      await Promise.allSettled(
+        toUpload.map(({ file, hash }) =>
+          uploadDocument({
+            bucket,
+            object: `${prefix}${hash}.webp`,
+            file,
+          })
+        )
+      );
+
+      await Promise.all(
+        toDelete.map((key) =>
+          deleteDocument({
+            bucket,
+            object: key,
+          })
+        )
+      );
     }
 
+    // -------------------------
+    // ROOMS GALLERIES
+    // -------------------------
     if (roomsGalleryImages?.length) {
       for (let roomIndex = 0; roomIndex < roomsGalleryImages.length; roomIndex++) {
-        const roomImages = roomsGalleryImages[roomIndex];
+        const files = roomsGalleryImages[roomIndex];
         const room = data.rooms[roomIndex];
 
-        if (roomImages?.length) {
-          await deleteDocument({
-            bucket,
-            object: `${id}/rooms/${room.id}/gallery`,
-          });
+        if (!room?.id || !files?.length) continue;
 
-          const roomUploadResults = await Promise.allSettled(
-            roomImages.map((file, index) =>
-              uploadDocument({
-                bucket,
-                object: `${id}/rooms/${room.id}/images/gallery/${Date.now()}-${index + 1}.webp`,
-                file,
-              }),
-            ),
-          );
+        const roomId = room.id;
+        const prefix = `${id}/rooms/${roomId}/gallery/`;
 
-          const roomUploadFailed = roomUploadResults.some((result) => result.status === 'rejected');
-          if (roomUploadFailed) throw new Error(`Room ${room.id} gallery uploads failed`);
+        const existingKeys = await listKeysByPrefix(bucket, prefix);
+        const existingHashes = new Set(existingKeys.map(extractHash));
+
+        const incoming = await Promise.all(
+          files.map(async (file) => {
+            const buffer = Buffer.from(await file.arrayBuffer());
+            const hash = createHash('sha256').update(buffer).digest('hex');
+            return { file, hash };
+          })
+        );
+
+        const incomingHashes = new Set(incoming.map((i) => i.hash));
+
+        const toUpload = incoming.filter((i) => !existingHashes.has(i.hash));
+        const toDelete = existingKeys.filter(
+          (key) => !incomingHashes.has(extractHash(key))
+        );
+
+        const uploadResults = await Promise.allSettled(
+          toUpload.map(({ file, hash }) =>
+            uploadDocument({
+              bucket,
+              object: `${prefix}${hash}.webp`,
+              file,
+            })
+          )
+        );
+
+        if (uploadResults.some((r) => r.status === 'rejected')) {
+          throw new Error(`Room ${roomId} gallery upload failed`);
         }
+
+        await Promise.all(
+          toDelete.map((key) =>
+            deleteDocument({
+              bucket,
+              object: key,
+            })
+          )
+        );
       }
     }
 

@@ -12,7 +12,7 @@ import { ImagePreviewWrapperProps } from '../types';
 
 export const ImagePreviewWrapper: FC<ImagePreviewWrapperProps> = (props) => {
   const { id, title, bucket, object, className, category = 'hero' } = props;
-  const { data, isLoading } = useGetDocument({
+  const { data, isFetching } = useGetDocument({
     id,
     bucket,
     object,
@@ -21,7 +21,7 @@ export const ImagePreviewWrapper: FC<ImagePreviewWrapperProps> = (props) => {
 
   const deleteDocumentMutation = useDeleteDocument();
 
-  if (isLoading) return <Skeleton className={clsx('rounded-lg', className || 'mb-10 size-24')} />;
+  if (isFetching) return <Skeleton className={clsx('rounded-lg', className || 'mb-10 size-24')} />;
 
   return (
     <ImagePreview
