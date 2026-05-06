@@ -1,6 +1,6 @@
 import { PageBreadcrumbLoading } from '@/components/shared/PageBreadcrumb';
 import { ActivityFormSkeleton } from '@/features/activity';
-import { Fragment } from 'react/jsx-runtime';
+import { Fragment } from 'react';
 
 const ActivityEditPageSkeleton = () => {
   return (
