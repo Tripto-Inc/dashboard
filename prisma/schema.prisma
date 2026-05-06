@@ -1,0 +1,245 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Destination {
+  id          String    @id @default(uuid())
+  description String
+  season      Season
+  isActive    Boolean   @default(true)
+  addressId   String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  address     Address   @relation(fields: [addressId], references: [id])
+  listings    Listing[]
+
+  @@index([season])
+  @@index([isActive])
+  @@index([addressId])
+}
+
+model Activity {
+  id             String       @id @default(uuid())
+  title          String       @unique
+  isActive       Boolean      @default(true)
+  price          Float
+  discount       Float?
+  currencyId     String
+  addressId      String
+  activityTypeId String
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @default(now())
+  activityType   ActivityType @relation(fields: [activityTypeId], references: [id])
+  address        Address      @relation(fields: [addressId], references: [id])
+  currency       Currency     @relation(fields: [currencyId], references: [id])
+
+  @@unique([title, activityTypeId])
+  @@index([isActive])
+  @@index([activityTypeId])
+  @@index([currencyId])
+  @@index([addressId])
+}
+
+model Address {
+  id           String        @id @default(uuid())
+  country      String
+  countryCode  String
+  city         String
+  details      String
+  latitude     Float?
+  longitude    Float?
+  activities   Activity[]
+  destinations Destination[]
+  listings     Listing[]
+
+  @@unique([countryCode, city, details])
+  @@index([countryCode])
+  @@index([city])
+}
+
+model Currency {
+  id         String         @id @default(uuid())
+  title      String         @default("United States Dollar")
+  symbol     String         @default("$")
+  isActive   Boolean        @default(true)
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @default(now())
+  isoCode    String         @default("USD")
+  activities Activity[]
+  houses     HouseListing[]
+  rooms      Room[]
+
+  @@unique([title, isoCode])
+  @@index([title])
+  @@index([isActive])
+}
+
+model ActivityType {
+  id         String     @id @default(uuid())
+  name       String
+  title      String
+  isActive   Boolean    @default(true)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @default(now())
+  emoji      String?
+  icon       String     @default("IconQuestionMark")
+  activities Activity[]
+
+  @@unique([name, title])
+  @@index([name])
+  @@index([isActive])
+}
+
+model Listing {
+  id            String        @id @default(uuid())
+  type          ListingType
+  title         String        @unique
+  description   String
+  addressId     String
+  destinationId String?
+  amenities     Json
+  policies      Json
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  hotel         HotelListing?
+  house         HouseListing?
+  address       Address       @relation(fields: [addressId], references: [id])
+  destination   Destination?  @relation(fields: [destinationId], references: [id])
+
+  @@unique([title, addressId])
+  @@index([type])
+  @@index([addressId])
+  @@index([destinationId])
+}
+
+model HouseListing {
+  id             String   @id @default(uuid())
+  price          Float
+  discount       Float?
+  capacity       Int
+  currencyId     String
+  availableDates Json?
+  listingId      String   @unique
+  area           Int
+  bathrooms      Int
+  bedrooms       Int
+  floors         Int
+  currency       Currency @relation(fields: [currencyId], references: [id])
+  listing        Listing  @relation(fields: [listingId], references: [id], onDelete: Cascade)
+
+  @@index([currencyId])
+}
+
+model HotelListing {
+  id        String  @id @default(uuid())
+  listingId String  @unique
+  listing   Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  rooms     Room[]
+}
+
+model Room {
+  id         String       @id @default(uuid())
+  title      String
+  count      Int
+  area       Int
+  price      Float
+  discount   Float?
+  capacity   Int
+  bedrooms   Int
+  bathrooms  Int
+  amenities  Json
+  beds       Json
+  hotelId    String
+  currencyId String
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  currency   Currency     @relation(fields: [currencyId], references: [id])
+  hotel      HotelListing @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+
+  @@unique([hotelId, title])
+  @@index([hotelId])
+  @@index([currencyId])
+}
+
+model User {
+  id            String          @id @default(cuid())
+  name          String?
+  email         String?         @unique
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  password      String?
+  username      String?         @unique
+  accounts      Account[]
+  sessions      Session[]
+  Authenticator Authenticator[]
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Authenticator {
+  credentialID         String  @unique
+  userId               String
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+  user                 User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, credentialID])
+}
+
+enum ListingType {
+  HOUSE
+  HOTEL
+}
+
+enum Season {
+  SPRING
+  SUMMER
+  AUTUMN
+  WINTER
+}

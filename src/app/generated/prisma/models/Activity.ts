@@ -260,9 +260,9 @@ export type ActivityWhereInput = {
   activityTypeId?: Prisma.StringFilter<"Activity"> | string
   createdAt?: Prisma.DateTimeFilter<"Activity"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Activity"> | Date | string
-  currency?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
-  address?: Prisma.XOR<Prisma.AddressScalarRelationFilter, Prisma.AddressWhereInput>
   activityType?: Prisma.XOR<Prisma.ActivityTypeScalarRelationFilter, Prisma.ActivityTypeWhereInput>
+  address?: Prisma.XOR<Prisma.AddressScalarRelationFilter, Prisma.AddressWhereInput>
+  currency?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
 }
 
 export type ActivityOrderByWithRelationInput = {
@@ -276,9 +276,9 @@ export type ActivityOrderByWithRelationInput = {
   activityTypeId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  currency?: Prisma.CurrencyOrderByWithRelationInput
-  address?: Prisma.AddressOrderByWithRelationInput
   activityType?: Prisma.ActivityTypeOrderByWithRelationInput
+  address?: Prisma.AddressOrderByWithRelationInput
+  currency?: Prisma.CurrencyOrderByWithRelationInput
 }
 
 export type ActivityWhereUniqueInput = Prisma.AtLeast<{
@@ -296,9 +296,9 @@ export type ActivityWhereUniqueInput = Prisma.AtLeast<{
   activityTypeId?: Prisma.StringFilter<"Activity"> | string
   createdAt?: Prisma.DateTimeFilter<"Activity"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Activity"> | Date | string
-  currency?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
-  address?: Prisma.XOR<Prisma.AddressScalarRelationFilter, Prisma.AddressWhereInput>
   activityType?: Prisma.XOR<Prisma.ActivityTypeScalarRelationFilter, Prisma.ActivityTypeWhereInput>
+  address?: Prisma.XOR<Prisma.AddressScalarRelationFilter, Prisma.AddressWhereInput>
+  currency?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
 }, "id" | "title" | "title_activityTypeId">
 
 export type ActivityOrderByWithAggregationInput = {
@@ -343,9 +343,9 @@ export type ActivityCreateInput = {
   discount?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  currency: Prisma.CurrencyCreateNestedOneWithoutActivitiesInput
-  address: Prisma.AddressCreateNestedOneWithoutActivitiesInput
   activityType: Prisma.ActivityTypeCreateNestedOneWithoutActivitiesInput
+  address: Prisma.AddressCreateNestedOneWithoutActivitiesInput
+  currency: Prisma.CurrencyCreateNestedOneWithoutActivitiesInput
 }
 
 export type ActivityUncheckedCreateInput = {
@@ -369,9 +369,9 @@ export type ActivityUpdateInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  currency?: Prisma.CurrencyUpdateOneRequiredWithoutActivitiesNestedInput
-  address?: Prisma.AddressUpdateOneRequiredWithoutActivitiesNestedInput
   activityType?: Prisma.ActivityTypeUpdateOneRequiredWithoutActivitiesNestedInput
+  address?: Prisma.AddressUpdateOneRequiredWithoutActivitiesNestedInput
+  currency?: Prisma.CurrencyUpdateOneRequiredWithoutActivitiesNestedInput
 }
 
 export type ActivityUncheckedUpdateInput = {
@@ -637,8 +637,8 @@ export type ActivityCreateWithoutAddressInput = {
   discount?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  currency: Prisma.CurrencyCreateNestedOneWithoutActivitiesInput
   activityType: Prisma.ActivityTypeCreateNestedOneWithoutActivitiesInput
+  currency: Prisma.CurrencyCreateNestedOneWithoutActivitiesInput
 }
 
 export type ActivityUncheckedCreateWithoutAddressInput = {
@@ -703,8 +703,8 @@ export type ActivityCreateWithoutCurrencyInput = {
   discount?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  address: Prisma.AddressCreateNestedOneWithoutActivitiesInput
   activityType: Prisma.ActivityTypeCreateNestedOneWithoutActivitiesInput
+  address: Prisma.AddressCreateNestedOneWithoutActivitiesInput
 }
 
 export type ActivityUncheckedCreateWithoutCurrencyInput = {
@@ -753,8 +753,8 @@ export type ActivityCreateWithoutActivityTypeInput = {
   discount?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  currency: Prisma.CurrencyCreateNestedOneWithoutActivitiesInput
   address: Prisma.AddressCreateNestedOneWithoutActivitiesInput
+  currency: Prisma.CurrencyCreateNestedOneWithoutActivitiesInput
 }
 
 export type ActivityUncheckedCreateWithoutActivityTypeInput = {
@@ -815,8 +815,8 @@ export type ActivityUpdateWithoutAddressInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  currency?: Prisma.CurrencyUpdateOneRequiredWithoutActivitiesNestedInput
   activityType?: Prisma.ActivityTypeUpdateOneRequiredWithoutActivitiesNestedInput
+  currency?: Prisma.CurrencyUpdateOneRequiredWithoutActivitiesNestedInput
 }
 
 export type ActivityUncheckedUpdateWithoutAddressInput = {
@@ -863,8 +863,8 @@ export type ActivityUpdateWithoutCurrencyInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  address?: Prisma.AddressUpdateOneRequiredWithoutActivitiesNestedInput
   activityType?: Prisma.ActivityTypeUpdateOneRequiredWithoutActivitiesNestedInput
+  address?: Prisma.AddressUpdateOneRequiredWithoutActivitiesNestedInput
 }
 
 export type ActivityUncheckedUpdateWithoutCurrencyInput = {
@@ -911,8 +911,8 @@ export type ActivityUpdateWithoutActivityTypeInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  currency?: Prisma.CurrencyUpdateOneRequiredWithoutActivitiesNestedInput
   address?: Prisma.AddressUpdateOneRequiredWithoutActivitiesNestedInput
+  currency?: Prisma.CurrencyUpdateOneRequiredWithoutActivitiesNestedInput
 }
 
 export type ActivityUncheckedUpdateWithoutActivityTypeInput = {
@@ -952,9 +952,9 @@ export type ActivitySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   activityTypeId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
-  address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   activityType?: boolean | Prisma.ActivityTypeDefaultArgs<ExtArgs>
+  address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
+  currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["activity"]>
 
 export type ActivitySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -968,9 +968,9 @@ export type ActivitySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   activityTypeId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
-  address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   activityType?: boolean | Prisma.ActivityTypeDefaultArgs<ExtArgs>
+  address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
+  currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["activity"]>
 
 export type ActivitySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -984,9 +984,9 @@ export type ActivitySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   activityTypeId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
-  address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   activityType?: boolean | Prisma.ActivityTypeDefaultArgs<ExtArgs>
+  address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
+  currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["activity"]>
 
 export type ActivitySelectScalar = {
@@ -1004,27 +1004,27 @@ export type ActivitySelectScalar = {
 
 export type ActivityOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "isActive" | "price" | "discount" | "currencyId" | "addressId" | "activityTypeId" | "createdAt" | "updatedAt", ExtArgs["result"]["activity"]>
 export type ActivityInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
-  address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   activityType?: boolean | Prisma.ActivityTypeDefaultArgs<ExtArgs>
+  address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
+  currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
 }
 export type ActivityIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
-  address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   activityType?: boolean | Prisma.ActivityTypeDefaultArgs<ExtArgs>
+  address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
+  currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
 }
 export type ActivityIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
-  address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   activityType?: boolean | Prisma.ActivityTypeDefaultArgs<ExtArgs>
+  address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
+  currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
 }
 
 export type $ActivityPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Activity"
   objects: {
-    currency: Prisma.$CurrencyPayload<ExtArgs>
-    address: Prisma.$AddressPayload<ExtArgs>
     activityType: Prisma.$ActivityTypePayload<ExtArgs>
+    address: Prisma.$AddressPayload<ExtArgs>
+    currency: Prisma.$CurrencyPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1431,9 +1431,9 @@ readonly fields: ActivityFieldRefs;
  */
 export interface Prisma__ActivityClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  currency<T extends Prisma.CurrencyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CurrencyDefaultArgs<ExtArgs>>): Prisma.Prisma__CurrencyClient<runtime.Types.Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  address<T extends Prisma.AddressDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AddressDefaultArgs<ExtArgs>>): Prisma.Prisma__AddressClient<runtime.Types.Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   activityType<T extends Prisma.ActivityTypeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ActivityTypeDefaultArgs<ExtArgs>>): Prisma.Prisma__ActivityTypeClient<runtime.Types.Result.GetResult<Prisma.$ActivityTypePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  address<T extends Prisma.AddressDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AddressDefaultArgs<ExtArgs>>): Prisma.Prisma__AddressClient<runtime.Types.Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  currency<T extends Prisma.CurrencyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CurrencyDefaultArgs<ExtArgs>>): Prisma.Prisma__CurrencyClient<runtime.Types.Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

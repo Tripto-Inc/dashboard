@@ -214,10 +214,10 @@ export type ListingWhereInput = {
   policies?: Prisma.JsonFilter<"Listing">
   createdAt?: Prisma.DateTimeFilter<"Listing"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Listing"> | Date | string
+  hotel?: Prisma.XOR<Prisma.HotelListingNullableScalarRelationFilter, Prisma.HotelListingWhereInput> | null
+  house?: Prisma.XOR<Prisma.HouseListingNullableScalarRelationFilter, Prisma.HouseListingWhereInput> | null
   address?: Prisma.XOR<Prisma.AddressScalarRelationFilter, Prisma.AddressWhereInput>
   destination?: Prisma.XOR<Prisma.DestinationNullableScalarRelationFilter, Prisma.DestinationWhereInput> | null
-  house?: Prisma.XOR<Prisma.HouseListingNullableScalarRelationFilter, Prisma.HouseListingWhereInput> | null
-  hotel?: Prisma.XOR<Prisma.HotelListingNullableScalarRelationFilter, Prisma.HotelListingWhereInput> | null
 }
 
 export type ListingOrderByWithRelationInput = {
@@ -231,10 +231,10 @@ export type ListingOrderByWithRelationInput = {
   policies?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  hotel?: Prisma.HotelListingOrderByWithRelationInput
+  house?: Prisma.HouseListingOrderByWithRelationInput
   address?: Prisma.AddressOrderByWithRelationInput
   destination?: Prisma.DestinationOrderByWithRelationInput
-  house?: Prisma.HouseListingOrderByWithRelationInput
-  hotel?: Prisma.HotelListingOrderByWithRelationInput
 }
 
 export type ListingWhereUniqueInput = Prisma.AtLeast<{
@@ -252,10 +252,10 @@ export type ListingWhereUniqueInput = Prisma.AtLeast<{
   policies?: Prisma.JsonFilter<"Listing">
   createdAt?: Prisma.DateTimeFilter<"Listing"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Listing"> | Date | string
+  hotel?: Prisma.XOR<Prisma.HotelListingNullableScalarRelationFilter, Prisma.HotelListingWhereInput> | null
+  house?: Prisma.XOR<Prisma.HouseListingNullableScalarRelationFilter, Prisma.HouseListingWhereInput> | null
   address?: Prisma.XOR<Prisma.AddressScalarRelationFilter, Prisma.AddressWhereInput>
   destination?: Prisma.XOR<Prisma.DestinationNullableScalarRelationFilter, Prisma.DestinationWhereInput> | null
-  house?: Prisma.XOR<Prisma.HouseListingNullableScalarRelationFilter, Prisma.HouseListingWhereInput> | null
-  hotel?: Prisma.XOR<Prisma.HotelListingNullableScalarRelationFilter, Prisma.HotelListingWhereInput> | null
 }, "id" | "title" | "title_addressId">
 
 export type ListingOrderByWithAggregationInput = {
@@ -299,10 +299,10 @@ export type ListingCreateInput = {
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  hotel?: Prisma.HotelListingCreateNestedOneWithoutListingInput
+  house?: Prisma.HouseListingCreateNestedOneWithoutListingInput
   address: Prisma.AddressCreateNestedOneWithoutListingsInput
   destination?: Prisma.DestinationCreateNestedOneWithoutListingsInput
-  house?: Prisma.HouseListingCreateNestedOneWithoutListingInput
-  hotel?: Prisma.HotelListingCreateNestedOneWithoutListingInput
 }
 
 export type ListingUncheckedCreateInput = {
@@ -316,8 +316,8 @@ export type ListingUncheckedCreateInput = {
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  house?: Prisma.HouseListingUncheckedCreateNestedOneWithoutListingInput
   hotel?: Prisma.HotelListingUncheckedCreateNestedOneWithoutListingInput
+  house?: Prisma.HouseListingUncheckedCreateNestedOneWithoutListingInput
 }
 
 export type ListingUpdateInput = {
@@ -329,10 +329,10 @@ export type ListingUpdateInput = {
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hotel?: Prisma.HotelListingUpdateOneWithoutListingNestedInput
+  house?: Prisma.HouseListingUpdateOneWithoutListingNestedInput
   address?: Prisma.AddressUpdateOneRequiredWithoutListingsNestedInput
   destination?: Prisma.DestinationUpdateOneWithoutListingsNestedInput
-  house?: Prisma.HouseListingUpdateOneWithoutListingNestedInput
-  hotel?: Prisma.HotelListingUpdateOneWithoutListingNestedInput
 }
 
 export type ListingUncheckedUpdateInput = {
@@ -346,8 +346,8 @@ export type ListingUncheckedUpdateInput = {
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  house?: Prisma.HouseListingUncheckedUpdateOneWithoutListingNestedInput
   hotel?: Prisma.HotelListingUncheckedUpdateOneWithoutListingNestedInput
+  house?: Prisma.HouseListingUncheckedUpdateOneWithoutListingNestedInput
 }
 
 export type ListingCreateManyInput = {
@@ -567,9 +567,9 @@ export type ListingCreateWithoutDestinationInput = {
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  address: Prisma.AddressCreateNestedOneWithoutListingsInput
-  house?: Prisma.HouseListingCreateNestedOneWithoutListingInput
   hotel?: Prisma.HotelListingCreateNestedOneWithoutListingInput
+  house?: Prisma.HouseListingCreateNestedOneWithoutListingInput
+  address: Prisma.AddressCreateNestedOneWithoutListingsInput
 }
 
 export type ListingUncheckedCreateWithoutDestinationInput = {
@@ -582,8 +582,8 @@ export type ListingUncheckedCreateWithoutDestinationInput = {
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  house?: Prisma.HouseListingUncheckedCreateNestedOneWithoutListingInput
   hotel?: Prisma.HotelListingUncheckedCreateNestedOneWithoutListingInput
+  house?: Prisma.HouseListingUncheckedCreateNestedOneWithoutListingInput
 }
 
 export type ListingCreateOrConnectWithoutDestinationInput = {
@@ -637,9 +637,9 @@ export type ListingCreateWithoutAddressInput = {
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  destination?: Prisma.DestinationCreateNestedOneWithoutListingsInput
-  house?: Prisma.HouseListingCreateNestedOneWithoutListingInput
   hotel?: Prisma.HotelListingCreateNestedOneWithoutListingInput
+  house?: Prisma.HouseListingCreateNestedOneWithoutListingInput
+  destination?: Prisma.DestinationCreateNestedOneWithoutListingsInput
 }
 
 export type ListingUncheckedCreateWithoutAddressInput = {
@@ -652,8 +652,8 @@ export type ListingUncheckedCreateWithoutAddressInput = {
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  house?: Prisma.HouseListingUncheckedCreateNestedOneWithoutListingInput
   hotel?: Prisma.HotelListingUncheckedCreateNestedOneWithoutListingInput
+  house?: Prisma.HouseListingUncheckedCreateNestedOneWithoutListingInput
 }
 
 export type ListingCreateOrConnectWithoutAddressInput = {
@@ -691,9 +691,9 @@ export type ListingCreateWithoutHouseInput = {
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  hotel?: Prisma.HotelListingCreateNestedOneWithoutListingInput
   address: Prisma.AddressCreateNestedOneWithoutListingsInput
   destination?: Prisma.DestinationCreateNestedOneWithoutListingsInput
-  hotel?: Prisma.HotelListingCreateNestedOneWithoutListingInput
 }
 
 export type ListingUncheckedCreateWithoutHouseInput = {
@@ -735,9 +735,9 @@ export type ListingUpdateWithoutHouseInput = {
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hotel?: Prisma.HotelListingUpdateOneWithoutListingNestedInput
   address?: Prisma.AddressUpdateOneRequiredWithoutListingsNestedInput
   destination?: Prisma.DestinationUpdateOneWithoutListingsNestedInput
-  hotel?: Prisma.HotelListingUpdateOneWithoutListingNestedInput
 }
 
 export type ListingUncheckedUpdateWithoutHouseInput = {
@@ -763,9 +763,9 @@ export type ListingCreateWithoutHotelInput = {
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  house?: Prisma.HouseListingCreateNestedOneWithoutListingInput
   address: Prisma.AddressCreateNestedOneWithoutListingsInput
   destination?: Prisma.DestinationCreateNestedOneWithoutListingsInput
-  house?: Prisma.HouseListingCreateNestedOneWithoutListingInput
 }
 
 export type ListingUncheckedCreateWithoutHotelInput = {
@@ -807,9 +807,9 @@ export type ListingUpdateWithoutHotelInput = {
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  house?: Prisma.HouseListingUpdateOneWithoutListingNestedInput
   address?: Prisma.AddressUpdateOneRequiredWithoutListingsNestedInput
   destination?: Prisma.DestinationUpdateOneWithoutListingsNestedInput
-  house?: Prisma.HouseListingUpdateOneWithoutListingNestedInput
 }
 
 export type ListingUncheckedUpdateWithoutHotelInput = {
@@ -847,9 +847,9 @@ export type ListingUpdateWithoutDestinationInput = {
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  address?: Prisma.AddressUpdateOneRequiredWithoutListingsNestedInput
-  house?: Prisma.HouseListingUpdateOneWithoutListingNestedInput
   hotel?: Prisma.HotelListingUpdateOneWithoutListingNestedInput
+  house?: Prisma.HouseListingUpdateOneWithoutListingNestedInput
+  address?: Prisma.AddressUpdateOneRequiredWithoutListingsNestedInput
 }
 
 export type ListingUncheckedUpdateWithoutDestinationInput = {
@@ -862,8 +862,8 @@ export type ListingUncheckedUpdateWithoutDestinationInput = {
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  house?: Prisma.HouseListingUncheckedUpdateOneWithoutListingNestedInput
   hotel?: Prisma.HotelListingUncheckedUpdateOneWithoutListingNestedInput
+  house?: Prisma.HouseListingUncheckedUpdateOneWithoutListingNestedInput
 }
 
 export type ListingUncheckedUpdateManyWithoutDestinationInput = {
@@ -899,9 +899,9 @@ export type ListingUpdateWithoutAddressInput = {
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  destination?: Prisma.DestinationUpdateOneWithoutListingsNestedInput
-  house?: Prisma.HouseListingUpdateOneWithoutListingNestedInput
   hotel?: Prisma.HotelListingUpdateOneWithoutListingNestedInput
+  house?: Prisma.HouseListingUpdateOneWithoutListingNestedInput
+  destination?: Prisma.DestinationUpdateOneWithoutListingsNestedInput
 }
 
 export type ListingUncheckedUpdateWithoutAddressInput = {
@@ -914,8 +914,8 @@ export type ListingUncheckedUpdateWithoutAddressInput = {
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  house?: Prisma.HouseListingUncheckedUpdateOneWithoutListingNestedInput
   hotel?: Prisma.HotelListingUncheckedUpdateOneWithoutListingNestedInput
+  house?: Prisma.HouseListingUncheckedUpdateOneWithoutListingNestedInput
 }
 
 export type ListingUncheckedUpdateManyWithoutAddressInput = {
@@ -943,10 +943,10 @@ export type ListingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   policies?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  hotel?: boolean | Prisma.Listing$hotelArgs<ExtArgs>
+  house?: boolean | Prisma.Listing$houseArgs<ExtArgs>
   address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   destination?: boolean | Prisma.Listing$destinationArgs<ExtArgs>
-  house?: boolean | Prisma.Listing$houseArgs<ExtArgs>
-  hotel?: boolean | Prisma.Listing$hotelArgs<ExtArgs>
 }, ExtArgs["result"]["listing"]>
 
 export type ListingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -994,10 +994,10 @@ export type ListingSelectScalar = {
 
 export type ListingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "title" | "description" | "addressId" | "destinationId" | "amenities" | "policies" | "createdAt" | "updatedAt", ExtArgs["result"]["listing"]>
 export type ListingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  hotel?: boolean | Prisma.Listing$hotelArgs<ExtArgs>
+  house?: boolean | Prisma.Listing$houseArgs<ExtArgs>
   address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   destination?: boolean | Prisma.Listing$destinationArgs<ExtArgs>
-  house?: boolean | Prisma.Listing$houseArgs<ExtArgs>
-  hotel?: boolean | Prisma.Listing$hotelArgs<ExtArgs>
 }
 export type ListingIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
@@ -1011,10 +1011,10 @@ export type ListingIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type $ListingPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Listing"
   objects: {
+    hotel: Prisma.$HotelListingPayload<ExtArgs> | null
+    house: Prisma.$HouseListingPayload<ExtArgs> | null
     address: Prisma.$AddressPayload<ExtArgs>
     destination: Prisma.$DestinationPayload<ExtArgs> | null
-    house: Prisma.$HouseListingPayload<ExtArgs> | null
-    hotel: Prisma.$HotelListingPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1421,10 +1421,10 @@ readonly fields: ListingFieldRefs;
  */
 export interface Prisma__ListingClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  hotel<T extends Prisma.Listing$hotelArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Listing$hotelArgs<ExtArgs>>): Prisma.Prisma__HotelListingClient<runtime.Types.Result.GetResult<Prisma.$HotelListingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  house<T extends Prisma.Listing$houseArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Listing$houseArgs<ExtArgs>>): Prisma.Prisma__HouseListingClient<runtime.Types.Result.GetResult<Prisma.$HouseListingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   address<T extends Prisma.AddressDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AddressDefaultArgs<ExtArgs>>): Prisma.Prisma__AddressClient<runtime.Types.Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   destination<T extends Prisma.Listing$destinationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Listing$destinationArgs<ExtArgs>>): Prisma.Prisma__DestinationClient<runtime.Types.Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  house<T extends Prisma.Listing$houseArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Listing$houseArgs<ExtArgs>>): Prisma.Prisma__HouseListingClient<runtime.Types.Result.GetResult<Prisma.$HouseListingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  hotel<T extends Prisma.Listing$hotelArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Listing$hotelArgs<ExtArgs>>): Prisma.Prisma__HotelListingClient<runtime.Types.Result.GetResult<Prisma.$HotelListingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1865,22 +1865,22 @@ export type ListingDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Listing.destination
+ * Listing.hotel
  */
-export type Listing$destinationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Listing$hotelArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Destination
+   * Select specific fields to fetch from the HotelListing
    */
-  select?: Prisma.DestinationSelect<ExtArgs> | null
+  select?: Prisma.HotelListingSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Destination
+   * Omit specific fields from the HotelListing
    */
-  omit?: Prisma.DestinationOmit<ExtArgs> | null
+  omit?: Prisma.HotelListingOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.DestinationInclude<ExtArgs> | null
-  where?: Prisma.DestinationWhereInput
+  include?: Prisma.HotelListingInclude<ExtArgs> | null
+  where?: Prisma.HotelListingWhereInput
 }
 
 /**
@@ -1903,22 +1903,22 @@ export type Listing$houseArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 /**
- * Listing.hotel
+ * Listing.destination
  */
-export type Listing$hotelArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Listing$destinationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the HotelListing
+   * Select specific fields to fetch from the Destination
    */
-  select?: Prisma.HotelListingSelect<ExtArgs> | null
+  select?: Prisma.DestinationSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the HotelListing
+   * Omit specific fields from the Destination
    */
-  omit?: Prisma.HotelListingOmit<ExtArgs> | null
+  omit?: Prisma.DestinationOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.HotelListingInclude<ExtArgs> | null
-  where?: Prisma.HotelListingWhereInput
+  include?: Prisma.DestinationInclude<ExtArgs> | null
+  where?: Prisma.DestinationWhereInput
 }
 
 /**

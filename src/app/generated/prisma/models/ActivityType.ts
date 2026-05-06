@@ -28,33 +28,33 @@ export type ActivityTypeMinAggregateOutputType = {
   id: string | null
   name: string | null
   title: string | null
-  emoji: string | null
-  icon: string | null
   isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  emoji: string | null
+  icon: string | null
 }
 
 export type ActivityTypeMaxAggregateOutputType = {
   id: string | null
   name: string | null
   title: string | null
-  emoji: string | null
-  icon: string | null
   isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  emoji: string | null
+  icon: string | null
 }
 
 export type ActivityTypeCountAggregateOutputType = {
   id: number
   name: number
   title: number
-  emoji: number
-  icon: number
   isActive: number
   createdAt: number
   updatedAt: number
+  emoji: number
+  icon: number
   _all: number
 }
 
@@ -63,33 +63,33 @@ export type ActivityTypeMinAggregateInputType = {
   id?: true
   name?: true
   title?: true
-  emoji?: true
-  icon?: true
   isActive?: true
   createdAt?: true
   updatedAt?: true
+  emoji?: true
+  icon?: true
 }
 
 export type ActivityTypeMaxAggregateInputType = {
   id?: true
   name?: true
   title?: true
-  emoji?: true
-  icon?: true
   isActive?: true
   createdAt?: true
   updatedAt?: true
+  emoji?: true
+  icon?: true
 }
 
 export type ActivityTypeCountAggregateInputType = {
   id?: true
   name?: true
   title?: true
-  emoji?: true
-  icon?: true
   isActive?: true
   createdAt?: true
   updatedAt?: true
+  emoji?: true
+  icon?: true
   _all?: true
 }
 
@@ -169,11 +169,11 @@ export type ActivityTypeGroupByOutputType = {
   id: string
   name: string
   title: string
-  emoji: string | null
-  icon: string
   isActive: boolean
   createdAt: Date
   updatedAt: Date
+  emoji: string | null
+  icon: string
   _count: ActivityTypeCountAggregateOutputType | null
   _min: ActivityTypeMinAggregateOutputType | null
   _max: ActivityTypeMaxAggregateOutputType | null
@@ -201,11 +201,11 @@ export type ActivityTypeWhereInput = {
   id?: Prisma.StringFilter<"ActivityType"> | string
   name?: Prisma.StringFilter<"ActivityType"> | string
   title?: Prisma.StringFilter<"ActivityType"> | string
-  emoji?: Prisma.StringNullableFilter<"ActivityType"> | string | null
-  icon?: Prisma.StringFilter<"ActivityType"> | string
   isActive?: Prisma.BoolFilter<"ActivityType"> | boolean
   createdAt?: Prisma.DateTimeFilter<"ActivityType"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ActivityType"> | Date | string
+  emoji?: Prisma.StringNullableFilter<"ActivityType"> | string | null
+  icon?: Prisma.StringFilter<"ActivityType"> | string
   activities?: Prisma.ActivityListRelationFilter
 }
 
@@ -213,11 +213,11 @@ export type ActivityTypeOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  emoji?: Prisma.SortOrderInput | Prisma.SortOrder
-  icon?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  emoji?: Prisma.SortOrderInput | Prisma.SortOrder
+  icon?: Prisma.SortOrder
   activities?: Prisma.ActivityOrderByRelationAggregateInput
 }
 
@@ -229,11 +229,11 @@ export type ActivityTypeWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ActivityTypeWhereInput | Prisma.ActivityTypeWhereInput[]
   name?: Prisma.StringFilter<"ActivityType"> | string
   title?: Prisma.StringFilter<"ActivityType"> | string
-  emoji?: Prisma.StringNullableFilter<"ActivityType"> | string | null
-  icon?: Prisma.StringFilter<"ActivityType"> | string
   isActive?: Prisma.BoolFilter<"ActivityType"> | boolean
   createdAt?: Prisma.DateTimeFilter<"ActivityType"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ActivityType"> | Date | string
+  emoji?: Prisma.StringNullableFilter<"ActivityType"> | string | null
+  icon?: Prisma.StringFilter<"ActivityType"> | string
   activities?: Prisma.ActivityListRelationFilter
 }, "id" | "name_title">
 
@@ -241,11 +241,11 @@ export type ActivityTypeOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  emoji?: Prisma.SortOrderInput | Prisma.SortOrder
-  icon?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  emoji?: Prisma.SortOrderInput | Prisma.SortOrder
+  icon?: Prisma.SortOrder
   _count?: Prisma.ActivityTypeCountOrderByAggregateInput
   _max?: Prisma.ActivityTypeMaxOrderByAggregateInput
   _min?: Prisma.ActivityTypeMinOrderByAggregateInput
@@ -258,22 +258,22 @@ export type ActivityTypeScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"ActivityType"> | string
   name?: Prisma.StringWithAggregatesFilter<"ActivityType"> | string
   title?: Prisma.StringWithAggregatesFilter<"ActivityType"> | string
-  emoji?: Prisma.StringNullableWithAggregatesFilter<"ActivityType"> | string | null
-  icon?: Prisma.StringWithAggregatesFilter<"ActivityType"> | string
   isActive?: Prisma.BoolWithAggregatesFilter<"ActivityType"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ActivityType"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ActivityType"> | Date | string
+  emoji?: Prisma.StringNullableWithAggregatesFilter<"ActivityType"> | string | null
+  icon?: Prisma.StringWithAggregatesFilter<"ActivityType"> | string
 }
 
 export type ActivityTypeCreateInput = {
   id?: string
   name: string
   title: string
-  emoji?: string | null
-  icon?: string
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  emoji?: string | null
+  icon?: string
   activities?: Prisma.ActivityCreateNestedManyWithoutActivityTypeInput
 }
 
@@ -281,11 +281,11 @@ export type ActivityTypeUncheckedCreateInput = {
   id?: string
   name: string
   title: string
-  emoji?: string | null
-  icon?: string
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  emoji?: string | null
+  icon?: string
   activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutActivityTypeInput
 }
 
@@ -293,11 +293,11 @@ export type ActivityTypeUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  emoji?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  icon?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emoji?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  icon?: Prisma.StringFieldUpdateOperationsInput | string
   activities?: Prisma.ActivityUpdateManyWithoutActivityTypeNestedInput
 }
 
@@ -305,11 +305,11 @@ export type ActivityTypeUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  emoji?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  icon?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emoji?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  icon?: Prisma.StringFieldUpdateOperationsInput | string
   activities?: Prisma.ActivityUncheckedUpdateManyWithoutActivityTypeNestedInput
 }
 
@@ -317,33 +317,33 @@ export type ActivityTypeCreateManyInput = {
   id?: string
   name: string
   title: string
-  emoji?: string | null
-  icon?: string
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  emoji?: string | null
+  icon?: string
 }
 
 export type ActivityTypeUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  emoji?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  icon?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emoji?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  icon?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ActivityTypeUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  emoji?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  icon?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emoji?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  icon?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ActivityTypeScalarRelationFilter = {
@@ -360,33 +360,33 @@ export type ActivityTypeCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  emoji?: Prisma.SortOrder
-  icon?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  emoji?: Prisma.SortOrder
+  icon?: Prisma.SortOrder
 }
 
 export type ActivityTypeMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  emoji?: Prisma.SortOrder
-  icon?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  emoji?: Prisma.SortOrder
+  icon?: Prisma.SortOrder
 }
 
 export type ActivityTypeMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  emoji?: Prisma.SortOrder
-  icon?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  emoji?: Prisma.SortOrder
+  icon?: Prisma.SortOrder
 }
 
 export type ActivityTypeCreateNestedOneWithoutActivitiesInput = {
@@ -411,22 +411,22 @@ export type ActivityTypeCreateWithoutActivitiesInput = {
   id?: string
   name: string
   title: string
-  emoji?: string | null
-  icon?: string
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  emoji?: string | null
+  icon?: string
 }
 
 export type ActivityTypeUncheckedCreateWithoutActivitiesInput = {
   id?: string
   name: string
   title: string
-  emoji?: string | null
-  icon?: string
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  emoji?: string | null
+  icon?: string
 }
 
 export type ActivityTypeCreateOrConnectWithoutActivitiesInput = {
@@ -449,22 +449,22 @@ export type ActivityTypeUpdateWithoutActivitiesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  emoji?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  icon?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emoji?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  icon?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ActivityTypeUncheckedUpdateWithoutActivitiesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  emoji?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  icon?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emoji?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  icon?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -502,11 +502,11 @@ export type ActivityTypeSelect<ExtArgs extends runtime.Types.Extensions.Internal
   id?: boolean
   name?: boolean
   title?: boolean
-  emoji?: boolean
-  icon?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  emoji?: boolean
+  icon?: boolean
   activities?: boolean | Prisma.ActivityType$activitiesArgs<ExtArgs>
   _count?: boolean | Prisma.ActivityTypeCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["activityType"]>
@@ -515,36 +515,36 @@ export type ActivityTypeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   id?: boolean
   name?: boolean
   title?: boolean
-  emoji?: boolean
-  icon?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  emoji?: boolean
+  icon?: boolean
 }, ExtArgs["result"]["activityType"]>
 
 export type ActivityTypeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
   title?: boolean
-  emoji?: boolean
-  icon?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  emoji?: boolean
+  icon?: boolean
 }, ExtArgs["result"]["activityType"]>
 
 export type ActivityTypeSelectScalar = {
   id?: boolean
   name?: boolean
   title?: boolean
-  emoji?: boolean
-  icon?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  emoji?: boolean
+  icon?: boolean
 }
 
-export type ActivityTypeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "title" | "emoji" | "icon" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["activityType"]>
+export type ActivityTypeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "title" | "isActive" | "createdAt" | "updatedAt" | "emoji" | "icon", ExtArgs["result"]["activityType"]>
 export type ActivityTypeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   activities?: boolean | Prisma.ActivityType$activitiesArgs<ExtArgs>
   _count?: boolean | Prisma.ActivityTypeCountOutputTypeDefaultArgs<ExtArgs>
@@ -561,11 +561,11 @@ export type $ActivityTypePayload<ExtArgs extends runtime.Types.Extensions.Intern
     id: string
     name: string
     title: string
-    emoji: string | null
-    icon: string
     isActive: boolean
     createdAt: Date
     updatedAt: Date
+    emoji: string | null
+    icon: string
   }, ExtArgs["result"]["activityType"]>
   composites: {}
 }
@@ -993,11 +993,11 @@ export interface ActivityTypeFieldRefs {
   readonly id: Prisma.FieldRef<"ActivityType", 'String'>
   readonly name: Prisma.FieldRef<"ActivityType", 'String'>
   readonly title: Prisma.FieldRef<"ActivityType", 'String'>
-  readonly emoji: Prisma.FieldRef<"ActivityType", 'String'>
-  readonly icon: Prisma.FieldRef<"ActivityType", 'String'>
   readonly isActive: Prisma.FieldRef<"ActivityType", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"ActivityType", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ActivityType", 'DateTime'>
+  readonly emoji: Prisma.FieldRef<"ActivityType", 'String'>
+  readonly icon: Prisma.FieldRef<"ActivityType", 'String'>
 }
     
 

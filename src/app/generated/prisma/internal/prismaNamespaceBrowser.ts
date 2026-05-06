@@ -62,8 +62,8 @@ export const ModelName = {
   Room: 'Room',
   User: 'User',
   Account: 'Account',
-  Session: 'Session',
   VerificationToken: 'VerificationToken',
+  Session: 'Session',
   Authenticator: 'Authenticator'
 } as const
 
@@ -128,11 +128,11 @@ export type AddressScalarFieldEnum = (typeof AddressScalarFieldEnum)[keyof typeo
 export const CurrencyScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  isoCode: 'isoCode',
   symbol: 'symbol',
   isActive: 'isActive',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  isoCode: 'isoCode'
 } as const
 
 export type CurrencyScalarFieldEnum = (typeof CurrencyScalarFieldEnum)[keyof typeof CurrencyScalarFieldEnum]
@@ -142,11 +142,11 @@ export const ActivityTypeScalarFieldEnum = {
   id: 'id',
   name: 'name',
   title: 'title',
-  emoji: 'emoji',
-  icon: 'icon',
   isActive: 'isActive',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  emoji: 'emoji',
+  icon: 'icon'
 } as const
 
 export type ActivityTypeScalarFieldEnum = (typeof ActivityTypeScalarFieldEnum)[keyof typeof ActivityTypeScalarFieldEnum]
@@ -173,13 +173,13 @@ export const HouseListingScalarFieldEnum = {
   price: 'price',
   discount: 'discount',
   capacity: 'capacity',
-  area: 'area',
-  floors: 'floors',
-  bedrooms: 'bedrooms',
-  bathrooms: 'bathrooms',
   currencyId: 'currencyId',
   availableDates: 'availableDates',
-  listingId: 'listingId'
+  listingId: 'listingId',
+  area: 'area',
+  bathrooms: 'bathrooms',
+  bedrooms: 'bedrooms',
+  floors: 'floors'
 } as const
 
 export type HouseListingScalarFieldEnum = (typeof HouseListingScalarFieldEnum)[keyof typeof HouseListingScalarFieldEnum]
@@ -220,10 +220,10 @@ export const UserScalarFieldEnum = {
   email: 'email',
   emailVerified: 'emailVerified',
   image: 'image',
-  username: 'username',
-  password: 'password',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  password: 'password',
+  username: 'username'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -248,6 +248,15 @@ export const AccountScalarFieldEnum = {
 export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
 
 
+export const VerificationTokenScalarFieldEnum = {
+  identifier: 'identifier',
+  token: 'token',
+  expires: 'expires'
+} as const
+
+export type VerificationTokenScalarFieldEnum = (typeof VerificationTokenScalarFieldEnum)[keyof typeof VerificationTokenScalarFieldEnum]
+
+
 export const SessionScalarFieldEnum = {
   sessionToken: 'sessionToken',
   userId: 'userId',
@@ -257,15 +266,6 @@ export const SessionScalarFieldEnum = {
 } as const
 
 export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
-
-
-export const VerificationTokenScalarFieldEnum = {
-  identifier: 'identifier',
-  token: 'token',
-  expires: 'expires'
-} as const
-
-export type VerificationTokenScalarFieldEnum = (typeof VerificationTokenScalarFieldEnum)[keyof typeof VerificationTokenScalarFieldEnum]
 
 
 export const AuthenticatorScalarFieldEnum = {

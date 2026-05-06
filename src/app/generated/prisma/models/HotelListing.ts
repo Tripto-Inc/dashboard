@@ -158,15 +158,15 @@ export type HotelListingWhereInput = {
   NOT?: Prisma.HotelListingWhereInput | Prisma.HotelListingWhereInput[]
   id?: Prisma.StringFilter<"HotelListing"> | string
   listingId?: Prisma.StringFilter<"HotelListing"> | string
-  rooms?: Prisma.RoomListRelationFilter
   listing?: Prisma.XOR<Prisma.ListingScalarRelationFilter, Prisma.ListingWhereInput>
+  rooms?: Prisma.RoomListRelationFilter
 }
 
 export type HotelListingOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   listingId?: Prisma.SortOrder
-  rooms?: Prisma.RoomOrderByRelationAggregateInput
   listing?: Prisma.ListingOrderByWithRelationInput
+  rooms?: Prisma.RoomOrderByRelationAggregateInput
 }
 
 export type HotelListingWhereUniqueInput = Prisma.AtLeast<{
@@ -175,8 +175,8 @@ export type HotelListingWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.HotelListingWhereInput | Prisma.HotelListingWhereInput[]
   OR?: Prisma.HotelListingWhereInput[]
   NOT?: Prisma.HotelListingWhereInput | Prisma.HotelListingWhereInput[]
-  rooms?: Prisma.RoomListRelationFilter
   listing?: Prisma.XOR<Prisma.ListingScalarRelationFilter, Prisma.ListingWhereInput>
+  rooms?: Prisma.RoomListRelationFilter
 }, "id" | "listingId">
 
 export type HotelListingOrderByWithAggregationInput = {
@@ -197,8 +197,8 @@ export type HotelListingScalarWhereWithAggregatesInput = {
 
 export type HotelListingCreateInput = {
   id?: string
-  rooms?: Prisma.RoomCreateNestedManyWithoutHotelInput
   listing: Prisma.ListingCreateNestedOneWithoutHotelInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutHotelInput
 }
 
 export type HotelListingUncheckedCreateInput = {
@@ -209,8 +209,8 @@ export type HotelListingUncheckedCreateInput = {
 
 export type HotelListingUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  rooms?: Prisma.RoomUpdateManyWithoutHotelNestedInput
   listing?: Prisma.ListingUpdateOneRequiredWithoutHotelNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutHotelNestedInput
 }
 
 export type HotelListingUncheckedUpdateInput = {
@@ -410,8 +410,8 @@ export type HotelListingCountOutputTypeCountRoomsArgs<ExtArgs extends runtime.Ty
 export type HotelListingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   listingId?: boolean
-  rooms?: boolean | Prisma.HotelListing$roomsArgs<ExtArgs>
   listing?: boolean | Prisma.ListingDefaultArgs<ExtArgs>
+  rooms?: boolean | Prisma.HotelListing$roomsArgs<ExtArgs>
   _count?: boolean | Prisma.HotelListingCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["hotelListing"]>
 
@@ -434,8 +434,8 @@ export type HotelListingSelectScalar = {
 
 export type HotelListingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "listingId", ExtArgs["result"]["hotelListing"]>
 export type HotelListingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  rooms?: boolean | Prisma.HotelListing$roomsArgs<ExtArgs>
   listing?: boolean | Prisma.ListingDefaultArgs<ExtArgs>
+  rooms?: boolean | Prisma.HotelListing$roomsArgs<ExtArgs>
   _count?: boolean | Prisma.HotelListingCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type HotelListingIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -448,8 +448,8 @@ export type HotelListingIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types
 export type $HotelListingPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "HotelListing"
   objects: {
-    rooms: Prisma.$RoomPayload<ExtArgs>[]
     listing: Prisma.$ListingPayload<ExtArgs>
+    rooms: Prisma.$RoomPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -848,8 +848,8 @@ readonly fields: HotelListingFieldRefs;
  */
 export interface Prisma__HotelListingClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  rooms<T extends Prisma.HotelListing$roomsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.HotelListing$roomsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   listing<T extends Prisma.ListingDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ListingDefaultArgs<ExtArgs>>): Prisma.Prisma__ListingClient<runtime.Types.Result.GetResult<Prisma.$ListingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  rooms<T extends Prisma.HotelListing$roomsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.HotelListing$roomsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

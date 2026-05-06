@@ -27,31 +27,31 @@ export type AggregateCurrency = {
 export type CurrencyMinAggregateOutputType = {
   id: string | null
   title: string | null
-  isoCode: string | null
   symbol: string | null
   isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  isoCode: string | null
 }
 
 export type CurrencyMaxAggregateOutputType = {
   id: string | null
   title: string | null
-  isoCode: string | null
   symbol: string | null
   isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  isoCode: string | null
 }
 
 export type CurrencyCountAggregateOutputType = {
   id: number
   title: number
-  isoCode: number
   symbol: number
   isActive: number
   createdAt: number
   updatedAt: number
+  isoCode: number
   _all: number
 }
 
@@ -59,31 +59,31 @@ export type CurrencyCountAggregateOutputType = {
 export type CurrencyMinAggregateInputType = {
   id?: true
   title?: true
-  isoCode?: true
   symbol?: true
   isActive?: true
   createdAt?: true
   updatedAt?: true
+  isoCode?: true
 }
 
 export type CurrencyMaxAggregateInputType = {
   id?: true
   title?: true
-  isoCode?: true
   symbol?: true
   isActive?: true
   createdAt?: true
   updatedAt?: true
+  isoCode?: true
 }
 
 export type CurrencyCountAggregateInputType = {
   id?: true
   title?: true
-  isoCode?: true
   symbol?: true
   isActive?: true
   createdAt?: true
   updatedAt?: true
+  isoCode?: true
   _all?: true
 }
 
@@ -162,11 +162,11 @@ export type CurrencyGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 export type CurrencyGroupByOutputType = {
   id: string
   title: string
-  isoCode: string
   symbol: string
   isActive: boolean
   createdAt: Date
   updatedAt: Date
+  isoCode: string
   _count: CurrencyCountAggregateOutputType | null
   _min: CurrencyMinAggregateOutputType | null
   _max: CurrencyMaxAggregateOutputType | null
@@ -193,11 +193,11 @@ export type CurrencyWhereInput = {
   NOT?: Prisma.CurrencyWhereInput | Prisma.CurrencyWhereInput[]
   id?: Prisma.StringFilter<"Currency"> | string
   title?: Prisma.StringFilter<"Currency"> | string
-  isoCode?: Prisma.StringFilter<"Currency"> | string
   symbol?: Prisma.StringFilter<"Currency"> | string
   isActive?: Prisma.BoolFilter<"Currency"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Currency"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Currency"> | Date | string
+  isoCode?: Prisma.StringFilter<"Currency"> | string
   activities?: Prisma.ActivityListRelationFilter
   houses?: Prisma.HouseListingListRelationFilter
   rooms?: Prisma.RoomListRelationFilter
@@ -206,11 +206,11 @@ export type CurrencyWhereInput = {
 export type CurrencyOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  isoCode?: Prisma.SortOrder
   symbol?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isoCode?: Prisma.SortOrder
   activities?: Prisma.ActivityOrderByRelationAggregateInput
   houses?: Prisma.HouseListingOrderByRelationAggregateInput
   rooms?: Prisma.RoomOrderByRelationAggregateInput
@@ -223,11 +223,11 @@ export type CurrencyWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.CurrencyWhereInput[]
   NOT?: Prisma.CurrencyWhereInput | Prisma.CurrencyWhereInput[]
   title?: Prisma.StringFilter<"Currency"> | string
-  isoCode?: Prisma.StringFilter<"Currency"> | string
   symbol?: Prisma.StringFilter<"Currency"> | string
   isActive?: Prisma.BoolFilter<"Currency"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Currency"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Currency"> | Date | string
+  isoCode?: Prisma.StringFilter<"Currency"> | string
   activities?: Prisma.ActivityListRelationFilter
   houses?: Prisma.HouseListingListRelationFilter
   rooms?: Prisma.RoomListRelationFilter
@@ -236,11 +236,11 @@ export type CurrencyWhereUniqueInput = Prisma.AtLeast<{
 export type CurrencyOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  isoCode?: Prisma.SortOrder
   symbol?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isoCode?: Prisma.SortOrder
   _count?: Prisma.CurrencyCountOrderByAggregateInput
   _max?: Prisma.CurrencyMaxOrderByAggregateInput
   _min?: Prisma.CurrencyMinOrderByAggregateInput
@@ -252,21 +252,21 @@ export type CurrencyScalarWhereWithAggregatesInput = {
   NOT?: Prisma.CurrencyScalarWhereWithAggregatesInput | Prisma.CurrencyScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Currency"> | string
   title?: Prisma.StringWithAggregatesFilter<"Currency"> | string
-  isoCode?: Prisma.StringWithAggregatesFilter<"Currency"> | string
   symbol?: Prisma.StringWithAggregatesFilter<"Currency"> | string
   isActive?: Prisma.BoolWithAggregatesFilter<"Currency"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Currency"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Currency"> | Date | string
+  isoCode?: Prisma.StringWithAggregatesFilter<"Currency"> | string
 }
 
 export type CurrencyCreateInput = {
   id?: string
   title?: string
-  isoCode?: string
   symbol?: string
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isoCode?: string
   activities?: Prisma.ActivityCreateNestedManyWithoutCurrencyInput
   houses?: Prisma.HouseListingCreateNestedManyWithoutCurrencyInput
   rooms?: Prisma.RoomCreateNestedManyWithoutCurrencyInput
@@ -275,11 +275,11 @@ export type CurrencyCreateInput = {
 export type CurrencyUncheckedCreateInput = {
   id?: string
   title?: string
-  isoCode?: string
   symbol?: string
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isoCode?: string
   activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutCurrencyInput
   houses?: Prisma.HouseListingUncheckedCreateNestedManyWithoutCurrencyInput
   rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutCurrencyInput
@@ -288,11 +288,11 @@ export type CurrencyUncheckedCreateInput = {
 export type CurrencyUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  isoCode?: Prisma.StringFieldUpdateOperationsInput | string
   symbol?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isoCode?: Prisma.StringFieldUpdateOperationsInput | string
   activities?: Prisma.ActivityUpdateManyWithoutCurrencyNestedInput
   houses?: Prisma.HouseListingUpdateManyWithoutCurrencyNestedInput
   rooms?: Prisma.RoomUpdateManyWithoutCurrencyNestedInput
@@ -301,11 +301,11 @@ export type CurrencyUpdateInput = {
 export type CurrencyUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  isoCode?: Prisma.StringFieldUpdateOperationsInput | string
   symbol?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isoCode?: Prisma.StringFieldUpdateOperationsInput | string
   activities?: Prisma.ActivityUncheckedUpdateManyWithoutCurrencyNestedInput
   houses?: Prisma.HouseListingUncheckedUpdateManyWithoutCurrencyNestedInput
   rooms?: Prisma.RoomUncheckedUpdateManyWithoutCurrencyNestedInput
@@ -314,31 +314,31 @@ export type CurrencyUncheckedUpdateInput = {
 export type CurrencyCreateManyInput = {
   id?: string
   title?: string
-  isoCode?: string
   symbol?: string
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isoCode?: string
 }
 
 export type CurrencyUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  isoCode?: Prisma.StringFieldUpdateOperationsInput | string
   symbol?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isoCode?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type CurrencyUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  isoCode?: Prisma.StringFieldUpdateOperationsInput | string
   symbol?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isoCode?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type CurrencyScalarRelationFilter = {
@@ -354,31 +354,31 @@ export type CurrencyTitleIsoCodeCompoundUniqueInput = {
 export type CurrencyCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  isoCode?: Prisma.SortOrder
   symbol?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isoCode?: Prisma.SortOrder
 }
 
 export type CurrencyMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  isoCode?: Prisma.SortOrder
   symbol?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isoCode?: Prisma.SortOrder
 }
 
 export type CurrencyMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  isoCode?: Prisma.SortOrder
   symbol?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isoCode?: Prisma.SortOrder
 }
 
 export type CurrencyCreateNestedOneWithoutActivitiesInput = {
@@ -426,11 +426,11 @@ export type CurrencyUpdateOneRequiredWithoutRoomsNestedInput = {
 export type CurrencyCreateWithoutActivitiesInput = {
   id?: string
   title?: string
-  isoCode?: string
   symbol?: string
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isoCode?: string
   houses?: Prisma.HouseListingCreateNestedManyWithoutCurrencyInput
   rooms?: Prisma.RoomCreateNestedManyWithoutCurrencyInput
 }
@@ -438,11 +438,11 @@ export type CurrencyCreateWithoutActivitiesInput = {
 export type CurrencyUncheckedCreateWithoutActivitiesInput = {
   id?: string
   title?: string
-  isoCode?: string
   symbol?: string
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isoCode?: string
   houses?: Prisma.HouseListingUncheckedCreateNestedManyWithoutCurrencyInput
   rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutCurrencyInput
 }
@@ -466,11 +466,11 @@ export type CurrencyUpdateToOneWithWhereWithoutActivitiesInput = {
 export type CurrencyUpdateWithoutActivitiesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  isoCode?: Prisma.StringFieldUpdateOperationsInput | string
   symbol?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isoCode?: Prisma.StringFieldUpdateOperationsInput | string
   houses?: Prisma.HouseListingUpdateManyWithoutCurrencyNestedInput
   rooms?: Prisma.RoomUpdateManyWithoutCurrencyNestedInput
 }
@@ -478,11 +478,11 @@ export type CurrencyUpdateWithoutActivitiesInput = {
 export type CurrencyUncheckedUpdateWithoutActivitiesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  isoCode?: Prisma.StringFieldUpdateOperationsInput | string
   symbol?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isoCode?: Prisma.StringFieldUpdateOperationsInput | string
   houses?: Prisma.HouseListingUncheckedUpdateManyWithoutCurrencyNestedInput
   rooms?: Prisma.RoomUncheckedUpdateManyWithoutCurrencyNestedInput
 }
@@ -490,11 +490,11 @@ export type CurrencyUncheckedUpdateWithoutActivitiesInput = {
 export type CurrencyCreateWithoutHousesInput = {
   id?: string
   title?: string
-  isoCode?: string
   symbol?: string
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isoCode?: string
   activities?: Prisma.ActivityCreateNestedManyWithoutCurrencyInput
   rooms?: Prisma.RoomCreateNestedManyWithoutCurrencyInput
 }
@@ -502,11 +502,11 @@ export type CurrencyCreateWithoutHousesInput = {
 export type CurrencyUncheckedCreateWithoutHousesInput = {
   id?: string
   title?: string
-  isoCode?: string
   symbol?: string
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isoCode?: string
   activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutCurrencyInput
   rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutCurrencyInput
 }
@@ -530,11 +530,11 @@ export type CurrencyUpdateToOneWithWhereWithoutHousesInput = {
 export type CurrencyUpdateWithoutHousesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  isoCode?: Prisma.StringFieldUpdateOperationsInput | string
   symbol?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isoCode?: Prisma.StringFieldUpdateOperationsInput | string
   activities?: Prisma.ActivityUpdateManyWithoutCurrencyNestedInput
   rooms?: Prisma.RoomUpdateManyWithoutCurrencyNestedInput
 }
@@ -542,11 +542,11 @@ export type CurrencyUpdateWithoutHousesInput = {
 export type CurrencyUncheckedUpdateWithoutHousesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  isoCode?: Prisma.StringFieldUpdateOperationsInput | string
   symbol?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isoCode?: Prisma.StringFieldUpdateOperationsInput | string
   activities?: Prisma.ActivityUncheckedUpdateManyWithoutCurrencyNestedInput
   rooms?: Prisma.RoomUncheckedUpdateManyWithoutCurrencyNestedInput
 }
@@ -554,11 +554,11 @@ export type CurrencyUncheckedUpdateWithoutHousesInput = {
 export type CurrencyCreateWithoutRoomsInput = {
   id?: string
   title?: string
-  isoCode?: string
   symbol?: string
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isoCode?: string
   activities?: Prisma.ActivityCreateNestedManyWithoutCurrencyInput
   houses?: Prisma.HouseListingCreateNestedManyWithoutCurrencyInput
 }
@@ -566,11 +566,11 @@ export type CurrencyCreateWithoutRoomsInput = {
 export type CurrencyUncheckedCreateWithoutRoomsInput = {
   id?: string
   title?: string
-  isoCode?: string
   symbol?: string
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isoCode?: string
   activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutCurrencyInput
   houses?: Prisma.HouseListingUncheckedCreateNestedManyWithoutCurrencyInput
 }
@@ -594,11 +594,11 @@ export type CurrencyUpdateToOneWithWhereWithoutRoomsInput = {
 export type CurrencyUpdateWithoutRoomsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  isoCode?: Prisma.StringFieldUpdateOperationsInput | string
   symbol?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isoCode?: Prisma.StringFieldUpdateOperationsInput | string
   activities?: Prisma.ActivityUpdateManyWithoutCurrencyNestedInput
   houses?: Prisma.HouseListingUpdateManyWithoutCurrencyNestedInput
 }
@@ -606,11 +606,11 @@ export type CurrencyUpdateWithoutRoomsInput = {
 export type CurrencyUncheckedUpdateWithoutRoomsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  isoCode?: Prisma.StringFieldUpdateOperationsInput | string
   symbol?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isoCode?: Prisma.StringFieldUpdateOperationsInput | string
   activities?: Prisma.ActivityUncheckedUpdateManyWithoutCurrencyNestedInput
   houses?: Prisma.HouseListingUncheckedUpdateManyWithoutCurrencyNestedInput
 }
@@ -667,11 +667,11 @@ export type CurrencyCountOutputTypeCountRoomsArgs<ExtArgs extends runtime.Types.
 export type CurrencySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
-  isoCode?: boolean
   symbol?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isoCode?: boolean
   activities?: boolean | Prisma.Currency$activitiesArgs<ExtArgs>
   houses?: boolean | Prisma.Currency$housesArgs<ExtArgs>
   rooms?: boolean | Prisma.Currency$roomsArgs<ExtArgs>
@@ -681,34 +681,34 @@ export type CurrencySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 export type CurrencySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
-  isoCode?: boolean
   symbol?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isoCode?: boolean
 }, ExtArgs["result"]["currency"]>
 
 export type CurrencySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
-  isoCode?: boolean
   symbol?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isoCode?: boolean
 }, ExtArgs["result"]["currency"]>
 
 export type CurrencySelectScalar = {
   id?: boolean
   title?: boolean
-  isoCode?: boolean
   symbol?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isoCode?: boolean
 }
 
-export type CurrencyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "isoCode" | "symbol" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["currency"]>
+export type CurrencyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "symbol" | "isActive" | "createdAt" | "updatedAt" | "isoCode", ExtArgs["result"]["currency"]>
 export type CurrencyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   activities?: boolean | Prisma.Currency$activitiesArgs<ExtArgs>
   houses?: boolean | Prisma.Currency$housesArgs<ExtArgs>
@@ -728,11 +728,11 @@ export type $CurrencyPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     title: string
-    isoCode: string
     symbol: string
     isActive: boolean
     createdAt: Date
     updatedAt: Date
+    isoCode: string
   }, ExtArgs["result"]["currency"]>
   composites: {}
 }
@@ -1161,11 +1161,11 @@ export interface Prisma__CurrencyClient<T, Null = never, ExtArgs extends runtime
 export interface CurrencyFieldRefs {
   readonly id: Prisma.FieldRef<"Currency", 'String'>
   readonly title: Prisma.FieldRef<"Currency", 'String'>
-  readonly isoCode: Prisma.FieldRef<"Currency", 'String'>
   readonly symbol: Prisma.FieldRef<"Currency", 'String'>
   readonly isActive: Prisma.FieldRef<"Currency", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Currency", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Currency", 'DateTime'>
+  readonly isoCode: Prisma.FieldRef<"Currency", 'String'>
 }
     
 

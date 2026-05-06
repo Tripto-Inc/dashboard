@@ -1,4 +1,4 @@
-import { LoginForm, LoginWithGoogleButton } from '@/features/authentication';
+import { LoginWithGoogleButton } from '@/features/authentication';
 import { IconCompass } from '@tabler/icons-react';
 import Image from 'next/image';
 
@@ -33,16 +33,6 @@ const LoginPage = () => {
 
             <div className="space-y-6">
               <LoginWithGoogleButton />
-
-              <div className="flex items-center gap-4">
-                <div className="h-px flex-1 bg-white/10" />
-                <span className="text-[10px] font-black tracking-widest text-slate-500 uppercase">
-                  Secure Access
-                </span>
-                <div className="h-px flex-1 bg-white/10" />
-              </div>
-
-              <LoginForm />
             </div>
           </div>
 

@@ -312,8 +312,8 @@ export type RoomWhereInput = {
   currencyId?: Prisma.StringFilter<"Room"> | string
   createdAt?: Prisma.DateTimeFilter<"Room"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Room"> | Date | string
-  hotel?: Prisma.XOR<Prisma.HotelListingScalarRelationFilter, Prisma.HotelListingWhereInput>
   currency?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
+  hotel?: Prisma.XOR<Prisma.HotelListingScalarRelationFilter, Prisma.HotelListingWhereInput>
 }
 
 export type RoomOrderByWithRelationInput = {
@@ -332,8 +332,8 @@ export type RoomOrderByWithRelationInput = {
   currencyId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  hotel?: Prisma.HotelListingOrderByWithRelationInput
   currency?: Prisma.CurrencyOrderByWithRelationInput
+  hotel?: Prisma.HotelListingOrderByWithRelationInput
 }
 
 export type RoomWhereUniqueInput = Prisma.AtLeast<{
@@ -356,8 +356,8 @@ export type RoomWhereUniqueInput = Prisma.AtLeast<{
   currencyId?: Prisma.StringFilter<"Room"> | string
   createdAt?: Prisma.DateTimeFilter<"Room"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Room"> | Date | string
-  hotel?: Prisma.XOR<Prisma.HotelListingScalarRelationFilter, Prisma.HotelListingWhereInput>
   currency?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
+  hotel?: Prisma.XOR<Prisma.HotelListingScalarRelationFilter, Prisma.HotelListingWhereInput>
 }, "id" | "hotelId_title">
 
 export type RoomOrderByWithAggregationInput = {
@@ -418,8 +418,8 @@ export type RoomCreateInput = {
   beds: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  hotel: Prisma.HotelListingCreateNestedOneWithoutRoomsInput
   currency: Prisma.CurrencyCreateNestedOneWithoutRoomsInput
+  hotel: Prisma.HotelListingCreateNestedOneWithoutRoomsInput
 }
 
 export type RoomUncheckedCreateInput = {
@@ -454,8 +454,8 @@ export type RoomUpdateInput = {
   beds?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  hotel?: Prisma.HotelListingUpdateOneRequiredWithoutRoomsNestedInput
   currency?: Prisma.CurrencyUpdateOneRequiredWithoutRoomsNestedInput
+  hotel?: Prisma.HotelListingUpdateOneRequiredWithoutRoomsNestedInput
 }
 
 export type RoomUncheckedUpdateInput = {
@@ -992,8 +992,8 @@ export type RoomSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   currencyId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  hotel?: boolean | Prisma.HotelListingDefaultArgs<ExtArgs>
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  hotel?: boolean | Prisma.HotelListingDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["room"]>
 
 export type RoomSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1012,8 +1012,8 @@ export type RoomSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   currencyId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  hotel?: boolean | Prisma.HotelListingDefaultArgs<ExtArgs>
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  hotel?: boolean | Prisma.HotelListingDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["room"]>
 
 export type RoomSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1032,8 +1032,8 @@ export type RoomSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   currencyId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  hotel?: boolean | Prisma.HotelListingDefaultArgs<ExtArgs>
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  hotel?: boolean | Prisma.HotelListingDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["room"]>
 
 export type RoomSelectScalar = {
@@ -1056,23 +1056,23 @@ export type RoomSelectScalar = {
 
 export type RoomOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "count" | "area" | "price" | "discount" | "capacity" | "bedrooms" | "bathrooms" | "amenities" | "beds" | "hotelId" | "currencyId" | "createdAt" | "updatedAt", ExtArgs["result"]["room"]>
 export type RoomInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  hotel?: boolean | Prisma.HotelListingDefaultArgs<ExtArgs>
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  hotel?: boolean | Prisma.HotelListingDefaultArgs<ExtArgs>
 }
 export type RoomIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  hotel?: boolean | Prisma.HotelListingDefaultArgs<ExtArgs>
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  hotel?: boolean | Prisma.HotelListingDefaultArgs<ExtArgs>
 }
 export type RoomIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  hotel?: boolean | Prisma.HotelListingDefaultArgs<ExtArgs>
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  hotel?: boolean | Prisma.HotelListingDefaultArgs<ExtArgs>
 }
 
 export type $RoomPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Room"
   objects: {
-    hotel: Prisma.$HotelListingPayload<ExtArgs>
     currency: Prisma.$CurrencyPayload<ExtArgs>
+    hotel: Prisma.$HotelListingPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1484,8 +1484,8 @@ readonly fields: RoomFieldRefs;
  */
 export interface Prisma__RoomClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  hotel<T extends Prisma.HotelListingDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.HotelListingDefaultArgs<ExtArgs>>): Prisma.Prisma__HotelListingClient<runtime.Types.Result.GetResult<Prisma.$HotelListingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   currency<T extends Prisma.CurrencyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CurrencyDefaultArgs<ExtArgs>>): Prisma.Prisma__CurrencyClient<runtime.Types.Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  hotel<T extends Prisma.HotelListingDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.HotelListingDefaultArgs<ExtArgs>>): Prisma.Prisma__HotelListingClient<runtime.Types.Result.GetResult<Prisma.$HotelListingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

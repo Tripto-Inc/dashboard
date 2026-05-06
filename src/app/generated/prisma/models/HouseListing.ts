@@ -31,9 +31,9 @@ export type HouseListingAvgAggregateOutputType = {
   discount: number | null
   capacity: number | null
   area: number | null
-  floors: number | null
-  bedrooms: number | null
   bathrooms: number | null
+  bedrooms: number | null
+  floors: number | null
 }
 
 export type HouseListingSumAggregateOutputType = {
@@ -41,9 +41,9 @@ export type HouseListingSumAggregateOutputType = {
   discount: number | null
   capacity: number | null
   area: number | null
-  floors: number | null
-  bedrooms: number | null
   bathrooms: number | null
+  bedrooms: number | null
+  floors: number | null
 }
 
 export type HouseListingMinAggregateOutputType = {
@@ -51,12 +51,12 @@ export type HouseListingMinAggregateOutputType = {
   price: number | null
   discount: number | null
   capacity: number | null
-  area: number | null
-  floors: number | null
-  bedrooms: number | null
-  bathrooms: number | null
   currencyId: string | null
   listingId: string | null
+  area: number | null
+  bathrooms: number | null
+  bedrooms: number | null
+  floors: number | null
 }
 
 export type HouseListingMaxAggregateOutputType = {
@@ -64,12 +64,12 @@ export type HouseListingMaxAggregateOutputType = {
   price: number | null
   discount: number | null
   capacity: number | null
-  area: number | null
-  floors: number | null
-  bedrooms: number | null
-  bathrooms: number | null
   currencyId: string | null
   listingId: string | null
+  area: number | null
+  bathrooms: number | null
+  bedrooms: number | null
+  floors: number | null
 }
 
 export type HouseListingCountAggregateOutputType = {
@@ -77,13 +77,13 @@ export type HouseListingCountAggregateOutputType = {
   price: number
   discount: number
   capacity: number
-  area: number
-  floors: number
-  bedrooms: number
-  bathrooms: number
   currencyId: number
   availableDates: number
   listingId: number
+  area: number
+  bathrooms: number
+  bedrooms: number
+  floors: number
   _all: number
 }
 
@@ -93,9 +93,9 @@ export type HouseListingAvgAggregateInputType = {
   discount?: true
   capacity?: true
   area?: true
-  floors?: true
-  bedrooms?: true
   bathrooms?: true
+  bedrooms?: true
+  floors?: true
 }
 
 export type HouseListingSumAggregateInputType = {
@@ -103,9 +103,9 @@ export type HouseListingSumAggregateInputType = {
   discount?: true
   capacity?: true
   area?: true
-  floors?: true
-  bedrooms?: true
   bathrooms?: true
+  bedrooms?: true
+  floors?: true
 }
 
 export type HouseListingMinAggregateInputType = {
@@ -113,12 +113,12 @@ export type HouseListingMinAggregateInputType = {
   price?: true
   discount?: true
   capacity?: true
-  area?: true
-  floors?: true
-  bedrooms?: true
-  bathrooms?: true
   currencyId?: true
   listingId?: true
+  area?: true
+  bathrooms?: true
+  bedrooms?: true
+  floors?: true
 }
 
 export type HouseListingMaxAggregateInputType = {
@@ -126,12 +126,12 @@ export type HouseListingMaxAggregateInputType = {
   price?: true
   discount?: true
   capacity?: true
-  area?: true
-  floors?: true
-  bedrooms?: true
-  bathrooms?: true
   currencyId?: true
   listingId?: true
+  area?: true
+  bathrooms?: true
+  bedrooms?: true
+  floors?: true
 }
 
 export type HouseListingCountAggregateInputType = {
@@ -139,13 +139,13 @@ export type HouseListingCountAggregateInputType = {
   price?: true
   discount?: true
   capacity?: true
-  area?: true
-  floors?: true
-  bedrooms?: true
-  bathrooms?: true
   currencyId?: true
   availableDates?: true
   listingId?: true
+  area?: true
+  bathrooms?: true
+  bedrooms?: true
+  floors?: true
   _all?: true
 }
 
@@ -240,13 +240,13 @@ export type HouseListingGroupByOutputType = {
   price: number
   discount: number | null
   capacity: number
-  area: number
-  floors: number
-  bedrooms: number
-  bathrooms: number
   currencyId: string
   availableDates: runtime.JsonValue | null
   listingId: string
+  area: number
+  bathrooms: number
+  bedrooms: number
+  floors: number
   _count: HouseListingCountAggregateOutputType | null
   _avg: HouseListingAvgAggregateOutputType | null
   _sum: HouseListingSumAggregateOutputType | null
@@ -277,13 +277,13 @@ export type HouseListingWhereInput = {
   price?: Prisma.FloatFilter<"HouseListing"> | number
   discount?: Prisma.FloatNullableFilter<"HouseListing"> | number | null
   capacity?: Prisma.IntFilter<"HouseListing"> | number
-  area?: Prisma.IntFilter<"HouseListing"> | number
-  floors?: Prisma.IntFilter<"HouseListing"> | number
-  bedrooms?: Prisma.IntFilter<"HouseListing"> | number
-  bathrooms?: Prisma.IntFilter<"HouseListing"> | number
   currencyId?: Prisma.StringFilter<"HouseListing"> | string
   availableDates?: Prisma.JsonNullableFilter<"HouseListing">
   listingId?: Prisma.StringFilter<"HouseListing"> | string
+  area?: Prisma.IntFilter<"HouseListing"> | number
+  bathrooms?: Prisma.IntFilter<"HouseListing"> | number
+  bedrooms?: Prisma.IntFilter<"HouseListing"> | number
+  floors?: Prisma.IntFilter<"HouseListing"> | number
   currency?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
   listing?: Prisma.XOR<Prisma.ListingScalarRelationFilter, Prisma.ListingWhereInput>
 }
@@ -293,13 +293,13 @@ export type HouseListingOrderByWithRelationInput = {
   price?: Prisma.SortOrder
   discount?: Prisma.SortOrderInput | Prisma.SortOrder
   capacity?: Prisma.SortOrder
-  area?: Prisma.SortOrder
-  floors?: Prisma.SortOrder
-  bedrooms?: Prisma.SortOrder
-  bathrooms?: Prisma.SortOrder
   currencyId?: Prisma.SortOrder
   availableDates?: Prisma.SortOrderInput | Prisma.SortOrder
   listingId?: Prisma.SortOrder
+  area?: Prisma.SortOrder
+  bathrooms?: Prisma.SortOrder
+  bedrooms?: Prisma.SortOrder
+  floors?: Prisma.SortOrder
   currency?: Prisma.CurrencyOrderByWithRelationInput
   listing?: Prisma.ListingOrderByWithRelationInput
 }
@@ -313,12 +313,12 @@ export type HouseListingWhereUniqueInput = Prisma.AtLeast<{
   price?: Prisma.FloatFilter<"HouseListing"> | number
   discount?: Prisma.FloatNullableFilter<"HouseListing"> | number | null
   capacity?: Prisma.IntFilter<"HouseListing"> | number
-  area?: Prisma.IntFilter<"HouseListing"> | number
-  floors?: Prisma.IntFilter<"HouseListing"> | number
-  bedrooms?: Prisma.IntFilter<"HouseListing"> | number
-  bathrooms?: Prisma.IntFilter<"HouseListing"> | number
   currencyId?: Prisma.StringFilter<"HouseListing"> | string
   availableDates?: Prisma.JsonNullableFilter<"HouseListing">
+  area?: Prisma.IntFilter<"HouseListing"> | number
+  bathrooms?: Prisma.IntFilter<"HouseListing"> | number
+  bedrooms?: Prisma.IntFilter<"HouseListing"> | number
+  floors?: Prisma.IntFilter<"HouseListing"> | number
   currency?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
   listing?: Prisma.XOR<Prisma.ListingScalarRelationFilter, Prisma.ListingWhereInput>
 }, "id" | "listingId">
@@ -328,13 +328,13 @@ export type HouseListingOrderByWithAggregationInput = {
   price?: Prisma.SortOrder
   discount?: Prisma.SortOrderInput | Prisma.SortOrder
   capacity?: Prisma.SortOrder
-  area?: Prisma.SortOrder
-  floors?: Prisma.SortOrder
-  bedrooms?: Prisma.SortOrder
-  bathrooms?: Prisma.SortOrder
   currencyId?: Prisma.SortOrder
   availableDates?: Prisma.SortOrderInput | Prisma.SortOrder
   listingId?: Prisma.SortOrder
+  area?: Prisma.SortOrder
+  bathrooms?: Prisma.SortOrder
+  bedrooms?: Prisma.SortOrder
+  floors?: Prisma.SortOrder
   _count?: Prisma.HouseListingCountOrderByAggregateInput
   _avg?: Prisma.HouseListingAvgOrderByAggregateInput
   _max?: Prisma.HouseListingMaxOrderByAggregateInput
@@ -350,13 +350,13 @@ export type HouseListingScalarWhereWithAggregatesInput = {
   price?: Prisma.FloatWithAggregatesFilter<"HouseListing"> | number
   discount?: Prisma.FloatNullableWithAggregatesFilter<"HouseListing"> | number | null
   capacity?: Prisma.IntWithAggregatesFilter<"HouseListing"> | number
-  area?: Prisma.IntWithAggregatesFilter<"HouseListing"> | number
-  floors?: Prisma.IntWithAggregatesFilter<"HouseListing"> | number
-  bedrooms?: Prisma.IntWithAggregatesFilter<"HouseListing"> | number
-  bathrooms?: Prisma.IntWithAggregatesFilter<"HouseListing"> | number
   currencyId?: Prisma.StringWithAggregatesFilter<"HouseListing"> | string
   availableDates?: Prisma.JsonNullableWithAggregatesFilter<"HouseListing">
   listingId?: Prisma.StringWithAggregatesFilter<"HouseListing"> | string
+  area?: Prisma.IntWithAggregatesFilter<"HouseListing"> | number
+  bathrooms?: Prisma.IntWithAggregatesFilter<"HouseListing"> | number
+  bedrooms?: Prisma.IntWithAggregatesFilter<"HouseListing"> | number
+  floors?: Prisma.IntWithAggregatesFilter<"HouseListing"> | number
 }
 
 export type HouseListingCreateInput = {
@@ -364,11 +364,11 @@ export type HouseListingCreateInput = {
   price: number
   discount?: number | null
   capacity: number
-  area: number
-  floors: number
-  bedrooms: number
-  bathrooms: number
   availableDates?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  area: number
+  bathrooms: number
+  bedrooms: number
+  floors: number
   currency: Prisma.CurrencyCreateNestedOneWithoutHousesInput
   listing: Prisma.ListingCreateNestedOneWithoutHouseInput
 }
@@ -378,13 +378,13 @@ export type HouseListingUncheckedCreateInput = {
   price: number
   discount?: number | null
   capacity: number
-  area: number
-  floors: number
-  bedrooms: number
-  bathrooms: number
   currencyId: string
   availableDates?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   listingId: string
+  area: number
+  bathrooms: number
+  bedrooms: number
+  floors: number
 }
 
 export type HouseListingUpdateInput = {
@@ -392,11 +392,11 @@ export type HouseListingUpdateInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
-  area?: Prisma.IntFieldUpdateOperationsInput | number
-  floors?: Prisma.IntFieldUpdateOperationsInput | number
-  bedrooms?: Prisma.IntFieldUpdateOperationsInput | number
-  bathrooms?: Prisma.IntFieldUpdateOperationsInput | number
   availableDates?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  area?: Prisma.IntFieldUpdateOperationsInput | number
+  bathrooms?: Prisma.IntFieldUpdateOperationsInput | number
+  bedrooms?: Prisma.IntFieldUpdateOperationsInput | number
+  floors?: Prisma.IntFieldUpdateOperationsInput | number
   currency?: Prisma.CurrencyUpdateOneRequiredWithoutHousesNestedInput
   listing?: Prisma.ListingUpdateOneRequiredWithoutHouseNestedInput
 }
@@ -406,13 +406,13 @@ export type HouseListingUncheckedUpdateInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
-  area?: Prisma.IntFieldUpdateOperationsInput | number
-  floors?: Prisma.IntFieldUpdateOperationsInput | number
-  bedrooms?: Prisma.IntFieldUpdateOperationsInput | number
-  bathrooms?: Prisma.IntFieldUpdateOperationsInput | number
   currencyId?: Prisma.StringFieldUpdateOperationsInput | string
   availableDates?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   listingId?: Prisma.StringFieldUpdateOperationsInput | string
+  area?: Prisma.IntFieldUpdateOperationsInput | number
+  bathrooms?: Prisma.IntFieldUpdateOperationsInput | number
+  bedrooms?: Prisma.IntFieldUpdateOperationsInput | number
+  floors?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type HouseListingCreateManyInput = {
@@ -420,13 +420,13 @@ export type HouseListingCreateManyInput = {
   price: number
   discount?: number | null
   capacity: number
-  area: number
-  floors: number
-  bedrooms: number
-  bathrooms: number
   currencyId: string
   availableDates?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   listingId: string
+  area: number
+  bathrooms: number
+  bedrooms: number
+  floors: number
 }
 
 export type HouseListingUpdateManyMutationInput = {
@@ -434,11 +434,11 @@ export type HouseListingUpdateManyMutationInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
-  area?: Prisma.IntFieldUpdateOperationsInput | number
-  floors?: Prisma.IntFieldUpdateOperationsInput | number
-  bedrooms?: Prisma.IntFieldUpdateOperationsInput | number
-  bathrooms?: Prisma.IntFieldUpdateOperationsInput | number
   availableDates?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  area?: Prisma.IntFieldUpdateOperationsInput | number
+  bathrooms?: Prisma.IntFieldUpdateOperationsInput | number
+  bedrooms?: Prisma.IntFieldUpdateOperationsInput | number
+  floors?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type HouseListingUncheckedUpdateManyInput = {
@@ -446,13 +446,13 @@ export type HouseListingUncheckedUpdateManyInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
-  area?: Prisma.IntFieldUpdateOperationsInput | number
-  floors?: Prisma.IntFieldUpdateOperationsInput | number
-  bedrooms?: Prisma.IntFieldUpdateOperationsInput | number
-  bathrooms?: Prisma.IntFieldUpdateOperationsInput | number
   currencyId?: Prisma.StringFieldUpdateOperationsInput | string
   availableDates?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   listingId?: Prisma.StringFieldUpdateOperationsInput | string
+  area?: Prisma.IntFieldUpdateOperationsInput | number
+  bathrooms?: Prisma.IntFieldUpdateOperationsInput | number
+  bedrooms?: Prisma.IntFieldUpdateOperationsInput | number
+  floors?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type HouseListingListRelationFilter = {
@@ -475,13 +475,13 @@ export type HouseListingCountOrderByAggregateInput = {
   price?: Prisma.SortOrder
   discount?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
-  area?: Prisma.SortOrder
-  floors?: Prisma.SortOrder
-  bedrooms?: Prisma.SortOrder
-  bathrooms?: Prisma.SortOrder
   currencyId?: Prisma.SortOrder
   availableDates?: Prisma.SortOrder
   listingId?: Prisma.SortOrder
+  area?: Prisma.SortOrder
+  bathrooms?: Prisma.SortOrder
+  bedrooms?: Prisma.SortOrder
+  floors?: Prisma.SortOrder
 }
 
 export type HouseListingAvgOrderByAggregateInput = {
@@ -489,9 +489,9 @@ export type HouseListingAvgOrderByAggregateInput = {
   discount?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
   area?: Prisma.SortOrder
-  floors?: Prisma.SortOrder
-  bedrooms?: Prisma.SortOrder
   bathrooms?: Prisma.SortOrder
+  bedrooms?: Prisma.SortOrder
+  floors?: Prisma.SortOrder
 }
 
 export type HouseListingMaxOrderByAggregateInput = {
@@ -499,12 +499,12 @@ export type HouseListingMaxOrderByAggregateInput = {
   price?: Prisma.SortOrder
   discount?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
-  area?: Prisma.SortOrder
-  floors?: Prisma.SortOrder
-  bedrooms?: Prisma.SortOrder
-  bathrooms?: Prisma.SortOrder
   currencyId?: Prisma.SortOrder
   listingId?: Prisma.SortOrder
+  area?: Prisma.SortOrder
+  bathrooms?: Prisma.SortOrder
+  bedrooms?: Prisma.SortOrder
+  floors?: Prisma.SortOrder
 }
 
 export type HouseListingMinOrderByAggregateInput = {
@@ -512,12 +512,12 @@ export type HouseListingMinOrderByAggregateInput = {
   price?: Prisma.SortOrder
   discount?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
-  area?: Prisma.SortOrder
-  floors?: Prisma.SortOrder
-  bedrooms?: Prisma.SortOrder
-  bathrooms?: Prisma.SortOrder
   currencyId?: Prisma.SortOrder
   listingId?: Prisma.SortOrder
+  area?: Prisma.SortOrder
+  bathrooms?: Prisma.SortOrder
+  bedrooms?: Prisma.SortOrder
+  floors?: Prisma.SortOrder
 }
 
 export type HouseListingSumOrderByAggregateInput = {
@@ -525,9 +525,9 @@ export type HouseListingSumOrderByAggregateInput = {
   discount?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
   area?: Prisma.SortOrder
-  floors?: Prisma.SortOrder
-  bedrooms?: Prisma.SortOrder
   bathrooms?: Prisma.SortOrder
+  bedrooms?: Prisma.SortOrder
+  floors?: Prisma.SortOrder
 }
 
 export type HouseListingCreateNestedManyWithoutCurrencyInput = {
@@ -617,11 +617,11 @@ export type HouseListingCreateWithoutCurrencyInput = {
   price: number
   discount?: number | null
   capacity: number
-  area: number
-  floors: number
-  bedrooms: number
-  bathrooms: number
   availableDates?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  area: number
+  bathrooms: number
+  bedrooms: number
+  floors: number
   listing: Prisma.ListingCreateNestedOneWithoutHouseInput
 }
 
@@ -630,12 +630,12 @@ export type HouseListingUncheckedCreateWithoutCurrencyInput = {
   price: number
   discount?: number | null
   capacity: number
-  area: number
-  floors: number
-  bedrooms: number
-  bathrooms: number
   availableDates?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   listingId: string
+  area: number
+  bathrooms: number
+  bedrooms: number
+  floors: number
 }
 
 export type HouseListingCreateOrConnectWithoutCurrencyInput = {
@@ -672,13 +672,13 @@ export type HouseListingScalarWhereInput = {
   price?: Prisma.FloatFilter<"HouseListing"> | number
   discount?: Prisma.FloatNullableFilter<"HouseListing"> | number | null
   capacity?: Prisma.IntFilter<"HouseListing"> | number
-  area?: Prisma.IntFilter<"HouseListing"> | number
-  floors?: Prisma.IntFilter<"HouseListing"> | number
-  bedrooms?: Prisma.IntFilter<"HouseListing"> | number
-  bathrooms?: Prisma.IntFilter<"HouseListing"> | number
   currencyId?: Prisma.StringFilter<"HouseListing"> | string
   availableDates?: Prisma.JsonNullableFilter<"HouseListing">
   listingId?: Prisma.StringFilter<"HouseListing"> | string
+  area?: Prisma.IntFilter<"HouseListing"> | number
+  bathrooms?: Prisma.IntFilter<"HouseListing"> | number
+  bedrooms?: Prisma.IntFilter<"HouseListing"> | number
+  floors?: Prisma.IntFilter<"HouseListing"> | number
 }
 
 export type HouseListingCreateWithoutListingInput = {
@@ -686,11 +686,11 @@ export type HouseListingCreateWithoutListingInput = {
   price: number
   discount?: number | null
   capacity: number
-  area: number
-  floors: number
-  bedrooms: number
-  bathrooms: number
   availableDates?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  area: number
+  bathrooms: number
+  bedrooms: number
+  floors: number
   currency: Prisma.CurrencyCreateNestedOneWithoutHousesInput
 }
 
@@ -699,12 +699,12 @@ export type HouseListingUncheckedCreateWithoutListingInput = {
   price: number
   discount?: number | null
   capacity: number
-  area: number
-  floors: number
-  bedrooms: number
-  bathrooms: number
   currencyId: string
   availableDates?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  area: number
+  bathrooms: number
+  bedrooms: number
+  floors: number
 }
 
 export type HouseListingCreateOrConnectWithoutListingInput = {
@@ -728,11 +728,11 @@ export type HouseListingUpdateWithoutListingInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
-  area?: Prisma.IntFieldUpdateOperationsInput | number
-  floors?: Prisma.IntFieldUpdateOperationsInput | number
-  bedrooms?: Prisma.IntFieldUpdateOperationsInput | number
-  bathrooms?: Prisma.IntFieldUpdateOperationsInput | number
   availableDates?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  area?: Prisma.IntFieldUpdateOperationsInput | number
+  bathrooms?: Prisma.IntFieldUpdateOperationsInput | number
+  bedrooms?: Prisma.IntFieldUpdateOperationsInput | number
+  floors?: Prisma.IntFieldUpdateOperationsInput | number
   currency?: Prisma.CurrencyUpdateOneRequiredWithoutHousesNestedInput
 }
 
@@ -741,12 +741,12 @@ export type HouseListingUncheckedUpdateWithoutListingInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
-  area?: Prisma.IntFieldUpdateOperationsInput | number
-  floors?: Prisma.IntFieldUpdateOperationsInput | number
-  bedrooms?: Prisma.IntFieldUpdateOperationsInput | number
-  bathrooms?: Prisma.IntFieldUpdateOperationsInput | number
   currencyId?: Prisma.StringFieldUpdateOperationsInput | string
   availableDates?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  area?: Prisma.IntFieldUpdateOperationsInput | number
+  bathrooms?: Prisma.IntFieldUpdateOperationsInput | number
+  bedrooms?: Prisma.IntFieldUpdateOperationsInput | number
+  floors?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type HouseListingCreateManyCurrencyInput = {
@@ -754,12 +754,12 @@ export type HouseListingCreateManyCurrencyInput = {
   price: number
   discount?: number | null
   capacity: number
-  area: number
-  floors: number
-  bedrooms: number
-  bathrooms: number
   availableDates?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   listingId: string
+  area: number
+  bathrooms: number
+  bedrooms: number
+  floors: number
 }
 
 export type HouseListingUpdateWithoutCurrencyInput = {
@@ -767,11 +767,11 @@ export type HouseListingUpdateWithoutCurrencyInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
-  area?: Prisma.IntFieldUpdateOperationsInput | number
-  floors?: Prisma.IntFieldUpdateOperationsInput | number
-  bedrooms?: Prisma.IntFieldUpdateOperationsInput | number
-  bathrooms?: Prisma.IntFieldUpdateOperationsInput | number
   availableDates?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  area?: Prisma.IntFieldUpdateOperationsInput | number
+  bathrooms?: Prisma.IntFieldUpdateOperationsInput | number
+  bedrooms?: Prisma.IntFieldUpdateOperationsInput | number
+  floors?: Prisma.IntFieldUpdateOperationsInput | number
   listing?: Prisma.ListingUpdateOneRequiredWithoutHouseNestedInput
 }
 
@@ -780,12 +780,12 @@ export type HouseListingUncheckedUpdateWithoutCurrencyInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
-  area?: Prisma.IntFieldUpdateOperationsInput | number
-  floors?: Prisma.IntFieldUpdateOperationsInput | number
-  bedrooms?: Prisma.IntFieldUpdateOperationsInput | number
-  bathrooms?: Prisma.IntFieldUpdateOperationsInput | number
   availableDates?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   listingId?: Prisma.StringFieldUpdateOperationsInput | string
+  area?: Prisma.IntFieldUpdateOperationsInput | number
+  bathrooms?: Prisma.IntFieldUpdateOperationsInput | number
+  bedrooms?: Prisma.IntFieldUpdateOperationsInput | number
+  floors?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type HouseListingUncheckedUpdateManyWithoutCurrencyInput = {
@@ -793,12 +793,12 @@ export type HouseListingUncheckedUpdateManyWithoutCurrencyInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
-  area?: Prisma.IntFieldUpdateOperationsInput | number
-  floors?: Prisma.IntFieldUpdateOperationsInput | number
-  bedrooms?: Prisma.IntFieldUpdateOperationsInput | number
-  bathrooms?: Prisma.IntFieldUpdateOperationsInput | number
   availableDates?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   listingId?: Prisma.StringFieldUpdateOperationsInput | string
+  area?: Prisma.IntFieldUpdateOperationsInput | number
+  bathrooms?: Prisma.IntFieldUpdateOperationsInput | number
+  bedrooms?: Prisma.IntFieldUpdateOperationsInput | number
+  floors?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -808,13 +808,13 @@ export type HouseListingSelect<ExtArgs extends runtime.Types.Extensions.Internal
   price?: boolean
   discount?: boolean
   capacity?: boolean
-  area?: boolean
-  floors?: boolean
-  bedrooms?: boolean
-  bathrooms?: boolean
   currencyId?: boolean
   availableDates?: boolean
   listingId?: boolean
+  area?: boolean
+  bathrooms?: boolean
+  bedrooms?: boolean
+  floors?: boolean
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
   listing?: boolean | Prisma.ListingDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["houseListing"]>
@@ -824,13 +824,13 @@ export type HouseListingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   price?: boolean
   discount?: boolean
   capacity?: boolean
-  area?: boolean
-  floors?: boolean
-  bedrooms?: boolean
-  bathrooms?: boolean
   currencyId?: boolean
   availableDates?: boolean
   listingId?: boolean
+  area?: boolean
+  bathrooms?: boolean
+  bedrooms?: boolean
+  floors?: boolean
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
   listing?: boolean | Prisma.ListingDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["houseListing"]>
@@ -840,13 +840,13 @@ export type HouseListingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   price?: boolean
   discount?: boolean
   capacity?: boolean
-  area?: boolean
-  floors?: boolean
-  bedrooms?: boolean
-  bathrooms?: boolean
   currencyId?: boolean
   availableDates?: boolean
   listingId?: boolean
+  area?: boolean
+  bathrooms?: boolean
+  bedrooms?: boolean
+  floors?: boolean
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
   listing?: boolean | Prisma.ListingDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["houseListing"]>
@@ -856,16 +856,16 @@ export type HouseListingSelectScalar = {
   price?: boolean
   discount?: boolean
   capacity?: boolean
-  area?: boolean
-  floors?: boolean
-  bedrooms?: boolean
-  bathrooms?: boolean
   currencyId?: boolean
   availableDates?: boolean
   listingId?: boolean
+  area?: boolean
+  bathrooms?: boolean
+  bedrooms?: boolean
+  floors?: boolean
 }
 
-export type HouseListingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "price" | "discount" | "capacity" | "area" | "floors" | "bedrooms" | "bathrooms" | "currencyId" | "availableDates" | "listingId", ExtArgs["result"]["houseListing"]>
+export type HouseListingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "price" | "discount" | "capacity" | "currencyId" | "availableDates" | "listingId" | "area" | "bathrooms" | "bedrooms" | "floors", ExtArgs["result"]["houseListing"]>
 export type HouseListingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
   listing?: boolean | Prisma.ListingDefaultArgs<ExtArgs>
@@ -890,13 +890,13 @@ export type $HouseListingPayload<ExtArgs extends runtime.Types.Extensions.Intern
     price: number
     discount: number | null
     capacity: number
-    area: number
-    floors: number
-    bedrooms: number
-    bathrooms: number
     currencyId: string
     availableDates: runtime.JsonValue | null
     listingId: string
+    area: number
+    bathrooms: number
+    bedrooms: number
+    floors: number
   }, ExtArgs["result"]["houseListing"]>
   composites: {}
 }
@@ -1326,13 +1326,13 @@ export interface HouseListingFieldRefs {
   readonly price: Prisma.FieldRef<"HouseListing", 'Float'>
   readonly discount: Prisma.FieldRef<"HouseListing", 'Float'>
   readonly capacity: Prisma.FieldRef<"HouseListing", 'Int'>
-  readonly area: Prisma.FieldRef<"HouseListing", 'Int'>
-  readonly floors: Prisma.FieldRef<"HouseListing", 'Int'>
-  readonly bedrooms: Prisma.FieldRef<"HouseListing", 'Int'>
-  readonly bathrooms: Prisma.FieldRef<"HouseListing", 'Int'>
   readonly currencyId: Prisma.FieldRef<"HouseListing", 'String'>
   readonly availableDates: Prisma.FieldRef<"HouseListing", 'Json'>
   readonly listingId: Prisma.FieldRef<"HouseListing", 'String'>
+  readonly area: Prisma.FieldRef<"HouseListing", 'Int'>
+  readonly bathrooms: Prisma.FieldRef<"HouseListing", 'Int'>
+  readonly bedrooms: Prisma.FieldRef<"HouseListing", 'Int'>
+  readonly floors: Prisma.FieldRef<"HouseListing", 'Int'>
 }
     
 
