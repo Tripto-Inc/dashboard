@@ -8,8 +8,3 @@ export type LoginFormData = {
   username: string;
   password: string;
 };
-
-export type NextAuthSignInError = {
-  type?: string;
-  message?: string;
-};

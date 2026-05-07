@@ -11,12 +11,13 @@ import {
 } from '@/components/ui/dropdown-menu';
 import Image from 'next/image';
 import { FC } from 'react';
-import { logout } from '../api/mutations';
+import { useLogout } from '../hooks/useLogout';
 import { AvatarDropdownProps } from '../types';
 import { createMonogram } from '../utils';
 
 export const AvatarDropdown: FC<AvatarDropdownProps> = (props) => {
   const { name, email, image } = props;
+  const logoutMutation = useLogout();
 
   return (
     <DropdownMenu>
@@ -47,7 +48,11 @@ export const AvatarDropdown: FC<AvatarDropdownProps> = (props) => {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem variant="destructive" onClick={logout}>
+          <DropdownMenuItem
+            variant="destructive"
+            disabled={logoutMutation.isPending}
+            onClick={logoutMutation.mutateAsync}
+          >
             Log out
           </DropdownMenuItem>
         </DropdownMenuGroup>

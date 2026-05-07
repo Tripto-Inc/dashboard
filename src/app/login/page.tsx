@@ -1,8 +1,8 @@
-import { LoginWithGoogleButton } from '@/features/authentication';
+import { LoginForm, LoginWithGoogleButton } from '@/features/authentication';
 import { IconCompass } from '@tabler/icons-react';
 import Image from 'next/image';
 
-const LoginPage = () => {
+const LoginPage = async () => {
   return (
     <main className="min-h-screen font-sans">
       <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#020617]">
@@ -33,6 +33,16 @@ const LoginPage = () => {
 
             <div className="space-y-6">
               <LoginWithGoogleButton />
+
+              <div className="flex items-center gap-4">
+                <div className="h-px flex-1 bg-white/10"></div>
+                <span className="text-[10px] font-black tracking-widest text-slate-500 uppercase">
+                  Secure Access
+                </span>
+                <div className="h-px flex-1 bg-white/10"></div>
+              </div>
+
+              <LoginForm />
             </div>
           </div>
 
