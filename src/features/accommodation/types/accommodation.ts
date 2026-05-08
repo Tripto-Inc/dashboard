@@ -9,6 +9,7 @@ import { Amenity } from './amenityForm';
 import { Policy } from './policyForm';
 
 export type Accommodation = PrismaAccommodation;
+export type AccommodationType = 'HOUSE' | 'HOTEL';
 export type Hotel = PrismaHotel & { rooms: Array<PrismaRoom> };
 
 export type AccommodationDetails = Accommodation & {
@@ -25,7 +26,7 @@ export type AccommodationColumns = {
   id: string;
   title: string;
   address: Address;
-  type?: 'HOUSE' | 'HOTEL';
+  type?: AccommodationType;
   policies: Array<Policy>;
   amenities: Array<Amenity>;
 };

@@ -14,78 +14,98 @@ export const createHotel = async (payload: CreateHotelPayload) => {
   const { data, heroImage, galleryImages, roomsGalleryImages } = payload;
   const bucket = BUCKETS.accommodations;
   const session = await auth();
-  const accommodation = await prisma.accommodation.create({
-    data: {
-      type: 'HOTEL',
-      title: data.title,
-      description: data.description,
-      policies: JSON.parse(JSON.stringify(data.policies)),
-      amenities: JSON.parse(JSON.stringify(data.amenities)),
 
-      createdBy: {
-        connect: { id: session?.user?.id },
+  const accommodation = await prisma.$transaction(async (tx) => {
+    const address = await tx.address.upsert({
+      where: {
+        countryCode_city_details: {
+          city: data.city,
+          details: data.addressDetails,
+          countryCode: data.countryCode,
+        },
       },
+      update: {},
+      create: {
+        city: data.city,
+        country: data.country,
+        latitude: data.latitude,
+        longitude: data.longitude,
+        details: data.addressDetails,
+        countryCode: data.countryCode,
+        createdById: session?.user?.id,
+      },
+    });
 
-      address: {
-        connectOrCreate: {
-          where: {
-            countryCode_city_details: {
-              city: data.city,
-              details: data.addressDetails,
-              countryCode: data.countryCode,
+    const existing = await tx.accommodation.findUnique({
+      where: {
+        title_addressId: {
+          title: data.title,
+          addressId: address.id,
+        },
+      },
+    });
+
+    if (existing) {
+      throw new Error(ACCOMMODATION_ERRORS.DUPLICATE);
+    }
+
+    const accommodation = await tx.accommodation.create({
+      data: {
+        title: data.title,
+        description: data.description,
+        policies: data.policies,
+        amenities: data.amenities,
+
+        createdBy: {
+          connect: { id: session?.user?.id },
+        },
+
+        address: {
+          connect: { id: address.id },
+        },
+
+        hotel: {
+          create: {
+            rooms: {
+              create: data.rooms.map((room) => ({
+                ...room,
+                beds: room.beds,
+                amenities: room.amenities,
+                createdById: session?.user?.id,
+              })),
             },
           },
-          create: {
-            city: data.city,
-            country: data.country,
-            latitude: data.latitude,
-            longitude: data.longitude,
-            details: data.addressDetails,
-            countryCode: data.countryCode,
-            createdById: session?.user?.id,
+        },
+      },
+      include: {
+        hotel: {
+          include: {
+            rooms: true,
           },
         },
       },
+    });
 
-      hotel: {
-        create: {
-          rooms: {
-            create: data.rooms.map((room) => ({
-              ...room,
-              beds: JSON.parse(JSON.stringify(room.beds)),
-              amenities: JSON.parse(JSON.stringify(room.amenities)),
-              createdById: session?.user?.id,
-            })),
-          },
-        },
-      },
-    },
-    include: {
-      hotel: {
-        include: {
-          rooms: true,
-        },
-      },
-    },
+    return accommodation;
   });
 
+  // =========================
+  // OUTSIDE TRANSACTION (S3)
+  // =========================
+
   if (heroImage) {
-    const uploadResult = await uploadDocument({
+    await uploadDocument({
       bucket,
       file: heroImage,
       object: `${accommodation.id}/hero.webp`,
     });
-
-    if (!uploadResult.success)
-      throw new Error('Accommodation created, but hero image upload failed.');
   }
 
   if (galleryImages?.length) {
-    const results = await Promise.allSettled(
+    await Promise.allSettled(
       galleryImages.map(async (file) => {
         const bytes = await file.arrayBuffer();
         const buffer = Buffer.from(bytes);
-
         const hash = createHash('sha256').update(buffer).digest('hex');
 
         return uploadDocument({
@@ -95,37 +115,28 @@ export const createHotel = async (payload: CreateHotelPayload) => {
         });
       }),
     );
-
-    const failed = results.some((r) => r.status === 'rejected');
-    if (failed) throw new Error('Accommodation created, but some gallery uploads failed.');
   }
 
   if (roomsGalleryImages?.length) {
     for (let roomIndex = 0; roomIndex < roomsGalleryImages.length; roomIndex++) {
       const roomImages = roomsGalleryImages[roomIndex];
+      const room = accommodation.hotel?.rooms[roomIndex];
 
-      if (roomImages?.length) {
-        const roomId = accommodation.hotel?.rooms[roomIndex].id;
-        const roomTitle = accommodation.hotel?.rooms[roomIndex].title;
+      if (!room || !roomImages?.length) continue;
 
-        const results = await Promise.allSettled(
-          roomImages.map(async (file) => {
-            const bytes = await file.arrayBuffer();
-            const buffer = Buffer.from(bytes);
+      await Promise.allSettled(
+        roomImages.map(async (file) => {
+          const bytes = await file.arrayBuffer();
+          const buffer = Buffer.from(bytes);
+          const hash = createHash('sha256').update(buffer).digest('hex');
 
-            const hash = createHash('sha256').update(buffer).digest('hex');
-
-            return uploadDocument({
-              bucket,
-              object: `${accommodation.id}/rooms/${roomId}/gallery/${hash}.webp`,
-              file,
-            });
-          }),
-        );
-
-        const failed = results.some((r) => r.status === 'rejected');
-        if (failed) throw new Error(`Room ${roomTitle} gallery image upload failed.`);
-      }
+          return uploadDocument({
+            bucket,
+            object: `${accommodation.id}/rooms/${room.id}/gallery/${hash}.webp`,
+            file,
+          });
+        }),
+      );
     }
   }
 
@@ -136,29 +147,42 @@ export const updateHotel = async (payload: UpdateHotelPayload) => {
   const { id, data, heroImage, galleryImages, roomsGalleryImages } = payload;
 
   const bucket = 'accommodations';
-  const heroImageObject = `${id}/hero.webp`;
 
   if (!id) throw new Error(ACCOMMODATION_ERRORS.ID_REQUIRED);
+
   const session = await auth();
+
   const existing = await prisma.accommodation.findUnique({
     where: { id },
-    include: { hotel: { include: { rooms: true } } },
+    include: {
+      hotel: {
+        include: { rooms: true },
+      },
+    },
   });
 
   if (!existing) throw new Error(ACCOMMODATION_ERRORS.NOT_FOUND);
 
-  const result = await prisma.$transaction(async (prisma) => {
-    const roomsToDelete = existing.hotel?.rooms.filter(
-      (room) => !data.rooms.some((r) => r.id === room.id),
-    );
+  // =========================
+  // 1. DB TRANSACTION ONLY
+  // =========================
+  const result = await prisma.$transaction(async (tx) => {
+    // --- Rooms diff ---
+    const incomingRoomIds = new Set(data.rooms.filter((r) => r.id).map((r) => r.id!));
 
-    const deleteRooms = roomsToDelete?.map((room) =>
-      prisma.room.delete({ where: { id: room.id } }),
-    );
+    const roomsToDelete =
+      existing.hotel?.rooms.filter((room) => !incomingRoomIds.has(room.id)) ?? [];
 
-    const roomUpdates = data.rooms.map((room) => {
+    await tx.room.deleteMany({
+      where: {
+        id: { in: roomsToDelete.map((r) => r.id) },
+      },
+    });
+
+    // --- Update / Create rooms ---
+    for (const room of data.rooms) {
       if (room.id) {
-        return prisma.room.update({
+        await tx.room.update({
           where: { id: room.id },
           data: {
             title: room.title,
@@ -170,45 +194,41 @@ export const updateHotel = async (payload: UpdateHotelPayload) => {
             capacity: room.capacity,
             bedrooms: room.bedrooms,
             bathrooms: room.bathrooms,
-            amenities: JSON.parse(JSON.stringify(room.amenities)),
-            beds: JSON.parse(JSON.stringify(room.beds)),
+            amenities: room.amenities,
+            beds: room.beds,
             updatedAt: new Date(),
             updatedById: session?.user?.id,
           },
         });
-      }
-
-      if (!room.id && existing.hotel) {
-        return prisma.room.create({
+      } else {
+        await tx.room.create({
           data: {
             title: room.title,
             area: room.area,
             count: room.count,
             price: room.price,
             currencyId: room.currencyId,
-            discount: room.discount,
+            discount: room.discount ?? null,
             capacity: room.capacity,
             bedrooms: room.bedrooms,
             bathrooms: room.bathrooms,
-            amenities: JSON.parse(JSON.stringify(room.amenities)),
-            beds: JSON.parse(JSON.stringify(room.beds)),
-            hotelId: existing.hotel.id,
+            amenities: room.amenities,
+            beds: room.beds,
+            hotelId: existing.hotel!.id,
             createdById: session?.user?.id,
           },
         });
       }
-    });
+    }
 
-    await Promise.all([...(deleteRooms || []), ...roomUpdates]);
-
-    const updatedAccommodation = await prisma.accommodation.update({
+    // --- Accommodation update ---
+    const updatedAccommodation = await tx.accommodation.update({
       where: { id },
       data: {
-        type: 'HOTEL',
         title: data.title,
         description: data.description,
-        policies: JSON.parse(JSON.stringify(data.policies)),
-        amenities: JSON.parse(JSON.stringify(data.amenities)),
+        policies: data.policies,
+        amenities: data.amenities,
 
         address: {
           update: {
@@ -222,11 +242,8 @@ export const updateHotel = async (payload: UpdateHotelPayload) => {
           },
         },
 
-        updatedAt: new Date(),
         updatedBy: {
-          connect: {
-            id: session?.user?.id,
-          },
+          connect: { id: session?.user?.id },
         },
       },
       include: {
@@ -235,32 +252,88 @@ export const updateHotel = async (payload: UpdateHotelPayload) => {
       },
     });
 
-    // -------------------------
-    // HERO IMAGE
-    // -------------------------
-    if (heroImage) {
-      const uploadResult = await uploadDocument({
-        bucket,
-        file: heroImage,
-        object: heroImageObject,
-      });
+    return updatedAccommodation;
+  });
 
-      if (!uploadResult.success) {
-        throw new Error('Accommodation updated, but hero image upload failed.');
-      }
+  // =========================
+  // 2. HERO IMAGE (OUTSIDE DB)
+  // =========================
+  if (heroImage) {
+    const uploadResult = await uploadDocument({
+      bucket,
+      file: heroImage,
+      object: `${id}/hero.webp`,
+    });
+
+    if (!uploadResult.success) {
+      throw new Error('Accommodation updated, but hero image upload failed.');
     }
+  }
 
-    // -------------------------
-    // GALLERY (Accommodation)
-    // -------------------------
-    if (galleryImages?.length) {
-      const prefix = `${id}/gallery/`;
+  // =========================
+  // 3. GALLERY (OUTSIDE DB)
+  // =========================
+  if (galleryImages?.length) {
+    const prefix = `${id}/gallery/`;
+
+    const existingKeys = await listKeysByPrefix(bucket, prefix);
+    const existingHashes = new Set(existingKeys.map(extractHash));
+
+    const incoming = await Promise.all(
+      galleryImages.map(async (file) => {
+        const buffer = Buffer.from(await file.arrayBuffer());
+        const hash = createHash('sha256').update(buffer).digest('hex');
+        return { file, hash };
+      }),
+    );
+
+    const incomingHashes = new Set(incoming.map((i) => i.hash));
+
+    const toUpload = incoming.filter((i) => !existingHashes.has(i.hash));
+    const toDelete = existingKeys.filter((key) => !incomingHashes.has(extractHash(key)));
+
+    await Promise.allSettled(
+      toUpload.map(({ file, hash }) =>
+        uploadDocument({
+          bucket,
+          object: `${prefix}${hash}.webp`,
+          file,
+        }),
+      ),
+    );
+
+    await Promise.all(
+      toDelete.map((key) =>
+        deleteDocument({
+          bucket,
+          object: key,
+        }),
+      ),
+    );
+  }
+
+  // =========================
+  // 4. ROOM GALLERIES (OUTSIDE DB)
+  // =========================
+  if (roomsGalleryImages?.length) {
+    const roomMap = new Map(result.hotel?.rooms.map((room) => [room.id, room]));
+
+    for (let i = 0; i < roomsGalleryImages.length; i++) {
+      const files = roomsGalleryImages[i];
+      const inputRoom = data.rooms[i];
+
+      if (!inputRoom?.id || !files?.length) continue;
+
+      const room = roomMap.get(inputRoom.id);
+      if (!room) continue;
+
+      const prefix = `${id}/rooms/${room.id}/gallery/`;
 
       const existingKeys = await listKeysByPrefix(bucket, prefix);
       const existingHashes = new Set(existingKeys.map(extractHash));
 
       const incoming = await Promise.all(
-        galleryImages.map(async (file) => {
+        files.map(async (file) => {
           const buffer = Buffer.from(await file.arrayBuffer());
           const hash = createHash('sha256').update(buffer).digest('hex');
           return { file, hash };
@@ -291,63 +364,7 @@ export const updateHotel = async (payload: UpdateHotelPayload) => {
         ),
       );
     }
-
-    // -------------------------
-    // ROOMS GALLERIES
-    // -------------------------
-    if (roomsGalleryImages?.length) {
-      for (let roomIndex = 0; roomIndex < roomsGalleryImages.length; roomIndex++) {
-        const files = roomsGalleryImages[roomIndex];
-        const room = data.rooms[roomIndex];
-
-        if (!room?.id || !files?.length) continue;
-
-        const roomId = room.id;
-        const prefix = `${id}/rooms/${roomId}/gallery/`;
-
-        const existingKeys = await listKeysByPrefix(bucket, prefix);
-        const existingHashes = new Set(existingKeys.map(extractHash));
-
-        const incoming = await Promise.all(
-          files.map(async (file) => {
-            const buffer = Buffer.from(await file.arrayBuffer());
-            const hash = createHash('sha256').update(buffer).digest('hex');
-            return { file, hash };
-          }),
-        );
-
-        const incomingHashes = new Set(incoming.map((i) => i.hash));
-
-        const toUpload = incoming.filter((i) => !existingHashes.has(i.hash));
-        const toDelete = existingKeys.filter((key) => !incomingHashes.has(extractHash(key)));
-
-        const uploadResults = await Promise.allSettled(
-          toUpload.map(({ file, hash }) =>
-            uploadDocument({
-              bucket,
-              object: `${prefix}${hash}.webp`,
-              file,
-            }),
-          ),
-        );
-
-        if (uploadResults.some((r) => r.status === 'rejected')) {
-          throw new Error(`Room ${roomId} gallery upload failed`);
-        }
-
-        await Promise.all(
-          toDelete.map((key) =>
-            deleteDocument({
-              bucket,
-              object: key,
-            }),
-          ),
-        );
-      }
-    }
-
-    return updatedAccommodation;
-  });
+  }
 
   revalidatePath(`/accommodations/edit/${id}`);
 

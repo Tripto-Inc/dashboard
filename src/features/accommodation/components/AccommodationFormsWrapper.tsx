@@ -9,7 +9,7 @@ import { AccommodationFormsWrapperProps } from '../types/accommodation';
 
 export const AccommodationFormsWrapper: FC<AccommodationFormsWrapperProps> = ({ initialData }) => {
   const isEditMode = Boolean(initialData?.id);
-  const activeTab = isEditMode ? initialData?.type || 'HOUSE' : 'HOUSE';
+  const activeTab = isEditMode ? (initialData?.house ? 'HOUSE' : 'HOTEL') : 'HOUSE';
 
   const tabs = [
     {

@@ -3,7 +3,11 @@
 import { ServerTableParams, ServerTableResponse } from '@/components/shared/DataTable/types';
 import { prisma } from '@/lib/prisma';
 import { ACCOMMODATION_ERRORS } from '../constants';
-import { AccommodationColumns, AccommodationDetails } from '../types/accommodation';
+import {
+  AccommodationColumns,
+  AccommodationDetails,
+  AccommodationType,
+} from '../types/accommodation';
 
 export const getAccommodations = async (
   params: ServerTableParams,
@@ -41,20 +45,24 @@ export const getAccommodations = async (
       take,
       select: {
         id: true,
-        type: true,
         title: true,
         address: true,
         amenities: true,
         policies: true,
+        hotel: true,
+        house: true,
       },
     }),
     prisma.accommodation.count({ where }),
   ]);
 
   const data = accommodations.map((accommodation) => ({
-    ...accommodation,
+    id: accommodation.id,
+    title: accommodation.title,
+    address: accommodation.address,
     policies: JSON.parse(JSON.stringify(accommodation.policies)),
     amenities: JSON.parse(JSON.stringify(accommodation.amenities)),
+    type: (accommodation.house ? 'HOUSE' : 'HOTEL') as AccommodationType,
   }));
 
   return {
