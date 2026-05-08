@@ -14,7 +14,7 @@ export const CURRENCY_ERRORS = {
   DUPLICATE_TITLE: 'Currency with this name already exists',
   NOT_FOUND: 'Currency not found',
   ID_REQUIRED: 'Currency id is required',
-  IN_USE: 'Cannot delete currency because it is being used by activities or listings',
+  IN_USE: 'Cannot delete currency because it is being used by activities or accommodations',
   CREATE_FAILED: 'Failed to create currency. Please try again.',
   UPDATE_FAILED: 'Failed to update currency. Please try again.',
   DELETE_FAILED: 'Failed to delete currency. Please try again.',

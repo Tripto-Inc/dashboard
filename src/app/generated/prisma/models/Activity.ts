@@ -45,6 +45,8 @@ export type ActivityMinAggregateOutputType = {
   currencyId: string | null
   addressId: string | null
   activityTypeId: string | null
+  createdById: string | null
+  updatedById: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -58,6 +60,8 @@ export type ActivityMaxAggregateOutputType = {
   currencyId: string | null
   addressId: string | null
   activityTypeId: string | null
+  createdById: string | null
+  updatedById: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -71,6 +75,8 @@ export type ActivityCountAggregateOutputType = {
   currencyId: number
   addressId: number
   activityTypeId: number
+  createdById: number
+  updatedById: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -96,6 +102,8 @@ export type ActivityMinAggregateInputType = {
   currencyId?: true
   addressId?: true
   activityTypeId?: true
+  createdById?: true
+  updatedById?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -109,6 +117,8 @@ export type ActivityMaxAggregateInputType = {
   currencyId?: true
   addressId?: true
   activityTypeId?: true
+  createdById?: true
+  updatedById?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -122,6 +132,8 @@ export type ActivityCountAggregateInputType = {
   currencyId?: true
   addressId?: true
   activityTypeId?: true
+  createdById?: true
+  updatedById?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -222,6 +234,8 @@ export type ActivityGroupByOutputType = {
   currencyId: string
   addressId: string
   activityTypeId: string
+  createdById: string | null
+  updatedById: string | null
   createdAt: Date
   updatedAt: Date
   _count: ActivityCountAggregateOutputType | null
@@ -258,11 +272,15 @@ export type ActivityWhereInput = {
   currencyId?: Prisma.StringFilter<"Activity"> | string
   addressId?: Prisma.StringFilter<"Activity"> | string
   activityTypeId?: Prisma.StringFilter<"Activity"> | string
+  createdById?: Prisma.StringNullableFilter<"Activity"> | string | null
+  updatedById?: Prisma.StringNullableFilter<"Activity"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Activity"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Activity"> | Date | string
   activityType?: Prisma.XOR<Prisma.ActivityTypeScalarRelationFilter, Prisma.ActivityTypeWhereInput>
   address?: Prisma.XOR<Prisma.AddressScalarRelationFilter, Prisma.AddressWhereInput>
   currency?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
+  createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  updatedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
 export type ActivityOrderByWithRelationInput = {
@@ -274,11 +292,15 @@ export type ActivityOrderByWithRelationInput = {
   currencyId?: Prisma.SortOrder
   addressId?: Prisma.SortOrder
   activityTypeId?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   activityType?: Prisma.ActivityTypeOrderByWithRelationInput
   address?: Prisma.AddressOrderByWithRelationInput
   currency?: Prisma.CurrencyOrderByWithRelationInput
+  createdBy?: Prisma.UserOrderByWithRelationInput
+  updatedBy?: Prisma.UserOrderByWithRelationInput
 }
 
 export type ActivityWhereUniqueInput = Prisma.AtLeast<{
@@ -294,11 +316,15 @@ export type ActivityWhereUniqueInput = Prisma.AtLeast<{
   currencyId?: Prisma.StringFilter<"Activity"> | string
   addressId?: Prisma.StringFilter<"Activity"> | string
   activityTypeId?: Prisma.StringFilter<"Activity"> | string
+  createdById?: Prisma.StringNullableFilter<"Activity"> | string | null
+  updatedById?: Prisma.StringNullableFilter<"Activity"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Activity"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Activity"> | Date | string
   activityType?: Prisma.XOR<Prisma.ActivityTypeScalarRelationFilter, Prisma.ActivityTypeWhereInput>
   address?: Prisma.XOR<Prisma.AddressScalarRelationFilter, Prisma.AddressWhereInput>
   currency?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
+  createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  updatedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }, "id" | "title" | "title_activityTypeId">
 
 export type ActivityOrderByWithAggregationInput = {
@@ -310,6 +336,8 @@ export type ActivityOrderByWithAggregationInput = {
   currencyId?: Prisma.SortOrder
   addressId?: Prisma.SortOrder
   activityTypeId?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ActivityCountOrderByAggregateInput
@@ -331,6 +359,8 @@ export type ActivityScalarWhereWithAggregatesInput = {
   currencyId?: Prisma.StringWithAggregatesFilter<"Activity"> | string
   addressId?: Prisma.StringWithAggregatesFilter<"Activity"> | string
   activityTypeId?: Prisma.StringWithAggregatesFilter<"Activity"> | string
+  createdById?: Prisma.StringNullableWithAggregatesFilter<"Activity"> | string | null
+  updatedById?: Prisma.StringNullableWithAggregatesFilter<"Activity"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Activity"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Activity"> | Date | string
 }
@@ -346,6 +376,8 @@ export type ActivityCreateInput = {
   activityType: Prisma.ActivityTypeCreateNestedOneWithoutActivitiesInput
   address: Prisma.AddressCreateNestedOneWithoutActivitiesInput
   currency: Prisma.CurrencyCreateNestedOneWithoutActivitiesInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutActivitiesCreatedInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutActivitiesUpdatedInput
 }
 
 export type ActivityUncheckedCreateInput = {
@@ -357,6 +389,8 @@ export type ActivityUncheckedCreateInput = {
   currencyId: string
   addressId: string
   activityTypeId: string
+  createdById?: string | null
+  updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -372,6 +406,8 @@ export type ActivityUpdateInput = {
   activityType?: Prisma.ActivityTypeUpdateOneRequiredWithoutActivitiesNestedInput
   address?: Prisma.AddressUpdateOneRequiredWithoutActivitiesNestedInput
   currency?: Prisma.CurrencyUpdateOneRequiredWithoutActivitiesNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutActivitiesCreatedNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutActivitiesUpdatedNestedInput
 }
 
 export type ActivityUncheckedUpdateInput = {
@@ -383,6 +419,8 @@ export type ActivityUncheckedUpdateInput = {
   currencyId?: Prisma.StringFieldUpdateOperationsInput | string
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
   activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -396,6 +434,8 @@ export type ActivityCreateManyInput = {
   currencyId: string
   addressId: string
   activityTypeId: string
+  createdById?: string | null
+  updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -419,6 +459,8 @@ export type ActivityUncheckedUpdateManyInput = {
   currencyId?: Prisma.StringFieldUpdateOperationsInput | string
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
   activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -437,6 +479,8 @@ export type ActivityCountOrderByAggregateInput = {
   currencyId?: Prisma.SortOrder
   addressId?: Prisma.SortOrder
   activityTypeId?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -455,6 +499,8 @@ export type ActivityMaxOrderByAggregateInput = {
   currencyId?: Prisma.SortOrder
   addressId?: Prisma.SortOrder
   activityTypeId?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -468,6 +514,8 @@ export type ActivityMinOrderByAggregateInput = {
   currencyId?: Prisma.SortOrder
   addressId?: Prisma.SortOrder
   activityTypeId?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -629,6 +677,90 @@ export type ActivityUncheckedUpdateManyWithoutActivityTypeNestedInput = {
   deleteMany?: Prisma.ActivityScalarWhereInput | Prisma.ActivityScalarWhereInput[]
 }
 
+export type ActivityCreateNestedManyWithoutCreatedByInput = {
+  create?: Prisma.XOR<Prisma.ActivityCreateWithoutCreatedByInput, Prisma.ActivityUncheckedCreateWithoutCreatedByInput> | Prisma.ActivityCreateWithoutCreatedByInput[] | Prisma.ActivityUncheckedCreateWithoutCreatedByInput[]
+  connectOrCreate?: Prisma.ActivityCreateOrConnectWithoutCreatedByInput | Prisma.ActivityCreateOrConnectWithoutCreatedByInput[]
+  createMany?: Prisma.ActivityCreateManyCreatedByInputEnvelope
+  connect?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+}
+
+export type ActivityCreateNestedManyWithoutUpdatedByInput = {
+  create?: Prisma.XOR<Prisma.ActivityCreateWithoutUpdatedByInput, Prisma.ActivityUncheckedCreateWithoutUpdatedByInput> | Prisma.ActivityCreateWithoutUpdatedByInput[] | Prisma.ActivityUncheckedCreateWithoutUpdatedByInput[]
+  connectOrCreate?: Prisma.ActivityCreateOrConnectWithoutUpdatedByInput | Prisma.ActivityCreateOrConnectWithoutUpdatedByInput[]
+  createMany?: Prisma.ActivityCreateManyUpdatedByInputEnvelope
+  connect?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+}
+
+export type ActivityUncheckedCreateNestedManyWithoutCreatedByInput = {
+  create?: Prisma.XOR<Prisma.ActivityCreateWithoutCreatedByInput, Prisma.ActivityUncheckedCreateWithoutCreatedByInput> | Prisma.ActivityCreateWithoutCreatedByInput[] | Prisma.ActivityUncheckedCreateWithoutCreatedByInput[]
+  connectOrCreate?: Prisma.ActivityCreateOrConnectWithoutCreatedByInput | Prisma.ActivityCreateOrConnectWithoutCreatedByInput[]
+  createMany?: Prisma.ActivityCreateManyCreatedByInputEnvelope
+  connect?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+}
+
+export type ActivityUncheckedCreateNestedManyWithoutUpdatedByInput = {
+  create?: Prisma.XOR<Prisma.ActivityCreateWithoutUpdatedByInput, Prisma.ActivityUncheckedCreateWithoutUpdatedByInput> | Prisma.ActivityCreateWithoutUpdatedByInput[] | Prisma.ActivityUncheckedCreateWithoutUpdatedByInput[]
+  connectOrCreate?: Prisma.ActivityCreateOrConnectWithoutUpdatedByInput | Prisma.ActivityCreateOrConnectWithoutUpdatedByInput[]
+  createMany?: Prisma.ActivityCreateManyUpdatedByInputEnvelope
+  connect?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+}
+
+export type ActivityUpdateManyWithoutCreatedByNestedInput = {
+  create?: Prisma.XOR<Prisma.ActivityCreateWithoutCreatedByInput, Prisma.ActivityUncheckedCreateWithoutCreatedByInput> | Prisma.ActivityCreateWithoutCreatedByInput[] | Prisma.ActivityUncheckedCreateWithoutCreatedByInput[]
+  connectOrCreate?: Prisma.ActivityCreateOrConnectWithoutCreatedByInput | Prisma.ActivityCreateOrConnectWithoutCreatedByInput[]
+  upsert?: Prisma.ActivityUpsertWithWhereUniqueWithoutCreatedByInput | Prisma.ActivityUpsertWithWhereUniqueWithoutCreatedByInput[]
+  createMany?: Prisma.ActivityCreateManyCreatedByInputEnvelope
+  set?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  disconnect?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  delete?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  connect?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  update?: Prisma.ActivityUpdateWithWhereUniqueWithoutCreatedByInput | Prisma.ActivityUpdateWithWhereUniqueWithoutCreatedByInput[]
+  updateMany?: Prisma.ActivityUpdateManyWithWhereWithoutCreatedByInput | Prisma.ActivityUpdateManyWithWhereWithoutCreatedByInput[]
+  deleteMany?: Prisma.ActivityScalarWhereInput | Prisma.ActivityScalarWhereInput[]
+}
+
+export type ActivityUpdateManyWithoutUpdatedByNestedInput = {
+  create?: Prisma.XOR<Prisma.ActivityCreateWithoutUpdatedByInput, Prisma.ActivityUncheckedCreateWithoutUpdatedByInput> | Prisma.ActivityCreateWithoutUpdatedByInput[] | Prisma.ActivityUncheckedCreateWithoutUpdatedByInput[]
+  connectOrCreate?: Prisma.ActivityCreateOrConnectWithoutUpdatedByInput | Prisma.ActivityCreateOrConnectWithoutUpdatedByInput[]
+  upsert?: Prisma.ActivityUpsertWithWhereUniqueWithoutUpdatedByInput | Prisma.ActivityUpsertWithWhereUniqueWithoutUpdatedByInput[]
+  createMany?: Prisma.ActivityCreateManyUpdatedByInputEnvelope
+  set?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  disconnect?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  delete?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  connect?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  update?: Prisma.ActivityUpdateWithWhereUniqueWithoutUpdatedByInput | Prisma.ActivityUpdateWithWhereUniqueWithoutUpdatedByInput[]
+  updateMany?: Prisma.ActivityUpdateManyWithWhereWithoutUpdatedByInput | Prisma.ActivityUpdateManyWithWhereWithoutUpdatedByInput[]
+  deleteMany?: Prisma.ActivityScalarWhereInput | Prisma.ActivityScalarWhereInput[]
+}
+
+export type ActivityUncheckedUpdateManyWithoutCreatedByNestedInput = {
+  create?: Prisma.XOR<Prisma.ActivityCreateWithoutCreatedByInput, Prisma.ActivityUncheckedCreateWithoutCreatedByInput> | Prisma.ActivityCreateWithoutCreatedByInput[] | Prisma.ActivityUncheckedCreateWithoutCreatedByInput[]
+  connectOrCreate?: Prisma.ActivityCreateOrConnectWithoutCreatedByInput | Prisma.ActivityCreateOrConnectWithoutCreatedByInput[]
+  upsert?: Prisma.ActivityUpsertWithWhereUniqueWithoutCreatedByInput | Prisma.ActivityUpsertWithWhereUniqueWithoutCreatedByInput[]
+  createMany?: Prisma.ActivityCreateManyCreatedByInputEnvelope
+  set?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  disconnect?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  delete?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  connect?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  update?: Prisma.ActivityUpdateWithWhereUniqueWithoutCreatedByInput | Prisma.ActivityUpdateWithWhereUniqueWithoutCreatedByInput[]
+  updateMany?: Prisma.ActivityUpdateManyWithWhereWithoutCreatedByInput | Prisma.ActivityUpdateManyWithWhereWithoutCreatedByInput[]
+  deleteMany?: Prisma.ActivityScalarWhereInput | Prisma.ActivityScalarWhereInput[]
+}
+
+export type ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput = {
+  create?: Prisma.XOR<Prisma.ActivityCreateWithoutUpdatedByInput, Prisma.ActivityUncheckedCreateWithoutUpdatedByInput> | Prisma.ActivityCreateWithoutUpdatedByInput[] | Prisma.ActivityUncheckedCreateWithoutUpdatedByInput[]
+  connectOrCreate?: Prisma.ActivityCreateOrConnectWithoutUpdatedByInput | Prisma.ActivityCreateOrConnectWithoutUpdatedByInput[]
+  upsert?: Prisma.ActivityUpsertWithWhereUniqueWithoutUpdatedByInput | Prisma.ActivityUpsertWithWhereUniqueWithoutUpdatedByInput[]
+  createMany?: Prisma.ActivityCreateManyUpdatedByInputEnvelope
+  set?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  disconnect?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  delete?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  connect?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  update?: Prisma.ActivityUpdateWithWhereUniqueWithoutUpdatedByInput | Prisma.ActivityUpdateWithWhereUniqueWithoutUpdatedByInput[]
+  updateMany?: Prisma.ActivityUpdateManyWithWhereWithoutUpdatedByInput | Prisma.ActivityUpdateManyWithWhereWithoutUpdatedByInput[]
+  deleteMany?: Prisma.ActivityScalarWhereInput | Prisma.ActivityScalarWhereInput[]
+}
+
 export type ActivityCreateWithoutAddressInput = {
   id?: string
   title: string
@@ -639,6 +771,8 @@ export type ActivityCreateWithoutAddressInput = {
   updatedAt?: Date | string
   activityType: Prisma.ActivityTypeCreateNestedOneWithoutActivitiesInput
   currency: Prisma.CurrencyCreateNestedOneWithoutActivitiesInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutActivitiesCreatedInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutActivitiesUpdatedInput
 }
 
 export type ActivityUncheckedCreateWithoutAddressInput = {
@@ -649,6 +783,8 @@ export type ActivityUncheckedCreateWithoutAddressInput = {
   discount?: number | null
   currencyId: string
   activityTypeId: string
+  createdById?: string | null
+  updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -691,6 +827,8 @@ export type ActivityScalarWhereInput = {
   currencyId?: Prisma.StringFilter<"Activity"> | string
   addressId?: Prisma.StringFilter<"Activity"> | string
   activityTypeId?: Prisma.StringFilter<"Activity"> | string
+  createdById?: Prisma.StringNullableFilter<"Activity"> | string | null
+  updatedById?: Prisma.StringNullableFilter<"Activity"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Activity"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Activity"> | Date | string
 }
@@ -705,6 +843,8 @@ export type ActivityCreateWithoutCurrencyInput = {
   updatedAt?: Date | string
   activityType: Prisma.ActivityTypeCreateNestedOneWithoutActivitiesInput
   address: Prisma.AddressCreateNestedOneWithoutActivitiesInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutActivitiesCreatedInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutActivitiesUpdatedInput
 }
 
 export type ActivityUncheckedCreateWithoutCurrencyInput = {
@@ -715,6 +855,8 @@ export type ActivityUncheckedCreateWithoutCurrencyInput = {
   discount?: number | null
   addressId: string
   activityTypeId: string
+  createdById?: string | null
+  updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -755,6 +897,8 @@ export type ActivityCreateWithoutActivityTypeInput = {
   updatedAt?: Date | string
   address: Prisma.AddressCreateNestedOneWithoutActivitiesInput
   currency: Prisma.CurrencyCreateNestedOneWithoutActivitiesInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutActivitiesCreatedInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutActivitiesUpdatedInput
 }
 
 export type ActivityUncheckedCreateWithoutActivityTypeInput = {
@@ -765,6 +909,8 @@ export type ActivityUncheckedCreateWithoutActivityTypeInput = {
   discount?: number | null
   currencyId: string
   addressId: string
+  createdById?: string | null
+  updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -795,6 +941,114 @@ export type ActivityUpdateManyWithWhereWithoutActivityTypeInput = {
   data: Prisma.XOR<Prisma.ActivityUpdateManyMutationInput, Prisma.ActivityUncheckedUpdateManyWithoutActivityTypeInput>
 }
 
+export type ActivityCreateWithoutCreatedByInput = {
+  id?: string
+  title: string
+  isActive?: boolean
+  price: number
+  discount?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  activityType: Prisma.ActivityTypeCreateNestedOneWithoutActivitiesInput
+  address: Prisma.AddressCreateNestedOneWithoutActivitiesInput
+  currency: Prisma.CurrencyCreateNestedOneWithoutActivitiesInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutActivitiesUpdatedInput
+}
+
+export type ActivityUncheckedCreateWithoutCreatedByInput = {
+  id?: string
+  title: string
+  isActive?: boolean
+  price: number
+  discount?: number | null
+  currencyId: string
+  addressId: string
+  activityTypeId: string
+  updatedById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ActivityCreateOrConnectWithoutCreatedByInput = {
+  where: Prisma.ActivityWhereUniqueInput
+  create: Prisma.XOR<Prisma.ActivityCreateWithoutCreatedByInput, Prisma.ActivityUncheckedCreateWithoutCreatedByInput>
+}
+
+export type ActivityCreateManyCreatedByInputEnvelope = {
+  data: Prisma.ActivityCreateManyCreatedByInput | Prisma.ActivityCreateManyCreatedByInput[]
+  skipDuplicates?: boolean
+}
+
+export type ActivityCreateWithoutUpdatedByInput = {
+  id?: string
+  title: string
+  isActive?: boolean
+  price: number
+  discount?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  activityType: Prisma.ActivityTypeCreateNestedOneWithoutActivitiesInput
+  address: Prisma.AddressCreateNestedOneWithoutActivitiesInput
+  currency: Prisma.CurrencyCreateNestedOneWithoutActivitiesInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutActivitiesCreatedInput
+}
+
+export type ActivityUncheckedCreateWithoutUpdatedByInput = {
+  id?: string
+  title: string
+  isActive?: boolean
+  price: number
+  discount?: number | null
+  currencyId: string
+  addressId: string
+  activityTypeId: string
+  createdById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ActivityCreateOrConnectWithoutUpdatedByInput = {
+  where: Prisma.ActivityWhereUniqueInput
+  create: Prisma.XOR<Prisma.ActivityCreateWithoutUpdatedByInput, Prisma.ActivityUncheckedCreateWithoutUpdatedByInput>
+}
+
+export type ActivityCreateManyUpdatedByInputEnvelope = {
+  data: Prisma.ActivityCreateManyUpdatedByInput | Prisma.ActivityCreateManyUpdatedByInput[]
+  skipDuplicates?: boolean
+}
+
+export type ActivityUpsertWithWhereUniqueWithoutCreatedByInput = {
+  where: Prisma.ActivityWhereUniqueInput
+  update: Prisma.XOR<Prisma.ActivityUpdateWithoutCreatedByInput, Prisma.ActivityUncheckedUpdateWithoutCreatedByInput>
+  create: Prisma.XOR<Prisma.ActivityCreateWithoutCreatedByInput, Prisma.ActivityUncheckedCreateWithoutCreatedByInput>
+}
+
+export type ActivityUpdateWithWhereUniqueWithoutCreatedByInput = {
+  where: Prisma.ActivityWhereUniqueInput
+  data: Prisma.XOR<Prisma.ActivityUpdateWithoutCreatedByInput, Prisma.ActivityUncheckedUpdateWithoutCreatedByInput>
+}
+
+export type ActivityUpdateManyWithWhereWithoutCreatedByInput = {
+  where: Prisma.ActivityScalarWhereInput
+  data: Prisma.XOR<Prisma.ActivityUpdateManyMutationInput, Prisma.ActivityUncheckedUpdateManyWithoutCreatedByInput>
+}
+
+export type ActivityUpsertWithWhereUniqueWithoutUpdatedByInput = {
+  where: Prisma.ActivityWhereUniqueInput
+  update: Prisma.XOR<Prisma.ActivityUpdateWithoutUpdatedByInput, Prisma.ActivityUncheckedUpdateWithoutUpdatedByInput>
+  create: Prisma.XOR<Prisma.ActivityCreateWithoutUpdatedByInput, Prisma.ActivityUncheckedCreateWithoutUpdatedByInput>
+}
+
+export type ActivityUpdateWithWhereUniqueWithoutUpdatedByInput = {
+  where: Prisma.ActivityWhereUniqueInput
+  data: Prisma.XOR<Prisma.ActivityUpdateWithoutUpdatedByInput, Prisma.ActivityUncheckedUpdateWithoutUpdatedByInput>
+}
+
+export type ActivityUpdateManyWithWhereWithoutUpdatedByInput = {
+  where: Prisma.ActivityScalarWhereInput
+  data: Prisma.XOR<Prisma.ActivityUpdateManyMutationInput, Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByInput>
+}
+
 export type ActivityCreateManyAddressInput = {
   id?: string
   title: string
@@ -803,6 +1057,8 @@ export type ActivityCreateManyAddressInput = {
   discount?: number | null
   currencyId: string
   activityTypeId: string
+  createdById?: string | null
+  updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -817,6 +1073,8 @@ export type ActivityUpdateWithoutAddressInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   activityType?: Prisma.ActivityTypeUpdateOneRequiredWithoutActivitiesNestedInput
   currency?: Prisma.CurrencyUpdateOneRequiredWithoutActivitiesNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutActivitiesCreatedNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutActivitiesUpdatedNestedInput
 }
 
 export type ActivityUncheckedUpdateWithoutAddressInput = {
@@ -827,6 +1085,8 @@ export type ActivityUncheckedUpdateWithoutAddressInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   currencyId?: Prisma.StringFieldUpdateOperationsInput | string
   activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -839,6 +1099,8 @@ export type ActivityUncheckedUpdateManyWithoutAddressInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   currencyId?: Prisma.StringFieldUpdateOperationsInput | string
   activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -851,6 +1113,8 @@ export type ActivityCreateManyCurrencyInput = {
   discount?: number | null
   addressId: string
   activityTypeId: string
+  createdById?: string | null
+  updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -865,6 +1129,8 @@ export type ActivityUpdateWithoutCurrencyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   activityType?: Prisma.ActivityTypeUpdateOneRequiredWithoutActivitiesNestedInput
   address?: Prisma.AddressUpdateOneRequiredWithoutActivitiesNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutActivitiesCreatedNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutActivitiesUpdatedNestedInput
 }
 
 export type ActivityUncheckedUpdateWithoutCurrencyInput = {
@@ -875,6 +1141,8 @@ export type ActivityUncheckedUpdateWithoutCurrencyInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
   activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -887,6 +1155,8 @@ export type ActivityUncheckedUpdateManyWithoutCurrencyInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
   activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -899,6 +1169,8 @@ export type ActivityCreateManyActivityTypeInput = {
   discount?: number | null
   currencyId: string
   addressId: string
+  createdById?: string | null
+  updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -913,6 +1185,8 @@ export type ActivityUpdateWithoutActivityTypeInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   address?: Prisma.AddressUpdateOneRequiredWithoutActivitiesNestedInput
   currency?: Prisma.CurrencyUpdateOneRequiredWithoutActivitiesNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutActivitiesCreatedNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutActivitiesUpdatedNestedInput
 }
 
 export type ActivityUncheckedUpdateWithoutActivityTypeInput = {
@@ -923,6 +1197,8 @@ export type ActivityUncheckedUpdateWithoutActivityTypeInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   currencyId?: Prisma.StringFieldUpdateOperationsInput | string
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -935,6 +1211,120 @@ export type ActivityUncheckedUpdateManyWithoutActivityTypeInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   currencyId?: Prisma.StringFieldUpdateOperationsInput | string
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ActivityCreateManyCreatedByInput = {
+  id?: string
+  title: string
+  isActive?: boolean
+  price: number
+  discount?: number | null
+  currencyId: string
+  addressId: string
+  activityTypeId: string
+  updatedById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ActivityCreateManyUpdatedByInput = {
+  id?: string
+  title: string
+  isActive?: boolean
+  price: number
+  discount?: number | null
+  currencyId: string
+  addressId: string
+  activityTypeId: string
+  createdById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ActivityUpdateWithoutCreatedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activityType?: Prisma.ActivityTypeUpdateOneRequiredWithoutActivitiesNestedInput
+  address?: Prisma.AddressUpdateOneRequiredWithoutActivitiesNestedInput
+  currency?: Prisma.CurrencyUpdateOneRequiredWithoutActivitiesNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutActivitiesUpdatedNestedInput
+}
+
+export type ActivityUncheckedUpdateWithoutCreatedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  currencyId?: Prisma.StringFieldUpdateOperationsInput | string
+  addressId?: Prisma.StringFieldUpdateOperationsInput | string
+  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ActivityUncheckedUpdateManyWithoutCreatedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  currencyId?: Prisma.StringFieldUpdateOperationsInput | string
+  addressId?: Prisma.StringFieldUpdateOperationsInput | string
+  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ActivityUpdateWithoutUpdatedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activityType?: Prisma.ActivityTypeUpdateOneRequiredWithoutActivitiesNestedInput
+  address?: Prisma.AddressUpdateOneRequiredWithoutActivitiesNestedInput
+  currency?: Prisma.CurrencyUpdateOneRequiredWithoutActivitiesNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutActivitiesCreatedNestedInput
+}
+
+export type ActivityUncheckedUpdateWithoutUpdatedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  currencyId?: Prisma.StringFieldUpdateOperationsInput | string
+  addressId?: Prisma.StringFieldUpdateOperationsInput | string
+  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ActivityUncheckedUpdateManyWithoutUpdatedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  currencyId?: Prisma.StringFieldUpdateOperationsInput | string
+  addressId?: Prisma.StringFieldUpdateOperationsInput | string
+  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -950,11 +1340,15 @@ export type ActivitySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   currencyId?: boolean
   addressId?: boolean
   activityTypeId?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   activityType?: boolean | Prisma.ActivityTypeDefaultArgs<ExtArgs>
   address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  createdBy?: boolean | Prisma.Activity$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.Activity$updatedByArgs<ExtArgs>
 }, ExtArgs["result"]["activity"]>
 
 export type ActivitySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -966,11 +1360,15 @@ export type ActivitySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   currencyId?: boolean
   addressId?: boolean
   activityTypeId?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   activityType?: boolean | Prisma.ActivityTypeDefaultArgs<ExtArgs>
   address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  createdBy?: boolean | Prisma.Activity$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.Activity$updatedByArgs<ExtArgs>
 }, ExtArgs["result"]["activity"]>
 
 export type ActivitySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -982,11 +1380,15 @@ export type ActivitySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   currencyId?: boolean
   addressId?: boolean
   activityTypeId?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   activityType?: boolean | Prisma.ActivityTypeDefaultArgs<ExtArgs>
   address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  createdBy?: boolean | Prisma.Activity$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.Activity$updatedByArgs<ExtArgs>
 }, ExtArgs["result"]["activity"]>
 
 export type ActivitySelectScalar = {
@@ -998,25 +1400,33 @@ export type ActivitySelectScalar = {
   currencyId?: boolean
   addressId?: boolean
   activityTypeId?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ActivityOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "isActive" | "price" | "discount" | "currencyId" | "addressId" | "activityTypeId" | "createdAt" | "updatedAt", ExtArgs["result"]["activity"]>
+export type ActivityOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "isActive" | "price" | "discount" | "currencyId" | "addressId" | "activityTypeId" | "createdById" | "updatedById" | "createdAt" | "updatedAt", ExtArgs["result"]["activity"]>
 export type ActivityInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   activityType?: boolean | Prisma.ActivityTypeDefaultArgs<ExtArgs>
   address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  createdBy?: boolean | Prisma.Activity$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.Activity$updatedByArgs<ExtArgs>
 }
 export type ActivityIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   activityType?: boolean | Prisma.ActivityTypeDefaultArgs<ExtArgs>
   address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  createdBy?: boolean | Prisma.Activity$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.Activity$updatedByArgs<ExtArgs>
 }
 export type ActivityIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   activityType?: boolean | Prisma.ActivityTypeDefaultArgs<ExtArgs>
   address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  createdBy?: boolean | Prisma.Activity$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.Activity$updatedByArgs<ExtArgs>
 }
 
 export type $ActivityPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1025,6 +1435,8 @@ export type $ActivityPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     activityType: Prisma.$ActivityTypePayload<ExtArgs>
     address: Prisma.$AddressPayload<ExtArgs>
     currency: Prisma.$CurrencyPayload<ExtArgs>
+    createdBy: Prisma.$UserPayload<ExtArgs> | null
+    updatedBy: Prisma.$UserPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1035,6 +1447,8 @@ export type $ActivityPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     currencyId: string
     addressId: string
     activityTypeId: string
+    createdById: string | null
+    updatedById: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["activity"]>
@@ -1434,6 +1848,8 @@ export interface Prisma__ActivityClient<T, Null = never, ExtArgs extends runtime
   activityType<T extends Prisma.ActivityTypeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ActivityTypeDefaultArgs<ExtArgs>>): Prisma.Prisma__ActivityTypeClient<runtime.Types.Result.GetResult<Prisma.$ActivityTypePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   address<T extends Prisma.AddressDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AddressDefaultArgs<ExtArgs>>): Prisma.Prisma__AddressClient<runtime.Types.Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   currency<T extends Prisma.CurrencyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CurrencyDefaultArgs<ExtArgs>>): Prisma.Prisma__CurrencyClient<runtime.Types.Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  createdBy<T extends Prisma.Activity$createdByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Activity$createdByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  updatedBy<T extends Prisma.Activity$updatedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Activity$updatedByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1471,6 +1887,8 @@ export interface ActivityFieldRefs {
   readonly currencyId: Prisma.FieldRef<"Activity", 'String'>
   readonly addressId: Prisma.FieldRef<"Activity", 'String'>
   readonly activityTypeId: Prisma.FieldRef<"Activity", 'String'>
+  readonly createdById: Prisma.FieldRef<"Activity", 'String'>
+  readonly updatedById: Prisma.FieldRef<"Activity", 'String'>
   readonly createdAt: Prisma.FieldRef<"Activity", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Activity", 'DateTime'>
 }
@@ -1871,6 +2289,44 @@ export type ActivityDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Limit how many Activities to delete.
    */
   limit?: number
+}
+
+/**
+ * Activity.createdBy
+ */
+export type Activity$createdByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+}
+
+/**
+ * Activity.updatedBy
+ */
+export type Activity$updatedByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**

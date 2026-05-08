@@ -34,10 +34,10 @@ export const inventoryItems = [
     label: 'Destinations',
   },
   {
-    id: 'listings',
-    href: '/listings',
-    label: 'Listings',
-    icon: IconBuildingEstate,
+    id: 'currencies',
+    href: '/currencies',
+    label: 'Currencies',
+    icon: IconCurrencyDollar,
   },
   {
     id: 'activities',
@@ -46,16 +46,16 @@ export const inventoryItems = [
     label: 'Activities',
   },
   {
-    id: 'currencies',
-    href: '/currencies',
-    label: 'Currencies',
-    icon: IconCurrencyDollar,
-  },
-  {
     icon: IconCategory,
     id: 'activityTypes',
     href: '/activity-types',
     label: 'Activity Types',
+  },
+  {
+    id: 'accommodations',
+    href: '/accommodations',
+    label: 'Accommodations',
+    icon: IconBuildingEstate,
   },
 ];
 

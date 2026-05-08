@@ -43,20 +43,20 @@ export type Currency = Prisma.CurrencyModel
  */
 export type ActivityType = Prisma.ActivityTypeModel
 /**
- * Model Listing
+ * Model Accommodation
  * 
  */
-export type Listing = Prisma.ListingModel
+export type Accommodation = Prisma.AccommodationModel
 /**
- * Model HouseListing
+ * Model House
  * 
  */
-export type HouseListing = Prisma.HouseListingModel
+export type House = Prisma.HouseModel
 /**
- * Model HotelListing
+ * Model Hotel
  * 
  */
-export type HotelListing = Prisma.HotelListingModel
+export type Hotel = Prisma.HotelModel
 /**
  * Model Room
  * 
@@ -82,8 +82,3 @@ export type VerificationToken = Prisma.VerificationTokenModel
  * 
  */
 export type Session = Prisma.SessionModel
-/**
- * Model Authenticator
- * 
- */
-export type Authenticator = Prisma.AuthenticatorModel

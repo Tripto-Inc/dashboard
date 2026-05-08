@@ -30,10 +30,10 @@ export type UserMinAggregateOutputType = {
   email: string | null
   emailVerified: Date | null
   image: string | null
-  createdAt: Date | null
-  updatedAt: Date | null
   password: string | null
   username: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -42,10 +42,10 @@ export type UserMaxAggregateOutputType = {
   email: string | null
   emailVerified: Date | null
   image: string | null
-  createdAt: Date | null
-  updatedAt: Date | null
   password: string | null
   username: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -54,10 +54,10 @@ export type UserCountAggregateOutputType = {
   email: number
   emailVerified: number
   image: number
-  createdAt: number
-  updatedAt: number
   password: number
   username: number
+  createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -68,10 +68,10 @@ export type UserMinAggregateInputType = {
   email?: true
   emailVerified?: true
   image?: true
-  createdAt?: true
-  updatedAt?: true
   password?: true
   username?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -80,10 +80,10 @@ export type UserMaxAggregateInputType = {
   email?: true
   emailVerified?: true
   image?: true
-  createdAt?: true
-  updatedAt?: true
   password?: true
   username?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -92,10 +92,10 @@ export type UserCountAggregateInputType = {
   email?: true
   emailVerified?: true
   image?: true
-  createdAt?: true
-  updatedAt?: true
   password?: true
   username?: true
+  createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -177,10 +177,10 @@ export type UserGroupByOutputType = {
   email: string | null
   emailVerified: Date | null
   image: string | null
-  createdAt: Date
-  updatedAt: Date
   password: string | null
   username: string | null
+  createdAt: Date
+  updatedAt: Date
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
@@ -210,13 +210,30 @@ export type UserWhereInput = {
   email?: Prisma.StringNullableFilter<"User"> | string | null
   emailVerified?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   image?: Prisma.StringNullableFilter<"User"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   password?: Prisma.StringNullableFilter<"User"> | string | null
   username?: Prisma.StringNullableFilter<"User"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   accounts?: Prisma.AccountListRelationFilter
   sessions?: Prisma.SessionListRelationFilter
-  Authenticator?: Prisma.AuthenticatorListRelationFilter
+  destinationsCreated?: Prisma.DestinationListRelationFilter
+  destinationsUpdated?: Prisma.DestinationListRelationFilter
+  activitiesCreated?: Prisma.ActivityListRelationFilter
+  activitiesUpdated?: Prisma.ActivityListRelationFilter
+  addressesCreated?: Prisma.AddressListRelationFilter
+  addressesUpdated?: Prisma.AddressListRelationFilter
+  currenciesCreated?: Prisma.CurrencyListRelationFilter
+  currenciesUpdated?: Prisma.CurrencyListRelationFilter
+  activityTypesCreated?: Prisma.ActivityTypeListRelationFilter
+  activityTypesUpdated?: Prisma.ActivityTypeListRelationFilter
+  accommodationsCreated?: Prisma.AccommodationListRelationFilter
+  accommodationsUpdated?: Prisma.AccommodationListRelationFilter
+  housesCreated?: Prisma.HouseListRelationFilter
+  housesUpdated?: Prisma.HouseListRelationFilter
+  hotelsCreated?: Prisma.HotelListRelationFilter
+  hotelsUpdated?: Prisma.HotelListRelationFilter
+  roomsCreated?: Prisma.RoomListRelationFilter
+  roomsUpdated?: Prisma.RoomListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -225,13 +242,30 @@ export type UserOrderByWithRelationInput = {
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   emailVerified?: Prisma.SortOrderInput | Prisma.SortOrder
   image?: Prisma.SortOrderInput | Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
   password?: Prisma.SortOrderInput | Prisma.SortOrder
   username?: Prisma.SortOrderInput | Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   accounts?: Prisma.AccountOrderByRelationAggregateInput
   sessions?: Prisma.SessionOrderByRelationAggregateInput
-  Authenticator?: Prisma.AuthenticatorOrderByRelationAggregateInput
+  destinationsCreated?: Prisma.DestinationOrderByRelationAggregateInput
+  destinationsUpdated?: Prisma.DestinationOrderByRelationAggregateInput
+  activitiesCreated?: Prisma.ActivityOrderByRelationAggregateInput
+  activitiesUpdated?: Prisma.ActivityOrderByRelationAggregateInput
+  addressesCreated?: Prisma.AddressOrderByRelationAggregateInput
+  addressesUpdated?: Prisma.AddressOrderByRelationAggregateInput
+  currenciesCreated?: Prisma.CurrencyOrderByRelationAggregateInput
+  currenciesUpdated?: Prisma.CurrencyOrderByRelationAggregateInput
+  activityTypesCreated?: Prisma.ActivityTypeOrderByRelationAggregateInput
+  activityTypesUpdated?: Prisma.ActivityTypeOrderByRelationAggregateInput
+  accommodationsCreated?: Prisma.AccommodationOrderByRelationAggregateInput
+  accommodationsUpdated?: Prisma.AccommodationOrderByRelationAggregateInput
+  housesCreated?: Prisma.HouseOrderByRelationAggregateInput
+  housesUpdated?: Prisma.HouseOrderByRelationAggregateInput
+  hotelsCreated?: Prisma.HotelOrderByRelationAggregateInput
+  hotelsUpdated?: Prisma.HotelOrderByRelationAggregateInput
+  roomsCreated?: Prisma.RoomOrderByRelationAggregateInput
+  roomsUpdated?: Prisma.RoomOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -244,12 +278,29 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringNullableFilter<"User"> | string | null
   emailVerified?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   image?: Prisma.StringNullableFilter<"User"> | string | null
+  password?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  password?: Prisma.StringNullableFilter<"User"> | string | null
   accounts?: Prisma.AccountListRelationFilter
   sessions?: Prisma.SessionListRelationFilter
-  Authenticator?: Prisma.AuthenticatorListRelationFilter
+  destinationsCreated?: Prisma.DestinationListRelationFilter
+  destinationsUpdated?: Prisma.DestinationListRelationFilter
+  activitiesCreated?: Prisma.ActivityListRelationFilter
+  activitiesUpdated?: Prisma.ActivityListRelationFilter
+  addressesCreated?: Prisma.AddressListRelationFilter
+  addressesUpdated?: Prisma.AddressListRelationFilter
+  currenciesCreated?: Prisma.CurrencyListRelationFilter
+  currenciesUpdated?: Prisma.CurrencyListRelationFilter
+  activityTypesCreated?: Prisma.ActivityTypeListRelationFilter
+  activityTypesUpdated?: Prisma.ActivityTypeListRelationFilter
+  accommodationsCreated?: Prisma.AccommodationListRelationFilter
+  accommodationsUpdated?: Prisma.AccommodationListRelationFilter
+  housesCreated?: Prisma.HouseListRelationFilter
+  housesUpdated?: Prisma.HouseListRelationFilter
+  hotelsCreated?: Prisma.HotelListRelationFilter
+  hotelsUpdated?: Prisma.HotelListRelationFilter
+  roomsCreated?: Prisma.RoomListRelationFilter
+  roomsUpdated?: Prisma.RoomListRelationFilter
 }, "id" | "email" | "username">
 
 export type UserOrderByWithAggregationInput = {
@@ -258,10 +309,10 @@ export type UserOrderByWithAggregationInput = {
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   emailVerified?: Prisma.SortOrderInput | Prisma.SortOrder
   image?: Prisma.SortOrderInput | Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
   password?: Prisma.SortOrderInput | Prisma.SortOrder
   username?: Prisma.SortOrderInput | Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
@@ -276,10 +327,10 @@ export type UserScalarWhereWithAggregatesInput = {
   email?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   emailVerified?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   image?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
-  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   password?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   username?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
 
 export type UserCreateInput = {
@@ -288,13 +339,30 @@ export type UserCreateInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
   password?: string | null
   username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  Authenticator?: Prisma.AuthenticatorCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -303,13 +371,30 @@ export type UserUncheckedCreateInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
   password?: string | null
   username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  Authenticator?: Prisma.AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressUncheckedCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressUncheckedCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseUncheckedCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseUncheckedCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelUncheckedCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelUncheckedCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomUncheckedCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomUncheckedCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserUpdateInput = {
@@ -318,13 +403,30 @@ export type UserUpdateInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  Authenticator?: Prisma.AuthenticatorUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUpdateManyWithoutUpdatedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -333,13 +435,30 @@ export type UserUncheckedUpdateInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  Authenticator?: Prisma.AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUncheckedUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUncheckedUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUncheckedUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUncheckedUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUncheckedUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUncheckedUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUncheckedUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUncheckedUpdateManyWithoutUpdatedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -348,10 +467,10 @@ export type UserCreateManyInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
   password?: string | null
   username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type UserUpdateManyMutationInput = {
@@ -360,10 +479,10 @@ export type UserUpdateManyMutationInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -372,10 +491,15 @@ export type UserUncheckedUpdateManyInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -384,10 +508,10 @@ export type UserCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
   password?: Prisma.SortOrder
   username?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -396,10 +520,10 @@ export type UserMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
   password?: Prisma.SortOrder
   username?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -408,15 +532,303 @@ export type UserMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
   password?: Prisma.SortOrder
   username?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
   is?: Prisma.UserWhereInput
   isNot?: Prisma.UserWhereInput
+}
+
+export type UserCreateNestedOneWithoutDestinationsCreatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDestinationsCreatedInput, Prisma.UserUncheckedCreateWithoutDestinationsCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDestinationsCreatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutDestinationsUpdatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDestinationsUpdatedInput, Prisma.UserUncheckedCreateWithoutDestinationsUpdatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDestinationsUpdatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutDestinationsCreatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDestinationsCreatedInput, Prisma.UserUncheckedCreateWithoutDestinationsCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDestinationsCreatedInput
+  upsert?: Prisma.UserUpsertWithoutDestinationsCreatedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDestinationsCreatedInput, Prisma.UserUpdateWithoutDestinationsCreatedInput>, Prisma.UserUncheckedUpdateWithoutDestinationsCreatedInput>
+}
+
+export type UserUpdateOneWithoutDestinationsUpdatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDestinationsUpdatedInput, Prisma.UserUncheckedCreateWithoutDestinationsUpdatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDestinationsUpdatedInput
+  upsert?: Prisma.UserUpsertWithoutDestinationsUpdatedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDestinationsUpdatedInput, Prisma.UserUpdateWithoutDestinationsUpdatedInput>, Prisma.UserUncheckedUpdateWithoutDestinationsUpdatedInput>
+}
+
+export type UserCreateNestedOneWithoutActivitiesCreatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutActivitiesCreatedInput, Prisma.UserUncheckedCreateWithoutActivitiesCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutActivitiesCreatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutActivitiesUpdatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutActivitiesUpdatedInput, Prisma.UserUncheckedCreateWithoutActivitiesUpdatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutActivitiesUpdatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutActivitiesCreatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutActivitiesCreatedInput, Prisma.UserUncheckedCreateWithoutActivitiesCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutActivitiesCreatedInput
+  upsert?: Prisma.UserUpsertWithoutActivitiesCreatedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutActivitiesCreatedInput, Prisma.UserUpdateWithoutActivitiesCreatedInput>, Prisma.UserUncheckedUpdateWithoutActivitiesCreatedInput>
+}
+
+export type UserUpdateOneWithoutActivitiesUpdatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutActivitiesUpdatedInput, Prisma.UserUncheckedCreateWithoutActivitiesUpdatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutActivitiesUpdatedInput
+  upsert?: Prisma.UserUpsertWithoutActivitiesUpdatedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutActivitiesUpdatedInput, Prisma.UserUpdateWithoutActivitiesUpdatedInput>, Prisma.UserUncheckedUpdateWithoutActivitiesUpdatedInput>
+}
+
+export type UserCreateNestedOneWithoutAddressesCreatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAddressesCreatedInput, Prisma.UserUncheckedCreateWithoutAddressesCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAddressesCreatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutAddressesUpdatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAddressesUpdatedInput, Prisma.UserUncheckedCreateWithoutAddressesUpdatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAddressesUpdatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutAddressesCreatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAddressesCreatedInput, Prisma.UserUncheckedCreateWithoutAddressesCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAddressesCreatedInput
+  upsert?: Prisma.UserUpsertWithoutAddressesCreatedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAddressesCreatedInput, Prisma.UserUpdateWithoutAddressesCreatedInput>, Prisma.UserUncheckedUpdateWithoutAddressesCreatedInput>
+}
+
+export type UserUpdateOneWithoutAddressesUpdatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAddressesUpdatedInput, Prisma.UserUncheckedCreateWithoutAddressesUpdatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAddressesUpdatedInput
+  upsert?: Prisma.UserUpsertWithoutAddressesUpdatedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAddressesUpdatedInput, Prisma.UserUpdateWithoutAddressesUpdatedInput>, Prisma.UserUncheckedUpdateWithoutAddressesUpdatedInput>
+}
+
+export type UserCreateNestedOneWithoutCurrenciesCreatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCurrenciesCreatedInput, Prisma.UserUncheckedCreateWithoutCurrenciesCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCurrenciesCreatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutCurrenciesUpdatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCurrenciesUpdatedInput, Prisma.UserUncheckedCreateWithoutCurrenciesUpdatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCurrenciesUpdatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutCurrenciesCreatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCurrenciesCreatedInput, Prisma.UserUncheckedCreateWithoutCurrenciesCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCurrenciesCreatedInput
+  upsert?: Prisma.UserUpsertWithoutCurrenciesCreatedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCurrenciesCreatedInput, Prisma.UserUpdateWithoutCurrenciesCreatedInput>, Prisma.UserUncheckedUpdateWithoutCurrenciesCreatedInput>
+}
+
+export type UserUpdateOneWithoutCurrenciesUpdatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCurrenciesUpdatedInput, Prisma.UserUncheckedCreateWithoutCurrenciesUpdatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCurrenciesUpdatedInput
+  upsert?: Prisma.UserUpsertWithoutCurrenciesUpdatedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCurrenciesUpdatedInput, Prisma.UserUpdateWithoutCurrenciesUpdatedInput>, Prisma.UserUncheckedUpdateWithoutCurrenciesUpdatedInput>
+}
+
+export type UserCreateNestedOneWithoutActivityTypesCreatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutActivityTypesCreatedInput, Prisma.UserUncheckedCreateWithoutActivityTypesCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutActivityTypesCreatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutActivityTypesUpdatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutActivityTypesUpdatedInput, Prisma.UserUncheckedCreateWithoutActivityTypesUpdatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutActivityTypesUpdatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutActivityTypesCreatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutActivityTypesCreatedInput, Prisma.UserUncheckedCreateWithoutActivityTypesCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutActivityTypesCreatedInput
+  upsert?: Prisma.UserUpsertWithoutActivityTypesCreatedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutActivityTypesCreatedInput, Prisma.UserUpdateWithoutActivityTypesCreatedInput>, Prisma.UserUncheckedUpdateWithoutActivityTypesCreatedInput>
+}
+
+export type UserUpdateOneWithoutActivityTypesUpdatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutActivityTypesUpdatedInput, Prisma.UserUncheckedCreateWithoutActivityTypesUpdatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutActivityTypesUpdatedInput
+  upsert?: Prisma.UserUpsertWithoutActivityTypesUpdatedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutActivityTypesUpdatedInput, Prisma.UserUpdateWithoutActivityTypesUpdatedInput>, Prisma.UserUncheckedUpdateWithoutActivityTypesUpdatedInput>
+}
+
+export type UserCreateNestedOneWithoutAccommodationsCreatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAccommodationsCreatedInput, Prisma.UserUncheckedCreateWithoutAccommodationsCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAccommodationsCreatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutAccommodationsUpdatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAccommodationsUpdatedInput, Prisma.UserUncheckedCreateWithoutAccommodationsUpdatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAccommodationsUpdatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutAccommodationsCreatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAccommodationsCreatedInput, Prisma.UserUncheckedCreateWithoutAccommodationsCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAccommodationsCreatedInput
+  upsert?: Prisma.UserUpsertWithoutAccommodationsCreatedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAccommodationsCreatedInput, Prisma.UserUpdateWithoutAccommodationsCreatedInput>, Prisma.UserUncheckedUpdateWithoutAccommodationsCreatedInput>
+}
+
+export type UserUpdateOneWithoutAccommodationsUpdatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAccommodationsUpdatedInput, Prisma.UserUncheckedCreateWithoutAccommodationsUpdatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAccommodationsUpdatedInput
+  upsert?: Prisma.UserUpsertWithoutAccommodationsUpdatedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAccommodationsUpdatedInput, Prisma.UserUpdateWithoutAccommodationsUpdatedInput>, Prisma.UserUncheckedUpdateWithoutAccommodationsUpdatedInput>
+}
+
+export type UserCreateNestedOneWithoutHousesCreatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutHousesCreatedInput, Prisma.UserUncheckedCreateWithoutHousesCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutHousesCreatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutHousesUpdatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutHousesUpdatedInput, Prisma.UserUncheckedCreateWithoutHousesUpdatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutHousesUpdatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutHousesCreatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutHousesCreatedInput, Prisma.UserUncheckedCreateWithoutHousesCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutHousesCreatedInput
+  upsert?: Prisma.UserUpsertWithoutHousesCreatedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutHousesCreatedInput, Prisma.UserUpdateWithoutHousesCreatedInput>, Prisma.UserUncheckedUpdateWithoutHousesCreatedInput>
+}
+
+export type UserUpdateOneWithoutHousesUpdatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutHousesUpdatedInput, Prisma.UserUncheckedCreateWithoutHousesUpdatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutHousesUpdatedInput
+  upsert?: Prisma.UserUpsertWithoutHousesUpdatedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutHousesUpdatedInput, Prisma.UserUpdateWithoutHousesUpdatedInput>, Prisma.UserUncheckedUpdateWithoutHousesUpdatedInput>
+}
+
+export type UserCreateNestedOneWithoutHotelsCreatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutHotelsCreatedInput, Prisma.UserUncheckedCreateWithoutHotelsCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutHotelsCreatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutHotelsUpdatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutHotelsUpdatedInput, Prisma.UserUncheckedCreateWithoutHotelsUpdatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutHotelsUpdatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutHotelsCreatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutHotelsCreatedInput, Prisma.UserUncheckedCreateWithoutHotelsCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutHotelsCreatedInput
+  upsert?: Prisma.UserUpsertWithoutHotelsCreatedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutHotelsCreatedInput, Prisma.UserUpdateWithoutHotelsCreatedInput>, Prisma.UserUncheckedUpdateWithoutHotelsCreatedInput>
+}
+
+export type UserUpdateOneWithoutHotelsUpdatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutHotelsUpdatedInput, Prisma.UserUncheckedCreateWithoutHotelsUpdatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutHotelsUpdatedInput
+  upsert?: Prisma.UserUpsertWithoutHotelsUpdatedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutHotelsUpdatedInput, Prisma.UserUpdateWithoutHotelsUpdatedInput>, Prisma.UserUncheckedUpdateWithoutHotelsUpdatedInput>
+}
+
+export type UserCreateNestedOneWithoutRoomsCreatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRoomsCreatedInput, Prisma.UserUncheckedCreateWithoutRoomsCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoomsCreatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutRoomsUpdatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRoomsUpdatedInput, Prisma.UserUncheckedCreateWithoutRoomsUpdatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoomsUpdatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutRoomsCreatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRoomsCreatedInput, Prisma.UserUncheckedCreateWithoutRoomsCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoomsCreatedInput
+  upsert?: Prisma.UserUpsertWithoutRoomsCreatedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRoomsCreatedInput, Prisma.UserUpdateWithoutRoomsCreatedInput>, Prisma.UserUncheckedUpdateWithoutRoomsCreatedInput>
+}
+
+export type UserUpdateOneWithoutRoomsUpdatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRoomsUpdatedInput, Prisma.UserUncheckedCreateWithoutRoomsUpdatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoomsUpdatedInput
+  upsert?: Prisma.UserUpsertWithoutRoomsUpdatedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRoomsUpdatedInput, Prisma.UserUpdateWithoutRoomsUpdatedInput>, Prisma.UserUncheckedUpdateWithoutRoomsUpdatedInput>
 }
 
 export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -451,18 +863,2524 @@ export type UserUpdateOneRequiredWithoutSessionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSessionsInput, Prisma.UserUpdateWithoutSessionsInput>, Prisma.UserUncheckedUpdateWithoutSessionsInput>
 }
 
-export type UserCreateNestedOneWithoutAuthenticatorInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutAuthenticatorInput, Prisma.UserUncheckedCreateWithoutAuthenticatorInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAuthenticatorInput
-  connect?: Prisma.UserWhereUniqueInput
+export type UserCreateWithoutDestinationsCreatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomCreateNestedManyWithoutUpdatedByInput
 }
 
-export type UserUpdateOneRequiredWithoutAuthenticatorNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutAuthenticatorInput, Prisma.UserUncheckedCreateWithoutAuthenticatorInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAuthenticatorInput
-  upsert?: Prisma.UserUpsertWithoutAuthenticatorInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAuthenticatorInput, Prisma.UserUpdateWithoutAuthenticatorInput>, Prisma.UserUncheckedUpdateWithoutAuthenticatorInput>
+export type UserUncheckedCreateWithoutDestinationsCreatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressUncheckedCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressUncheckedCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseUncheckedCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseUncheckedCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelUncheckedCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelUncheckedCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomUncheckedCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomUncheckedCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserCreateOrConnectWithoutDestinationsCreatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutDestinationsCreatedInput, Prisma.UserUncheckedCreateWithoutDestinationsCreatedInput>
+}
+
+export type UserCreateWithoutDestinationsUpdatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
+  activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserUncheckedCreateWithoutDestinationsUpdatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
+  activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressUncheckedCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressUncheckedCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseUncheckedCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseUncheckedCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelUncheckedCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelUncheckedCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomUncheckedCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomUncheckedCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserCreateOrConnectWithoutDestinationsUpdatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutDestinationsUpdatedInput, Prisma.UserUncheckedCreateWithoutDestinationsUpdatedInput>
+}
+
+export type UserUpsertWithoutDestinationsCreatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutDestinationsCreatedInput, Prisma.UserUncheckedUpdateWithoutDestinationsCreatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutDestinationsCreatedInput, Prisma.UserUncheckedCreateWithoutDestinationsCreatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutDestinationsCreatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutDestinationsCreatedInput, Prisma.UserUncheckedUpdateWithoutDestinationsCreatedInput>
+}
+
+export type UserUpdateWithoutDestinationsCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutDestinationsCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUncheckedUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUncheckedUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUncheckedUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUncheckedUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUncheckedUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUncheckedUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUncheckedUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUncheckedUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUpsertWithoutDestinationsUpdatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutDestinationsUpdatedInput, Prisma.UserUncheckedUpdateWithoutDestinationsUpdatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutDestinationsUpdatedInput, Prisma.UserUncheckedCreateWithoutDestinationsUpdatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutDestinationsUpdatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutDestinationsUpdatedInput, Prisma.UserUncheckedUpdateWithoutDestinationsUpdatedInput>
+}
+
+export type UserUpdateWithoutDestinationsUpdatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutDestinationsUpdatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUncheckedUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUncheckedUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUncheckedUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUncheckedUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUncheckedUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUncheckedUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUncheckedUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUncheckedUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserCreateWithoutActivitiesCreatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
+  activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserUncheckedCreateWithoutActivitiesCreatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
+  activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressUncheckedCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressUncheckedCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseUncheckedCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseUncheckedCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelUncheckedCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelUncheckedCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomUncheckedCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomUncheckedCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserCreateOrConnectWithoutActivitiesCreatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutActivitiesCreatedInput, Prisma.UserUncheckedCreateWithoutActivitiesCreatedInput>
+}
+
+export type UserCreateWithoutActivitiesUpdatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
+  addressesCreated?: Prisma.AddressCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserUncheckedCreateWithoutActivitiesUpdatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
+  addressesCreated?: Prisma.AddressUncheckedCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressUncheckedCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseUncheckedCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseUncheckedCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelUncheckedCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelUncheckedCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomUncheckedCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomUncheckedCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserCreateOrConnectWithoutActivitiesUpdatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutActivitiesUpdatedInput, Prisma.UserUncheckedCreateWithoutActivitiesUpdatedInput>
+}
+
+export type UserUpsertWithoutActivitiesCreatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutActivitiesCreatedInput, Prisma.UserUncheckedUpdateWithoutActivitiesCreatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutActivitiesCreatedInput, Prisma.UserUncheckedCreateWithoutActivitiesCreatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutActivitiesCreatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutActivitiesCreatedInput, Prisma.UserUncheckedUpdateWithoutActivitiesCreatedInput>
+}
+
+export type UserUpdateWithoutActivitiesCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutActivitiesCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUncheckedUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUncheckedUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUncheckedUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUncheckedUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUncheckedUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUncheckedUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUncheckedUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUncheckedUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUpsertWithoutActivitiesUpdatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutActivitiesUpdatedInput, Prisma.UserUncheckedUpdateWithoutActivitiesUpdatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutActivitiesUpdatedInput, Prisma.UserUncheckedCreateWithoutActivitiesUpdatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutActivitiesUpdatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutActivitiesUpdatedInput, Prisma.UserUncheckedUpdateWithoutActivitiesUpdatedInput>
+}
+
+export type UserUpdateWithoutActivitiesUpdatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
+  addressesCreated?: Prisma.AddressUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutActivitiesUpdatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
+  addressesCreated?: Prisma.AddressUncheckedUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUncheckedUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUncheckedUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUncheckedUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUncheckedUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUncheckedUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUncheckedUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUncheckedUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserCreateWithoutAddressesCreatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
+  addressesUpdated?: Prisma.AddressCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserUncheckedCreateWithoutAddressesCreatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
+  addressesUpdated?: Prisma.AddressUncheckedCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseUncheckedCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseUncheckedCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelUncheckedCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelUncheckedCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomUncheckedCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomUncheckedCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserCreateOrConnectWithoutAddressesCreatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAddressesCreatedInput, Prisma.UserUncheckedCreateWithoutAddressesCreatedInput>
+}
+
+export type UserCreateWithoutAddressesUpdatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressCreateNestedManyWithoutCreatedByInput
+  currenciesCreated?: Prisma.CurrencyCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserUncheckedCreateWithoutAddressesUpdatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressUncheckedCreateNestedManyWithoutCreatedByInput
+  currenciesCreated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseUncheckedCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseUncheckedCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelUncheckedCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelUncheckedCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomUncheckedCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomUncheckedCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserCreateOrConnectWithoutAddressesUpdatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAddressesUpdatedInput, Prisma.UserUncheckedCreateWithoutAddressesUpdatedInput>
+}
+
+export type UserUpsertWithoutAddressesCreatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAddressesCreatedInput, Prisma.UserUncheckedUpdateWithoutAddressesCreatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAddressesCreatedInput, Prisma.UserUncheckedCreateWithoutAddressesCreatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAddressesCreatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAddressesCreatedInput, Prisma.UserUncheckedUpdateWithoutAddressesCreatedInput>
+}
+
+export type UserUpdateWithoutAddressesCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
+  addressesUpdated?: Prisma.AddressUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAddressesCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
+  addressesUpdated?: Prisma.AddressUncheckedUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUncheckedUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUncheckedUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUncheckedUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUncheckedUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUncheckedUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUncheckedUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUpsertWithoutAddressesUpdatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAddressesUpdatedInput, Prisma.UserUncheckedUpdateWithoutAddressesUpdatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAddressesUpdatedInput, Prisma.UserUncheckedCreateWithoutAddressesUpdatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAddressesUpdatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAddressesUpdatedInput, Prisma.UserUncheckedUpdateWithoutAddressesUpdatedInput>
+}
+
+export type UserUpdateWithoutAddressesUpdatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUpdateManyWithoutCreatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAddressesUpdatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUncheckedUpdateManyWithoutCreatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUncheckedUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUncheckedUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUncheckedUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUncheckedUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUncheckedUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUncheckedUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserCreateWithoutCurrenciesCreatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressCreateNestedManyWithoutUpdatedByInput
+  currenciesUpdated?: Prisma.CurrencyCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserUncheckedCreateWithoutCurrenciesCreatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressUncheckedCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressUncheckedCreateNestedManyWithoutUpdatedByInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseUncheckedCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseUncheckedCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelUncheckedCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelUncheckedCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomUncheckedCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomUncheckedCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserCreateOrConnectWithoutCurrenciesCreatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCurrenciesCreatedInput, Prisma.UserUncheckedCreateWithoutCurrenciesCreatedInput>
+}
+
+export type UserCreateWithoutCurrenciesUpdatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyCreateNestedManyWithoutCreatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserUncheckedCreateWithoutCurrenciesUpdatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressUncheckedCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressUncheckedCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutCreatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseUncheckedCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseUncheckedCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelUncheckedCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelUncheckedCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomUncheckedCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomUncheckedCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserCreateOrConnectWithoutCurrenciesUpdatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCurrenciesUpdatedInput, Prisma.UserUncheckedCreateWithoutCurrenciesUpdatedInput>
+}
+
+export type UserUpsertWithoutCurrenciesCreatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCurrenciesCreatedInput, Prisma.UserUncheckedUpdateWithoutCurrenciesCreatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCurrenciesCreatedInput, Prisma.UserUncheckedCreateWithoutCurrenciesCreatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCurrenciesCreatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCurrenciesCreatedInput, Prisma.UserUncheckedUpdateWithoutCurrenciesCreatedInput>
+}
+
+export type UserUpdateWithoutCurrenciesCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUpdateManyWithoutUpdatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCurrenciesCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUncheckedUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUncheckedUpdateManyWithoutUpdatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUncheckedUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUncheckedUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUncheckedUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUncheckedUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUncheckedUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUpsertWithoutCurrenciesUpdatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCurrenciesUpdatedInput, Prisma.UserUncheckedUpdateWithoutCurrenciesUpdatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCurrenciesUpdatedInput, Prisma.UserUncheckedCreateWithoutCurrenciesUpdatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCurrenciesUpdatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCurrenciesUpdatedInput, Prisma.UserUncheckedUpdateWithoutCurrenciesUpdatedInput>
+}
+
+export type UserUpdateWithoutCurrenciesUpdatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUpdateManyWithoutCreatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCurrenciesUpdatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUncheckedUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUncheckedUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUncheckedUpdateManyWithoutCreatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUncheckedUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUncheckedUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUncheckedUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUncheckedUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUncheckedUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserCreateWithoutActivityTypesCreatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyCreateNestedManyWithoutUpdatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserUncheckedCreateWithoutActivityTypesCreatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressUncheckedCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressUncheckedCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutUpdatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseUncheckedCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseUncheckedCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelUncheckedCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelUncheckedCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomUncheckedCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomUncheckedCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserCreateOrConnectWithoutActivityTypesCreatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutActivityTypesCreatedInput, Prisma.UserUncheckedCreateWithoutActivityTypesCreatedInput>
+}
+
+export type UserCreateWithoutActivityTypesUpdatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeCreateNestedManyWithoutCreatedByInput
+  accommodationsCreated?: Prisma.AccommodationCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserUncheckedCreateWithoutActivityTypesUpdatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressUncheckedCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressUncheckedCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutCreatedByInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseUncheckedCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseUncheckedCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelUncheckedCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelUncheckedCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomUncheckedCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomUncheckedCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserCreateOrConnectWithoutActivityTypesUpdatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutActivityTypesUpdatedInput, Prisma.UserUncheckedCreateWithoutActivityTypesUpdatedInput>
+}
+
+export type UserUpsertWithoutActivityTypesCreatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutActivityTypesCreatedInput, Prisma.UserUncheckedUpdateWithoutActivityTypesCreatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutActivityTypesCreatedInput, Prisma.UserUncheckedCreateWithoutActivityTypesCreatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutActivityTypesCreatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutActivityTypesCreatedInput, Prisma.UserUncheckedUpdateWithoutActivityTypesCreatedInput>
+}
+
+export type UserUpdateWithoutActivityTypesCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUpdateManyWithoutUpdatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutActivityTypesCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUncheckedUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUncheckedUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUncheckedUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUncheckedUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUncheckedUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUncheckedUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUncheckedUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUncheckedUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUpsertWithoutActivityTypesUpdatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutActivityTypesUpdatedInput, Prisma.UserUncheckedUpdateWithoutActivityTypesUpdatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutActivityTypesUpdatedInput, Prisma.UserUncheckedCreateWithoutActivityTypesUpdatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutActivityTypesUpdatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutActivityTypesUpdatedInput, Prisma.UserUncheckedUpdateWithoutActivityTypesUpdatedInput>
+}
+
+export type UserUpdateWithoutActivityTypesUpdatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUpdateManyWithoutCreatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutActivityTypesUpdatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUncheckedUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUncheckedUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUncheckedUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutCreatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUncheckedUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUncheckedUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUncheckedUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUncheckedUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUncheckedUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserCreateWithoutAccommodationsCreatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeCreateNestedManyWithoutUpdatedByInput
+  accommodationsUpdated?: Prisma.AccommodationCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserUncheckedCreateWithoutAccommodationsCreatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressUncheckedCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressUncheckedCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutUpdatedByInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseUncheckedCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseUncheckedCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelUncheckedCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelUncheckedCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomUncheckedCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomUncheckedCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserCreateOrConnectWithoutAccommodationsCreatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAccommodationsCreatedInput, Prisma.UserUncheckedCreateWithoutAccommodationsCreatedInput>
+}
+
+export type UserCreateWithoutAccommodationsUpdatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationCreateNestedManyWithoutCreatedByInput
+  housesCreated?: Prisma.HouseCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserUncheckedCreateWithoutAccommodationsUpdatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressUncheckedCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressUncheckedCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutCreatedByInput
+  housesCreated?: Prisma.HouseUncheckedCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseUncheckedCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelUncheckedCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelUncheckedCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomUncheckedCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomUncheckedCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserCreateOrConnectWithoutAccommodationsUpdatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAccommodationsUpdatedInput, Prisma.UserUncheckedCreateWithoutAccommodationsUpdatedInput>
+}
+
+export type UserUpsertWithoutAccommodationsCreatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAccommodationsCreatedInput, Prisma.UserUncheckedUpdateWithoutAccommodationsCreatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAccommodationsCreatedInput, Prisma.UserUncheckedCreateWithoutAccommodationsCreatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAccommodationsCreatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAccommodationsCreatedInput, Prisma.UserUncheckedUpdateWithoutAccommodationsCreatedInput>
+}
+
+export type UserUpdateWithoutAccommodationsCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUpdateManyWithoutUpdatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAccommodationsCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUncheckedUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUncheckedUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUncheckedUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUncheckedUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUncheckedUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUncheckedUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUncheckedUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUncheckedUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUpsertWithoutAccommodationsUpdatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAccommodationsUpdatedInput, Prisma.UserUncheckedUpdateWithoutAccommodationsUpdatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAccommodationsUpdatedInput, Prisma.UserUncheckedCreateWithoutAccommodationsUpdatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAccommodationsUpdatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAccommodationsUpdatedInput, Prisma.UserUncheckedUpdateWithoutAccommodationsUpdatedInput>
+}
+
+export type UserUpdateWithoutAccommodationsUpdatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUpdateManyWithoutCreatedByNestedInput
+  housesCreated?: Prisma.HouseUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAccommodationsUpdatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUncheckedUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUncheckedUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUncheckedUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedUpdateManyWithoutCreatedByNestedInput
+  housesCreated?: Prisma.HouseUncheckedUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUncheckedUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUncheckedUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUncheckedUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUncheckedUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserCreateWithoutHousesCreatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationCreateNestedManyWithoutUpdatedByInput
+  housesUpdated?: Prisma.HouseCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserUncheckedCreateWithoutHousesCreatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressUncheckedCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressUncheckedCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutUpdatedByInput
+  housesUpdated?: Prisma.HouseUncheckedCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelUncheckedCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelUncheckedCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomUncheckedCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomUncheckedCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserCreateOrConnectWithoutHousesCreatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutHousesCreatedInput, Prisma.UserUncheckedCreateWithoutHousesCreatedInput>
+}
+
+export type UserCreateWithoutHousesUpdatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseCreateNestedManyWithoutCreatedByInput
+  hotelsCreated?: Prisma.HotelCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserUncheckedCreateWithoutHousesUpdatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressUncheckedCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressUncheckedCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseUncheckedCreateNestedManyWithoutCreatedByInput
+  hotelsCreated?: Prisma.HotelUncheckedCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelUncheckedCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomUncheckedCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomUncheckedCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserCreateOrConnectWithoutHousesUpdatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutHousesUpdatedInput, Prisma.UserUncheckedCreateWithoutHousesUpdatedInput>
+}
+
+export type UserUpsertWithoutHousesCreatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutHousesCreatedInput, Prisma.UserUncheckedUpdateWithoutHousesCreatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutHousesCreatedInput, Prisma.UserUncheckedCreateWithoutHousesCreatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutHousesCreatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutHousesCreatedInput, Prisma.UserUncheckedUpdateWithoutHousesCreatedInput>
+}
+
+export type UserUpdateWithoutHousesCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUpdateManyWithoutUpdatedByNestedInput
+  housesUpdated?: Prisma.HouseUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutHousesCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUncheckedUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUncheckedUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUncheckedUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  housesUpdated?: Prisma.HouseUncheckedUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUncheckedUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUncheckedUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUncheckedUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUpsertWithoutHousesUpdatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutHousesUpdatedInput, Prisma.UserUncheckedUpdateWithoutHousesUpdatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutHousesUpdatedInput, Prisma.UserUncheckedCreateWithoutHousesUpdatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutHousesUpdatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutHousesUpdatedInput, Prisma.UserUncheckedUpdateWithoutHousesUpdatedInput>
+}
+
+export type UserUpdateWithoutHousesUpdatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUpdateManyWithoutCreatedByNestedInput
+  hotelsCreated?: Prisma.HotelUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutHousesUpdatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUncheckedUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUncheckedUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUncheckedUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUncheckedUpdateManyWithoutCreatedByNestedInput
+  hotelsCreated?: Prisma.HotelUncheckedUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUncheckedUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUncheckedUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserCreateWithoutHotelsCreatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseCreateNestedManyWithoutUpdatedByInput
+  hotelsUpdated?: Prisma.HotelCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserUncheckedCreateWithoutHotelsCreatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressUncheckedCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressUncheckedCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseUncheckedCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseUncheckedCreateNestedManyWithoutUpdatedByInput
+  hotelsUpdated?: Prisma.HotelUncheckedCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomUncheckedCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomUncheckedCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserCreateOrConnectWithoutHotelsCreatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutHotelsCreatedInput, Prisma.UserUncheckedCreateWithoutHotelsCreatedInput>
+}
+
+export type UserCreateWithoutHotelsUpdatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelCreateNestedManyWithoutCreatedByInput
+  roomsCreated?: Prisma.RoomCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserUncheckedCreateWithoutHotelsUpdatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressUncheckedCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressUncheckedCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseUncheckedCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseUncheckedCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelUncheckedCreateNestedManyWithoutCreatedByInput
+  roomsCreated?: Prisma.RoomUncheckedCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomUncheckedCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserCreateOrConnectWithoutHotelsUpdatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutHotelsUpdatedInput, Prisma.UserUncheckedCreateWithoutHotelsUpdatedInput>
+}
+
+export type UserUpsertWithoutHotelsCreatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutHotelsCreatedInput, Prisma.UserUncheckedUpdateWithoutHotelsCreatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutHotelsCreatedInput, Prisma.UserUncheckedCreateWithoutHotelsCreatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutHotelsCreatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutHotelsCreatedInput, Prisma.UserUncheckedUpdateWithoutHotelsCreatedInput>
+}
+
+export type UserUpdateWithoutHotelsCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUpdateManyWithoutUpdatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutHotelsCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUncheckedUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUncheckedUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUncheckedUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUncheckedUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUncheckedUpdateManyWithoutUpdatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUncheckedUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUncheckedUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUpsertWithoutHotelsUpdatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutHotelsUpdatedInput, Prisma.UserUncheckedUpdateWithoutHotelsUpdatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutHotelsUpdatedInput, Prisma.UserUncheckedCreateWithoutHotelsUpdatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutHotelsUpdatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutHotelsUpdatedInput, Prisma.UserUncheckedUpdateWithoutHotelsUpdatedInput>
+}
+
+export type UserUpdateWithoutHotelsUpdatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUpdateManyWithoutCreatedByNestedInput
+  roomsCreated?: Prisma.RoomUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutHotelsUpdatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUncheckedUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUncheckedUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUncheckedUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUncheckedUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUncheckedUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomsCreated?: Prisma.RoomUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUncheckedUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserCreateWithoutRoomsCreatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelCreateNestedManyWithoutUpdatedByInput
+  roomsUpdated?: Prisma.RoomCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserUncheckedCreateWithoutRoomsCreatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressUncheckedCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressUncheckedCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseUncheckedCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseUncheckedCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelUncheckedCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelUncheckedCreateNestedManyWithoutUpdatedByInput
+  roomsUpdated?: Prisma.RoomUncheckedCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserCreateOrConnectWithoutRoomsCreatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutRoomsCreatedInput, Prisma.UserUncheckedCreateWithoutRoomsCreatedInput>
+}
+
+export type UserCreateWithoutRoomsUpdatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutRoomsUpdatedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressUncheckedCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressUncheckedCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseUncheckedCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseUncheckedCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelUncheckedCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelUncheckedCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutRoomsUpdatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutRoomsUpdatedInput, Prisma.UserUncheckedCreateWithoutRoomsUpdatedInput>
+}
+
+export type UserUpsertWithoutRoomsCreatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutRoomsCreatedInput, Prisma.UserUncheckedUpdateWithoutRoomsCreatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutRoomsCreatedInput, Prisma.UserUncheckedCreateWithoutRoomsCreatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutRoomsCreatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutRoomsCreatedInput, Prisma.UserUncheckedUpdateWithoutRoomsCreatedInput>
+}
+
+export type UserUpdateWithoutRoomsCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUpdateManyWithoutUpdatedByNestedInput
+  roomsUpdated?: Prisma.RoomUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutRoomsCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUncheckedUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUncheckedUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUncheckedUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUncheckedUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUncheckedUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUncheckedUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUncheckedUpdateManyWithoutUpdatedByNestedInput
+  roomsUpdated?: Prisma.RoomUncheckedUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUpsertWithoutRoomsUpdatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutRoomsUpdatedInput, Prisma.UserUncheckedUpdateWithoutRoomsUpdatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutRoomsUpdatedInput, Prisma.UserUncheckedCreateWithoutRoomsUpdatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutRoomsUpdatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutRoomsUpdatedInput, Prisma.UserUncheckedUpdateWithoutRoomsUpdatedInput>
+}
+
+export type UserUpdateWithoutRoomsUpdatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutRoomsUpdatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUncheckedUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUncheckedUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUncheckedUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUncheckedUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUncheckedUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUncheckedUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUncheckedUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutAccountsInput = {
@@ -471,12 +3389,29 @@ export type UserCreateWithoutAccountsInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
   password?: string | null
   username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  Authenticator?: Prisma.AuthenticatorCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -485,12 +3420,29 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
   password?: string | null
   username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  Authenticator?: Prisma.AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressUncheckedCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressUncheckedCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseUncheckedCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseUncheckedCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelUncheckedCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelUncheckedCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomUncheckedCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomUncheckedCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -515,12 +3467,29 @@ export type UserUpdateWithoutAccountsInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  Authenticator?: Prisma.AuthenticatorUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUpdateManyWithoutUpdatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -529,12 +3498,29 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  Authenticator?: Prisma.AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUncheckedUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUncheckedUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUncheckedUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUncheckedUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUncheckedUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUncheckedUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUncheckedUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUncheckedUpdateManyWithoutUpdatedByNestedInput
 }
 
 export type UserCreateWithoutSessionsInput = {
@@ -543,12 +3529,29 @@ export type UserCreateWithoutSessionsInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
   password?: string | null
   username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  Authenticator?: Prisma.AuthenticatorCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -557,12 +3560,29 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
   password?: string | null
   username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  Authenticator?: Prisma.AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressUncheckedCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressUncheckedCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseUncheckedCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseUncheckedCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelUncheckedCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelUncheckedCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomUncheckedCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomUncheckedCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -587,12 +3607,29 @@ export type UserUpdateWithoutSessionsInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  Authenticator?: Prisma.AuthenticatorUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUpdateManyWithoutUpdatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -601,84 +3638,29 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  Authenticator?: Prisma.AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutAuthenticatorInput = {
-  id?: string
-  name?: string | null
-  email?: string | null
-  emailVerified?: Date | string | null
-  image?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  password?: string | null
-  username?: string | null
-  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutAuthenticatorInput = {
-  id?: string
-  name?: string | null
-  email?: string | null
-  emailVerified?: Date | string | null
-  image?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  password?: string | null
-  username?: string | null
-  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutAuthenticatorInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutAuthenticatorInput, Prisma.UserUncheckedCreateWithoutAuthenticatorInput>
-}
-
-export type UserUpsertWithoutAuthenticatorInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutAuthenticatorInput, Prisma.UserUncheckedUpdateWithoutAuthenticatorInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutAuthenticatorInput, Prisma.UserUncheckedCreateWithoutAuthenticatorInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutAuthenticatorInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutAuthenticatorInput, Prisma.UserUncheckedUpdateWithoutAuthenticatorInput>
-}
-
-export type UserUpdateWithoutAuthenticatorInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutAuthenticatorInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUncheckedUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUncheckedUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUncheckedUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUncheckedUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUncheckedUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUncheckedUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUncheckedUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUncheckedUpdateManyWithoutUpdatedByNestedInput
 }
 
 
@@ -689,13 +3671,47 @@ export type UserUncheckedUpdateWithoutAuthenticatorInput = {
 export type UserCountOutputType = {
   accounts: number
   sessions: number
-  Authenticator: number
+  destinationsCreated: number
+  destinationsUpdated: number
+  activitiesCreated: number
+  activitiesUpdated: number
+  addressesCreated: number
+  addressesUpdated: number
+  currenciesCreated: number
+  currenciesUpdated: number
+  activityTypesCreated: number
+  activityTypesUpdated: number
+  accommodationsCreated: number
+  accommodationsUpdated: number
+  housesCreated: number
+  housesUpdated: number
+  hotelsCreated: number
+  hotelsUpdated: number
+  roomsCreated: number
+  roomsUpdated: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   accounts?: boolean | UserCountOutputTypeCountAccountsArgs
   sessions?: boolean | UserCountOutputTypeCountSessionsArgs
-  Authenticator?: boolean | UserCountOutputTypeCountAuthenticatorArgs
+  destinationsCreated?: boolean | UserCountOutputTypeCountDestinationsCreatedArgs
+  destinationsUpdated?: boolean | UserCountOutputTypeCountDestinationsUpdatedArgs
+  activitiesCreated?: boolean | UserCountOutputTypeCountActivitiesCreatedArgs
+  activitiesUpdated?: boolean | UserCountOutputTypeCountActivitiesUpdatedArgs
+  addressesCreated?: boolean | UserCountOutputTypeCountAddressesCreatedArgs
+  addressesUpdated?: boolean | UserCountOutputTypeCountAddressesUpdatedArgs
+  currenciesCreated?: boolean | UserCountOutputTypeCountCurrenciesCreatedArgs
+  currenciesUpdated?: boolean | UserCountOutputTypeCountCurrenciesUpdatedArgs
+  activityTypesCreated?: boolean | UserCountOutputTypeCountActivityTypesCreatedArgs
+  activityTypesUpdated?: boolean | UserCountOutputTypeCountActivityTypesUpdatedArgs
+  accommodationsCreated?: boolean | UserCountOutputTypeCountAccommodationsCreatedArgs
+  accommodationsUpdated?: boolean | UserCountOutputTypeCountAccommodationsUpdatedArgs
+  housesCreated?: boolean | UserCountOutputTypeCountHousesCreatedArgs
+  housesUpdated?: boolean | UserCountOutputTypeCountHousesUpdatedArgs
+  hotelsCreated?: boolean | UserCountOutputTypeCountHotelsCreatedArgs
+  hotelsUpdated?: boolean | UserCountOutputTypeCountHotelsUpdatedArgs
+  roomsCreated?: boolean | UserCountOutputTypeCountRoomsCreatedArgs
+  roomsUpdated?: boolean | UserCountOutputTypeCountRoomsUpdatedArgs
 }
 
 /**
@@ -725,8 +3741,127 @@ export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.E
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountAuthenticatorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AuthenticatorWhereInput
+export type UserCountOutputTypeCountDestinationsCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DestinationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountDestinationsUpdatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DestinationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountActivitiesCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ActivityWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountActivitiesUpdatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ActivityWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAddressesCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AddressWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAddressesUpdatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AddressWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCurrenciesCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CurrencyWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCurrenciesUpdatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CurrencyWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountActivityTypesCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ActivityTypeWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountActivityTypesUpdatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ActivityTypeWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAccommodationsCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AccommodationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAccommodationsUpdatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AccommodationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountHousesCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.HouseWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountHousesUpdatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.HouseWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountHotelsCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.HotelWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountHotelsUpdatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.HotelWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountRoomsCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RoomWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountRoomsUpdatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RoomWhereInput
 }
 
 
@@ -736,13 +3871,30 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   email?: boolean
   emailVerified?: boolean
   image?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
   password?: boolean
   username?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
-  Authenticator?: boolean | Prisma.User$AuthenticatorArgs<ExtArgs>
+  destinationsCreated?: boolean | Prisma.User$destinationsCreatedArgs<ExtArgs>
+  destinationsUpdated?: boolean | Prisma.User$destinationsUpdatedArgs<ExtArgs>
+  activitiesCreated?: boolean | Prisma.User$activitiesCreatedArgs<ExtArgs>
+  activitiesUpdated?: boolean | Prisma.User$activitiesUpdatedArgs<ExtArgs>
+  addressesCreated?: boolean | Prisma.User$addressesCreatedArgs<ExtArgs>
+  addressesUpdated?: boolean | Prisma.User$addressesUpdatedArgs<ExtArgs>
+  currenciesCreated?: boolean | Prisma.User$currenciesCreatedArgs<ExtArgs>
+  currenciesUpdated?: boolean | Prisma.User$currenciesUpdatedArgs<ExtArgs>
+  activityTypesCreated?: boolean | Prisma.User$activityTypesCreatedArgs<ExtArgs>
+  activityTypesUpdated?: boolean | Prisma.User$activityTypesUpdatedArgs<ExtArgs>
+  accommodationsCreated?: boolean | Prisma.User$accommodationsCreatedArgs<ExtArgs>
+  accommodationsUpdated?: boolean | Prisma.User$accommodationsUpdatedArgs<ExtArgs>
+  housesCreated?: boolean | Prisma.User$housesCreatedArgs<ExtArgs>
+  housesUpdated?: boolean | Prisma.User$housesUpdatedArgs<ExtArgs>
+  hotelsCreated?: boolean | Prisma.User$hotelsCreatedArgs<ExtArgs>
+  hotelsUpdated?: boolean | Prisma.User$hotelsUpdatedArgs<ExtArgs>
+  roomsCreated?: boolean | Prisma.User$roomsCreatedArgs<ExtArgs>
+  roomsUpdated?: boolean | Prisma.User$roomsUpdatedArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -752,10 +3904,10 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   emailVerified?: boolean
   image?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
   password?: boolean
   username?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -764,10 +3916,10 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   emailVerified?: boolean
   image?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
   password?: boolean
   username?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -776,17 +3928,34 @@ export type UserSelectScalar = {
   email?: boolean
   emailVerified?: boolean
   image?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
   password?: boolean
   username?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "createdAt" | "updatedAt" | "password" | "username", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "password" | "username" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
-  Authenticator?: boolean | Prisma.User$AuthenticatorArgs<ExtArgs>
+  destinationsCreated?: boolean | Prisma.User$destinationsCreatedArgs<ExtArgs>
+  destinationsUpdated?: boolean | Prisma.User$destinationsUpdatedArgs<ExtArgs>
+  activitiesCreated?: boolean | Prisma.User$activitiesCreatedArgs<ExtArgs>
+  activitiesUpdated?: boolean | Prisma.User$activitiesUpdatedArgs<ExtArgs>
+  addressesCreated?: boolean | Prisma.User$addressesCreatedArgs<ExtArgs>
+  addressesUpdated?: boolean | Prisma.User$addressesUpdatedArgs<ExtArgs>
+  currenciesCreated?: boolean | Prisma.User$currenciesCreatedArgs<ExtArgs>
+  currenciesUpdated?: boolean | Prisma.User$currenciesUpdatedArgs<ExtArgs>
+  activityTypesCreated?: boolean | Prisma.User$activityTypesCreatedArgs<ExtArgs>
+  activityTypesUpdated?: boolean | Prisma.User$activityTypesUpdatedArgs<ExtArgs>
+  accommodationsCreated?: boolean | Prisma.User$accommodationsCreatedArgs<ExtArgs>
+  accommodationsUpdated?: boolean | Prisma.User$accommodationsUpdatedArgs<ExtArgs>
+  housesCreated?: boolean | Prisma.User$housesCreatedArgs<ExtArgs>
+  housesUpdated?: boolean | Prisma.User$housesUpdatedArgs<ExtArgs>
+  hotelsCreated?: boolean | Prisma.User$hotelsCreatedArgs<ExtArgs>
+  hotelsUpdated?: boolean | Prisma.User$hotelsUpdatedArgs<ExtArgs>
+  roomsCreated?: boolean | Prisma.User$roomsCreatedArgs<ExtArgs>
+  roomsUpdated?: boolean | Prisma.User$roomsUpdatedArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -797,7 +3966,24 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     accounts: Prisma.$AccountPayload<ExtArgs>[]
     sessions: Prisma.$SessionPayload<ExtArgs>[]
-    Authenticator: Prisma.$AuthenticatorPayload<ExtArgs>[]
+    destinationsCreated: Prisma.$DestinationPayload<ExtArgs>[]
+    destinationsUpdated: Prisma.$DestinationPayload<ExtArgs>[]
+    activitiesCreated: Prisma.$ActivityPayload<ExtArgs>[]
+    activitiesUpdated: Prisma.$ActivityPayload<ExtArgs>[]
+    addressesCreated: Prisma.$AddressPayload<ExtArgs>[]
+    addressesUpdated: Prisma.$AddressPayload<ExtArgs>[]
+    currenciesCreated: Prisma.$CurrencyPayload<ExtArgs>[]
+    currenciesUpdated: Prisma.$CurrencyPayload<ExtArgs>[]
+    activityTypesCreated: Prisma.$ActivityTypePayload<ExtArgs>[]
+    activityTypesUpdated: Prisma.$ActivityTypePayload<ExtArgs>[]
+    accommodationsCreated: Prisma.$AccommodationPayload<ExtArgs>[]
+    accommodationsUpdated: Prisma.$AccommodationPayload<ExtArgs>[]
+    housesCreated: Prisma.$HousePayload<ExtArgs>[]
+    housesUpdated: Prisma.$HousePayload<ExtArgs>[]
+    hotelsCreated: Prisma.$HotelPayload<ExtArgs>[]
+    hotelsUpdated: Prisma.$HotelPayload<ExtArgs>[]
+    roomsCreated: Prisma.$RoomPayload<ExtArgs>[]
+    roomsUpdated: Prisma.$RoomPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -805,10 +3991,10 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     email: string | null
     emailVerified: Date | null
     image: string | null
-    createdAt: Date
-    updatedAt: Date
     password: string | null
     username: string | null
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -1205,7 +4391,24 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   accounts<T extends Prisma.User$accountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  Authenticator<T extends Prisma.User$AuthenticatorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$AuthenticatorArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuthenticatorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  destinationsCreated<T extends Prisma.User$destinationsCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$destinationsCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  destinationsUpdated<T extends Prisma.User$destinationsUpdatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$destinationsUpdatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  activitiesCreated<T extends Prisma.User$activitiesCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$activitiesCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  activitiesUpdated<T extends Prisma.User$activitiesUpdatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$activitiesUpdatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  addressesCreated<T extends Prisma.User$addressesCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$addressesCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  addressesUpdated<T extends Prisma.User$addressesUpdatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$addressesUpdatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  currenciesCreated<T extends Prisma.User$currenciesCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$currenciesCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  currenciesUpdated<T extends Prisma.User$currenciesUpdatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$currenciesUpdatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  activityTypesCreated<T extends Prisma.User$activityTypesCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$activityTypesCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityTypePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  activityTypesUpdated<T extends Prisma.User$activityTypesUpdatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$activityTypesUpdatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityTypePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  accommodationsCreated<T extends Prisma.User$accommodationsCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accommodationsCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccommodationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  accommodationsUpdated<T extends Prisma.User$accommodationsUpdatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accommodationsUpdatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccommodationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  housesCreated<T extends Prisma.User$housesCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$housesCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HousePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  housesUpdated<T extends Prisma.User$housesUpdatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$housesUpdatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HousePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  hotelsCreated<T extends Prisma.User$hotelsCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$hotelsCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HotelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  hotelsUpdated<T extends Prisma.User$hotelsUpdatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$hotelsUpdatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HotelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  roomsCreated<T extends Prisma.User$roomsCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$roomsCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  roomsUpdated<T extends Prisma.User$roomsUpdatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$roomsUpdatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1240,10 +4443,10 @@ export interface UserFieldRefs {
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly emailVerified: Prisma.FieldRef<"User", 'DateTime'>
   readonly image: Prisma.FieldRef<"User", 'String'>
-  readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
-  readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly password: Prisma.FieldRef<"User", 'String'>
   readonly username: Prisma.FieldRef<"User", 'String'>
+  readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
 }
     
 
@@ -1685,27 +4888,435 @@ export type User$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 /**
- * User.Authenticator
+ * User.destinationsCreated
  */
-export type User$AuthenticatorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$destinationsCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Authenticator
+   * Select specific fields to fetch from the Destination
    */
-  select?: Prisma.AuthenticatorSelect<ExtArgs> | null
+  select?: Prisma.DestinationSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Authenticator
+   * Omit specific fields from the Destination
    */
-  omit?: Prisma.AuthenticatorOmit<ExtArgs> | null
+  omit?: Prisma.DestinationOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AuthenticatorInclude<ExtArgs> | null
-  where?: Prisma.AuthenticatorWhereInput
-  orderBy?: Prisma.AuthenticatorOrderByWithRelationInput | Prisma.AuthenticatorOrderByWithRelationInput[]
-  cursor?: Prisma.AuthenticatorWhereUniqueInput
+  include?: Prisma.DestinationInclude<ExtArgs> | null
+  where?: Prisma.DestinationWhereInput
+  orderBy?: Prisma.DestinationOrderByWithRelationInput | Prisma.DestinationOrderByWithRelationInput[]
+  cursor?: Prisma.DestinationWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.AuthenticatorScalarFieldEnum | Prisma.AuthenticatorScalarFieldEnum[]
+  distinct?: Prisma.DestinationScalarFieldEnum | Prisma.DestinationScalarFieldEnum[]
+}
+
+/**
+ * User.destinationsUpdated
+ */
+export type User$destinationsUpdatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Destination
+   */
+  select?: Prisma.DestinationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Destination
+   */
+  omit?: Prisma.DestinationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DestinationInclude<ExtArgs> | null
+  where?: Prisma.DestinationWhereInput
+  orderBy?: Prisma.DestinationOrderByWithRelationInput | Prisma.DestinationOrderByWithRelationInput[]
+  cursor?: Prisma.DestinationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DestinationScalarFieldEnum | Prisma.DestinationScalarFieldEnum[]
+}
+
+/**
+ * User.activitiesCreated
+ */
+export type User$activitiesCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Activity
+   */
+  select?: Prisma.ActivitySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Activity
+   */
+  omit?: Prisma.ActivityOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ActivityInclude<ExtArgs> | null
+  where?: Prisma.ActivityWhereInput
+  orderBy?: Prisma.ActivityOrderByWithRelationInput | Prisma.ActivityOrderByWithRelationInput[]
+  cursor?: Prisma.ActivityWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ActivityScalarFieldEnum | Prisma.ActivityScalarFieldEnum[]
+}
+
+/**
+ * User.activitiesUpdated
+ */
+export type User$activitiesUpdatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Activity
+   */
+  select?: Prisma.ActivitySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Activity
+   */
+  omit?: Prisma.ActivityOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ActivityInclude<ExtArgs> | null
+  where?: Prisma.ActivityWhereInput
+  orderBy?: Prisma.ActivityOrderByWithRelationInput | Prisma.ActivityOrderByWithRelationInput[]
+  cursor?: Prisma.ActivityWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ActivityScalarFieldEnum | Prisma.ActivityScalarFieldEnum[]
+}
+
+/**
+ * User.addressesCreated
+ */
+export type User$addressesCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Address
+   */
+  select?: Prisma.AddressSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Address
+   */
+  omit?: Prisma.AddressOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AddressInclude<ExtArgs> | null
+  where?: Prisma.AddressWhereInput
+  orderBy?: Prisma.AddressOrderByWithRelationInput | Prisma.AddressOrderByWithRelationInput[]
+  cursor?: Prisma.AddressWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AddressScalarFieldEnum | Prisma.AddressScalarFieldEnum[]
+}
+
+/**
+ * User.addressesUpdated
+ */
+export type User$addressesUpdatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Address
+   */
+  select?: Prisma.AddressSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Address
+   */
+  omit?: Prisma.AddressOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AddressInclude<ExtArgs> | null
+  where?: Prisma.AddressWhereInput
+  orderBy?: Prisma.AddressOrderByWithRelationInput | Prisma.AddressOrderByWithRelationInput[]
+  cursor?: Prisma.AddressWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AddressScalarFieldEnum | Prisma.AddressScalarFieldEnum[]
+}
+
+/**
+ * User.currenciesCreated
+ */
+export type User$currenciesCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Currency
+   */
+  select?: Prisma.CurrencySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Currency
+   */
+  omit?: Prisma.CurrencyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CurrencyInclude<ExtArgs> | null
+  where?: Prisma.CurrencyWhereInput
+  orderBy?: Prisma.CurrencyOrderByWithRelationInput | Prisma.CurrencyOrderByWithRelationInput[]
+  cursor?: Prisma.CurrencyWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CurrencyScalarFieldEnum | Prisma.CurrencyScalarFieldEnum[]
+}
+
+/**
+ * User.currenciesUpdated
+ */
+export type User$currenciesUpdatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Currency
+   */
+  select?: Prisma.CurrencySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Currency
+   */
+  omit?: Prisma.CurrencyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CurrencyInclude<ExtArgs> | null
+  where?: Prisma.CurrencyWhereInput
+  orderBy?: Prisma.CurrencyOrderByWithRelationInput | Prisma.CurrencyOrderByWithRelationInput[]
+  cursor?: Prisma.CurrencyWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CurrencyScalarFieldEnum | Prisma.CurrencyScalarFieldEnum[]
+}
+
+/**
+ * User.activityTypesCreated
+ */
+export type User$activityTypesCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ActivityType
+   */
+  select?: Prisma.ActivityTypeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ActivityType
+   */
+  omit?: Prisma.ActivityTypeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ActivityTypeInclude<ExtArgs> | null
+  where?: Prisma.ActivityTypeWhereInput
+  orderBy?: Prisma.ActivityTypeOrderByWithRelationInput | Prisma.ActivityTypeOrderByWithRelationInput[]
+  cursor?: Prisma.ActivityTypeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ActivityTypeScalarFieldEnum | Prisma.ActivityTypeScalarFieldEnum[]
+}
+
+/**
+ * User.activityTypesUpdated
+ */
+export type User$activityTypesUpdatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ActivityType
+   */
+  select?: Prisma.ActivityTypeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ActivityType
+   */
+  omit?: Prisma.ActivityTypeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ActivityTypeInclude<ExtArgs> | null
+  where?: Prisma.ActivityTypeWhereInput
+  orderBy?: Prisma.ActivityTypeOrderByWithRelationInput | Prisma.ActivityTypeOrderByWithRelationInput[]
+  cursor?: Prisma.ActivityTypeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ActivityTypeScalarFieldEnum | Prisma.ActivityTypeScalarFieldEnum[]
+}
+
+/**
+ * User.accommodationsCreated
+ */
+export type User$accommodationsCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Accommodation
+   */
+  select?: Prisma.AccommodationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Accommodation
+   */
+  omit?: Prisma.AccommodationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AccommodationInclude<ExtArgs> | null
+  where?: Prisma.AccommodationWhereInput
+  orderBy?: Prisma.AccommodationOrderByWithRelationInput | Prisma.AccommodationOrderByWithRelationInput[]
+  cursor?: Prisma.AccommodationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AccommodationScalarFieldEnum | Prisma.AccommodationScalarFieldEnum[]
+}
+
+/**
+ * User.accommodationsUpdated
+ */
+export type User$accommodationsUpdatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Accommodation
+   */
+  select?: Prisma.AccommodationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Accommodation
+   */
+  omit?: Prisma.AccommodationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AccommodationInclude<ExtArgs> | null
+  where?: Prisma.AccommodationWhereInput
+  orderBy?: Prisma.AccommodationOrderByWithRelationInput | Prisma.AccommodationOrderByWithRelationInput[]
+  cursor?: Prisma.AccommodationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AccommodationScalarFieldEnum | Prisma.AccommodationScalarFieldEnum[]
+}
+
+/**
+ * User.housesCreated
+ */
+export type User$housesCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the House
+   */
+  select?: Prisma.HouseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the House
+   */
+  omit?: Prisma.HouseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.HouseInclude<ExtArgs> | null
+  where?: Prisma.HouseWhereInput
+  orderBy?: Prisma.HouseOrderByWithRelationInput | Prisma.HouseOrderByWithRelationInput[]
+  cursor?: Prisma.HouseWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.HouseScalarFieldEnum | Prisma.HouseScalarFieldEnum[]
+}
+
+/**
+ * User.housesUpdated
+ */
+export type User$housesUpdatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the House
+   */
+  select?: Prisma.HouseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the House
+   */
+  omit?: Prisma.HouseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.HouseInclude<ExtArgs> | null
+  where?: Prisma.HouseWhereInput
+  orderBy?: Prisma.HouseOrderByWithRelationInput | Prisma.HouseOrderByWithRelationInput[]
+  cursor?: Prisma.HouseWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.HouseScalarFieldEnum | Prisma.HouseScalarFieldEnum[]
+}
+
+/**
+ * User.hotelsCreated
+ */
+export type User$hotelsCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Hotel
+   */
+  select?: Prisma.HotelSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Hotel
+   */
+  omit?: Prisma.HotelOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.HotelInclude<ExtArgs> | null
+  where?: Prisma.HotelWhereInput
+  orderBy?: Prisma.HotelOrderByWithRelationInput | Prisma.HotelOrderByWithRelationInput[]
+  cursor?: Prisma.HotelWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.HotelScalarFieldEnum | Prisma.HotelScalarFieldEnum[]
+}
+
+/**
+ * User.hotelsUpdated
+ */
+export type User$hotelsUpdatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Hotel
+   */
+  select?: Prisma.HotelSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Hotel
+   */
+  omit?: Prisma.HotelOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.HotelInclude<ExtArgs> | null
+  where?: Prisma.HotelWhereInput
+  orderBy?: Prisma.HotelOrderByWithRelationInput | Prisma.HotelOrderByWithRelationInput[]
+  cursor?: Prisma.HotelWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.HotelScalarFieldEnum | Prisma.HotelScalarFieldEnum[]
+}
+
+/**
+ * User.roomsCreated
+ */
+export type User$roomsCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Room
+   */
+  select?: Prisma.RoomSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Room
+   */
+  omit?: Prisma.RoomOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RoomInclude<ExtArgs> | null
+  where?: Prisma.RoomWhereInput
+  orderBy?: Prisma.RoomOrderByWithRelationInput | Prisma.RoomOrderByWithRelationInput[]
+  cursor?: Prisma.RoomWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RoomScalarFieldEnum | Prisma.RoomScalarFieldEnum[]
+}
+
+/**
+ * User.roomsUpdated
+ */
+export type User$roomsUpdatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Room
+   */
+  select?: Prisma.RoomSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Room
+   */
+  omit?: Prisma.RoomOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RoomInclude<ExtArgs> | null
+  where?: Prisma.RoomWhereInput
+  orderBy?: Prisma.RoomOrderByWithRelationInput | Prisma.RoomOrderByWithRelationInput[]
+  cursor?: Prisma.RoomWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RoomScalarFieldEnum | Prisma.RoomScalarFieldEnum[]
 }
 
 /**

@@ -1,5 +1,5 @@
 export type DocumentCategory = 'hero' | 'gallery' | 'roomGallery';
-export type DocumentBucket = 'activities' | 'listings';
+export type DocumentBucket = 'activities' | 'accommodations';
 
 export type UseGetDocumentParams = GetDocumentParams & { id: string };
 export type UseGetDocumentsParams = GetDocumentsParams & { id: string };

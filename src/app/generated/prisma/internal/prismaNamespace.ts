@@ -389,15 +389,14 @@ export const ModelName = {
   Address: 'Address',
   Currency: 'Currency',
   ActivityType: 'ActivityType',
-  Listing: 'Listing',
-  HouseListing: 'HouseListing',
-  HotelListing: 'HotelListing',
+  Accommodation: 'Accommodation',
+  House: 'House',
+  Hotel: 'Hotel',
   Room: 'Room',
   User: 'User',
   Account: 'Account',
   VerificationToken: 'VerificationToken',
-  Session: 'Session',
-  Authenticator: 'Authenticator'
+  Session: 'Session'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -413,7 +412,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "destination" | "activity" | "address" | "currency" | "activityType" | "listing" | "houseListing" | "hotelListing" | "room" | "user" | "account" | "verificationToken" | "session" | "authenticator"
+    modelProps: "destination" | "activity" | "address" | "currency" | "activityType" | "accommodation" | "house" | "hotel" | "room" | "user" | "account" | "verificationToken" | "session"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -787,225 +786,225 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    Listing: {
-      payload: Prisma.$ListingPayload<ExtArgs>
-      fields: Prisma.ListingFieldRefs
+    Accommodation: {
+      payload: Prisma.$AccommodationPayload<ExtArgs>
+      fields: Prisma.AccommodationFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.ListingFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ListingPayload> | null
+          args: Prisma.AccommodationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccommodationPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.ListingFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ListingPayload>
+          args: Prisma.AccommodationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccommodationPayload>
         }
         findFirst: {
-          args: Prisma.ListingFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ListingPayload> | null
+          args: Prisma.AccommodationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccommodationPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.ListingFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ListingPayload>
+          args: Prisma.AccommodationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccommodationPayload>
         }
         findMany: {
-          args: Prisma.ListingFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ListingPayload>[]
+          args: Prisma.AccommodationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccommodationPayload>[]
         }
         create: {
-          args: Prisma.ListingCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ListingPayload>
+          args: Prisma.AccommodationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccommodationPayload>
         }
         createMany: {
-          args: Prisma.ListingCreateManyArgs<ExtArgs>
+          args: Prisma.AccommodationCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.ListingCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ListingPayload>[]
+          args: Prisma.AccommodationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccommodationPayload>[]
         }
         delete: {
-          args: Prisma.ListingDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ListingPayload>
+          args: Prisma.AccommodationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccommodationPayload>
         }
         update: {
-          args: Prisma.ListingUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ListingPayload>
+          args: Prisma.AccommodationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccommodationPayload>
         }
         deleteMany: {
-          args: Prisma.ListingDeleteManyArgs<ExtArgs>
+          args: Prisma.AccommodationDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.ListingUpdateManyArgs<ExtArgs>
+          args: Prisma.AccommodationUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.ListingUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ListingPayload>[]
+          args: Prisma.AccommodationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccommodationPayload>[]
         }
         upsert: {
-          args: Prisma.ListingUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ListingPayload>
+          args: Prisma.AccommodationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccommodationPayload>
         }
         aggregate: {
-          args: Prisma.ListingAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateListing>
+          args: Prisma.AccommodationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAccommodation>
         }
         groupBy: {
-          args: Prisma.ListingGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.ListingGroupByOutputType>[]
+          args: Prisma.AccommodationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AccommodationGroupByOutputType>[]
         }
         count: {
-          args: Prisma.ListingCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.ListingCountAggregateOutputType> | number
+          args: Prisma.AccommodationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AccommodationCountAggregateOutputType> | number
         }
       }
     }
-    HouseListing: {
-      payload: Prisma.$HouseListingPayload<ExtArgs>
-      fields: Prisma.HouseListingFieldRefs
+    House: {
+      payload: Prisma.$HousePayload<ExtArgs>
+      fields: Prisma.HouseFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.HouseListingFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$HouseListingPayload> | null
+          args: Prisma.HouseFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HousePayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.HouseListingFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$HouseListingPayload>
+          args: Prisma.HouseFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HousePayload>
         }
         findFirst: {
-          args: Prisma.HouseListingFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$HouseListingPayload> | null
+          args: Prisma.HouseFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HousePayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.HouseListingFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$HouseListingPayload>
+          args: Prisma.HouseFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HousePayload>
         }
         findMany: {
-          args: Prisma.HouseListingFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$HouseListingPayload>[]
+          args: Prisma.HouseFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HousePayload>[]
         }
         create: {
-          args: Prisma.HouseListingCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$HouseListingPayload>
+          args: Prisma.HouseCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HousePayload>
         }
         createMany: {
-          args: Prisma.HouseListingCreateManyArgs<ExtArgs>
+          args: Prisma.HouseCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.HouseListingCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$HouseListingPayload>[]
+          args: Prisma.HouseCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HousePayload>[]
         }
         delete: {
-          args: Prisma.HouseListingDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$HouseListingPayload>
+          args: Prisma.HouseDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HousePayload>
         }
         update: {
-          args: Prisma.HouseListingUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$HouseListingPayload>
+          args: Prisma.HouseUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HousePayload>
         }
         deleteMany: {
-          args: Prisma.HouseListingDeleteManyArgs<ExtArgs>
+          args: Prisma.HouseDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.HouseListingUpdateManyArgs<ExtArgs>
+          args: Prisma.HouseUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.HouseListingUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$HouseListingPayload>[]
+          args: Prisma.HouseUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HousePayload>[]
         }
         upsert: {
-          args: Prisma.HouseListingUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$HouseListingPayload>
+          args: Prisma.HouseUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HousePayload>
         }
         aggregate: {
-          args: Prisma.HouseListingAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateHouseListing>
+          args: Prisma.HouseAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateHouse>
         }
         groupBy: {
-          args: Prisma.HouseListingGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.HouseListingGroupByOutputType>[]
+          args: Prisma.HouseGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.HouseGroupByOutputType>[]
         }
         count: {
-          args: Prisma.HouseListingCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.HouseListingCountAggregateOutputType> | number
+          args: Prisma.HouseCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.HouseCountAggregateOutputType> | number
         }
       }
     }
-    HotelListing: {
-      payload: Prisma.$HotelListingPayload<ExtArgs>
-      fields: Prisma.HotelListingFieldRefs
+    Hotel: {
+      payload: Prisma.$HotelPayload<ExtArgs>
+      fields: Prisma.HotelFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.HotelListingFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$HotelListingPayload> | null
+          args: Prisma.HotelFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HotelPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.HotelListingFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$HotelListingPayload>
+          args: Prisma.HotelFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HotelPayload>
         }
         findFirst: {
-          args: Prisma.HotelListingFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$HotelListingPayload> | null
+          args: Prisma.HotelFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HotelPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.HotelListingFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$HotelListingPayload>
+          args: Prisma.HotelFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HotelPayload>
         }
         findMany: {
-          args: Prisma.HotelListingFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$HotelListingPayload>[]
+          args: Prisma.HotelFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HotelPayload>[]
         }
         create: {
-          args: Prisma.HotelListingCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$HotelListingPayload>
+          args: Prisma.HotelCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HotelPayload>
         }
         createMany: {
-          args: Prisma.HotelListingCreateManyArgs<ExtArgs>
+          args: Prisma.HotelCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.HotelListingCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$HotelListingPayload>[]
+          args: Prisma.HotelCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HotelPayload>[]
         }
         delete: {
-          args: Prisma.HotelListingDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$HotelListingPayload>
+          args: Prisma.HotelDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HotelPayload>
         }
         update: {
-          args: Prisma.HotelListingUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$HotelListingPayload>
+          args: Prisma.HotelUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HotelPayload>
         }
         deleteMany: {
-          args: Prisma.HotelListingDeleteManyArgs<ExtArgs>
+          args: Prisma.HotelDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.HotelListingUpdateManyArgs<ExtArgs>
+          args: Prisma.HotelUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.HotelListingUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$HotelListingPayload>[]
+          args: Prisma.HotelUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HotelPayload>[]
         }
         upsert: {
-          args: Prisma.HotelListingUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$HotelListingPayload>
+          args: Prisma.HotelUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HotelPayload>
         }
         aggregate: {
-          args: Prisma.HotelListingAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateHotelListing>
+          args: Prisma.HotelAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateHotel>
         }
         groupBy: {
-          args: Prisma.HotelListingGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.HotelListingGroupByOutputType>[]
+          args: Prisma.HotelGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.HotelGroupByOutputType>[]
         }
         count: {
-          args: Prisma.HotelListingCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.HotelListingCountAggregateOutputType> | number
+          args: Prisma.HotelCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.HotelCountAggregateOutputType> | number
         }
       }
     }
@@ -1379,80 +1378,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    Authenticator: {
-      payload: Prisma.$AuthenticatorPayload<ExtArgs>
-      fields: Prisma.AuthenticatorFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.AuthenticatorFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthenticatorPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.AuthenticatorFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthenticatorPayload>
-        }
-        findFirst: {
-          args: Prisma.AuthenticatorFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthenticatorPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.AuthenticatorFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthenticatorPayload>
-        }
-        findMany: {
-          args: Prisma.AuthenticatorFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthenticatorPayload>[]
-        }
-        create: {
-          args: Prisma.AuthenticatorCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthenticatorPayload>
-        }
-        createMany: {
-          args: Prisma.AuthenticatorCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.AuthenticatorCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthenticatorPayload>[]
-        }
-        delete: {
-          args: Prisma.AuthenticatorDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthenticatorPayload>
-        }
-        update: {
-          args: Prisma.AuthenticatorUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthenticatorPayload>
-        }
-        deleteMany: {
-          args: Prisma.AuthenticatorDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.AuthenticatorUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.AuthenticatorUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthenticatorPayload>[]
-        }
-        upsert: {
-          args: Prisma.AuthenticatorUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthenticatorPayload>
-        }
-        aggregate: {
-          args: Prisma.AuthenticatorAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateAuthenticator>
-        }
-        groupBy: {
-          args: Prisma.AuthenticatorGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AuthenticatorGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.AuthenticatorCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AuthenticatorCountAggregateOutputType> | number
-        }
-      }
-    }
   }
 } & {
   other: {
@@ -1498,6 +1423,8 @@ export const DestinationScalarFieldEnum = {
   season: 'season',
   isActive: 'isActive',
   addressId: 'addressId',
+  createdById: 'createdById',
+  updatedById: 'updatedById',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1514,6 +1441,8 @@ export const ActivityScalarFieldEnum = {
   currencyId: 'currencyId',
   addressId: 'addressId',
   activityTypeId: 'activityTypeId',
+  createdById: 'createdById',
+  updatedById: 'updatedById',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1528,7 +1457,9 @@ export const AddressScalarFieldEnum = {
   city: 'city',
   details: 'details',
   latitude: 'latitude',
-  longitude: 'longitude'
+  longitude: 'longitude',
+  createdById: 'createdById',
+  updatedById: 'updatedById'
 } as const
 
 export type AddressScalarFieldEnum = (typeof AddressScalarFieldEnum)[keyof typeof AddressScalarFieldEnum]
@@ -1538,10 +1469,12 @@ export const CurrencyScalarFieldEnum = {
   id: 'id',
   title: 'title',
   symbol: 'symbol',
+  isoCode: 'isoCode',
   isActive: 'isActive',
+  createdById: 'createdById',
+  updatedById: 'updatedById',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  isoCode: 'isoCode'
+  updatedAt: 'updatedAt'
 } as const
 
 export type CurrencyScalarFieldEnum = (typeof CurrencyScalarFieldEnum)[keyof typeof CurrencyScalarFieldEnum]
@@ -1551,17 +1484,19 @@ export const ActivityTypeScalarFieldEnum = {
   id: 'id',
   name: 'name',
   title: 'title',
-  isActive: 'isActive',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
   emoji: 'emoji',
-  icon: 'icon'
+  icon: 'icon',
+  isActive: 'isActive',
+  createdById: 'createdById',
+  updatedById: 'updatedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type ActivityTypeScalarFieldEnum = (typeof ActivityTypeScalarFieldEnum)[keyof typeof ActivityTypeScalarFieldEnum]
 
 
-export const ListingScalarFieldEnum = {
+export const AccommodationScalarFieldEnum = {
   id: 'id',
   type: 'type',
   title: 'title',
@@ -1570,36 +1505,42 @@ export const ListingScalarFieldEnum = {
   destinationId: 'destinationId',
   amenities: 'amenities',
   policies: 'policies',
+  createdById: 'createdById',
+  updatedById: 'updatedById',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type ListingScalarFieldEnum = (typeof ListingScalarFieldEnum)[keyof typeof ListingScalarFieldEnum]
+export type AccommodationScalarFieldEnum = (typeof AccommodationScalarFieldEnum)[keyof typeof AccommodationScalarFieldEnum]
 
 
-export const HouseListingScalarFieldEnum = {
+export const HouseScalarFieldEnum = {
   id: 'id',
+  accommodationId: 'accommodationId',
   price: 'price',
   discount: 'discount',
   capacity: 'capacity',
-  currencyId: 'currencyId',
-  availableDates: 'availableDates',
-  listingId: 'listingId',
   area: 'area',
   bathrooms: 'bathrooms',
   bedrooms: 'bedrooms',
-  floors: 'floors'
+  floors: 'floors',
+  availableDates: 'availableDates',
+  currencyId: 'currencyId',
+  createdById: 'createdById',
+  updatedById: 'updatedById'
 } as const
 
-export type HouseListingScalarFieldEnum = (typeof HouseListingScalarFieldEnum)[keyof typeof HouseListingScalarFieldEnum]
+export type HouseScalarFieldEnum = (typeof HouseScalarFieldEnum)[keyof typeof HouseScalarFieldEnum]
 
 
-export const HotelListingScalarFieldEnum = {
+export const HotelScalarFieldEnum = {
   id: 'id',
-  listingId: 'listingId'
+  accommodationId: 'accommodationId',
+  createdById: 'createdById',
+  updatedById: 'updatedById'
 } as const
 
-export type HotelListingScalarFieldEnum = (typeof HotelListingScalarFieldEnum)[keyof typeof HotelListingScalarFieldEnum]
+export type HotelScalarFieldEnum = (typeof HotelScalarFieldEnum)[keyof typeof HotelScalarFieldEnum]
 
 
 export const RoomScalarFieldEnum = {
@@ -1616,6 +1557,8 @@ export const RoomScalarFieldEnum = {
   beds: 'beds',
   hotelId: 'hotelId',
   currencyId: 'currencyId',
+  createdById: 'createdById',
+  updatedById: 'updatedById',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1629,10 +1572,10 @@ export const UserScalarFieldEnum = {
   email: 'email',
   emailVerified: 'emailVerified',
   image: 'image',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
   password: 'password',
-  username: 'username'
+  username: 'username',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -1675,20 +1618,6 @@ export const SessionScalarFieldEnum = {
 } as const
 
 export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
-
-
-export const AuthenticatorScalarFieldEnum = {
-  credentialID: 'credentialID',
-  userId: 'userId',
-  providerAccountId: 'providerAccountId',
-  credentialPublicKey: 'credentialPublicKey',
-  counter: 'counter',
-  credentialDeviceType: 'credentialDeviceType',
-  credentialBackedUp: 'credentialBackedUp',
-  transports: 'transports'
-} as const
-
-export type AuthenticatorScalarFieldEnum = (typeof AuthenticatorScalarFieldEnum)[keyof typeof AuthenticatorScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1809,16 +1738,16 @@ export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMode
 
 
 /**
- * Reference to a field of type 'ListingType'
+ * Reference to a field of type 'AccommodationType'
  */
-export type EnumListingTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ListingType'>
+export type EnumAccommodationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccommodationType'>
     
 
 
 /**
- * Reference to a field of type 'ListingType[]'
+ * Reference to a field of type 'AccommodationType[]'
  */
-export type ListEnumListingTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ListingType[]'>
+export type ListEnumAccommodationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccommodationType[]'>
     
 
 
@@ -1949,15 +1878,14 @@ export type GlobalOmitConfig = {
   address?: Prisma.AddressOmit
   currency?: Prisma.CurrencyOmit
   activityType?: Prisma.ActivityTypeOmit
-  listing?: Prisma.ListingOmit
-  houseListing?: Prisma.HouseListingOmit
-  hotelListing?: Prisma.HotelListingOmit
+  accommodation?: Prisma.AccommodationOmit
+  house?: Prisma.HouseOmit
+  hotel?: Prisma.HotelOmit
   room?: Prisma.RoomOmit
   user?: Prisma.UserOmit
   account?: Prisma.AccountOmit
   verificationToken?: Prisma.VerificationTokenOmit
   session?: Prisma.SessionOmit
-  authenticator?: Prisma.AuthenticatorOmit
 }
 
 /* Types for Logging */

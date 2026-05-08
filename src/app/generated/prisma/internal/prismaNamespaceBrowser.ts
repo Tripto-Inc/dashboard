@@ -56,15 +56,14 @@ export const ModelName = {
   Address: 'Address',
   Currency: 'Currency',
   ActivityType: 'ActivityType',
-  Listing: 'Listing',
-  HouseListing: 'HouseListing',
-  HotelListing: 'HotelListing',
+  Accommodation: 'Accommodation',
+  House: 'House',
+  Hotel: 'Hotel',
   Room: 'Room',
   User: 'User',
   Account: 'Account',
   VerificationToken: 'VerificationToken',
-  Session: 'Session',
-  Authenticator: 'Authenticator'
+  Session: 'Session'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -89,6 +88,8 @@ export const DestinationScalarFieldEnum = {
   season: 'season',
   isActive: 'isActive',
   addressId: 'addressId',
+  createdById: 'createdById',
+  updatedById: 'updatedById',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -105,6 +106,8 @@ export const ActivityScalarFieldEnum = {
   currencyId: 'currencyId',
   addressId: 'addressId',
   activityTypeId: 'activityTypeId',
+  createdById: 'createdById',
+  updatedById: 'updatedById',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -119,7 +122,9 @@ export const AddressScalarFieldEnum = {
   city: 'city',
   details: 'details',
   latitude: 'latitude',
-  longitude: 'longitude'
+  longitude: 'longitude',
+  createdById: 'createdById',
+  updatedById: 'updatedById'
 } as const
 
 export type AddressScalarFieldEnum = (typeof AddressScalarFieldEnum)[keyof typeof AddressScalarFieldEnum]
@@ -129,10 +134,12 @@ export const CurrencyScalarFieldEnum = {
   id: 'id',
   title: 'title',
   symbol: 'symbol',
+  isoCode: 'isoCode',
   isActive: 'isActive',
+  createdById: 'createdById',
+  updatedById: 'updatedById',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  isoCode: 'isoCode'
+  updatedAt: 'updatedAt'
 } as const
 
 export type CurrencyScalarFieldEnum = (typeof CurrencyScalarFieldEnum)[keyof typeof CurrencyScalarFieldEnum]
@@ -142,17 +149,19 @@ export const ActivityTypeScalarFieldEnum = {
   id: 'id',
   name: 'name',
   title: 'title',
-  isActive: 'isActive',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
   emoji: 'emoji',
-  icon: 'icon'
+  icon: 'icon',
+  isActive: 'isActive',
+  createdById: 'createdById',
+  updatedById: 'updatedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type ActivityTypeScalarFieldEnum = (typeof ActivityTypeScalarFieldEnum)[keyof typeof ActivityTypeScalarFieldEnum]
 
 
-export const ListingScalarFieldEnum = {
+export const AccommodationScalarFieldEnum = {
   id: 'id',
   type: 'type',
   title: 'title',
@@ -161,36 +170,42 @@ export const ListingScalarFieldEnum = {
   destinationId: 'destinationId',
   amenities: 'amenities',
   policies: 'policies',
+  createdById: 'createdById',
+  updatedById: 'updatedById',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type ListingScalarFieldEnum = (typeof ListingScalarFieldEnum)[keyof typeof ListingScalarFieldEnum]
+export type AccommodationScalarFieldEnum = (typeof AccommodationScalarFieldEnum)[keyof typeof AccommodationScalarFieldEnum]
 
 
-export const HouseListingScalarFieldEnum = {
+export const HouseScalarFieldEnum = {
   id: 'id',
+  accommodationId: 'accommodationId',
   price: 'price',
   discount: 'discount',
   capacity: 'capacity',
-  currencyId: 'currencyId',
-  availableDates: 'availableDates',
-  listingId: 'listingId',
   area: 'area',
   bathrooms: 'bathrooms',
   bedrooms: 'bedrooms',
-  floors: 'floors'
+  floors: 'floors',
+  availableDates: 'availableDates',
+  currencyId: 'currencyId',
+  createdById: 'createdById',
+  updatedById: 'updatedById'
 } as const
 
-export type HouseListingScalarFieldEnum = (typeof HouseListingScalarFieldEnum)[keyof typeof HouseListingScalarFieldEnum]
+export type HouseScalarFieldEnum = (typeof HouseScalarFieldEnum)[keyof typeof HouseScalarFieldEnum]
 
 
-export const HotelListingScalarFieldEnum = {
+export const HotelScalarFieldEnum = {
   id: 'id',
-  listingId: 'listingId'
+  accommodationId: 'accommodationId',
+  createdById: 'createdById',
+  updatedById: 'updatedById'
 } as const
 
-export type HotelListingScalarFieldEnum = (typeof HotelListingScalarFieldEnum)[keyof typeof HotelListingScalarFieldEnum]
+export type HotelScalarFieldEnum = (typeof HotelScalarFieldEnum)[keyof typeof HotelScalarFieldEnum]
 
 
 export const RoomScalarFieldEnum = {
@@ -207,6 +222,8 @@ export const RoomScalarFieldEnum = {
   beds: 'beds',
   hotelId: 'hotelId',
   currencyId: 'currencyId',
+  createdById: 'createdById',
+  updatedById: 'updatedById',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -220,10 +237,10 @@ export const UserScalarFieldEnum = {
   email: 'email',
   emailVerified: 'emailVerified',
   image: 'image',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
   password: 'password',
-  username: 'username'
+  username: 'username',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -266,20 +283,6 @@ export const SessionScalarFieldEnum = {
 } as const
 
 export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
-
-
-export const AuthenticatorScalarFieldEnum = {
-  credentialID: 'credentialID',
-  userId: 'userId',
-  providerAccountId: 'providerAccountId',
-  credentialPublicKey: 'credentialPublicKey',
-  counter: 'counter',
-  credentialDeviceType: 'credentialDeviceType',
-  credentialBackedUp: 'credentialBackedUp',
-  transports: 'transports'
-} as const
-
-export type AuthenticatorScalarFieldEnum = (typeof AuthenticatorScalarFieldEnum)[keyof typeof AuthenticatorScalarFieldEnum]
 
 
 export const SortOrder = {

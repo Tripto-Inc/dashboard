@@ -14,7 +14,7 @@ export const ACTIVITY_TYPE_ERRORS = {
   DUPLICATE_TITLE: 'Activity type with this name already exists',
   NOT_FOUND: 'Activity type not found',
   ID_REQUIRED: 'Activity type id is required',
-  IN_USE: 'Cannot delete activity type because it is being used by activities or listings',
+  IN_USE: 'Cannot delete activity type because it is being used by activities or accommodations',
   CREATE_FAILED: 'Failed to create activity type. Please try again.',
   UPDATE_FAILED: 'Failed to update activity type. Please try again.',
   DELETE_FAILED: 'Failed to delete activity type. Please try again.',

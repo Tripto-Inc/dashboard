@@ -10,7 +10,7 @@ export const DOCUMENT_QUERY_KEYS = {
 
 export const BUCKETS: Record<DocumentBucket, string> = {
   activities: 'activities',
-  listings: 'listings',
+  accommodations: 'accommodations',
 } as const;
 
 export const DOCUMENT_ERRORS = {
@@ -21,7 +21,7 @@ export const DOCUMENT_ERRORS = {
   PREFIX_REQUIRED: 'Prefix name is required',
   OBJECT_REQUIRED: 'Object name is required',
   FILE_REQUIRED: 'File name is required',
-  IN_USE: 'Cannot delete activity because it is being used by activities or listings',
+  IN_USE: 'Cannot delete activity because it is being used by activities or accommodations',
   CREATE_FAILED: 'Failed to create activity. Please try again.',
   UPDATE_FAILED: 'Failed to update activity. Please try again.',
   DELETE_FAILED: 'Failed to delete activity. Please try again.',
