@@ -20,17 +20,27 @@ export type AccommodationModel = runtime.Types.Result.DefaultSelection<Prisma.$A
 
 export type AggregateAccommodation = {
   _count: AccommodationCountAggregateOutputType | null
+  _avg: AccommodationAvgAggregateOutputType | null
+  _sum: AccommodationSumAggregateOutputType | null
   _min: AccommodationMinAggregateOutputType | null
   _max: AccommodationMaxAggregateOutputType | null
 }
 
+export type AccommodationAvgAggregateOutputType = {
+  favoriteCount: number | null
+}
+
+export type AccommodationSumAggregateOutputType = {
+  favoriteCount: number | null
+}
+
 export type AccommodationMinAggregateOutputType = {
   id: string | null
-  type: $Enums.AccommodationType | null
   title: string | null
   description: string | null
   addressId: string | null
   destinationId: string | null
+  favoriteCount: number | null
   createdById: string | null
   updatedById: string | null
   createdAt: Date | null
@@ -39,11 +49,11 @@ export type AccommodationMinAggregateOutputType = {
 
 export type AccommodationMaxAggregateOutputType = {
   id: string | null
-  type: $Enums.AccommodationType | null
   title: string | null
   description: string | null
   addressId: string | null
   destinationId: string | null
+  favoriteCount: number | null
   createdById: string | null
   updatedById: string | null
   createdAt: Date | null
@@ -52,13 +62,13 @@ export type AccommodationMaxAggregateOutputType = {
 
 export type AccommodationCountAggregateOutputType = {
   id: number
-  type: number
   title: number
   description: number
   addressId: number
   destinationId: number
   amenities: number
   policies: number
+  favoriteCount: number
   createdById: number
   updatedById: number
   createdAt: number
@@ -67,13 +77,21 @@ export type AccommodationCountAggregateOutputType = {
 }
 
 
+export type AccommodationAvgAggregateInputType = {
+  favoriteCount?: true
+}
+
+export type AccommodationSumAggregateInputType = {
+  favoriteCount?: true
+}
+
 export type AccommodationMinAggregateInputType = {
   id?: true
-  type?: true
   title?: true
   description?: true
   addressId?: true
   destinationId?: true
+  favoriteCount?: true
   createdById?: true
   updatedById?: true
   createdAt?: true
@@ -82,11 +100,11 @@ export type AccommodationMinAggregateInputType = {
 
 export type AccommodationMaxAggregateInputType = {
   id?: true
-  type?: true
   title?: true
   description?: true
   addressId?: true
   destinationId?: true
+  favoriteCount?: true
   createdById?: true
   updatedById?: true
   createdAt?: true
@@ -95,13 +113,13 @@ export type AccommodationMaxAggregateInputType = {
 
 export type AccommodationCountAggregateInputType = {
   id?: true
-  type?: true
   title?: true
   description?: true
   addressId?: true
   destinationId?: true
   amenities?: true
   policies?: true
+  favoriteCount?: true
   createdById?: true
   updatedById?: true
   createdAt?: true
@@ -147,6 +165,18 @@ export type AccommodationAggregateArgs<ExtArgs extends runtime.Types.Extensions.
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: AccommodationAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: AccommodationSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: AccommodationMinAggregateInputType
@@ -177,24 +207,28 @@ export type AccommodationGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   _count?: AccommodationCountAggregateInputType | true
+  _avg?: AccommodationAvgAggregateInputType
+  _sum?: AccommodationSumAggregateInputType
   _min?: AccommodationMinAggregateInputType
   _max?: AccommodationMaxAggregateInputType
 }
 
 export type AccommodationGroupByOutputType = {
   id: string
-  type: $Enums.AccommodationType
   title: string
   description: string
   addressId: string
   destinationId: string | null
   amenities: runtime.JsonValue
   policies: runtime.JsonValue
+  favoriteCount: number
   createdById: string | null
   updatedById: string | null
   createdAt: Date
   updatedAt: Date
   _count: AccommodationCountAggregateOutputType | null
+  _avg: AccommodationAvgAggregateOutputType | null
+  _sum: AccommodationSumAggregateOutputType | null
   _min: AccommodationMinAggregateOutputType | null
   _max: AccommodationMaxAggregateOutputType | null
 }
@@ -219,17 +253,18 @@ export type AccommodationWhereInput = {
   OR?: Prisma.AccommodationWhereInput[]
   NOT?: Prisma.AccommodationWhereInput | Prisma.AccommodationWhereInput[]
   id?: Prisma.StringFilter<"Accommodation"> | string
-  type?: Prisma.EnumAccommodationTypeFilter<"Accommodation"> | $Enums.AccommodationType
   title?: Prisma.StringFilter<"Accommodation"> | string
   description?: Prisma.StringFilter<"Accommodation"> | string
   addressId?: Prisma.StringFilter<"Accommodation"> | string
   destinationId?: Prisma.StringNullableFilter<"Accommodation"> | string | null
   amenities?: Prisma.JsonFilter<"Accommodation">
   policies?: Prisma.JsonFilter<"Accommodation">
+  favoriteCount?: Prisma.IntFilter<"Accommodation"> | number
   createdById?: Prisma.StringNullableFilter<"Accommodation"> | string | null
   updatedById?: Prisma.StringNullableFilter<"Accommodation"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Accommodation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Accommodation"> | Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationListRelationFilter
   hotel?: Prisma.XOR<Prisma.HotelNullableScalarRelationFilter, Prisma.HotelWhereInput> | null
   house?: Prisma.XOR<Prisma.HouseNullableScalarRelationFilter, Prisma.HouseWhereInput> | null
   address?: Prisma.XOR<Prisma.AddressScalarRelationFilter, Prisma.AddressWhereInput>
@@ -240,17 +275,18 @@ export type AccommodationWhereInput = {
 
 export type AccommodationOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   addressId?: Prisma.SortOrder
   destinationId?: Prisma.SortOrderInput | Prisma.SortOrder
   amenities?: Prisma.SortOrder
   policies?: Prisma.SortOrder
+  favoriteCount?: Prisma.SortOrder
   createdById?: Prisma.SortOrderInput | Prisma.SortOrder
   updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  favoritedBy?: Prisma.FavoriteAccommodationOrderByRelationAggregateInput
   hotel?: Prisma.HotelOrderByWithRelationInput
   house?: Prisma.HouseOrderByWithRelationInput
   address?: Prisma.AddressOrderByWithRelationInput
@@ -261,45 +297,48 @@ export type AccommodationOrderByWithRelationInput = {
 
 export type AccommodationWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  title?: string
   title_addressId?: Prisma.AccommodationTitleAddressIdCompoundUniqueInput
   AND?: Prisma.AccommodationWhereInput | Prisma.AccommodationWhereInput[]
   OR?: Prisma.AccommodationWhereInput[]
   NOT?: Prisma.AccommodationWhereInput | Prisma.AccommodationWhereInput[]
-  type?: Prisma.EnumAccommodationTypeFilter<"Accommodation"> | $Enums.AccommodationType
+  title?: Prisma.StringFilter<"Accommodation"> | string
   description?: Prisma.StringFilter<"Accommodation"> | string
   addressId?: Prisma.StringFilter<"Accommodation"> | string
   destinationId?: Prisma.StringNullableFilter<"Accommodation"> | string | null
   amenities?: Prisma.JsonFilter<"Accommodation">
   policies?: Prisma.JsonFilter<"Accommodation">
+  favoriteCount?: Prisma.IntFilter<"Accommodation"> | number
   createdById?: Prisma.StringNullableFilter<"Accommodation"> | string | null
   updatedById?: Prisma.StringNullableFilter<"Accommodation"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Accommodation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Accommodation"> | Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationListRelationFilter
   hotel?: Prisma.XOR<Prisma.HotelNullableScalarRelationFilter, Prisma.HotelWhereInput> | null
   house?: Prisma.XOR<Prisma.HouseNullableScalarRelationFilter, Prisma.HouseWhereInput> | null
   address?: Prisma.XOR<Prisma.AddressScalarRelationFilter, Prisma.AddressWhereInput>
   destination?: Prisma.XOR<Prisma.DestinationNullableScalarRelationFilter, Prisma.DestinationWhereInput> | null
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   updatedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-}, "id" | "title" | "title_addressId">
+}, "id" | "title_addressId">
 
 export type AccommodationOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   addressId?: Prisma.SortOrder
   destinationId?: Prisma.SortOrderInput | Prisma.SortOrder
   amenities?: Prisma.SortOrder
   policies?: Prisma.SortOrder
+  favoriteCount?: Prisma.SortOrder
   createdById?: Prisma.SortOrderInput | Prisma.SortOrder
   updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.AccommodationCountOrderByAggregateInput
+  _avg?: Prisma.AccommodationAvgOrderByAggregateInput
   _max?: Prisma.AccommodationMaxOrderByAggregateInput
   _min?: Prisma.AccommodationMinOrderByAggregateInput
+  _sum?: Prisma.AccommodationSumOrderByAggregateInput
 }
 
 export type AccommodationScalarWhereWithAggregatesInput = {
@@ -307,13 +346,13 @@ export type AccommodationScalarWhereWithAggregatesInput = {
   OR?: Prisma.AccommodationScalarWhereWithAggregatesInput[]
   NOT?: Prisma.AccommodationScalarWhereWithAggregatesInput | Prisma.AccommodationScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Accommodation"> | string
-  type?: Prisma.EnumAccommodationTypeWithAggregatesFilter<"Accommodation"> | $Enums.AccommodationType
   title?: Prisma.StringWithAggregatesFilter<"Accommodation"> | string
   description?: Prisma.StringWithAggregatesFilter<"Accommodation"> | string
   addressId?: Prisma.StringWithAggregatesFilter<"Accommodation"> | string
   destinationId?: Prisma.StringNullableWithAggregatesFilter<"Accommodation"> | string | null
   amenities?: Prisma.JsonWithAggregatesFilter<"Accommodation">
   policies?: Prisma.JsonWithAggregatesFilter<"Accommodation">
+  favoriteCount?: Prisma.IntWithAggregatesFilter<"Accommodation"> | number
   createdById?: Prisma.StringNullableWithAggregatesFilter<"Accommodation"> | string | null
   updatedById?: Prisma.StringNullableWithAggregatesFilter<"Accommodation"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Accommodation"> | Date | string
@@ -322,13 +361,14 @@ export type AccommodationScalarWhereWithAggregatesInput = {
 
 export type AccommodationCreateInput = {
   id?: string
-  type: $Enums.AccommodationType
   title: string
   description: string
   amenities: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationCreateNestedManyWithoutAccommodationInput
   hotel?: Prisma.HotelCreateNestedOneWithoutAccommodationInput
   house?: Prisma.HouseCreateNestedOneWithoutAccommodationInput
   address: Prisma.AddressCreateNestedOneWithoutAccommodationsInput
@@ -339,30 +379,32 @@ export type AccommodationCreateInput = {
 
 export type AccommodationUncheckedCreateInput = {
   id?: string
-  type: $Enums.AccommodationType
   title: string
   description: string
   addressId: string
   destinationId?: string | null
   amenities: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: number
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutAccommodationInput
   hotel?: Prisma.HotelUncheckedCreateNestedOneWithoutAccommodationInput
   house?: Prisma.HouseUncheckedCreateNestedOneWithoutAccommodationInput
 }
 
 export type AccommodationUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumAccommodationTypeFieldUpdateOperationsInput | $Enums.AccommodationType
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amenities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationUpdateManyWithoutAccommodationNestedInput
   hotel?: Prisma.HotelUpdateOneWithoutAccommodationNestedInput
   house?: Prisma.HouseUpdateOneWithoutAccommodationNestedInput
   address?: Prisma.AddressUpdateOneRequiredWithoutAccommodationsNestedInput
@@ -373,30 +415,31 @@ export type AccommodationUpdateInput = {
 
 export type AccommodationUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumAccommodationTypeFieldUpdateOperationsInput | $Enums.AccommodationType
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
   destinationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amenities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutAccommodationNestedInput
   hotel?: Prisma.HotelUncheckedUpdateOneWithoutAccommodationNestedInput
   house?: Prisma.HouseUncheckedUpdateOneWithoutAccommodationNestedInput
 }
 
 export type AccommodationCreateManyInput = {
   id?: string
-  type: $Enums.AccommodationType
   title: string
   description: string
   addressId: string
   destinationId?: string | null
   amenities: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: number
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
@@ -405,24 +448,24 @@ export type AccommodationCreateManyInput = {
 
 export type AccommodationUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumAccommodationTypeFieldUpdateOperationsInput | $Enums.AccommodationType
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amenities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type AccommodationUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumAccommodationTypeFieldUpdateOperationsInput | $Enums.AccommodationType
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
   destinationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amenities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -446,26 +489,30 @@ export type AccommodationTitleAddressIdCompoundUniqueInput = {
 
 export type AccommodationCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   addressId?: Prisma.SortOrder
   destinationId?: Prisma.SortOrder
   amenities?: Prisma.SortOrder
   policies?: Prisma.SortOrder
+  favoriteCount?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   updatedById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
+export type AccommodationAvgOrderByAggregateInput = {
+  favoriteCount?: Prisma.SortOrder
+}
+
 export type AccommodationMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   addressId?: Prisma.SortOrder
   destinationId?: Prisma.SortOrder
+  favoriteCount?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   updatedById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -474,15 +521,19 @@ export type AccommodationMaxOrderByAggregateInput = {
 
 export type AccommodationMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   addressId?: Prisma.SortOrder
   destinationId?: Prisma.SortOrder
+  favoriteCount?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   updatedById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type AccommodationSumOrderByAggregateInput = {
+  favoriteCount?: Prisma.SortOrder
 }
 
 export type AccommodationScalarRelationFilter = {
@@ -574,8 +625,26 @@ export type AccommodationUncheckedUpdateManyWithoutAddressNestedInput = {
   deleteMany?: Prisma.AccommodationScalarWhereInput | Prisma.AccommodationScalarWhereInput[]
 }
 
-export type EnumAccommodationTypeFieldUpdateOperationsInput = {
-  set?: $Enums.AccommodationType
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type AccommodationCreateNestedOneWithoutFavoritedByInput = {
+  create?: Prisma.XOR<Prisma.AccommodationCreateWithoutFavoritedByInput, Prisma.AccommodationUncheckedCreateWithoutFavoritedByInput>
+  connectOrCreate?: Prisma.AccommodationCreateOrConnectWithoutFavoritedByInput
+  connect?: Prisma.AccommodationWhereUniqueInput
+}
+
+export type AccommodationUpdateOneRequiredWithoutFavoritedByNestedInput = {
+  create?: Prisma.XOR<Prisma.AccommodationCreateWithoutFavoritedByInput, Prisma.AccommodationUncheckedCreateWithoutFavoritedByInput>
+  connectOrCreate?: Prisma.AccommodationCreateOrConnectWithoutFavoritedByInput
+  upsert?: Prisma.AccommodationUpsertWithoutFavoritedByInput
+  connect?: Prisma.AccommodationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AccommodationUpdateToOneWithWhereWithoutFavoritedByInput, Prisma.AccommodationUpdateWithoutFavoritedByInput>, Prisma.AccommodationUncheckedUpdateWithoutFavoritedByInput>
 }
 
 export type AccommodationCreateNestedOneWithoutHouseInput = {
@@ -692,13 +761,14 @@ export type AccommodationUncheckedUpdateManyWithoutUpdatedByNestedInput = {
 
 export type AccommodationCreateWithoutDestinationInput = {
   id?: string
-  type: $Enums.AccommodationType
   title: string
   description: string
   amenities: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationCreateNestedManyWithoutAccommodationInput
   hotel?: Prisma.HotelCreateNestedOneWithoutAccommodationInput
   house?: Prisma.HouseCreateNestedOneWithoutAccommodationInput
   address: Prisma.AddressCreateNestedOneWithoutAccommodationsInput
@@ -708,16 +778,17 @@ export type AccommodationCreateWithoutDestinationInput = {
 
 export type AccommodationUncheckedCreateWithoutDestinationInput = {
   id?: string
-  type: $Enums.AccommodationType
   title: string
   description: string
   addressId: string
   amenities: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: number
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutAccommodationInput
   hotel?: Prisma.HotelUncheckedCreateNestedOneWithoutAccommodationInput
   house?: Prisma.HouseUncheckedCreateNestedOneWithoutAccommodationInput
 }
@@ -753,13 +824,13 @@ export type AccommodationScalarWhereInput = {
   OR?: Prisma.AccommodationScalarWhereInput[]
   NOT?: Prisma.AccommodationScalarWhereInput | Prisma.AccommodationScalarWhereInput[]
   id?: Prisma.StringFilter<"Accommodation"> | string
-  type?: Prisma.EnumAccommodationTypeFilter<"Accommodation"> | $Enums.AccommodationType
   title?: Prisma.StringFilter<"Accommodation"> | string
   description?: Prisma.StringFilter<"Accommodation"> | string
   addressId?: Prisma.StringFilter<"Accommodation"> | string
   destinationId?: Prisma.StringNullableFilter<"Accommodation"> | string | null
   amenities?: Prisma.JsonFilter<"Accommodation">
   policies?: Prisma.JsonFilter<"Accommodation">
+  favoriteCount?: Prisma.IntFilter<"Accommodation"> | number
   createdById?: Prisma.StringNullableFilter<"Accommodation"> | string | null
   updatedById?: Prisma.StringNullableFilter<"Accommodation"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Accommodation"> | Date | string
@@ -768,13 +839,14 @@ export type AccommodationScalarWhereInput = {
 
 export type AccommodationCreateWithoutAddressInput = {
   id?: string
-  type: $Enums.AccommodationType
   title: string
   description: string
   amenities: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationCreateNestedManyWithoutAccommodationInput
   hotel?: Prisma.HotelCreateNestedOneWithoutAccommodationInput
   house?: Prisma.HouseCreateNestedOneWithoutAccommodationInput
   destination?: Prisma.DestinationCreateNestedOneWithoutAccommodationsInput
@@ -784,16 +856,17 @@ export type AccommodationCreateWithoutAddressInput = {
 
 export type AccommodationUncheckedCreateWithoutAddressInput = {
   id?: string
-  type: $Enums.AccommodationType
   title: string
   description: string
   destinationId?: string | null
   amenities: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: number
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutAccommodationInput
   hotel?: Prisma.HotelUncheckedCreateNestedOneWithoutAccommodationInput
   house?: Prisma.HouseUncheckedCreateNestedOneWithoutAccommodationInput
 }
@@ -824,15 +897,100 @@ export type AccommodationUpdateManyWithWhereWithoutAddressInput = {
   data: Prisma.XOR<Prisma.AccommodationUpdateManyMutationInput, Prisma.AccommodationUncheckedUpdateManyWithoutAddressInput>
 }
 
-export type AccommodationCreateWithoutHouseInput = {
+export type AccommodationCreateWithoutFavoritedByInput = {
   id?: string
-  type: $Enums.AccommodationType
   title: string
   description: string
   amenities: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  hotel?: Prisma.HotelCreateNestedOneWithoutAccommodationInput
+  house?: Prisma.HouseCreateNestedOneWithoutAccommodationInput
+  address: Prisma.AddressCreateNestedOneWithoutAccommodationsInput
+  destination?: Prisma.DestinationCreateNestedOneWithoutAccommodationsInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutAccommodationsCreatedInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutAccommodationsUpdatedInput
+}
+
+export type AccommodationUncheckedCreateWithoutFavoritedByInput = {
+  id?: string
+  title: string
+  description: string
+  addressId: string
+  destinationId?: string | null
+  amenities: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: number
+  createdById?: string | null
+  updatedById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  hotel?: Prisma.HotelUncheckedCreateNestedOneWithoutAccommodationInput
+  house?: Prisma.HouseUncheckedCreateNestedOneWithoutAccommodationInput
+}
+
+export type AccommodationCreateOrConnectWithoutFavoritedByInput = {
+  where: Prisma.AccommodationWhereUniqueInput
+  create: Prisma.XOR<Prisma.AccommodationCreateWithoutFavoritedByInput, Prisma.AccommodationUncheckedCreateWithoutFavoritedByInput>
+}
+
+export type AccommodationUpsertWithoutFavoritedByInput = {
+  update: Prisma.XOR<Prisma.AccommodationUpdateWithoutFavoritedByInput, Prisma.AccommodationUncheckedUpdateWithoutFavoritedByInput>
+  create: Prisma.XOR<Prisma.AccommodationCreateWithoutFavoritedByInput, Prisma.AccommodationUncheckedCreateWithoutFavoritedByInput>
+  where?: Prisma.AccommodationWhereInput
+}
+
+export type AccommodationUpdateToOneWithWhereWithoutFavoritedByInput = {
+  where?: Prisma.AccommodationWhereInput
+  data: Prisma.XOR<Prisma.AccommodationUpdateWithoutFavoritedByInput, Prisma.AccommodationUncheckedUpdateWithoutFavoritedByInput>
+}
+
+export type AccommodationUpdateWithoutFavoritedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  amenities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hotel?: Prisma.HotelUpdateOneWithoutAccommodationNestedInput
+  house?: Prisma.HouseUpdateOneWithoutAccommodationNestedInput
+  address?: Prisma.AddressUpdateOneRequiredWithoutAccommodationsNestedInput
+  destination?: Prisma.DestinationUpdateOneWithoutAccommodationsNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutAccommodationsCreatedNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutAccommodationsUpdatedNestedInput
+}
+
+export type AccommodationUncheckedUpdateWithoutFavoritedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  addressId?: Prisma.StringFieldUpdateOperationsInput | string
+  destinationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amenities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hotel?: Prisma.HotelUncheckedUpdateOneWithoutAccommodationNestedInput
+  house?: Prisma.HouseUncheckedUpdateOneWithoutAccommodationNestedInput
+}
+
+export type AccommodationCreateWithoutHouseInput = {
+  id?: string
+  title: string
+  description: string
+  amenities: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationCreateNestedManyWithoutAccommodationInput
   hotel?: Prisma.HotelCreateNestedOneWithoutAccommodationInput
   address: Prisma.AddressCreateNestedOneWithoutAccommodationsInput
   destination?: Prisma.DestinationCreateNestedOneWithoutAccommodationsInput
@@ -842,17 +1000,18 @@ export type AccommodationCreateWithoutHouseInput = {
 
 export type AccommodationUncheckedCreateWithoutHouseInput = {
   id?: string
-  type: $Enums.AccommodationType
   title: string
   description: string
   addressId: string
   destinationId?: string | null
   amenities: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: number
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutAccommodationInput
   hotel?: Prisma.HotelUncheckedCreateNestedOneWithoutAccommodationInput
 }
 
@@ -874,13 +1033,14 @@ export type AccommodationUpdateToOneWithWhereWithoutHouseInput = {
 
 export type AccommodationUpdateWithoutHouseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumAccommodationTypeFieldUpdateOperationsInput | $Enums.AccommodationType
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amenities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationUpdateManyWithoutAccommodationNestedInput
   hotel?: Prisma.HotelUpdateOneWithoutAccommodationNestedInput
   address?: Prisma.AddressUpdateOneRequiredWithoutAccommodationsNestedInput
   destination?: Prisma.DestinationUpdateOneWithoutAccommodationsNestedInput
@@ -890,29 +1050,31 @@ export type AccommodationUpdateWithoutHouseInput = {
 
 export type AccommodationUncheckedUpdateWithoutHouseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumAccommodationTypeFieldUpdateOperationsInput | $Enums.AccommodationType
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
   destinationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amenities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutAccommodationNestedInput
   hotel?: Prisma.HotelUncheckedUpdateOneWithoutAccommodationNestedInput
 }
 
 export type AccommodationCreateWithoutHotelInput = {
   id?: string
-  type: $Enums.AccommodationType
   title: string
   description: string
   amenities: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationCreateNestedManyWithoutAccommodationInput
   house?: Prisma.HouseCreateNestedOneWithoutAccommodationInput
   address: Prisma.AddressCreateNestedOneWithoutAccommodationsInput
   destination?: Prisma.DestinationCreateNestedOneWithoutAccommodationsInput
@@ -922,17 +1084,18 @@ export type AccommodationCreateWithoutHotelInput = {
 
 export type AccommodationUncheckedCreateWithoutHotelInput = {
   id?: string
-  type: $Enums.AccommodationType
   title: string
   description: string
   addressId: string
   destinationId?: string | null
   amenities: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: number
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutAccommodationInput
   house?: Prisma.HouseUncheckedCreateNestedOneWithoutAccommodationInput
 }
 
@@ -954,13 +1117,14 @@ export type AccommodationUpdateToOneWithWhereWithoutHotelInput = {
 
 export type AccommodationUpdateWithoutHotelInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumAccommodationTypeFieldUpdateOperationsInput | $Enums.AccommodationType
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amenities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationUpdateManyWithoutAccommodationNestedInput
   house?: Prisma.HouseUpdateOneWithoutAccommodationNestedInput
   address?: Prisma.AddressUpdateOneRequiredWithoutAccommodationsNestedInput
   destination?: Prisma.DestinationUpdateOneWithoutAccommodationsNestedInput
@@ -970,29 +1134,31 @@ export type AccommodationUpdateWithoutHotelInput = {
 
 export type AccommodationUncheckedUpdateWithoutHotelInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumAccommodationTypeFieldUpdateOperationsInput | $Enums.AccommodationType
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
   destinationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amenities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutAccommodationNestedInput
   house?: Prisma.HouseUncheckedUpdateOneWithoutAccommodationNestedInput
 }
 
 export type AccommodationCreateWithoutCreatedByInput = {
   id?: string
-  type: $Enums.AccommodationType
   title: string
   description: string
   amenities: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationCreateNestedManyWithoutAccommodationInput
   hotel?: Prisma.HotelCreateNestedOneWithoutAccommodationInput
   house?: Prisma.HouseCreateNestedOneWithoutAccommodationInput
   address: Prisma.AddressCreateNestedOneWithoutAccommodationsInput
@@ -1002,16 +1168,17 @@ export type AccommodationCreateWithoutCreatedByInput = {
 
 export type AccommodationUncheckedCreateWithoutCreatedByInput = {
   id?: string
-  type: $Enums.AccommodationType
   title: string
   description: string
   addressId: string
   destinationId?: string | null
   amenities: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: number
   updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutAccommodationInput
   hotel?: Prisma.HotelUncheckedCreateNestedOneWithoutAccommodationInput
   house?: Prisma.HouseUncheckedCreateNestedOneWithoutAccommodationInput
 }
@@ -1028,13 +1195,14 @@ export type AccommodationCreateManyCreatedByInputEnvelope = {
 
 export type AccommodationCreateWithoutUpdatedByInput = {
   id?: string
-  type: $Enums.AccommodationType
   title: string
   description: string
   amenities: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationCreateNestedManyWithoutAccommodationInput
   hotel?: Prisma.HotelCreateNestedOneWithoutAccommodationInput
   house?: Prisma.HouseCreateNestedOneWithoutAccommodationInput
   address: Prisma.AddressCreateNestedOneWithoutAccommodationsInput
@@ -1044,16 +1212,17 @@ export type AccommodationCreateWithoutUpdatedByInput = {
 
 export type AccommodationUncheckedCreateWithoutUpdatedByInput = {
   id?: string
-  type: $Enums.AccommodationType
   title: string
   description: string
   addressId: string
   destinationId?: string | null
   amenities: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: number
   createdById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutAccommodationInput
   hotel?: Prisma.HotelUncheckedCreateNestedOneWithoutAccommodationInput
   house?: Prisma.HouseUncheckedCreateNestedOneWithoutAccommodationInput
 }
@@ -1102,12 +1271,12 @@ export type AccommodationUpdateManyWithWhereWithoutUpdatedByInput = {
 
 export type AccommodationCreateManyDestinationInput = {
   id?: string
-  type: $Enums.AccommodationType
   title: string
   description: string
   addressId: string
   amenities: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: number
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
@@ -1116,13 +1285,14 @@ export type AccommodationCreateManyDestinationInput = {
 
 export type AccommodationUpdateWithoutDestinationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumAccommodationTypeFieldUpdateOperationsInput | $Enums.AccommodationType
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amenities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationUpdateManyWithoutAccommodationNestedInput
   hotel?: Prisma.HotelUpdateOneWithoutAccommodationNestedInput
   house?: Prisma.HouseUpdateOneWithoutAccommodationNestedInput
   address?: Prisma.AddressUpdateOneRequiredWithoutAccommodationsNestedInput
@@ -1132,28 +1302,29 @@ export type AccommodationUpdateWithoutDestinationInput = {
 
 export type AccommodationUncheckedUpdateWithoutDestinationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumAccommodationTypeFieldUpdateOperationsInput | $Enums.AccommodationType
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
   amenities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutAccommodationNestedInput
   hotel?: Prisma.HotelUncheckedUpdateOneWithoutAccommodationNestedInput
   house?: Prisma.HouseUncheckedUpdateOneWithoutAccommodationNestedInput
 }
 
 export type AccommodationUncheckedUpdateManyWithoutDestinationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumAccommodationTypeFieldUpdateOperationsInput | $Enums.AccommodationType
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
   amenities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1162,12 +1333,12 @@ export type AccommodationUncheckedUpdateManyWithoutDestinationInput = {
 
 export type AccommodationCreateManyAddressInput = {
   id?: string
-  type: $Enums.AccommodationType
   title: string
   description: string
   destinationId?: string | null
   amenities: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: number
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
@@ -1176,13 +1347,14 @@ export type AccommodationCreateManyAddressInput = {
 
 export type AccommodationUpdateWithoutAddressInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumAccommodationTypeFieldUpdateOperationsInput | $Enums.AccommodationType
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amenities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationUpdateManyWithoutAccommodationNestedInput
   hotel?: Prisma.HotelUpdateOneWithoutAccommodationNestedInput
   house?: Prisma.HouseUpdateOneWithoutAccommodationNestedInput
   destination?: Prisma.DestinationUpdateOneWithoutAccommodationsNestedInput
@@ -1192,28 +1364,29 @@ export type AccommodationUpdateWithoutAddressInput = {
 
 export type AccommodationUncheckedUpdateWithoutAddressInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumAccommodationTypeFieldUpdateOperationsInput | $Enums.AccommodationType
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   destinationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amenities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutAccommodationNestedInput
   hotel?: Prisma.HotelUncheckedUpdateOneWithoutAccommodationNestedInput
   house?: Prisma.HouseUncheckedUpdateOneWithoutAccommodationNestedInput
 }
 
 export type AccommodationUncheckedUpdateManyWithoutAddressInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumAccommodationTypeFieldUpdateOperationsInput | $Enums.AccommodationType
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   destinationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amenities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1222,13 +1395,13 @@ export type AccommodationUncheckedUpdateManyWithoutAddressInput = {
 
 export type AccommodationCreateManyCreatedByInput = {
   id?: string
-  type: $Enums.AccommodationType
   title: string
   description: string
   addressId: string
   destinationId?: string | null
   amenities: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: number
   updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1236,13 +1409,13 @@ export type AccommodationCreateManyCreatedByInput = {
 
 export type AccommodationCreateManyUpdatedByInput = {
   id?: string
-  type: $Enums.AccommodationType
   title: string
   description: string
   addressId: string
   destinationId?: string | null
   amenities: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: number
   createdById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1250,13 +1423,14 @@ export type AccommodationCreateManyUpdatedByInput = {
 
 export type AccommodationUpdateWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumAccommodationTypeFieldUpdateOperationsInput | $Enums.AccommodationType
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amenities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationUpdateManyWithoutAccommodationNestedInput
   hotel?: Prisma.HotelUpdateOneWithoutAccommodationNestedInput
   house?: Prisma.HouseUpdateOneWithoutAccommodationNestedInput
   address?: Prisma.AddressUpdateOneRequiredWithoutAccommodationsNestedInput
@@ -1266,29 +1440,30 @@ export type AccommodationUpdateWithoutCreatedByInput = {
 
 export type AccommodationUncheckedUpdateWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumAccommodationTypeFieldUpdateOperationsInput | $Enums.AccommodationType
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
   destinationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amenities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: Prisma.IntFieldUpdateOperationsInput | number
   updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutAccommodationNestedInput
   hotel?: Prisma.HotelUncheckedUpdateOneWithoutAccommodationNestedInput
   house?: Prisma.HouseUncheckedUpdateOneWithoutAccommodationNestedInput
 }
 
 export type AccommodationUncheckedUpdateManyWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumAccommodationTypeFieldUpdateOperationsInput | $Enums.AccommodationType
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
   destinationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amenities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: Prisma.IntFieldUpdateOperationsInput | number
   updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1296,13 +1471,14 @@ export type AccommodationUncheckedUpdateManyWithoutCreatedByInput = {
 
 export type AccommodationUpdateWithoutUpdatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumAccommodationTypeFieldUpdateOperationsInput | $Enums.AccommodationType
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amenities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationUpdateManyWithoutAccommodationNestedInput
   hotel?: Prisma.HotelUpdateOneWithoutAccommodationNestedInput
   house?: Prisma.HouseUpdateOneWithoutAccommodationNestedInput
   address?: Prisma.AddressUpdateOneRequiredWithoutAccommodationsNestedInput
@@ -1312,66 +1488,98 @@ export type AccommodationUpdateWithoutUpdatedByInput = {
 
 export type AccommodationUncheckedUpdateWithoutUpdatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumAccommodationTypeFieldUpdateOperationsInput | $Enums.AccommodationType
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
   destinationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amenities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  favoritedBy?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutAccommodationNestedInput
   hotel?: Prisma.HotelUncheckedUpdateOneWithoutAccommodationNestedInput
   house?: Prisma.HouseUncheckedUpdateOneWithoutAccommodationNestedInput
 }
 
 export type AccommodationUncheckedUpdateManyWithoutUpdatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumAccommodationTypeFieldUpdateOperationsInput | $Enums.AccommodationType
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
   destinationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amenities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   policies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  favoriteCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
+/**
+ * Count Type AccommodationCountOutputType
+ */
+
+export type AccommodationCountOutputType = {
+  favoritedBy: number
+}
+
+export type AccommodationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  favoritedBy?: boolean | AccommodationCountOutputTypeCountFavoritedByArgs
+}
+
+/**
+ * AccommodationCountOutputType without action
+ */
+export type AccommodationCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AccommodationCountOutputType
+   */
+  select?: Prisma.AccommodationCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * AccommodationCountOutputType without action
+ */
+export type AccommodationCountOutputTypeCountFavoritedByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FavoriteAccommodationWhereInput
+}
+
 
 export type AccommodationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  type?: boolean
   title?: boolean
   description?: boolean
   addressId?: boolean
   destinationId?: boolean
   amenities?: boolean
   policies?: boolean
+  favoriteCount?: boolean
   createdById?: boolean
   updatedById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  favoritedBy?: boolean | Prisma.Accommodation$favoritedByArgs<ExtArgs>
   hotel?: boolean | Prisma.Accommodation$hotelArgs<ExtArgs>
   house?: boolean | Prisma.Accommodation$houseArgs<ExtArgs>
   address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   destination?: boolean | Prisma.Accommodation$destinationArgs<ExtArgs>
   createdBy?: boolean | Prisma.Accommodation$createdByArgs<ExtArgs>
   updatedBy?: boolean | Prisma.Accommodation$updatedByArgs<ExtArgs>
+  _count?: boolean | Prisma.AccommodationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["accommodation"]>
 
 export type AccommodationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  type?: boolean
   title?: boolean
   description?: boolean
   addressId?: boolean
   destinationId?: boolean
   amenities?: boolean
   policies?: boolean
+  favoriteCount?: boolean
   createdById?: boolean
   updatedById?: boolean
   createdAt?: boolean
@@ -1384,13 +1592,13 @@ export type AccommodationSelectCreateManyAndReturn<ExtArgs extends runtime.Types
 
 export type AccommodationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  type?: boolean
   title?: boolean
   description?: boolean
   addressId?: boolean
   destinationId?: boolean
   amenities?: boolean
   policies?: boolean
+  favoriteCount?: boolean
   createdById?: boolean
   updatedById?: boolean
   createdAt?: boolean
@@ -1403,27 +1611,29 @@ export type AccommodationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
 
 export type AccommodationSelectScalar = {
   id?: boolean
-  type?: boolean
   title?: boolean
   description?: boolean
   addressId?: boolean
   destinationId?: boolean
   amenities?: boolean
   policies?: boolean
+  favoriteCount?: boolean
   createdById?: boolean
   updatedById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type AccommodationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "title" | "description" | "addressId" | "destinationId" | "amenities" | "policies" | "createdById" | "updatedById" | "createdAt" | "updatedAt", ExtArgs["result"]["accommodation"]>
+export type AccommodationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "addressId" | "destinationId" | "amenities" | "policies" | "favoriteCount" | "createdById" | "updatedById" | "createdAt" | "updatedAt", ExtArgs["result"]["accommodation"]>
 export type AccommodationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  favoritedBy?: boolean | Prisma.Accommodation$favoritedByArgs<ExtArgs>
   hotel?: boolean | Prisma.Accommodation$hotelArgs<ExtArgs>
   house?: boolean | Prisma.Accommodation$houseArgs<ExtArgs>
   address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   destination?: boolean | Prisma.Accommodation$destinationArgs<ExtArgs>
   createdBy?: boolean | Prisma.Accommodation$createdByArgs<ExtArgs>
   updatedBy?: boolean | Prisma.Accommodation$updatedByArgs<ExtArgs>
+  _count?: boolean | Prisma.AccommodationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AccommodationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
@@ -1441,6 +1651,7 @@ export type AccommodationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Type
 export type $AccommodationPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Accommodation"
   objects: {
+    favoritedBy: Prisma.$FavoriteAccommodationPayload<ExtArgs>[]
     hotel: Prisma.$HotelPayload<ExtArgs> | null
     house: Prisma.$HousePayload<ExtArgs> | null
     address: Prisma.$AddressPayload<ExtArgs>
@@ -1450,13 +1661,13 @@ export type $AccommodationPayload<ExtArgs extends runtime.Types.Extensions.Inter
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    type: $Enums.AccommodationType
     title: string
     description: string
     addressId: string
     destinationId: string | null
     amenities: runtime.JsonValue
     policies: runtime.JsonValue
+    favoriteCount: number
     createdById: string | null
     updatedById: string | null
     createdAt: Date
@@ -1855,6 +2066,7 @@ readonly fields: AccommodationFieldRefs;
  */
 export interface Prisma__AccommodationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  favoritedBy<T extends Prisma.Accommodation$favoritedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Accommodation$favoritedByArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FavoriteAccommodationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   hotel<T extends Prisma.Accommodation$hotelArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Accommodation$hotelArgs<ExtArgs>>): Prisma.Prisma__HotelClient<runtime.Types.Result.GetResult<Prisma.$HotelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   house<T extends Prisma.Accommodation$houseArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Accommodation$houseArgs<ExtArgs>>): Prisma.Prisma__HouseClient<runtime.Types.Result.GetResult<Prisma.$HousePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   address<T extends Prisma.AddressDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AddressDefaultArgs<ExtArgs>>): Prisma.Prisma__AddressClient<runtime.Types.Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
@@ -1891,13 +2103,13 @@ export interface Prisma__AccommodationClient<T, Null = never, ExtArgs extends ru
  */
 export interface AccommodationFieldRefs {
   readonly id: Prisma.FieldRef<"Accommodation", 'String'>
-  readonly type: Prisma.FieldRef<"Accommodation", 'AccommodationType'>
   readonly title: Prisma.FieldRef<"Accommodation", 'String'>
   readonly description: Prisma.FieldRef<"Accommodation", 'String'>
   readonly addressId: Prisma.FieldRef<"Accommodation", 'String'>
   readonly destinationId: Prisma.FieldRef<"Accommodation", 'String'>
   readonly amenities: Prisma.FieldRef<"Accommodation", 'Json'>
   readonly policies: Prisma.FieldRef<"Accommodation", 'Json'>
+  readonly favoriteCount: Prisma.FieldRef<"Accommodation", 'Int'>
   readonly createdById: Prisma.FieldRef<"Accommodation", 'String'>
   readonly updatedById: Prisma.FieldRef<"Accommodation", 'String'>
   readonly createdAt: Prisma.FieldRef<"Accommodation", 'DateTime'>
@@ -2300,6 +2512,30 @@ export type AccommodationDeleteManyArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many Accommodations to delete.
    */
   limit?: number
+}
+
+/**
+ * Accommodation.favoritedBy
+ */
+export type Accommodation$favoritedByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FavoriteAccommodation
+   */
+  select?: Prisma.FavoriteAccommodationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FavoriteAccommodation
+   */
+  omit?: Prisma.FavoriteAccommodationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FavoriteAccommodationInclude<ExtArgs> | null
+  where?: Prisma.FavoriteAccommodationWhereInput
+  orderBy?: Prisma.FavoriteAccommodationOrderByWithRelationInput | Prisma.FavoriteAccommodationOrderByWithRelationInput[]
+  cursor?: Prisma.FavoriteAccommodationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FavoriteAccommodationScalarFieldEnum | Prisma.FavoriteAccommodationScalarFieldEnum[]
 }
 
 /**

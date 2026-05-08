@@ -48,6 +48,11 @@ export type ActivityType = Prisma.ActivityTypeModel
  */
 export type Accommodation = Prisma.AccommodationModel
 /**
+ * Model FavoriteAccommodation
+ * 
+ */
+export type FavoriteAccommodation = Prisma.FavoriteAccommodationModel
+/**
  * Model House
  * 
  */

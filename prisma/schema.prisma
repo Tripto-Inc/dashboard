@@ -8,23 +8,23 @@ datasource db {
 }
 
 model Destination {
-  id              String            @id @default(uuid())
-  description     String
-  season          Season
-  isActive        Boolean           @default(true)
-  addressId       String
+  id          String  @id @default(uuid())
+  description String
+  season      Season
+  isActive    Boolean @default(true)
+  addressId   String
 
-  createdById     String?
-  updatedById     String?
+  createdById String?
+  updatedById String?
 
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  address         Address           @relation("DestinationAddress", fields: [addressId], references: [id])
-  accommodations  Accommodation[]   @relation("DestinationAccommodations")
+  address        Address         @relation("DestinationAddress", fields: [addressId], references: [id])
+  accommodations Accommodation[] @relation("DestinationAccommodations")
 
-  createdBy       User?             @relation("DestinationCreatedBy", fields: [createdById], references: [id])
-  updatedBy       User?             @relation("DestinationUpdatedBy", fields: [updatedById], references: [id])
+  createdBy User? @relation("DestinationCreatedBy", fields: [createdById], references: [id])
+  updatedBy User? @relation("DestinationUpdatedBy", fields: [updatedById], references: [id])
 
   @@index([season])
   @@index([isActive])
@@ -34,27 +34,27 @@ model Destination {
 }
 
 model Activity {
-  id               String            @id @default(uuid())
-  title            String            @unique
-  isActive         Boolean           @default(true)
-  price            Float
-  discount         Float?
-  currencyId       String
-  addressId        String
-  activityTypeId   String
+  id             String  @id @default(uuid())
+  title          String  @unique
+  isActive       Boolean @default(true)
+  price          Float
+  discount       Float?
+  currencyId     String
+  addressId      String
+  activityTypeId String
 
-  createdById      String?
-  updatedById      String?
+  createdById String?
+  updatedById String?
 
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  activityType     ActivityType      @relation("ActivityActivityType", fields: [activityTypeId], references: [id])
-  address          Address           @relation("ActivityAddress", fields: [addressId], references: [id])
-  currency         Currency          @relation("ActivityCurrency", fields: [currencyId], references: [id])
+  activityType ActivityType @relation("ActivityActivityType", fields: [activityTypeId], references: [id])
+  address      Address      @relation("ActivityAddress", fields: [addressId], references: [id])
+  currency     Currency     @relation("ActivityCurrency", fields: [currencyId], references: [id])
 
-  createdBy        User?             @relation("ActivityCreatedBy", fields: [createdById], references: [id])
-  updatedBy        User?             @relation("ActivityUpdatedBy", fields: [updatedById], references: [id])
+  createdBy User? @relation("ActivityCreatedBy", fields: [createdById], references: [id])
+  updatedBy User? @relation("ActivityUpdatedBy", fields: [updatedById], references: [id])
 
   @@unique([title, activityTypeId])
   @@index([isActive])
@@ -66,23 +66,23 @@ model Activity {
 }
 
 model Address {
-  id               String            @id @default(uuid())
-  country          String
-  countryCode      String
-  city             String
-  details          String
-  latitude         Float?
-  longitude        Float?
+  id          String @id @default(uuid())
+  country     String
+  countryCode String
+  city        String
+  details     String
+  latitude    Float?
+  longitude   Float?
 
-  createdById      String?
-  updatedById      String?
+  createdById String?
+  updatedById String?
 
-  activities       Activity[]        @relation("ActivityAddress")
-  destinations     Destination[]     @relation("DestinationAddress")
-  accommodations   Accommodation[]   @relation("AccommodationAddress")
+  activities     Activity[]      @relation("ActivityAddress")
+  destinations   Destination[]   @relation("DestinationAddress")
+  accommodations Accommodation[] @relation("AccommodationAddress")
 
-  createdBy        User?             @relation("AddressCreatedBy", fields: [createdById], references: [id])
-  updatedBy        User?             @relation("AddressUpdatedBy", fields: [updatedById], references: [id])
+  createdBy User? @relation("AddressCreatedBy", fields: [createdById], references: [id])
+  updatedBy User? @relation("AddressUpdatedBy", fields: [updatedById], references: [id])
 
   @@unique([countryCode, city, details])
   @@index([countryCode])
@@ -92,24 +92,24 @@ model Address {
 }
 
 model Currency {
-  id               String            @id @default(uuid())
-  title            String            @default("United States Dollar")
-  symbol           String            @default("$")
-  isoCode          String            @default("USD")
-  isActive         Boolean           @default(true)
+  id       String  @id @default(uuid())
+  title    String
+  symbol   String
+  isoCode  String
+  isActive Boolean
 
-  createdById      String?
-  updatedById      String?
+  createdById String?
+  updatedById String?
 
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  activities       Activity[]        @relation("ActivityCurrency")
-  houses           House[]           @relation("HouseCurrency")
-  rooms            Room[]            @relation("RoomCurrency")
+  activities Activity[] @relation("ActivityCurrency")
+  houses     House[]    @relation("HouseCurrency")
+  rooms      Room[]     @relation("RoomCurrency")
 
-  createdBy        User?             @relation("CurrencyCreatedBy", fields: [createdById], references: [id])
-  updatedBy        User?             @relation("CurrencyUpdatedBy", fields: [updatedById], references: [id])
+  createdBy User? @relation("CurrencyCreatedBy", fields: [createdById], references: [id])
+  updatedBy User? @relation("CurrencyUpdatedBy", fields: [updatedById], references: [id])
 
   @@unique([title, isoCode])
   @@index([title])
@@ -119,23 +119,23 @@ model Currency {
 }
 
 model ActivityType {
-  id               String            @id @default(uuid())
-  name             String
-  title            String
-  emoji            String?
-  icon             String            @default("IconQuestionMark")
-  isActive         Boolean           @default(true)
+  id       String  @id @default(uuid())
+  name     String
+  title    String
+  emoji    String?
+  icon     String
+  isActive Boolean
 
-  createdById      String?
-  updatedById      String?
+  createdById String?
+  updatedById String?
 
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  activities       Activity[]        @relation("ActivityActivityType")
+  activities Activity[] @relation("ActivityActivityType")
 
-  createdBy        User?             @relation("ActivityTypeCreatedBy", fields: [createdById], references: [id])
-  updatedBy        User?             @relation("ActivityTypeUpdatedBy", fields: [updatedById], references: [id])
+  createdBy User? @relation("ActivityTypeCreatedBy", fields: [createdById], references: [id])
+  updatedBy User? @relation("ActivityTypeUpdatedBy", fields: [updatedById], references: [id])
 
   @@unique([name, title])
   @@index([name])
@@ -145,61 +145,77 @@ model ActivityType {
 }
 
 model Accommodation {
-  id               String               @id @default(uuid())
-  type             AccommodationType
-  title            String               @unique
-  description      String
-  addressId        String
-  destinationId    String?
-  amenities        Json
-  policies         Json
+  id            String  @id @default(uuid())
+  title         String
+  description   String
+  addressId     String
+  destinationId String?
 
-  createdById      String?
-  updatedById      String?
+  amenities Json
+  policies  Json
 
-  createdAt        DateTime             @default(now())
-  updatedAt        DateTime             @updatedAt
+  favoriteCount Int                     @default(0)
+  favoritedBy   FavoriteAccommodation[]
 
-  hotel            Hotel?               @relation("AccommodationHotel")
-  house            House?               @relation("AccommodationHouse")
+  createdById String?
+  updatedById String?
 
-  address          Address              @relation("AccommodationAddress", fields: [addressId], references: [id])
-  destination      Destination?         @relation("DestinationAccommodations", fields: [destinationId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  createdBy        User?                @relation("AccommodationCreatedBy", fields: [createdById], references: [id])
-  updatedBy        User?                @relation("AccommodationUpdatedBy", fields: [updatedById], references: [id])
+  hotel Hotel? @relation("AccommodationHotel")
+  house House? @relation("AccommodationHouse")
+
+  address     Address      @relation("AccommodationAddress", fields: [addressId], references: [id])
+  destination Destination? @relation("DestinationAccommodations", fields: [destinationId], references: [id])
+
+  createdBy User? @relation("AccommodationCreatedBy", fields: [createdById], references: [id])
+  updatedBy User? @relation("AccommodationUpdatedBy", fields: [updatedById], references: [id])
 
   @@unique([title, addressId])
-  @@index([type])
   @@index([addressId])
   @@index([destinationId])
-  @@index([createdById])
-  @@index([updatedById])
+}
+
+model FavoriteAccommodation {
+  id String @id @default(uuid())
+
+  userId          String
+  accommodationId String
+
+  createdAt DateTime @default(now())
+
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accommodation Accommodation @relation(fields: [accommodationId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, accommodationId])
+  @@index([userId])
+  @@index([accommodationId])
 }
 
 model House {
-  id               String            @id @default(uuid())
-  accommodationId  String            @unique
+  id              String @id @default(uuid())
+  accommodationId String @unique
 
-  price            Float
-  discount         Float?
-  capacity         Int
-  area             Int
-  bathrooms        Int
-  bedrooms         Int
-  floors           Int
-  availableDates   Json?
+  price          Float
+  discount       Float?
+  capacity       Int
+  area           Int
+  bathrooms      Int
+  bedrooms       Int
+  floors         Int
+  availableDates Json?
 
-  currencyId       String
+  currencyId String
 
-  createdById      String?
-  updatedById      String?
+  createdById String?
+  updatedById String?
 
-  accommodation    Accommodation     @relation("AccommodationHouse", fields: [accommodationId], references: [id], onDelete: Cascade)
-  currency         Currency          @relation("HouseCurrency", fields: [currencyId], references: [id])
+  accommodation Accommodation @relation("AccommodationHouse", fields: [accommodationId], references: [id], onDelete: Cascade)
+  currency      Currency      @relation("HouseCurrency", fields: [currencyId], references: [id])
 
-  createdBy        User?             @relation("HouseCreatedBy", fields: [createdById], references: [id])
-  updatedBy        User?             @relation("HouseUpdatedBy", fields: [updatedById], references: [id])
+  createdBy User? @relation("HouseCreatedBy", fields: [createdById], references: [id])
+  updatedBy User? @relation("HouseUpdatedBy", fields: [updatedById], references: [id])
 
   @@index([currencyId])
   @@index([createdById])
@@ -207,49 +223,49 @@ model House {
 }
 
 model Hotel {
-  id               String            @id @default(uuid())
-  accommodationId  String            @unique
+  id              String @id @default(uuid())
+  accommodationId String @unique
 
-  createdById      String?
-  updatedById      String?
+  createdById String?
+  updatedById String?
 
-  accommodation    Accommodation     @relation("AccommodationHotel", fields: [accommodationId], references: [id], onDelete: Cascade)
-  rooms            Room[]            @relation("HotelRooms")
+  accommodation Accommodation @relation("AccommodationHotel", fields: [accommodationId], references: [id], onDelete: Cascade)
+  rooms         Room[]        @relation("HotelRooms")
 
-  createdBy        User?             @relation("HotelCreatedBy", fields: [createdById], references: [id])
-  updatedBy        User?             @relation("HotelUpdatedBy", fields: [updatedById], references: [id])
+  createdBy User? @relation("HotelCreatedBy", fields: [createdById], references: [id])
+  updatedBy User? @relation("HotelUpdatedBy", fields: [updatedById], references: [id])
 
   @@index([createdById])
   @@index([updatedById])
 }
 
 model Room {
-  id               String            @id @default(uuid())
-  title            String
-  count            Int
-  area             Int
-  price            Float
-  discount         Float?
-  capacity         Int
-  bedrooms         Int
-  bathrooms        Int
-  amenities        Json
-  beds             Json
+  id        String @id @default(uuid())
+  title     String
+  count     Int
+  area      Int
+  price     Float
+  discount  Float?
+  capacity  Int
+  bedrooms  Int
+  bathrooms Int
+  amenities Json
+  beds      Json
 
-  hotelId          String
-  currencyId       String
+  hotelId    String
+  currencyId String
 
-  createdById      String?
-  updatedById      String?
+  createdById String?
+  updatedById String?
 
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  hotel            Hotel             @relation("HotelRooms", fields: [hotelId], references: [id], onDelete: Cascade)
-  currency         Currency          @relation("RoomCurrency", fields: [currencyId], references: [id])
+  hotel    Hotel    @relation("HotelRooms", fields: [hotelId], references: [id], onDelete: Cascade)
+  currency Currency @relation("RoomCurrency", fields: [currencyId], references: [id])
 
-  createdBy        User?             @relation("RoomCreatedBy", fields: [createdById], references: [id])
-  updatedBy        User?             @relation("RoomUpdatedBy", fields: [updatedById], references: [id])
+  createdBy User? @relation("RoomCreatedBy", fields: [createdById], references: [id])
+  updatedBy User? @relation("RoomUpdatedBy", fields: [updatedById], references: [id])
 
   @@unique([hotelId, title])
   @@index([hotelId])
@@ -259,46 +275,47 @@ model Room {
 }
 
 model User {
-  id            String          @id @default(cuid())
+  id            String    @id @default(cuid())
   name          String?
-  email         String?         @unique
+  email         String?   @unique
   emailVerified DateTime?
   image         String?
   password      String?
-  username      String?         @unique
+  username      String?   @unique
 
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  accounts      Account[]
-  sessions      Session[]
+  accounts               Account[]
+  sessions               Session[]
+  favoriteAccommodations FavoriteAccommodation[]
 
-  destinationsCreated   Destination[]   @relation("DestinationCreatedBy")
-  destinationsUpdated   Destination[]   @relation("DestinationUpdatedBy")
+  destinationsCreated Destination[] @relation("DestinationCreatedBy")
+  destinationsUpdated Destination[] @relation("DestinationUpdatedBy")
 
-  activitiesCreated     Activity[]      @relation("ActivityCreatedBy")
-  activitiesUpdated     Activity[]      @relation("ActivityUpdatedBy")
+  activitiesCreated Activity[] @relation("ActivityCreatedBy")
+  activitiesUpdated Activity[] @relation("ActivityUpdatedBy")
 
-  addressesCreated      Address[]       @relation("AddressCreatedBy")
-  addressesUpdated      Address[]       @relation("AddressUpdatedBy")
+  addressesCreated Address[] @relation("AddressCreatedBy")
+  addressesUpdated Address[] @relation("AddressUpdatedBy")
 
-  currenciesCreated     Currency[]      @relation("CurrencyCreatedBy")
-  currenciesUpdated     Currency[]      @relation("CurrencyUpdatedBy")
+  currenciesCreated Currency[] @relation("CurrencyCreatedBy")
+  currenciesUpdated Currency[] @relation("CurrencyUpdatedBy")
 
-  activityTypesCreated  ActivityType[]  @relation("ActivityTypeCreatedBy")
-  activityTypesUpdated  ActivityType[]  @relation("ActivityTypeUpdatedBy")
+  activityTypesCreated ActivityType[] @relation("ActivityTypeCreatedBy")
+  activityTypesUpdated ActivityType[] @relation("ActivityTypeUpdatedBy")
 
   accommodationsCreated Accommodation[] @relation("AccommodationCreatedBy")
   accommodationsUpdated Accommodation[] @relation("AccommodationUpdatedBy")
 
-  housesCreated         House[]         @relation("HouseCreatedBy")
-  housesUpdated         House[]         @relation("HouseUpdatedBy")
+  housesCreated House[] @relation("HouseCreatedBy")
+  housesUpdated House[] @relation("HouseUpdatedBy")
 
-  hotelsCreated         Hotel[]         @relation("HotelCreatedBy")
-  hotelsUpdated         Hotel[]         @relation("HotelUpdatedBy")
+  hotelsCreated Hotel[] @relation("HotelCreatedBy")
+  hotelsUpdated Hotel[] @relation("HotelUpdatedBy")
 
-  roomsCreated          Room[]          @relation("RoomCreatedBy")
-  roomsUpdated          Room[]          @relation("RoomUpdatedBy")
+  roomsCreated Room[] @relation("RoomCreatedBy")
+  roomsUpdated Room[] @relation("RoomUpdatedBy")
 }
 
 model Account {
@@ -336,11 +353,6 @@ model Session {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-}
-
-enum AccommodationType {
-  HOUSE
-  HOTEL
 }
 
 enum Season {

@@ -57,6 +57,7 @@ export const ModelName = {
   Currency: 'Currency',
   ActivityType: 'ActivityType',
   Accommodation: 'Accommodation',
+  FavoriteAccommodation: 'FavoriteAccommodation',
   House: 'House',
   Hotel: 'Hotel',
   Room: 'Room',
@@ -163,13 +164,13 @@ export type ActivityTypeScalarFieldEnum = (typeof ActivityTypeScalarFieldEnum)[k
 
 export const AccommodationScalarFieldEnum = {
   id: 'id',
-  type: 'type',
   title: 'title',
   description: 'description',
   addressId: 'addressId',
   destinationId: 'destinationId',
   amenities: 'amenities',
   policies: 'policies',
+  favoriteCount: 'favoriteCount',
   createdById: 'createdById',
   updatedById: 'updatedById',
   createdAt: 'createdAt',
@@ -177,6 +178,16 @@ export const AccommodationScalarFieldEnum = {
 } as const
 
 export type AccommodationScalarFieldEnum = (typeof AccommodationScalarFieldEnum)[keyof typeof AccommodationScalarFieldEnum]
+
+
+export const FavoriteAccommodationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  accommodationId: 'accommodationId',
+  createdAt: 'createdAt'
+} as const
+
+export type FavoriteAccommodationScalarFieldEnum = (typeof FavoriteAccommodationScalarFieldEnum)[keyof typeof FavoriteAccommodationScalarFieldEnum]
 
 
 export const HouseScalarFieldEnum = {

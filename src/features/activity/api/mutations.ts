@@ -5,9 +5,11 @@ import { prisma } from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import { ACTIVITY_ERRORS } from '../constants';
 import { ActivityFormData } from '../types';
+import { auth } from '@/auth';
 
 export const createActivity = async (data: ActivityFormData, heroImage?: File | null) => {
   const bucket = 'activities';
+  const session = await auth();
   const existing = await prisma.activity.findUnique({
     where: {
       title_activityTypeId: {
@@ -25,6 +27,10 @@ export const createActivity = async (data: ActivityFormData, heroImage?: File | 
       price: data.price,
       discount: data.discount,
       isActive: data.isActive,
+
+      createdBy: {
+        connect: { id: session?.user?.id },
+      },
 
       currency: {
         connect: { id: data.currencyId },
@@ -48,6 +54,7 @@ export const createActivity = async (data: ActivityFormData, heroImage?: File | 
             country: data.country,
             details: data.addressDetails,
             countryCode: data.countryCode,
+            createdById: session?.user?.id,
           },
         },
       },
@@ -77,7 +84,7 @@ export const updateActivity = async (
   const object = `${id}/hero.webp`;
 
   if (!id) throw new Error(ACTIVITY_ERRORS.ID_REQUIRED);
-
+  const session = await auth();
   const existing = await prisma.activity.findUnique({ where: { id } });
 
   if (!existing) throw new Error(ACTIVITY_ERRORS.NOT_FOUND);
@@ -112,10 +119,15 @@ export const updateActivity = async (
             country: data.country,
             details: data.addressDetails,
             countryCode: data.countryCode,
+            createdById: session?.user?.id,
           },
         },
       },
+
       updatedAt: new Date(),
+      updatedBy: {
+        connect: { id: session?.user?.id },
+      },
     },
   });
 

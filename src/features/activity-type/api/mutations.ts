@@ -4,8 +4,10 @@ import { prisma } from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import { ACTIVITY_TYPE_ERRORS } from '../constants';
 import { ActivityTypeFormData } from '../types';
+import { auth } from '@/auth';
 
 export const createActivityType = async (data: ActivityTypeFormData) => {
+  const session = await auth();
   const existing = await prisma.activityType.findUnique({
     where: {
       name_title: {
@@ -24,6 +26,7 @@ export const createActivityType = async (data: ActivityTypeFormData) => {
       title: data.title,
       emoji: data.emoji,
       isActive: data.isActive,
+      createdById: session?.user?.id,
     },
   });
 
@@ -32,7 +35,7 @@ export const createActivityType = async (data: ActivityTypeFormData) => {
 
 export const updateActivityType = async (id: string, data: ActivityTypeFormData) => {
   if (!id) throw new Error(ACTIVITY_TYPE_ERRORS.ID_REQUIRED);
-
+  const session = await auth();
   const existing = await prisma.activityType.findUnique({ where: { id } });
 
   if (!existing) throw new Error(ACTIVITY_TYPE_ERRORS.NOT_FOUND);
@@ -46,6 +49,7 @@ export const updateActivityType = async (id: string, data: ActivityTypeFormData)
       emoji: data.emoji,
       isActive: data.isActive,
       updatedAt: new Date(),
+      updatedById: session?.user?.id,
     },
   });
 

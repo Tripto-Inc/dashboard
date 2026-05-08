@@ -216,6 +216,7 @@ export type UserWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   accounts?: Prisma.AccountListRelationFilter
   sessions?: Prisma.SessionListRelationFilter
+  favoriteAccommodations?: Prisma.FavoriteAccommodationListRelationFilter
   destinationsCreated?: Prisma.DestinationListRelationFilter
   destinationsUpdated?: Prisma.DestinationListRelationFilter
   activitiesCreated?: Prisma.ActivityListRelationFilter
@@ -248,6 +249,7 @@ export type UserOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   accounts?: Prisma.AccountOrderByRelationAggregateInput
   sessions?: Prisma.SessionOrderByRelationAggregateInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationOrderByRelationAggregateInput
   destinationsCreated?: Prisma.DestinationOrderByRelationAggregateInput
   destinationsUpdated?: Prisma.DestinationOrderByRelationAggregateInput
   activitiesCreated?: Prisma.ActivityOrderByRelationAggregateInput
@@ -283,6 +285,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   accounts?: Prisma.AccountListRelationFilter
   sessions?: Prisma.SessionListRelationFilter
+  favoriteAccommodations?: Prisma.FavoriteAccommodationListRelationFilter
   destinationsCreated?: Prisma.DestinationListRelationFilter
   destinationsUpdated?: Prisma.DestinationListRelationFilter
   activitiesCreated?: Prisma.ActivityListRelationFilter
@@ -345,6 +348,7 @@ export type UserCreateInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
@@ -377,6 +381,7 @@ export type UserUncheckedCreateInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
@@ -409,6 +414,7 @@ export type UserUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
@@ -441,6 +447,7 @@ export type UserUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -502,6 +509,11 @@ export type UserNullableScalarRelationFilter = {
   isNot?: Prisma.UserWhereInput | null
 }
 
+export type UserScalarRelationFilter = {
+  is?: Prisma.UserWhereInput
+  isNot?: Prisma.UserWhereInput
+}
+
 export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
@@ -536,11 +548,6 @@ export type UserMinOrderByAggregateInput = {
   username?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-}
-
-export type UserScalarRelationFilter = {
-  is?: Prisma.UserWhereInput
-  isNot?: Prisma.UserWhereInput
 }
 
 export type UserCreateNestedOneWithoutDestinationsCreatedInput = {
@@ -735,6 +742,20 @@ export type UserUpdateOneWithoutAccommodationsUpdatedNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAccommodationsUpdatedInput, Prisma.UserUpdateWithoutAccommodationsUpdatedInput>, Prisma.UserUncheckedUpdateWithoutAccommodationsUpdatedInput>
 }
 
+export type UserCreateNestedOneWithoutFavoriteAccommodationsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFavoriteAccommodationsInput, Prisma.UserUncheckedCreateWithoutFavoriteAccommodationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFavoriteAccommodationsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutFavoriteAccommodationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFavoriteAccommodationsInput, Prisma.UserUncheckedCreateWithoutFavoriteAccommodationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFavoriteAccommodationsInput
+  upsert?: Prisma.UserUpsertWithoutFavoriteAccommodationsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutFavoriteAccommodationsInput, Prisma.UserUpdateWithoutFavoriteAccommodationsInput>, Prisma.UserUncheckedUpdateWithoutFavoriteAccommodationsInput>
+}
+
 export type UserCreateNestedOneWithoutHousesCreatedInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutHousesCreatedInput, Prisma.UserUncheckedCreateWithoutHousesCreatedInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutHousesCreatedInput
@@ -875,6 +896,7 @@ export type UserCreateWithoutDestinationsCreatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationCreateNestedManyWithoutUserInput
   destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
   activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
@@ -906,6 +928,7 @@ export type UserUncheckedCreateWithoutDestinationsCreatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutUserInput
   destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
   activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
@@ -942,6 +965,7 @@ export type UserCreateWithoutDestinationsUpdatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
   activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
   activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
@@ -973,6 +997,7 @@ export type UserUncheckedCreateWithoutDestinationsUpdatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
   activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
   activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
@@ -1020,6 +1045,7 @@ export type UserUpdateWithoutDestinationsCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUpdateManyWithoutUserNestedInput
   destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
   activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
@@ -1051,6 +1077,7 @@ export type UserUncheckedUpdateWithoutDestinationsCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutUserNestedInput
   destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
   activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
@@ -1093,6 +1120,7 @@ export type UserUpdateWithoutDestinationsUpdatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
   activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
   activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
@@ -1124,6 +1152,7 @@ export type UserUncheckedUpdateWithoutDestinationsUpdatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
   activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
   activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
@@ -1155,6 +1184,7 @@ export type UserCreateWithoutActivitiesCreatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
   activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
@@ -1186,6 +1216,7 @@ export type UserUncheckedCreateWithoutActivitiesCreatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
   activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
@@ -1222,6 +1253,7 @@ export type UserCreateWithoutActivitiesUpdatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
@@ -1253,6 +1285,7 @@ export type UserUncheckedCreateWithoutActivitiesUpdatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
@@ -1300,6 +1333,7 @@ export type UserUpdateWithoutActivitiesCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
   activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
@@ -1331,6 +1365,7 @@ export type UserUncheckedUpdateWithoutActivitiesCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
   activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
@@ -1373,6 +1408,7 @@ export type UserUpdateWithoutActivitiesUpdatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
@@ -1404,6 +1440,7 @@ export type UserUncheckedUpdateWithoutActivitiesUpdatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -1435,6 +1472,7 @@ export type UserCreateWithoutAddressesCreatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
@@ -1466,6 +1504,7 @@ export type UserUncheckedCreateWithoutAddressesCreatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
@@ -1502,6 +1541,7 @@ export type UserCreateWithoutAddressesUpdatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
@@ -1533,6 +1573,7 @@ export type UserUncheckedCreateWithoutAddressesUpdatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
@@ -1580,6 +1621,7 @@ export type UserUpdateWithoutAddressesCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
@@ -1611,6 +1653,7 @@ export type UserUncheckedUpdateWithoutAddressesCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -1653,6 +1696,7 @@ export type UserUpdateWithoutAddressesUpdatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
@@ -1684,6 +1728,7 @@ export type UserUncheckedUpdateWithoutAddressesUpdatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -1715,6 +1760,7 @@ export type UserCreateWithoutCurrenciesCreatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
@@ -1746,6 +1792,7 @@ export type UserUncheckedCreateWithoutCurrenciesCreatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
@@ -1782,6 +1829,7 @@ export type UserCreateWithoutCurrenciesUpdatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
@@ -1813,6 +1861,7 @@ export type UserUncheckedCreateWithoutCurrenciesUpdatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
@@ -1860,6 +1909,7 @@ export type UserUpdateWithoutCurrenciesCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
@@ -1891,6 +1941,7 @@ export type UserUncheckedUpdateWithoutCurrenciesCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -1933,6 +1984,7 @@ export type UserUpdateWithoutCurrenciesUpdatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
@@ -1964,6 +2016,7 @@ export type UserUncheckedUpdateWithoutCurrenciesUpdatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -1995,6 +2048,7 @@ export type UserCreateWithoutActivityTypesCreatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
@@ -2026,6 +2080,7 @@ export type UserUncheckedCreateWithoutActivityTypesCreatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
@@ -2062,6 +2117,7 @@ export type UserCreateWithoutActivityTypesUpdatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
@@ -2093,6 +2149,7 @@ export type UserUncheckedCreateWithoutActivityTypesUpdatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
@@ -2140,6 +2197,7 @@ export type UserUpdateWithoutActivityTypesCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
@@ -2171,6 +2229,7 @@ export type UserUncheckedUpdateWithoutActivityTypesCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -2213,6 +2272,7 @@ export type UserUpdateWithoutActivityTypesUpdatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
@@ -2244,6 +2304,7 @@ export type UserUncheckedUpdateWithoutActivityTypesUpdatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -2275,6 +2336,7 @@ export type UserCreateWithoutAccommodationsCreatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
@@ -2306,6 +2368,7 @@ export type UserUncheckedCreateWithoutAccommodationsCreatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
@@ -2342,6 +2405,7 @@ export type UserCreateWithoutAccommodationsUpdatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
@@ -2373,6 +2437,7 @@ export type UserUncheckedCreateWithoutAccommodationsUpdatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
@@ -2420,6 +2485,7 @@ export type UserUpdateWithoutAccommodationsCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
@@ -2451,6 +2517,7 @@ export type UserUncheckedUpdateWithoutAccommodationsCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -2493,6 +2560,7 @@ export type UserUpdateWithoutAccommodationsUpdatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
@@ -2524,6 +2592,7 @@ export type UserUncheckedUpdateWithoutAccommodationsUpdatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -2535,6 +2604,150 @@ export type UserUncheckedUpdateWithoutAccommodationsUpdatedInput = {
   activityTypesCreated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutCreatedByNestedInput
   activityTypesUpdated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutUpdatedByNestedInput
   accommodationsCreated?: Prisma.AccommodationUncheckedUpdateManyWithoutCreatedByNestedInput
+  housesCreated?: Prisma.HouseUncheckedUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUncheckedUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUncheckedUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUncheckedUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUncheckedUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserCreateWithoutFavoriteAccommodationsInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserUncheckedCreateWithoutFavoriteAccommodationsInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  username?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
+  destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
+  activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
+  activitiesUpdated?: Prisma.ActivityUncheckedCreateNestedManyWithoutUpdatedByInput
+  addressesCreated?: Prisma.AddressUncheckedCreateNestedManyWithoutCreatedByInput
+  addressesUpdated?: Prisma.AddressUncheckedCreateNestedManyWithoutUpdatedByInput
+  currenciesCreated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutCreatedByInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedCreateNestedManyWithoutUpdatedByInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutCreatedByInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedCreateNestedManyWithoutUpdatedByInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutCreatedByInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedCreateNestedManyWithoutUpdatedByInput
+  housesCreated?: Prisma.HouseUncheckedCreateNestedManyWithoutCreatedByInput
+  housesUpdated?: Prisma.HouseUncheckedCreateNestedManyWithoutUpdatedByInput
+  hotelsCreated?: Prisma.HotelUncheckedCreateNestedManyWithoutCreatedByInput
+  hotelsUpdated?: Prisma.HotelUncheckedCreateNestedManyWithoutUpdatedByInput
+  roomsCreated?: Prisma.RoomUncheckedCreateNestedManyWithoutCreatedByInput
+  roomsUpdated?: Prisma.RoomUncheckedCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserCreateOrConnectWithoutFavoriteAccommodationsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutFavoriteAccommodationsInput, Prisma.UserUncheckedCreateWithoutFavoriteAccommodationsInput>
+}
+
+export type UserUpsertWithoutFavoriteAccommodationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutFavoriteAccommodationsInput, Prisma.UserUncheckedUpdateWithoutFavoriteAccommodationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutFavoriteAccommodationsInput, Prisma.UserUncheckedCreateWithoutFavoriteAccommodationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutFavoriteAccommodationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutFavoriteAccommodationsInput, Prisma.UserUncheckedUpdateWithoutFavoriteAccommodationsInput>
+}
+
+export type UserUpdateWithoutFavoriteAccommodationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUpdateManyWithoutUpdatedByNestedInput
+  housesCreated?: Prisma.HouseUpdateManyWithoutCreatedByNestedInput
+  housesUpdated?: Prisma.HouseUpdateManyWithoutUpdatedByNestedInput
+  hotelsCreated?: Prisma.HotelUpdateManyWithoutCreatedByNestedInput
+  hotelsUpdated?: Prisma.HotelUpdateManyWithoutUpdatedByNestedInput
+  roomsCreated?: Prisma.RoomUpdateManyWithoutCreatedByNestedInput
+  roomsUpdated?: Prisma.RoomUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutFavoriteAccommodationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
+  destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
+  activitiesUpdated?: Prisma.ActivityUncheckedUpdateManyWithoutUpdatedByNestedInput
+  addressesCreated?: Prisma.AddressUncheckedUpdateManyWithoutCreatedByNestedInput
+  addressesUpdated?: Prisma.AddressUncheckedUpdateManyWithoutUpdatedByNestedInput
+  currenciesCreated?: Prisma.CurrencyUncheckedUpdateManyWithoutCreatedByNestedInput
+  currenciesUpdated?: Prisma.CurrencyUncheckedUpdateManyWithoutUpdatedByNestedInput
+  activityTypesCreated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutCreatedByNestedInput
+  activityTypesUpdated?: Prisma.ActivityTypeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  accommodationsCreated?: Prisma.AccommodationUncheckedUpdateManyWithoutCreatedByNestedInput
+  accommodationsUpdated?: Prisma.AccommodationUncheckedUpdateManyWithoutUpdatedByNestedInput
   housesCreated?: Prisma.HouseUncheckedUpdateManyWithoutCreatedByNestedInput
   housesUpdated?: Prisma.HouseUncheckedUpdateManyWithoutUpdatedByNestedInput
   hotelsCreated?: Prisma.HotelUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -2555,6 +2768,7 @@ export type UserCreateWithoutHousesCreatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
@@ -2586,6 +2800,7 @@ export type UserUncheckedCreateWithoutHousesCreatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
@@ -2622,6 +2837,7 @@ export type UserCreateWithoutHousesUpdatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
@@ -2653,6 +2869,7 @@ export type UserUncheckedCreateWithoutHousesUpdatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
@@ -2700,6 +2917,7 @@ export type UserUpdateWithoutHousesCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
@@ -2731,6 +2949,7 @@ export type UserUncheckedUpdateWithoutHousesCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -2773,6 +2992,7 @@ export type UserUpdateWithoutHousesUpdatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
@@ -2804,6 +3024,7 @@ export type UserUncheckedUpdateWithoutHousesUpdatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -2835,6 +3056,7 @@ export type UserCreateWithoutHotelsCreatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
@@ -2866,6 +3088,7 @@ export type UserUncheckedCreateWithoutHotelsCreatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
@@ -2902,6 +3125,7 @@ export type UserCreateWithoutHotelsUpdatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
@@ -2933,6 +3157,7 @@ export type UserUncheckedCreateWithoutHotelsUpdatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
@@ -2980,6 +3205,7 @@ export type UserUpdateWithoutHotelsCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
@@ -3011,6 +3237,7 @@ export type UserUncheckedUpdateWithoutHotelsCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -3053,6 +3280,7 @@ export type UserUpdateWithoutHotelsUpdatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
@@ -3084,6 +3312,7 @@ export type UserUncheckedUpdateWithoutHotelsUpdatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -3115,6 +3344,7 @@ export type UserCreateWithoutRoomsCreatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
@@ -3146,6 +3376,7 @@ export type UserUncheckedCreateWithoutRoomsCreatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
@@ -3182,6 +3413,7 @@ export type UserCreateWithoutRoomsUpdatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
@@ -3213,6 +3445,7 @@ export type UserUncheckedCreateWithoutRoomsUpdatedInput = {
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
@@ -3260,6 +3493,7 @@ export type UserUpdateWithoutRoomsCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
@@ -3291,6 +3525,7 @@ export type UserUncheckedUpdateWithoutRoomsCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -3333,6 +3568,7 @@ export type UserUpdateWithoutRoomsUpdatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
@@ -3364,6 +3600,7 @@ export type UserUncheckedUpdateWithoutRoomsUpdatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -3394,6 +3631,7 @@ export type UserCreateWithoutAccountsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
@@ -3425,6 +3663,7 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
@@ -3472,6 +3711,7 @@ export type UserUpdateWithoutAccountsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
@@ -3503,6 +3743,7 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -3534,6 +3775,7 @@ export type UserCreateWithoutSessionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityCreateNestedManyWithoutCreatedByInput
@@ -3565,6 +3807,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedCreateNestedManyWithoutUserInput
   destinationsCreated?: Prisma.DestinationUncheckedCreateNestedManyWithoutCreatedByInput
   destinationsUpdated?: Prisma.DestinationUncheckedCreateNestedManyWithoutUpdatedByInput
   activitiesCreated?: Prisma.ActivityUncheckedCreateNestedManyWithoutCreatedByInput
@@ -3612,6 +3855,7 @@ export type UserUpdateWithoutSessionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUpdateManyWithoutCreatedByNestedInput
@@ -3643,6 +3887,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  favoriteAccommodations?: Prisma.FavoriteAccommodationUncheckedUpdateManyWithoutUserNestedInput
   destinationsCreated?: Prisma.DestinationUncheckedUpdateManyWithoutCreatedByNestedInput
   destinationsUpdated?: Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput
   activitiesCreated?: Prisma.ActivityUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -3671,6 +3916,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
 export type UserCountOutputType = {
   accounts: number
   sessions: number
+  favoriteAccommodations: number
   destinationsCreated: number
   destinationsUpdated: number
   activitiesCreated: number
@@ -3694,6 +3940,7 @@ export type UserCountOutputType = {
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   accounts?: boolean | UserCountOutputTypeCountAccountsArgs
   sessions?: boolean | UserCountOutputTypeCountSessionsArgs
+  favoriteAccommodations?: boolean | UserCountOutputTypeCountFavoriteAccommodationsArgs
   destinationsCreated?: boolean | UserCountOutputTypeCountDestinationsCreatedArgs
   destinationsUpdated?: boolean | UserCountOutputTypeCountDestinationsUpdatedArgs
   activitiesCreated?: boolean | UserCountOutputTypeCountActivitiesCreatedArgs
@@ -3736,6 +3983,13 @@ export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends runtime.Types.E
  */
 export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.SessionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountFavoriteAccommodationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FavoriteAccommodationWhereInput
 }
 
 /**
@@ -3877,6 +4131,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedAt?: boolean
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
+  favoriteAccommodations?: boolean | Prisma.User$favoriteAccommodationsArgs<ExtArgs>
   destinationsCreated?: boolean | Prisma.User$destinationsCreatedArgs<ExtArgs>
   destinationsUpdated?: boolean | Prisma.User$destinationsUpdatedArgs<ExtArgs>
   activitiesCreated?: boolean | Prisma.User$activitiesCreatedArgs<ExtArgs>
@@ -3938,6 +4193,7 @@ export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = run
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
+  favoriteAccommodations?: boolean | Prisma.User$favoriteAccommodationsArgs<ExtArgs>
   destinationsCreated?: boolean | Prisma.User$destinationsCreatedArgs<ExtArgs>
   destinationsUpdated?: boolean | Prisma.User$destinationsUpdatedArgs<ExtArgs>
   activitiesCreated?: boolean | Prisma.User$activitiesCreatedArgs<ExtArgs>
@@ -3966,6 +4222,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     accounts: Prisma.$AccountPayload<ExtArgs>[]
     sessions: Prisma.$SessionPayload<ExtArgs>[]
+    favoriteAccommodations: Prisma.$FavoriteAccommodationPayload<ExtArgs>[]
     destinationsCreated: Prisma.$DestinationPayload<ExtArgs>[]
     destinationsUpdated: Prisma.$DestinationPayload<ExtArgs>[]
     activitiesCreated: Prisma.$ActivityPayload<ExtArgs>[]
@@ -4391,6 +4648,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   accounts<T extends Prisma.User$accountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  favoriteAccommodations<T extends Prisma.User$favoriteAccommodationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$favoriteAccommodationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FavoriteAccommodationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   destinationsCreated<T extends Prisma.User$destinationsCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$destinationsCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   destinationsUpdated<T extends Prisma.User$destinationsUpdatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$destinationsUpdatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   activitiesCreated<T extends Prisma.User$activitiesCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$activitiesCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -4885,6 +5143,30 @@ export type User$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[]
+}
+
+/**
+ * User.favoriteAccommodations
+ */
+export type User$favoriteAccommodationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FavoriteAccommodation
+   */
+  select?: Prisma.FavoriteAccommodationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FavoriteAccommodation
+   */
+  omit?: Prisma.FavoriteAccommodationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FavoriteAccommodationInclude<ExtArgs> | null
+  where?: Prisma.FavoriteAccommodationWhereInput
+  orderBy?: Prisma.FavoriteAccommodationOrderByWithRelationInput | Prisma.FavoriteAccommodationOrderByWithRelationInput[]
+  cursor?: Prisma.FavoriteAccommodationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FavoriteAccommodationScalarFieldEnum | Prisma.FavoriteAccommodationScalarFieldEnum[]
 }
 
 /**

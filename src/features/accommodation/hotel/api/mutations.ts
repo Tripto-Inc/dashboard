@@ -1,5 +1,6 @@
 'use server';
 
+import { auth } from '@/auth';
 import { deleteDocument, listKeysByPrefix, uploadDocument } from '@/features/document';
 import { BUCKETS } from '@/features/document/constants';
 import { prisma } from '@/lib/prisma';
@@ -12,7 +13,7 @@ import { CreateHotelPayload, UpdateHotelPayload } from '../types/mutations';
 export const createHotel = async (payload: CreateHotelPayload) => {
   const { data, heroImage, galleryImages, roomsGalleryImages } = payload;
   const bucket = BUCKETS.accommodations;
-
+  const session = await auth();
   const accommodation = await prisma.accommodation.create({
     data: {
       type: 'HOTEL',
@@ -20,6 +21,10 @@ export const createHotel = async (payload: CreateHotelPayload) => {
       description: data.description,
       policies: JSON.parse(JSON.stringify(data.policies)),
       amenities: JSON.parse(JSON.stringify(data.amenities)),
+
+      createdBy: {
+        connect: { id: session?.user?.id },
+      },
 
       address: {
         connectOrCreate: {
@@ -37,6 +42,7 @@ export const createHotel = async (payload: CreateHotelPayload) => {
             longitude: data.longitude,
             details: data.addressDetails,
             countryCode: data.countryCode,
+            createdById: session?.user?.id,
           },
         },
       },
@@ -48,6 +54,7 @@ export const createHotel = async (payload: CreateHotelPayload) => {
               ...room,
               beds: JSON.parse(JSON.stringify(room.beds)),
               amenities: JSON.parse(JSON.stringify(room.amenities)),
+              createdById: session?.user?.id,
             })),
           },
         },
@@ -132,7 +139,7 @@ export const updateHotel = async (payload: UpdateHotelPayload) => {
   const heroImageObject = `${id}/hero.webp`;
 
   if (!id) throw new Error(ACCOMMODATION_ERRORS.ID_REQUIRED);
-
+  const session = await auth();
   const existing = await prisma.accommodation.findUnique({
     where: { id },
     include: { hotel: { include: { rooms: true } } },
@@ -166,6 +173,7 @@ export const updateHotel = async (payload: UpdateHotelPayload) => {
             amenities: JSON.parse(JSON.stringify(room.amenities)),
             beds: JSON.parse(JSON.stringify(room.beds)),
             updatedAt: new Date(),
+            updatedById: session?.user?.id,
           },
         });
       }
@@ -185,6 +193,7 @@ export const updateHotel = async (payload: UpdateHotelPayload) => {
             amenities: JSON.parse(JSON.stringify(room.amenities)),
             beds: JSON.parse(JSON.stringify(room.beds)),
             hotelId: existing.hotel.id,
+            createdById: session?.user?.id,
           },
         });
       }
@@ -200,6 +209,7 @@ export const updateHotel = async (payload: UpdateHotelPayload) => {
         description: data.description,
         policies: JSON.parse(JSON.stringify(data.policies)),
         amenities: JSON.parse(JSON.stringify(data.amenities)),
+
         address: {
           update: {
             city: data.city,
@@ -208,9 +218,16 @@ export const updateHotel = async (payload: UpdateHotelPayload) => {
             longitude: data.longitude,
             details: data.addressDetails,
             countryCode: data.countryCode,
+            updatedById: session?.user?.id,
           },
         },
+
         updatedAt: new Date(),
+        updatedBy: {
+          connect: {
+            id: session?.user?.id,
+          },
+        },
       },
       include: {
         address: true,

@@ -9,14 +9,6 @@
 * 🟢 You can import this file directly.
 */
 
-export const AccommodationType = {
-  HOUSE: 'HOUSE',
-  HOTEL: 'HOTEL'
-} as const
-
-export type AccommodationType = (typeof AccommodationType)[keyof typeof AccommodationType]
-
-
 export const Season = {
   SPRING: 'SPRING',
   SUMMER: 'SUMMER',

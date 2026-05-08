@@ -7,6 +7,7 @@ import { createHash } from 'crypto';
 import { revalidatePath } from 'next/cache';
 import { ACCOMMODATION_ERRORS } from '../../constants';
 import { HouseFormData } from '../types/houseForm';
+import { auth } from '@/auth';
 
 export const createHouse = async (
   data: HouseFormData,
@@ -14,6 +15,7 @@ export const createHouse = async (
   galleryImages?: Array<File> | null,
 ) => {
   const bucket = 'accommodations';
+  const session = await auth();
   const existing = await prisma.accommodation.findUnique({
     where: {
       title: data.title,
@@ -31,6 +33,12 @@ export const createHouse = async (
       policies: JSON.parse(JSON.stringify(data.policies)),
       amenities: JSON.parse(JSON.stringify(data.amenities)),
 
+      createdBy: {
+        connect: {
+          id: session?.user?.id,
+        },
+      },
+
       address: {
         connectOrCreate: {
           where: {
@@ -47,6 +55,7 @@ export const createHouse = async (
             longitude: data.longitude,
             details: data.addressDetails,
             countryCode: data.countryCode,
+            createdById: session?.user?.id,
           },
         },
       },
@@ -61,6 +70,7 @@ export const createHouse = async (
           bedrooms: data.bedrooms,
           bathrooms: data.bathrooms,
           currencyId: data.currencyId,
+          createdById: session?.user?.id,
           availableDates: JSON.parse(JSON.stringify(data.availableDates)),
         },
       },
@@ -116,7 +126,7 @@ export const updateHouse = async (
   const heroImageObject = `${id}/hero.webp`;
 
   if (!id) throw new Error(ACCOMMODATION_ERRORS.ID_REQUIRED);
-
+  const session = await auth();
   const existing = await prisma.accommodation.findUnique({ where: { id } });
 
   if (!existing) throw new Error(ACCOMMODATION_ERRORS.NOT_FOUND);
@@ -139,6 +149,7 @@ export const updateHouse = async (
           longitude: data.longitude,
           details: data.addressDetails,
           countryCode: data.countryCode,
+          updatedById: session?.user?.id,
         },
       },
 
@@ -152,11 +163,17 @@ export const updateHouse = async (
           bedrooms: data.bedrooms,
           bathrooms: data.bathrooms,
           currencyId: data.currencyId,
+          createdById: session?.user?.id,
           availableDates: JSON.parse(JSON.stringify(data.availableDates)),
         },
       },
 
       updatedAt: new Date(),
+      updatedBy: {
+        connect: {
+          id: session?.user?.id,
+        },
+      },
     },
     include: {
       house: true,

@@ -652,14 +652,6 @@ export type HouseUncheckedUpdateOneWithoutAccommodationNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.HouseUpdateToOneWithWhereWithoutAccommodationInput, Prisma.HouseUpdateWithoutAccommodationInput>, Prisma.HouseUncheckedUpdateWithoutAccommodationInput>
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type HouseCreateNestedManyWithoutCreatedByInput = {
   create?: Prisma.XOR<Prisma.HouseCreateWithoutCreatedByInput, Prisma.HouseUncheckedCreateWithoutCreatedByInput> | Prisma.HouseCreateWithoutCreatedByInput[] | Prisma.HouseUncheckedCreateWithoutCreatedByInput[]
   connectOrCreate?: Prisma.HouseCreateOrConnectWithoutCreatedByInput | Prisma.HouseCreateOrConnectWithoutCreatedByInput[]

@@ -390,6 +390,7 @@ export const ModelName = {
   Currency: 'Currency',
   ActivityType: 'ActivityType',
   Accommodation: 'Accommodation',
+  FavoriteAccommodation: 'FavoriteAccommodation',
   House: 'House',
   Hotel: 'Hotel',
   Room: 'Room',
@@ -412,7 +413,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "destination" | "activity" | "address" | "currency" | "activityType" | "accommodation" | "house" | "hotel" | "room" | "user" | "account" | "verificationToken" | "session"
+    modelProps: "destination" | "activity" | "address" | "currency" | "activityType" | "accommodation" | "favoriteAccommodation" | "house" | "hotel" | "room" | "user" | "account" | "verificationToken" | "session"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -857,6 +858,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.AccommodationCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.AccommodationCountAggregateOutputType> | number
+        }
+      }
+    }
+    FavoriteAccommodation: {
+      payload: Prisma.$FavoriteAccommodationPayload<ExtArgs>
+      fields: Prisma.FavoriteAccommodationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.FavoriteAccommodationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FavoriteAccommodationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.FavoriteAccommodationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FavoriteAccommodationPayload>
+        }
+        findFirst: {
+          args: Prisma.FavoriteAccommodationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FavoriteAccommodationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.FavoriteAccommodationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FavoriteAccommodationPayload>
+        }
+        findMany: {
+          args: Prisma.FavoriteAccommodationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FavoriteAccommodationPayload>[]
+        }
+        create: {
+          args: Prisma.FavoriteAccommodationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FavoriteAccommodationPayload>
+        }
+        createMany: {
+          args: Prisma.FavoriteAccommodationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.FavoriteAccommodationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FavoriteAccommodationPayload>[]
+        }
+        delete: {
+          args: Prisma.FavoriteAccommodationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FavoriteAccommodationPayload>
+        }
+        update: {
+          args: Prisma.FavoriteAccommodationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FavoriteAccommodationPayload>
+        }
+        deleteMany: {
+          args: Prisma.FavoriteAccommodationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.FavoriteAccommodationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.FavoriteAccommodationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FavoriteAccommodationPayload>[]
+        }
+        upsert: {
+          args: Prisma.FavoriteAccommodationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FavoriteAccommodationPayload>
+        }
+        aggregate: {
+          args: Prisma.FavoriteAccommodationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateFavoriteAccommodation>
+        }
+        groupBy: {
+          args: Prisma.FavoriteAccommodationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FavoriteAccommodationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.FavoriteAccommodationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FavoriteAccommodationCountAggregateOutputType> | number
         }
       }
     }
@@ -1498,13 +1573,13 @@ export type ActivityTypeScalarFieldEnum = (typeof ActivityTypeScalarFieldEnum)[k
 
 export const AccommodationScalarFieldEnum = {
   id: 'id',
-  type: 'type',
   title: 'title',
   description: 'description',
   addressId: 'addressId',
   destinationId: 'destinationId',
   amenities: 'amenities',
   policies: 'policies',
+  favoriteCount: 'favoriteCount',
   createdById: 'createdById',
   updatedById: 'updatedById',
   createdAt: 'createdAt',
@@ -1512,6 +1587,16 @@ export const AccommodationScalarFieldEnum = {
 } as const
 
 export type AccommodationScalarFieldEnum = (typeof AccommodationScalarFieldEnum)[keyof typeof AccommodationScalarFieldEnum]
+
+
+export const FavoriteAccommodationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  accommodationId: 'accommodationId',
+  createdAt: 'createdAt'
+} as const
+
+export type FavoriteAccommodationScalarFieldEnum = (typeof FavoriteAccommodationScalarFieldEnum)[keyof typeof FavoriteAccommodationScalarFieldEnum]
 
 
 export const HouseScalarFieldEnum = {
@@ -1738,20 +1823,6 @@ export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMode
 
 
 /**
- * Reference to a field of type 'AccommodationType'
- */
-export type EnumAccommodationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccommodationType'>
-    
-
-
-/**
- * Reference to a field of type 'AccommodationType[]'
- */
-export type ListEnumAccommodationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccommodationType[]'>
-    
-
-
-/**
  * Reference to a field of type 'Json'
  */
 export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -1879,6 +1950,7 @@ export type GlobalOmitConfig = {
   currency?: Prisma.CurrencyOmit
   activityType?: Prisma.ActivityTypeOmit
   accommodation?: Prisma.AccommodationOmit
+  favoriteAccommodation?: Prisma.FavoriteAccommodationOmit
   house?: Prisma.HouseOmit
   hotel?: Prisma.HotelOmit
   room?: Prisma.RoomOmit

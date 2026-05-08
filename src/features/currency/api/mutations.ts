@@ -4,8 +4,10 @@ import { prisma } from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import { CURRENCY_ERRORS } from '../constants';
 import { CurrencyFormData } from '../types';
+import { auth } from '@/auth';
 
 export const createCurrency = async (data: CurrencyFormData) => {
+  const session = await auth();
   const existing = await prisma.currency.findUnique({
     where: {
       title_isoCode: {
@@ -23,6 +25,7 @@ export const createCurrency = async (data: CurrencyFormData) => {
       symbol: data.symbol,
       isoCode: data.isoCode,
       isActive: data.isActive,
+      createdById: session?.user?.id,
     },
   });
 
@@ -31,7 +34,7 @@ export const createCurrency = async (data: CurrencyFormData) => {
 
 export const updateCurrency = async (id: string, data: CurrencyFormData) => {
   if (!id) throw new Error(CURRENCY_ERRORS.ID_REQUIRED);
-
+  const session = await auth();
   const existing = await prisma.currency.findUnique({ where: { id } });
 
   if (!existing) throw new Error(CURRENCY_ERRORS.NOT_FOUND);
@@ -44,6 +47,7 @@ export const updateCurrency = async (id: string, data: CurrencyFormData) => {
       isoCode: data.isoCode,
       isActive: data.isActive,
       updatedAt: new Date(),
+      updatedById: session?.user?.id,
     },
   });
 

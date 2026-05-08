@@ -300,8 +300,8 @@ export type ActivityTypeCreateInput = {
   name: string
   title: string
   emoji?: string | null
-  icon?: string
-  isActive?: boolean
+  icon: string
+  isActive: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   activities?: Prisma.ActivityCreateNestedManyWithoutActivityTypeInput
@@ -314,8 +314,8 @@ export type ActivityTypeUncheckedCreateInput = {
   name: string
   title: string
   emoji?: string | null
-  icon?: string
-  isActive?: boolean
+  icon: string
+  isActive: boolean
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
@@ -356,8 +356,8 @@ export type ActivityTypeCreateManyInput = {
   name: string
   title: string
   emoji?: string | null
-  icon?: string
-  isActive?: boolean
+  icon: string
+  isActive: boolean
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
@@ -550,8 +550,8 @@ export type ActivityTypeCreateWithoutActivitiesInput = {
   name: string
   title: string
   emoji?: string | null
-  icon?: string
-  isActive?: boolean
+  icon: string
+  isActive: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   createdBy?: Prisma.UserCreateNestedOneWithoutActivityTypesCreatedInput
@@ -563,8 +563,8 @@ export type ActivityTypeUncheckedCreateWithoutActivitiesInput = {
   name: string
   title: string
   emoji?: string | null
-  icon?: string
-  isActive?: boolean
+  icon: string
+  isActive: boolean
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
@@ -618,8 +618,8 @@ export type ActivityTypeCreateWithoutCreatedByInput = {
   name: string
   title: string
   emoji?: string | null
-  icon?: string
-  isActive?: boolean
+  icon: string
+  isActive: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   activities?: Prisma.ActivityCreateNestedManyWithoutActivityTypeInput
@@ -631,8 +631,8 @@ export type ActivityTypeUncheckedCreateWithoutCreatedByInput = {
   name: string
   title: string
   emoji?: string | null
-  icon?: string
-  isActive?: boolean
+  icon: string
+  isActive: boolean
   updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -654,8 +654,8 @@ export type ActivityTypeCreateWithoutUpdatedByInput = {
   name: string
   title: string
   emoji?: string | null
-  icon?: string
-  isActive?: boolean
+  icon: string
+  isActive: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   activities?: Prisma.ActivityCreateNestedManyWithoutActivityTypeInput
@@ -667,8 +667,8 @@ export type ActivityTypeUncheckedCreateWithoutUpdatedByInput = {
   name: string
   title: string
   emoji?: string | null
-  icon?: string
-  isActive?: boolean
+  icon: string
+  isActive: boolean
   createdById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -738,8 +738,8 @@ export type ActivityTypeCreateManyCreatedByInput = {
   name: string
   title: string
   emoji?: string | null
-  icon?: string
-  isActive?: boolean
+  icon: string
+  isActive: boolean
   updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -750,8 +750,8 @@ export type ActivityTypeCreateManyUpdatedByInput = {
   name: string
   title: string
   emoji?: string | null
-  icon?: string
-  isActive?: boolean
+  icon: string
+  isActive: boolean
   createdById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string

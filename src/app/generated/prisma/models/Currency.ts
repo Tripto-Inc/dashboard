@@ -291,10 +291,10 @@ export type CurrencyScalarWhereWithAggregatesInput = {
 
 export type CurrencyCreateInput = {
   id?: string
-  title?: string
-  symbol?: string
-  isoCode?: string
-  isActive?: boolean
+  title: string
+  symbol: string
+  isoCode: string
+  isActive: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   activities?: Prisma.ActivityCreateNestedManyWithoutCurrencyInput
@@ -306,10 +306,10 @@ export type CurrencyCreateInput = {
 
 export type CurrencyUncheckedCreateInput = {
   id?: string
-  title?: string
-  symbol?: string
-  isoCode?: string
-  isActive?: boolean
+  title: string
+  symbol: string
+  isoCode: string
+  isActive: boolean
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
@@ -351,10 +351,10 @@ export type CurrencyUncheckedUpdateInput = {
 
 export type CurrencyCreateManyInput = {
   id?: string
-  title?: string
-  symbol?: string
-  isoCode?: string
-  isActive?: boolean
+  title: string
+  symbol: string
+  isoCode: string
+  isActive: boolean
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
@@ -567,10 +567,10 @@ export type CurrencyUncheckedUpdateManyWithoutUpdatedByNestedInput = {
 
 export type CurrencyCreateWithoutActivitiesInput = {
   id?: string
-  title?: string
-  symbol?: string
-  isoCode?: string
-  isActive?: boolean
+  title: string
+  symbol: string
+  isoCode: string
+  isActive: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   houses?: Prisma.HouseCreateNestedManyWithoutCurrencyInput
@@ -581,10 +581,10 @@ export type CurrencyCreateWithoutActivitiesInput = {
 
 export type CurrencyUncheckedCreateWithoutActivitiesInput = {
   id?: string
-  title?: string
-  symbol?: string
-  isoCode?: string
-  isActive?: boolean
+  title: string
+  symbol: string
+  isoCode: string
+  isActive: boolean
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
@@ -639,10 +639,10 @@ export type CurrencyUncheckedUpdateWithoutActivitiesInput = {
 
 export type CurrencyCreateWithoutHousesInput = {
   id?: string
-  title?: string
-  symbol?: string
-  isoCode?: string
-  isActive?: boolean
+  title: string
+  symbol: string
+  isoCode: string
+  isActive: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   activities?: Prisma.ActivityCreateNestedManyWithoutCurrencyInput
@@ -653,10 +653,10 @@ export type CurrencyCreateWithoutHousesInput = {
 
 export type CurrencyUncheckedCreateWithoutHousesInput = {
   id?: string
-  title?: string
-  symbol?: string
-  isoCode?: string
-  isActive?: boolean
+  title: string
+  symbol: string
+  isoCode: string
+  isActive: boolean
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
@@ -711,10 +711,10 @@ export type CurrencyUncheckedUpdateWithoutHousesInput = {
 
 export type CurrencyCreateWithoutRoomsInput = {
   id?: string
-  title?: string
-  symbol?: string
-  isoCode?: string
-  isActive?: boolean
+  title: string
+  symbol: string
+  isoCode: string
+  isActive: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   activities?: Prisma.ActivityCreateNestedManyWithoutCurrencyInput
@@ -725,10 +725,10 @@ export type CurrencyCreateWithoutRoomsInput = {
 
 export type CurrencyUncheckedCreateWithoutRoomsInput = {
   id?: string
-  title?: string
-  symbol?: string
-  isoCode?: string
-  isActive?: boolean
+  title: string
+  symbol: string
+  isoCode: string
+  isActive: boolean
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
@@ -783,10 +783,10 @@ export type CurrencyUncheckedUpdateWithoutRoomsInput = {
 
 export type CurrencyCreateWithoutCreatedByInput = {
   id?: string
-  title?: string
-  symbol?: string
-  isoCode?: string
-  isActive?: boolean
+  title: string
+  symbol: string
+  isoCode: string
+  isActive: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   activities?: Prisma.ActivityCreateNestedManyWithoutCurrencyInput
@@ -797,10 +797,10 @@ export type CurrencyCreateWithoutCreatedByInput = {
 
 export type CurrencyUncheckedCreateWithoutCreatedByInput = {
   id?: string
-  title?: string
-  symbol?: string
-  isoCode?: string
-  isActive?: boolean
+  title: string
+  symbol: string
+  isoCode: string
+  isActive: boolean
   updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -821,10 +821,10 @@ export type CurrencyCreateManyCreatedByInputEnvelope = {
 
 export type CurrencyCreateWithoutUpdatedByInput = {
   id?: string
-  title?: string
-  symbol?: string
-  isoCode?: string
-  isActive?: boolean
+  title: string
+  symbol: string
+  isoCode: string
+  isActive: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   activities?: Prisma.ActivityCreateNestedManyWithoutCurrencyInput
@@ -835,10 +835,10 @@ export type CurrencyCreateWithoutUpdatedByInput = {
 
 export type CurrencyUncheckedCreateWithoutUpdatedByInput = {
   id?: string
-  title?: string
-  symbol?: string
-  isoCode?: string
-  isActive?: boolean
+  title: string
+  symbol: string
+  isoCode: string
+  isActive: boolean
   createdById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -906,10 +906,10 @@ export type CurrencyUpdateManyWithWhereWithoutUpdatedByInput = {
 
 export type CurrencyCreateManyCreatedByInput = {
   id?: string
-  title?: string
-  symbol?: string
-  isoCode?: string
-  isActive?: boolean
+  title: string
+  symbol: string
+  isoCode: string
+  isActive: boolean
   updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -917,10 +917,10 @@ export type CurrencyCreateManyCreatedByInput = {
 
 export type CurrencyCreateManyUpdatedByInput = {
   id?: string
-  title?: string
-  symbol?: string
-  isoCode?: string
-  isActive?: boolean
+  title: string
+  symbol: string
+  isoCode: string
+  isActive: boolean
   createdById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
