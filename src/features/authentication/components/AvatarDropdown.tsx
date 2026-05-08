@@ -14,6 +14,7 @@ import { FC } from 'react';
 import { useLogout } from '../hooks/useLogout';
 import { AvatarDropdownProps } from '../types';
 import { createMonogram } from '../utils';
+import Link from 'next/link';
 
 export const AvatarDropdown: FC<AvatarDropdownProps> = (props) => {
   const { name, email, image } = props;
@@ -42,7 +43,11 @@ export const AvatarDropdown: FC<AvatarDropdownProps> = (props) => {
       </div>
       <DropdownMenuContent align="end" className="w-32">
         <DropdownMenuGroup>
-          <DropdownMenuItem disabled>Profile</DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/user/profile" className="w-full">
+              Profile
+            </Link>
+          </DropdownMenuItem>
           <DropdownMenuItem disabled>Billing</DropdownMenuItem>
           <DropdownMenuItem disabled>Settings</DropdownMenuItem>
         </DropdownMenuGroup>

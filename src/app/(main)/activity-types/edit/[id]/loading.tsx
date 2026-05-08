@@ -1,13 +1,14 @@
-import { PageBreadcrumbLoading } from "@/components/shared/PageBreadcrumb"
-import { ActivityTypeFormSkeleton } from "@/features/activity-type"
+import { PageBreadcrumbLoading } from '@/components/shared/PageBreadcrumb';
+import { ActivityTypeFormSkeleton } from '@/features/activity-type';
+import { Fragment } from 'react';
 
 const ActivityTypeEditPageSkeleton = () => {
-    return (
-        <>
-            <PageBreadcrumbLoading crumbCount={3} className="mb-5" />
-            <ActivityTypeFormSkeleton />
-        </>
-    )
-}
+  return (
+    <Fragment>
+      <PageBreadcrumbLoading crumbCount={3} className="mb-5" />
+      <ActivityTypeFormSkeleton />
+    </Fragment>
+  );
+};
 
-export default ActivityTypeEditPageSkeleton
+export default ActivityTypeEditPageSkeleton;

@@ -1,24 +1,39 @@
-import { FC } from "react"
-import { ModificationFormSectionProps } from "./types"
+import clsx from 'clsx';
+import { FC } from 'react';
+import { ModificationFormSectionProps } from './types';
 
 export const ModificationFormSection: FC<ModificationFormSectionProps> = (props) => {
-    const {
-        title,
-        children,
-        icon: Icon,
-        headerExtraElements
-    } = props
+  const {
+    title,
+    subtitle,
+    children,
+    icon: Icon,
+    headerExtraElements,
+    iconColor = 'text-blue-600',
+    iconBackground = 'bg-blue-50',
+  } = props;
 
-    return (
-        <div className="bg-white p-6 rounded-3xl border border-slate-200">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
-                <div className="flex items-center gap-2">
-                    <Icon className="text-blue-600" size={20} />
-                    <h2 className="font-bold text-slate-800">{title}</h2>
-                </div>
-                {headerExtraElements}
-            </div>
-            {children}
+  return (
+    <div className="rounded-3xl border border-slate-200 bg-white p-8">
+      <div className="mb-6 flex items-center justify-between border-b border-slate-100 pb-4">
+        <div className="flex items-center gap-2">
+          <div
+            className={clsx(
+              'flex size-10 items-center justify-center rounded-xl',
+              iconColor,
+              iconBackground,
+            )}
+          >
+            <Icon size={20} />
+          </div>
+          <div>
+            <h3 className="text-lg leading-5 font-bold">{title}</h3>
+            <p className="text-xs text-slate-400">{subtitle}</p>
+          </div>
         </div>
-    )
-}
+        {headerExtraElements}
+      </div>
+      {children}
+    </div>
+  );
+};

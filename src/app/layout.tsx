@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import { AppProviders } from '@/providers';
 import type { Metadata } from 'next';
-import { urbanist } from './fonts';
+import { figtree } from './fonts';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={cn('h-full', 'font-sans')}>
-      <body className={`${urbanist.className} flex min-h-full flex-col antialiased`}>
+      <body className={`${figtree.className} flex min-h-full flex-col antialiased`}>
         <AppProviders>{children}</AppProviders>
       </body>
     </html>

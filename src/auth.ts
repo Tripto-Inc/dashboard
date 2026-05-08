@@ -6,7 +6,8 @@ import NextAuth from 'next-auth';
 import { encode } from 'next-auth/jwt';
 import Credentials from 'next-auth/providers/credentials';
 import Google from 'next-auth/providers/google';
-import { loginFormSchema } from './features/authentication/schema';
+import { headers } from 'next/headers';
+import { loginSchema } from './features/authentication/schema';
 
 const adapter = PrismaAdapter(prisma);
 
@@ -21,7 +22,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     Google,
     Credentials({
       async authorize(credentials) {
-        const validatedCredentials = loginFormSchema.parse(credentials);
+        const validatedCredentials = loginSchema.parse(credentials);
 
         const user = await prisma.user.findFirst({
           where: {
@@ -60,6 +61,16 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
 
       return token;
+    },
+
+    async session({ session }) {
+      const headersList = await headers();
+      session.user.city = headersList.get('x-vercel-ip-city') ?? 'Hillsboro';
+      session.user.region = headersList.get('x-vercel-ip-country-region') ?? 'Oregon';
+      session.user.locale = headersList.get('accept-language')?.split(',')[0] ?? 'en-US';
+      session.user.country = headersList.get('x-vercel-ip-country') ?? 'United States of America';
+
+      return session;
     },
   },
 

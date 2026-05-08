@@ -8,8 +8,7 @@ import { IconChevronRight, IconEye, IconEyeOff, IconUser } from '@tabler/icons-r
 import { FC, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useLogin } from '../hooks/useLogin';
-import { loginFormSchema } from '../schema';
-import { LoginFormData } from '../types';
+import { loginSchema, LoginSchema } from '../schema';
 
 export const LoginForm: FC = () => {
   const loginMutation = useLogin();
@@ -18,15 +17,15 @@ export const LoginForm: FC = () => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormData>({
-    resolver: zodResolver(loginFormSchema),
+  } = useForm<LoginSchema>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       username: '',
       password: '',
     },
   });
 
-  const onSubmit = (data: LoginFormData) => loginMutation.mutateAsync(data);
+  const onSubmit = (data: LoginSchema) => loginMutation.mutateAsync(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
