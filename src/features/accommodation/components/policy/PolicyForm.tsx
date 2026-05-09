@@ -78,8 +78,8 @@ export const PolicyForm: FC<PolicyFormProps> = (props) => {
                 placeholder="Enter a Tabler Icon name"
                 aria-invalid={!!errors.icon?.message}
               />
-              <InputGroupAddon align="inline-end">
-                <DynamicIcon name={field.value} />
+              <InputGroupAddon>
+                <DynamicIcon name={field.value} className="text-slate-600" />
               </InputGroupAddon>
             </InputGroup>
           )}

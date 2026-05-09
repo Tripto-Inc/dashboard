@@ -83,7 +83,7 @@ export const DocumentUploader: FC<DocumentUploaderProps> = (props) => {
         onClick={handleClick}
         onDrop={handleDrop}
         onDragOver={handleDragOver}
-        className="group flex cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-slate-200 p-8 transition-colors hover:border-blue-400"
+        className="group flex cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50/50 p-8 transition-colors hover:border-blue-500"
       >
         <div className="flex flex-wrap items-center justify-center gap-3">
           {previews.length > 0 ? (
@@ -112,8 +112,8 @@ export const DocumentUploader: FC<DocumentUploaderProps> = (props) => {
               </div>
             ))
           ) : (
-            <div className="flex size-28 items-center justify-center rounded-xl bg-gray-50">
-              <div className="flex size-12 items-center justify-center rounded-full bg-blue-50 text-blue-600 transition-transform group-hover:scale-110">
+            <div className="flex size-28 items-center justify-center rounded-xl bg-blue-50">
+              <div className="flex size-12 items-center justify-center rounded-full bg-blue-100 text-blue-600 transition-transform group-hover:scale-110">
                 <ImageIcon size={24} />
               </div>
             </div>

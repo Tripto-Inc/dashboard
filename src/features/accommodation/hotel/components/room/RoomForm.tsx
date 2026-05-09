@@ -117,8 +117,8 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
                   placeholder="Enter a title"
                   aria-invalid={!!errors.title?.message}
                 />
-                <InputGroupAddon align="inline-end">
-                  <IconBed className="size-5" />
+                <InputGroupAddon>
+                  <IconBed className="size-5 text-slate-600" />
                 </InputGroupAddon>
               </InputGroup>
             )}
@@ -147,8 +147,8 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
                   }}
                   aria-invalid={!!errors.capacity?.message}
                 />
-                <InputGroupAddon align="inline-end">
-                  <IconUsers className="size-5" />
+                <InputGroupAddon>
+                  <IconUsers className="size-5 text-slate-600" />
                 </InputGroupAddon>
               </InputGroup>
             )}
@@ -172,8 +172,8 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
                   }}
                   aria-invalid={!!errors.area?.message}
                 />
-                <InputGroupAddon align="inline-end">
-                  <IconRuler className="size-5" />
+                <InputGroupAddon>
+                  <IconRuler className="size-5 text-slate-600" />
                 </InputGroupAddon>
               </InputGroup>
             )}
@@ -197,8 +197,8 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
                   }}
                   aria-invalid={!!errors.count?.message}
                 />
-                <InputGroupAddon align="inline-end">
-                  <IconNumbers className="size-5" />
+                <InputGroupAddon>
+                  <IconNumbers className="size-5 text-slate-600" />
                 </InputGroupAddon>
               </InputGroup>
             )}
@@ -227,8 +227,8 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
                   }}
                   aria-invalid={!!errors.bedrooms?.message}
                 />
-                <InputGroupAddon align="inline-end">
-                  <IconBedFlat className="size-5" />
+                <InputGroupAddon>
+                  <IconBedFlat className="size-5 text-slate-600" />
                 </InputGroupAddon>
               </InputGroup>
             )}
@@ -257,8 +257,8 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
                   }}
                   aria-invalid={!!errors.bathrooms?.message}
                 />
-                <InputGroupAddon align="inline-end">
-                  <IconBath className="size-5" />
+                <InputGroupAddon>
+                  <IconBath className="size-5 text-slate-600" />
                 </InputGroupAddon>
               </InputGroup>
             )}

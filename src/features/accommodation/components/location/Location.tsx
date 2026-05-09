@@ -109,7 +109,7 @@ export const Location: FC<LocationProps> = (props) => {
           name="countryCode"
           control={control}
           render={({ field }) => (
-            <InputGroup className="bg-white">
+            <InputGroup>
               <InputGroupInput
                 id="countryCode"
                 {...field}

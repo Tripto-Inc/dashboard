@@ -2,7 +2,7 @@
 
 import { DataTableColumnHeader, DataTableImageCell } from '@/components/shared/DataTable';
 import { DynamicIcon } from '@/components/shared/DynamicIcon';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
 import { convertCountryCodeToFlag } from '@/utils/convertCountryCodeToFlag';
 import { IconBuilding, IconHome } from '@tabler/icons-react';
 import { ColumnDef } from '@tanstack/react-table';
@@ -114,17 +114,20 @@ export const accommodationListColumns: ColumnDef<AccommodationColumns>[] = [
       return (
         <ul className="flex flex-wrap items-center gap-1">
           {displayedPolicies.map((policy) => (
-            <Tooltip key={policy.title}>
-              <TooltipTrigger>
-                <li className="flex items-center gap-1 rounded-full border border-dashed border-slate-600 px-3 py-2 text-slate-600">
+            <HoverCard openDelay={0} closeDelay={0} key={policy.title}>
+              <HoverCardTrigger asChild>
+                <li className="flex cursor-default items-center gap-1 rounded-full border border-dashed border-slate-600 px-3 py-2 text-slate-600">
                   <DynamicIcon name={policy.icon} size={16} />
                   <p className="text-sm">{policy.title}</p>
                 </li>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p className="max-w-50">{policy.description}</p>
-              </TooltipContent>
-            </Tooltip>
+              </HoverCardTrigger>
+              <HoverCardContent side="top">
+                <div className="space-y-1">
+                  <p className="font-semibold">{policy.title}</p>
+                  <p className="text-xs text-slate-600">{policy.description}</p>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
           ))}
           {hasMore && (
             <li className="flex items-center gap-1 rounded-full bg-slate-500 px-3 py-2 text-white">

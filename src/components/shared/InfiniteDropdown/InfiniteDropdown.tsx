@@ -1,9 +1,17 @@
 'use client';
 
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Skeleton } from '@/components/ui/skeleton';
-import { InfiniteDropdownOption, InfiniteDropdownProps } from './types';
-import { IconChevronDown } from '@tabler/icons-react';
 import clsx from 'clsx';
+import { InfiniteDropdownOption, InfiniteDropdownProps } from './types';
 
 export const InfiniteDropdown = <T extends InfiniteDropdownOption>(
   props: InfiniteDropdownProps<T>,
@@ -22,9 +30,9 @@ export const InfiniteDropdown = <T extends InfiniteDropdownOption>(
     errorMessage,
   } = props;
 
-  const { data, error, isLoading } = useDataHook();
+  const { data, error, isFetching } = useDataHook();
 
-  if (isLoading) {
+  if (isFetching) {
     return SkeletonElement || <Skeleton className="h-11.5 w-full rounded-lg" />;
   }
 
@@ -33,33 +41,21 @@ export const InfiniteDropdown = <T extends InfiniteDropdownOption>(
   }
 
   return (
-    <div className="relative">
-      <select
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-        className={clsx(
-          'h-11.5 w-full appearance-none rounded-lg border bg-white px-4 py-2.5 text-sm',
-          ariaInvalid ? 'border-destructive' : 'border-slate-200',
-          !value && 'text-muted-foreground',
-          className,
-        )}
+    <Select value={value} onValueChange={onChange}>
+      <SelectTrigger
+        id={id}
+        className={clsx('w-full', className, !value && 'text-slate-400!')}
+        aria-invalid={ariaInvalid}
       >
-        {placeholder && (
-          <option value="" disabled>
-            {placeholder}
-          </option>
-        )}
-
+        <SelectValue placeholder={placeholder} />
+      </SelectTrigger>
+      <SelectContent>
         {data?.map((item) => (
-          <option key={item.value} value={item.value}>
+          <SelectItem key={item.value} value={item.value}>
             {renderCustomItem ? renderCustomItem(item) : item.label}
-          </option>
+          </SelectItem>
         ))}
-      </select>
-      <IconChevronDown
-        size={16}
-        className="pointer-events-none absolute top-4 right-3 bg-white text-slate-400"
-      />
-    </div>
+      </SelectContent>
+    </Select>
   );
 };

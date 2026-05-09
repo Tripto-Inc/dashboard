@@ -159,7 +159,9 @@ export const ActivityTypeForm: FC<ActivityTypeFormProps> = ({ initialData }) => 
                           placeholder="Enter an icon from Tabler Icons"
                           aria-invalid={!!fieldState.error}
                         />
-                        <InputGroupAddon>{Icon && <Icon className="size-5" />}</InputGroupAddon>
+                        <InputGroupAddon>
+                          {Icon && <Icon className="size-5 text-slate-600" />}
+                        </InputGroupAddon>
                       </InputGroup>
                     );
                   }}

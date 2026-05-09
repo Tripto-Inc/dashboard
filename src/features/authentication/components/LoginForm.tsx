@@ -40,7 +40,7 @@ export const LoginForm: FC = () => {
           name="username"
           control={control}
           render={({ field, fieldState }) => (
-            <InputGroup className="h-14 w-full rounded-2xl border border-white/10 bg-white/5 py-4 pr-4 text-sm font-semibold text-white transition-all outline-none placeholder:text-slate-600 has-[[data-slot=input-group-control]:focus-visible]:border-blue-500 has-[[data-slot=input-group-control]:focus-visible]:bg-white/10 has-[[data-slot=input-group-control]:focus-visible]:ring-4 has-[[data-slot=input-group-control]:focus-visible]:ring-blue-500/10">
+            <InputGroup className="h-14 w-full rounded-2xl border border-white/10 bg-white/5 py-4 pr-4 text-sm font-semibold text-white transition-all outline-none placeholder:text-slate-600 has-[[data-slot=input-group-control]:focus-visible]:bg-white/10 has-[[data-slot=input-group-control]:focus-visible]:ring-4">
               <InputGroupInput
                 id="username"
                 {...field}
@@ -67,7 +67,7 @@ export const LoginForm: FC = () => {
           name="password"
           control={control}
           render={({ field, fieldState }) => (
-            <InputGroup className="h-14 w-full rounded-2xl border border-white/10 bg-white/5 py-4 pr-4 text-sm font-semibold text-white transition-all outline-none placeholder:text-slate-600 has-[[data-slot=input-group-control]:focus-visible]:border-blue-500 has-[[data-slot=input-group-control]:focus-visible]:bg-white/10 has-[[data-slot=input-group-control]:focus-visible]:ring-4 has-[[data-slot=input-group-control]:focus-visible]:ring-blue-500/10">
+            <InputGroup className="h-14 w-full rounded-2xl border border-white/10 bg-white/5 py-4 pr-4 text-sm font-semibold text-white transition-all outline-none placeholder:text-slate-600 has-[[data-slot=input-group-control]:focus-visible]:bg-white/10 has-[[data-slot=input-group-control]:focus-visible]:ring-4">
               <InputGroupInput
                 id="password"
                 {...field}

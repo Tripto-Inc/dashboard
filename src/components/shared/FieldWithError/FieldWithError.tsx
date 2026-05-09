@@ -11,7 +11,7 @@ export const FieldWithError: FC<FieldWithErrorProps> = (props) => {
       {label && (
         <Label
           htmlFor={htmlFor}
-          className="mb-2 ml-1 flex gap-1 text-xs font-semibold tracking-wider text-slate-500 uppercase"
+          className="mb-2 ml-1 flex gap-1 text-xs font-semibold tracking-wider text-slate-600 uppercase"
         >
           <span>{label}</span>
           {required && <IconAsterisk size={8} strokeWidth={4} className="text-red-600" />}
