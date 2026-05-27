@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
 import { Label } from '@/components/ui/label';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { IconChevronRight, IconEye, IconEyeOff, IconUser } from '@tabler/icons-react';
+import { IconChevronRight, IconEye, IconEyeOff, IconLock, IconUser } from '@tabler/icons-react';
 import { FC, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useLogin } from '../hooks/useLogin';
@@ -87,7 +87,7 @@ export const LoginForm: FC = () => {
                   <span className="sr-only">{isVisible ? 'Hide password' : 'Show password'}</span>
                 </Button>
               </InputGroupAddon>
-              <InputGroupAddon>{<IconUser className="size-5" />}</InputGroupAddon>
+              <InputGroupAddon>{<IconLock className="size-5" />}</InputGroupAddon>
             </InputGroup>
           )}
         />

@@ -12,6 +12,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { Controller, useFormContext } from 'react-hook-form';
 import { MapContainer, Marker, TileLayer, useMap, useMapEvents } from 'react-leaflet';
 import { LocationProps } from '../../types/location';
+import { NumberInput } from '@/components/shared/Input/NumberInput';
 
 export const Location: FC<LocationProps> = (props) => {
   const { value, onChange } = props;
@@ -168,16 +169,13 @@ export const Location: FC<LocationProps> = (props) => {
         <Controller
           name="latitude"
           control={control}
-          render={({ field }) => (
-            <Input
+          render={({ field, fieldState }) => (
+            <NumberInput
+              {...field}
+              step={0.1}
               id="latitude"
-              type="number"
               placeholder="Enter a latitude"
-              value={field.value ?? ''}
-              onChange={(e) =>
-                field.onChange(e.target.value === '' ? undefined : Number(e.target.value))
-              }
-              aria-invalid={!!errors.latitude?.message}
+              ariaInvalid={!!fieldState.error}
             />
           )}
         />
@@ -192,16 +190,13 @@ export const Location: FC<LocationProps> = (props) => {
         <Controller
           name="longitude"
           control={control}
-          render={({ field }) => (
-            <Input
+          render={({ field, fieldState }) => (
+            <NumberInput
+              {...field}
+              step={0.1}
               id="longitude"
-              type="number"
               placeholder="Enter a longitude"
-              value={field.value ?? ''}
-              onChange={(e) =>
-                field.onChange(e.target.value === '' ? undefined : Number(e.target.value))
-              }
-              aria-invalid={!!errors.longitude?.message}
+              ariaInvalid={!!fieldState.error}
             />
           )}
         />

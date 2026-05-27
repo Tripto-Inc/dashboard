@@ -41,6 +41,7 @@ import { useUpdateHouse } from '../hooks/useUpdateHouse';
 import { HouseSchema, houseSchema } from '../schema/house';
 import { HouseFormProps } from '../types/houseForm';
 import { SeasonalPrice } from './seasonal-price/SeasonalPrice';
+import { NumberInput } from '@/components/shared/Input/NumberInput';
 
 const Location = dynamic(
   () => import('../../components/location/Location').then((module) => module.Location),
@@ -219,18 +220,13 @@ export const HouseForm: FC<HouseFormProps> = ({ initialData }) => {
                   <Controller
                     name="title"
                     control={control}
-                    render={({ field }) => (
-                      <InputGroup>
-                        <InputGroupInput
-                          id="title"
-                          {...field}
-                          placeholder="Enter a title"
-                          aria-invalid={!!errors.title?.message}
-                        />
-                        <InputGroupAddon>
-                          <IconHome className="size-5 text-slate-600" />
-                        </InputGroupAddon>
-                      </InputGroup>
+                    render={({ field, fieldState }) => (
+                      <Input
+                        id="title"
+                        {...field}
+                        placeholder="Enter a title"
+                        aria-invalid={!!fieldState.error}
+                      />
                     )}
                   />
                 </FieldWithError>
@@ -244,23 +240,13 @@ export const HouseForm: FC<HouseFormProps> = ({ initialData }) => {
                   <Controller
                     name="capacity"
                     control={control}
-                    render={({ field }) => (
-                      <InputGroup>
-                        <InputGroupInput
-                          id="capacity"
-                          type="number"
-                          value={field.value ?? ''}
-                          placeholder="Enter a capacity"
-                          onChange={(event) => {
-                            const value = event.target.value;
-                            field.onChange(value === '' ? undefined : Number(value));
-                          }}
-                          aria-invalid={!!errors.capacity?.message}
-                        />
-                        <InputGroupAddon>
-                          <IconUsers className="size-5 text-slate-600" />
-                        </InputGroupAddon>
-                      </InputGroup>
+                    render={({ field, fieldState }) => (
+                      <NumberInput
+                        {...field}
+                        id="capacity"
+                        placeholder="Enter a capacity"
+                        ariaInvalid={!!fieldState.error}
+                      />
                     )}
                   />
                 </FieldWithError>
@@ -269,23 +255,13 @@ export const HouseForm: FC<HouseFormProps> = ({ initialData }) => {
                   <Controller
                     name="area"
                     control={control}
-                    render={({ field }) => (
-                      <InputGroup>
-                        <InputGroupInput
-                          id="area"
-                          type="number"
-                          value={field.value ?? ''}
-                          placeholder="Enter an area"
-                          onChange={(event) => {
-                            const value = event.target.value;
-                            field.onChange(value === '' ? undefined : Number(value));
-                          }}
-                          aria-invalid={!!errors.area?.message}
-                        />
-                        <InputGroupAddon>
-                          <IconRuler className="size-5 text-slate-600" />
-                        </InputGroupAddon>
-                      </InputGroup>
+                    render={({ field, fieldState }) => (
+                      <NumberInput
+                        {...field}
+                        id="area"
+                        placeholder="Enter an area"
+                        ariaInvalid={!!fieldState.error}
+                      />
                     )}
                   />
                 </FieldWithError>
@@ -299,23 +275,13 @@ export const HouseForm: FC<HouseFormProps> = ({ initialData }) => {
                   <Controller
                     name="floors"
                     control={control}
-                    render={({ field }) => (
-                      <InputGroup>
-                        <InputGroupInput
-                          id="floors"
-                          type="number"
-                          value={field.value ?? ''}
-                          placeholder="Enter floors count"
-                          onChange={(event) => {
-                            const value = event.target.value;
-                            field.onChange(value === '' ? undefined : Number(value));
-                          }}
-                          aria-invalid={!!errors.floors?.message}
-                        />
-                        <InputGroupAddon>
-                          <IconStackBack className="size-5 text-slate-600" />
-                        </InputGroupAddon>
-                      </InputGroup>
+                    render={({ field, fieldState }) => (
+                      <NumberInput
+                        {...field}
+                        id="floors"
+                        placeholder="Enter floors count"
+                        ariaInvalid={!!fieldState.error}
+                      />
                     )}
                   />
                 </FieldWithError>
@@ -329,23 +295,13 @@ export const HouseForm: FC<HouseFormProps> = ({ initialData }) => {
                   <Controller
                     name="bedrooms"
                     control={control}
-                    render={({ field }) => (
-                      <InputGroup>
-                        <InputGroupInput
-                          id="bedrooms"
-                          type="number"
-                          value={field.value ?? ''}
-                          placeholder="Enter bedrooms count"
-                          onChange={(event) => {
-                            const value = event.target.value;
-                            field.onChange(value === '' ? undefined : Number(value));
-                          }}
-                          aria-invalid={!!errors.bedrooms?.message}
-                        />
-                        <InputGroupAddon>
-                          <IconBed className="size-5 text-slate-600" />
-                        </InputGroupAddon>
-                      </InputGroup>
+                    render={({ field, fieldState }) => (
+                      <NumberInput
+                        {...field}
+                        id="bedrooms"
+                        placeholder="Enter bedrooms count"
+                        ariaInvalid={!!fieldState.error}
+                      />
                     )}
                   />
                 </FieldWithError>
@@ -359,23 +315,13 @@ export const HouseForm: FC<HouseFormProps> = ({ initialData }) => {
                   <Controller
                     name="bathrooms"
                     control={control}
-                    render={({ field }) => (
-                      <InputGroup>
-                        <InputGroupInput
-                          id="bathrooms"
-                          type="number"
-                          value={field.value ?? ''}
-                          placeholder="Enter bathrooms count"
-                          onChange={(event) => {
-                            const value = event.target.value;
-                            field.onChange(value === '' ? undefined : Number(value));
-                          }}
-                          aria-invalid={!!errors.bathrooms?.message}
-                        />
-                        <InputGroupAddon>
-                          <IconBath className="size-5 text-slate-600" />
-                        </InputGroupAddon>
-                      </InputGroup>
+                    render={({ field, fieldState }) => (
+                      <NumberInput
+                        {...field}
+                        id="bathrooms"
+                        placeholder="Enter bathrooms count"
+                        ariaInvalid={!!fieldState.error}
+                      />
                     )}
                   />
                 </FieldWithError>
@@ -428,18 +374,13 @@ export const HouseForm: FC<HouseFormProps> = ({ initialData }) => {
                   <Controller
                     name="price"
                     control={control}
-                    render={({ field }) => (
-                      <Input
+                    render={({ field, fieldState }) => (
+                      <NumberInput
+                        {...field}
                         id="price"
-                        type="number"
-                        step="0.1"
-                        value={field.value ?? ''}
+                        step={0.1}
                         placeholder="Enter a price"
-                        onChange={(event) => {
-                          const value = event.target.value;
-                          field.onChange(value === '' ? undefined : Number(value));
-                        }}
-                        aria-invalid={!!errors.price?.message}
+                        ariaInvalid={!!fieldState.error}
                       />
                     )}
                   />
@@ -475,18 +416,13 @@ export const HouseForm: FC<HouseFormProps> = ({ initialData }) => {
                   <Controller
                     name="discount"
                     control={control}
-                    render={({ field }) => (
-                      <Input
-                        id="discount"
-                        type="number"
-                        step="0.1"
-                        value={field.value ?? ''}
-                        placeholder="Enter a discount"
-                        onChange={(event) => {
-                          const value = event.target.value;
-                          field.onChange(value === '' ? undefined : Number(value));
-                        }}
-                        aria-invalid={!!errors.discount?.message}
+                    render={({ field, fieldState }) => (
+                      <NumberInput
+                        {...field}
+                        id="price"
+                        step={0.1}
+                        placeholder="Enter a price"
+                        ariaInvalid={!!fieldState.error}
                       />
                     )}
                   />

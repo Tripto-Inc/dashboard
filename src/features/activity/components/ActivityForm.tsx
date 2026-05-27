@@ -27,6 +27,7 @@ import { useCreateActivity } from '../hooks/useCreateActivity';
 import { useUpdateActivity } from '../hooks/useUpdateActivity';
 import { ActivitySchema, activitySchema } from '../schema';
 import { ActivityFormProps } from '../types';
+import { NumberInput } from '@/components/shared/Input/NumberInput';
 
 export const ActivityForm: FC<ActivityFormProps> = ({ initialData }) => {
   const router = useRouter();
@@ -297,20 +298,12 @@ export const ActivityForm: FC<ActivityFormProps> = ({ initialData }) => {
                 name="price"
                 control={control}
                 render={({ field, fieldState }) => (
-                  <Input
+                  <NumberInput
+                    {...field}
                     id="price"
-                    type="number"
-                    step="0.1"
-                    value={field.value ?? ''}
+                    step={0.1}
                     placeholder="Enter a price"
-                    aria-invalid={!!fieldState.error}
-                    onChange={(event) => {
-                      const value = event.target.value;
-                      field.onChange(value === '' ? undefined : Number(value));
-                    }}
-                    onBlur={field.onBlur}
-                    name={field.name}
-                    ref={field.ref}
+                    ariaInvalid={!!fieldState.error}
                   />
                 )}
               />
@@ -325,20 +318,12 @@ export const ActivityForm: FC<ActivityFormProps> = ({ initialData }) => {
                 name="discount"
                 control={control}
                 render={({ field, fieldState }) => (
-                  <Input
+                  <NumberInput
+                    {...field}
+                    step={0.1}
                     id="discount"
-                    type="number"
-                    step="0.1"
-                    value={field.value ?? ''}
-                    placeholder="Enter a discount"
-                    aria-invalid={!!fieldState.error}
-                    onChange={(event) => {
-                      const value = event.target.value;
-                      field.onChange(value === '' ? undefined : Number(value));
-                    }}
-                    onBlur={field.onBlur}
-                    name={field.name}
-                    ref={field.ref}
+                    placeholder="Enter a price"
+                    ariaInvalid={!!fieldState.error}
                   />
                 )}
               />

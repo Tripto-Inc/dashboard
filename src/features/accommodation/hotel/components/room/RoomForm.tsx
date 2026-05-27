@@ -2,23 +2,18 @@ import { ButtonPrimary } from '@/components/shared/ButtonPrimary';
 import { DocumentUploader } from '@/components/shared/DocumentUploader';
 import { FieldWithError } from '@/components/shared/FieldWithError';
 import { InfiniteDropdown } from '@/components/shared/InfiniteDropdown';
+import { NumberInput } from '@/components/shared/Input/NumberInput';
 import { Input } from '@/components/ui/input';
-import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
 import { Amenity } from '@/features/accommodation/components/amenity/Amenity';
 import { useGetCurrenciesDropdown } from '@/features/currency/hooks/useGetCurrenciesDropdown';
 import { ImagesPreviewWrapper } from '@/features/document/components/ImagesPreviewWrapper';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
-  IconBath,
   IconBed,
-  IconBedFlat,
   IconImageInPicture,
   IconInfoCircle,
   IconMoneybag,
-  IconNumbers,
-  IconRuler,
   IconTag,
-  IconUsers,
 } from '@tabler/icons-react';
 import { FC, useEffect } from 'react';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
@@ -110,17 +105,13 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
             name="title"
             control={control}
             render={({ field }) => (
-              <InputGroup className="bg-white">
-                <InputGroupInput
-                  id="title"
-                  {...field}
-                  placeholder="Enter a title"
-                  aria-invalid={!!errors.title?.message}
-                />
-                <InputGroupAddon>
-                  <IconBed className="size-5 text-slate-600" />
-                </InputGroupAddon>
-              </InputGroup>
+              <Input
+                id="title"
+                {...field}
+                className="bg-white"
+                placeholder="Enter a title"
+                aria-invalid={!!errors.title?.message}
+              />
             )}
           />
         </FieldWithError>
@@ -134,23 +125,15 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
           <Controller
             name="capacity"
             control={control}
-            render={({ field }) => (
-              <InputGroup className="bg-white">
-                <InputGroupInput
-                  id="capacity"
-                  type="number"
-                  value={field.value ?? ''}
-                  placeholder="Enter a capacity"
-                  onChange={(event) => {
-                    const value = event.target.value;
-                    field.onChange(value === '' ? undefined : Number(value));
-                  }}
-                  aria-invalid={!!errors.capacity?.message}
-                />
-                <InputGroupAddon>
-                  <IconUsers className="size-5 text-slate-600" />
-                </InputGroupAddon>
-              </InputGroup>
+            render={({ field, fieldState }) => (
+              <NumberInput
+                {...field}
+                step={0.1}
+                id="capacity"
+                className="bg-white"
+                placeholder="Enter a capacity"
+                ariaInvalid={!!fieldState.error}
+              />
             )}
           />
         </FieldWithError>
@@ -159,23 +142,14 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
           <Controller
             name="area"
             control={control}
-            render={({ field }) => (
-              <InputGroup className="bg-white">
-                <InputGroupInput
-                  id="area"
-                  type="number"
-                  value={field.value ?? ''}
-                  placeholder="Enter an area"
-                  onChange={(event) => {
-                    const value = event.target.value;
-                    field.onChange(value === '' ? undefined : Number(value));
-                  }}
-                  aria-invalid={!!errors.area?.message}
-                />
-                <InputGroupAddon>
-                  <IconRuler className="size-5 text-slate-600" />
-                </InputGroupAddon>
-              </InputGroup>
+            render={({ field, fieldState }) => (
+              <NumberInput
+                {...field}
+                id="area"
+                className="bg-white"
+                placeholder="Enter an area"
+                ariaInvalid={!!fieldState.error}
+              />
             )}
           />
         </FieldWithError>
@@ -184,23 +158,14 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
           <Controller
             name="count"
             control={control}
-            render={({ field }) => (
-              <InputGroup className="bg-white">
-                <InputGroupInput
-                  id="count"
-                  type="number"
-                  value={field.value ?? ''}
-                  placeholder="Enter room count"
-                  onChange={(event) => {
-                    const value = event.target.value;
-                    field.onChange(value === '' ? undefined : Number(value));
-                  }}
-                  aria-invalid={!!errors.count?.message}
-                />
-                <InputGroupAddon>
-                  <IconNumbers className="size-5 text-slate-600" />
-                </InputGroupAddon>
-              </InputGroup>
+            render={({ field, fieldState }) => (
+              <NumberInput
+                {...field}
+                id="count"
+                className="bg-white"
+                placeholder="Enter room count"
+                ariaInvalid={!!fieldState.error}
+              />
             )}
           />
         </FieldWithError>
@@ -214,23 +179,14 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
           <Controller
             name="bedrooms"
             control={control}
-            render={({ field }) => (
-              <InputGroup className="bg-white">
-                <InputGroupInput
-                  id="bedrooms"
-                  type="number"
-                  value={field.value ?? ''}
-                  placeholder="Enter bedrooms count"
-                  onChange={(event) => {
-                    const value = event.target.value;
-                    field.onChange(value === '' ? undefined : Number(value));
-                  }}
-                  aria-invalid={!!errors.bedrooms?.message}
-                />
-                <InputGroupAddon>
-                  <IconBedFlat className="size-5 text-slate-600" />
-                </InputGroupAddon>
-              </InputGroup>
+            render={({ field, fieldState }) => (
+              <NumberInput
+                {...field}
+                id="bedrooms"
+                className="bg-white"
+                placeholder="Enter bedrooms count"
+                ariaInvalid={!!fieldState.error}
+              />
             )}
           />
         </FieldWithError>
@@ -244,23 +200,14 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
           <Controller
             name="bathrooms"
             control={control}
-            render={({ field }) => (
-              <InputGroup className="bg-white">
-                <InputGroupInput
-                  id="bathrooms"
-                  type="number"
-                  value={field.value ?? ''}
-                  placeholder="Enter bathrooms count"
-                  onChange={(event) => {
-                    const value = event.target.value;
-                    field.onChange(value === '' ? undefined : Number(value));
-                  }}
-                  aria-invalid={!!errors.bathrooms?.message}
-                />
-                <InputGroupAddon>
-                  <IconBath className="size-5 text-slate-600" />
-                </InputGroupAddon>
-              </InputGroup>
+            render={({ field, fieldState }) => (
+              <NumberInput
+                {...field}
+                id="bathrooms"
+                className="bg-white"
+                placeholder="Enter bathrooms count"
+                ariaInvalid={!!fieldState.error}
+              />
             )}
           />
         </FieldWithError>
@@ -275,19 +222,14 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
           <Controller
             name="price"
             control={control}
-            render={({ field }) => (
-              <Input
+            render={({ field, fieldState }) => (
+              <NumberInput
+                {...field}
                 id="price"
-                step="0.1"
-                type="number"
+                step={0.1}
                 className="bg-white"
-                value={field.value ?? ''}
                 placeholder="Enter a price"
-                onChange={(event) => {
-                  const value = event.target.value;
-                  field.onChange(value === '' ? undefined : Number(value));
-                }}
-                aria-invalid={!!errors.price?.message}
+                ariaInvalid={!!fieldState.error}
               />
             )}
           />
@@ -295,8 +237,8 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
 
         <FieldWithError
           required
-          htmlFor="currency"
           label="Currency"
+          htmlFor="currency"
           error={errors.currencyId?.message}
         >
           <Controller
@@ -320,27 +262,22 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
           <Controller
             name="discount"
             control={control}
-            render={({ field }) => (
-              <Input
-                step="0.1"
-                id="discount"
-                type="number"
+            render={({ field, fieldState }) => (
+              <NumberInput
+                {...field}
+                id="price"
+                step={0.1}
                 className="bg-white"
-                value={field.value ?? ''}
-                placeholder="Enter a discount"
-                onChange={(event) => {
-                  const value = event.target.value;
-                  field.onChange(value === '' ? undefined : Number(value));
-                }}
-                aria-invalid={!!errors.discount?.message}
+                placeholder="Enter a price"
+                ariaInvalid={!!fieldState.error}
               />
             )}
           />
         </FieldWithError>
       </div>
 
-      <div className="grid grid-cols-1 gap-x-4 sm:grid-cols-2 xl:grid-cols-4">
-        <div className="mb-5 flex items-center gap-2 sm:col-span-2 xl:col-span-4">
+      <div className="grid grid-cols-1 gap-x-4 sm:grid-cols-2">
+        <div className="mb-5 flex items-center gap-2 sm:col-span-2">
           <IconBed className="text-blue-600" size={20} />
           <h2 className="font-bold text-slate-800">Beds</h2>
         </div>
@@ -348,18 +285,13 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
           <Controller
             name="beds.king"
             control={control}
-            render={({ field }) => (
-              <Input
+            render={({ field, fieldState }) => (
+              <NumberInput
+                {...field}
                 id="king-bed"
-                type="number"
                 className="bg-white"
-                value={field.value ?? ''}
                 placeholder="Enter bed count"
-                onChange={(event) => {
-                  const value = event.target.value;
-                  field.onChange(value === '' ? undefined : Number(value));
-                }}
-                aria-invalid={!!errors.beds?.king?.message}
+                ariaInvalid={!!fieldState.error}
               />
             )}
           />
@@ -369,18 +301,13 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
           <Controller
             name="beds.queen"
             control={control}
-            render={({ field }) => (
-              <Input
+            render={({ field, fieldState }) => (
+              <NumberInput
+                {...field}
                 id="queen-bed"
-                type="number"
                 className="bg-white"
-                value={field.value ?? ''}
                 placeholder="Enter bed count"
-                onChange={(event) => {
-                  const value = event.target.value;
-                  field.onChange(value === '' ? undefined : Number(value));
-                }}
-                aria-invalid={!!errors.beds?.queen?.message}
+                ariaInvalid={!!fieldState.error}
               />
             )}
           />
@@ -394,18 +321,13 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
           <Controller
             name="beds.double"
             control={control}
-            render={({ field }) => (
-              <Input
+            render={({ field, fieldState }) => (
+              <NumberInput
+                {...field}
                 id="double-bed"
-                type="number"
                 className="bg-white"
-                value={field.value ?? ''}
                 placeholder="Enter bed count"
-                onChange={(event) => {
-                  const value = event.target.value;
-                  field.onChange(value === '' ? undefined : Number(value));
-                }}
-                aria-invalid={!!errors.beds?.double?.message}
+                ariaInvalid={!!fieldState.error}
               />
             )}
           />
@@ -419,18 +341,13 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
           <Controller
             name="beds.single"
             control={control}
-            render={({ field }) => (
-              <Input
+            render={({ field, fieldState }) => (
+              <NumberInput
+                {...field}
                 id="single-bed"
-                type="number"
                 className="bg-white"
-                value={field.value ?? ''}
                 placeholder="Enter bed count"
-                onChange={(event) => {
-                  const value = event.target.value;
-                  field.onChange(value === '' ? undefined : Number(value));
-                }}
-                aria-invalid={!!errors.beds?.single?.message}
+                ariaInvalid={!!fieldState.error}
               />
             )}
           />
