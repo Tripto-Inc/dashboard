@@ -1,4 +1,4 @@
-import { Amenity } from '../../types/amenityForm';
+import { Amenity } from '../../types/accommodationAmenity';
 
 export type Beds = {
   king?: number;

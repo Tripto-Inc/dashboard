@@ -1,6 +1,6 @@
 import { AccommodationDetails } from '../../types/accommodation';
-import { Amenity } from '../../types/amenityForm';
-import { Policy } from '../../types/policyForm';
+import { Amenity } from '../../types/accommodationAmenity';
+import { Policy } from '../../types/accommodationPolicy';
 import { Room } from './room';
 
 export type HotelFormProps = {

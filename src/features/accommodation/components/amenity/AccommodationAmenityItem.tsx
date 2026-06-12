@@ -1,9 +1,9 @@
 import { DynamicIcon } from '@/components/shared/DynamicIcon';
 import { IconPencil, IconTrash } from '@tabler/icons-react';
 import { FC } from 'react';
-import { AmenityItemProps } from '../../types/amenityForm';
+import { AccommodationAmenityItemProps } from '@/features/accommodation/types/accommodationAmenity';
 
-export const AmenityItem: FC<AmenityItemProps> = (props) => {
+export const AccommodationAmenityItem: FC<AccommodationAmenityItemProps> = (props) => {
   const { item, onRemove, onEdit } = props;
 
   return (

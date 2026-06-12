@@ -8,5 +8,3 @@ export const locationSchema = z.object({
   latitude: z.number({ error: 'Latitude is required' }).nullable(),
   longitude: z.number({ error: 'Longitude is required' }).nullable(),
 });
-
-export type LocationSchema = z.infer<typeof locationSchema>;

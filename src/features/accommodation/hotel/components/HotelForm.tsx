@@ -1,43 +1,36 @@
 'use client';
 
 import { ButtonPrimary } from '@/components/shared/ButtonPrimary';
-import { DocumentUploader } from '@/components/shared/DocumentUploader';
 import { FieldWithError } from '@/components/shared/FieldWithError';
 import { ModificationFormSection } from '@/components/shared/ModificationFormSection';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { ImagePreviewWrapper } from '@/features/document';
-import { ImagesPreviewWrapper } from '@/features/document/components/ImagesPreviewWrapper';
 import { DOCUMENT_QUERY_KEYS } from '@/features/document/constants';
 import { queryClient } from '@/lib/query-client';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  IconBed,
-  IconDeviceFloppy,
-  IconImageInPicture,
-  IconInfoCircle,
-  IconMapPin,
-  IconShieldCheck,
-  IconSparkles,
-} from '@tabler/icons-react';
+import { IconBed, IconDeviceFloppy, IconInfoCircle } from '@tabler/icons-react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { FC, useEffect, useMemo } from 'react';
 import { Controller, FormProvider, useFieldArray, useForm, useWatch } from 'react-hook-form';
-import { Amenity } from '../../components/amenity/Amenity';
-import { LocationSkeleton } from '../../components/location/LocationSkeleton';
-import { Policy } from '../../components/policy/Policy';
+import { AccommodationAmenity, AccommodationPolicy } from '@/features/accommodation';
+import { AccommodationLocationSkeleton } from '../../components/location/AccommodationLocationSkeleton';
 import { useCreateHotel } from '../hooks/useCreateHotel';
 import { useUpdateHotel } from '../hooks/useUpdateHotel';
 import { hotelSchema, HotelSchema } from '../schema/hotel';
 import { HotelFormProps } from '../types/hotelForm';
 import { Room } from './room/Room';
+import { AccommodationGallery } from '@/features/accommodation/components/gallery/AccommodationGallery';
+import { AccommodationGallerySkeleton } from '@/features/accommodation/components/gallery/AccommodationGallerySkeleton';
 
-const Location = dynamic(
-  () => import('../../components/location/Location').then((module) => module.Location),
+const AccommodationLocation = dynamic(
+  () =>
+    import('../../components/location/AccommodationLocation').then(
+      (module) => module.AccommodationLocation,
+    ),
   {
     ssr: false,
-    loading: () => <LocationSkeleton />,
+    loading: () => <AccommodationLocationSkeleton />,
   },
 );
 
@@ -47,8 +40,6 @@ export const HotelForm: FC<HotelFormProps> = ({ initialData }) => {
   const createHotelMutation = useCreateHotel();
   const updateHotelMutation = useUpdateHotel();
 
-  const heroImageObject = `${initialData?.id}/hero.webp`;
-  const galleryImagesPrefix = `${initialData?.id}/gallery`;
   const isSubmitting = updateHotelMutation.isPending || createHotelMutation.isPending;
 
   const form = useForm<HotelSchema>({
@@ -255,18 +246,16 @@ export const HotelForm: FC<HotelFormProps> = ({ initialData }) => {
               </div>
             </ModificationFormSection>
 
-            <ModificationFormSection icon={IconMapPin} title="Address">
-              <Location
-                value={{ latitude, longitude }}
-                onChange={({ latitude, longitude }) => {
-                  setValue('latitude', latitude);
-                  setValue('longitude', longitude);
+            <AccommodationLocation
+              value={{ latitude, longitude }}
+              onChange={({ latitude, longitude }) => {
+                setValue('latitude', latitude);
+                setValue('longitude', longitude);
 
-                  trigger('latitude');
-                  trigger('longitude');
-                }}
-              />
-            </ModificationFormSection>
+                trigger('latitude');
+                trigger('longitude');
+              }}
+            />
 
             <ModificationFormSection icon={IconBed} title="Available Rooms">
               <Room
@@ -281,85 +270,33 @@ export const HotelForm: FC<HotelFormProps> = ({ initialData }) => {
           </div>
 
           <div className="space-y-6">
-            <ModificationFormSection icon={IconImageInPicture} title="Gallery">
-              <div className="flex flex-col">
-                <FieldWithError
-                  label="Hero Image"
-                  htmlFor="heroImage"
-                  error={errors.heroImage?.message}
-                >
-                  <Controller
-                    name="heroImage"
-                    control={control}
-                    render={({ field }) => (
-                      <DocumentUploader
-                        ref={field.ref}
-                        value={field.value}
-                        onChange={field.onChange}
-                      />
-                    )}
-                  />
-                </FieldWithError>
-                {initialData?.id && (
-                  <ImagePreviewWrapper
-                    id={initialData.id}
-                    bucket="accommodations"
-                    object={heroImageObject}
-                    title={initialData.title}
-                  />
-                )}
+            <AccommodationGallerySkeleton />
+            <AccommodationGallery
+              accommodation={
+                initialData
+                  ? {
+                      id: initialData.id,
+                      title: initialData.title,
+                    }
+                  : undefined
+              }
+            />
 
-                <FieldWithError
-                  label="Gallery Images"
-                  htmlFor="galleryImages"
-                  error={errors.galleryImages?.message}
-                >
-                  <Controller
-                    name="galleryImages"
-                    control={control}
-                    render={({ field }) => (
-                      <DocumentUploader
-                        multiple
-                        ref={field.ref}
-                        value={field.value}
-                        onChange={field.onChange}
-                      />
-                    )}
-                  />
-                </FieldWithError>
-                {initialData?.id && (
-                  <ImagesPreviewWrapper
-                    id={initialData.id}
-                    bucket="accommodations"
-                    title={initialData.title}
-                    prefix={galleryImagesPrefix}
-                    className="size-20"
-                  />
-                )}
-              </div>
-            </ModificationFormSection>
+            <AccommodationAmenity
+              fields={amenityFields}
+              error={errors.amenities?.message}
+              onAppend={(val) => appendAmenity(val)}
+              onRemove={(idx) => removeAmenity(idx)}
+              onUpdate={(idx, val) => updateAmenity(idx, val)}
+            />
 
-            <ModificationFormSection icon={IconSparkles} title="Amenities">
-              <Amenity
-                fields={amenityFields}
-                error={errors.amenities?.message}
-                onAppend={(val) => appendAmenity(val)}
-                onRemove={(idx) => removeAmenity(idx)}
-                onUpdate={(idx, val) => updateAmenity(idx, val)}
-              />
-            </ModificationFormSection>
-
-            <ModificationFormSection icon={IconShieldCheck} title="Policies">
-              <Policy
-                fields={policyFields}
-                addButtonTitle="Add Policy"
-                error={errors.policies?.message}
-                onAppend={(val) => appendPolicy(val)}
-                onRemove={(idx) => removePolicy(idx)}
-                onUpdate={(idx, val) => updatePolicy(idx, val)}
-                emptyFieldsMessage="No policy added yet"
-              />
-            </ModificationFormSection>
+            <AccommodationPolicy
+              fields={policyFields}
+              error={errors.policies?.message}
+              onAppend={(val) => appendPolicy(val)}
+              onRemove={(idx) => removePolicy(idx)}
+              onUpdate={(idx, val) => updatePolicy(idx, val)}
+            />
           </div>
         </div>
       </form>

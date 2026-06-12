@@ -7,10 +7,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { FC, useEffect } from 'react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
 import { AmenitySchema, amenitySchema } from '../../schema/amenity';
-import { AmenityFormProps } from '../../types/amenityForm';
+import type { AccommodationAmenityFormProps } from '@/features/accommodation/types/accommodationAmenity';
 
-export const AmenityForm: FC<AmenityFormProps> = (props) => {
-  const { currentItem, closeHandler, createHnadler, updateHnadler } = props;
+export const AccommodationAmenityForm: FC<AccommodationAmenityFormProps> = (props) => {
+  const { currentItem, closeHandler, createHandler, updateHandler } = props;
   const {
     reset,
     control,
@@ -37,8 +37,8 @@ export const AmenityForm: FC<AmenityFormProps> = (props) => {
     if (icon && title) {
       onClose();
       currentItem.index !== undefined
-        ? updateHnadler(currentItem.index, { icon, title })
-        : createHnadler({ icon, title });
+        ? updateHandler(currentItem.index, { icon, title })
+        : createHandler({ icon, title });
     }
   };
 

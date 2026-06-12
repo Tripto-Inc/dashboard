@@ -1,6 +1,7 @@
 import { FieldWithErrorSkeleton } from '@/components/shared/FieldWithError';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Fragment, type FC } from 'react';
+import { type FC, Fragment } from 'react';
+import { ModificationFormSectionSkeleton } from '@/components/shared/ModificationFormSection';
 
 export const CurrencyFormSkeleton: FC = () => {
   return (
@@ -15,18 +16,15 @@ export const CurrencyFormSkeleton: FC = () => {
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         <div className="space-y-6 lg:col-span-2">
-          <div className="rounded-3xl border border-slate-200 bg-white p-8">
-            <div className="mb-6 flex items-center justify-between border-b border-slate-100 pb-4">
-              <Skeleton className="h-6 w-45 rounded-sm" />
-              <Skeleton className="h-6 w-30 rounded-sm" />
-            </div>
-
+          <ModificationFormSectionSkeleton
+            headerExtraElements={<Skeleton className="h-6 w-30 rounded-sm" />}
+          >
             <div className="grid grid-cols-1 gap-x-6 md:grid-cols-2">
               <FieldWithErrorSkeleton />
               <FieldWithErrorSkeleton />
               <FieldWithErrorSkeleton />
             </div>
-          </div>
+          </ModificationFormSectionSkeleton>
         </div>
 
         <div>

@@ -86,7 +86,7 @@ export const accommodationListColumns: ColumnDef<AccommodationColumns>[] = [
           {displayedAmenities.map((amenity) => (
             <li
               key={amenity.title}
-              className="flex items-center gap-1 rounded-full border border-dashed border-indigo-600 px-3 py-2 text-indigo-600"
+              className="flex items-center gap-1 rounded-full border border-dashed border-indigo-600 bg-indigo-50/50 px-3 py-2 text-indigo-600"
             >
               <DynamicIcon name={amenity.icon} size={16} />
               <p className="text-sm">{amenity.title}</p>
@@ -116,7 +116,7 @@ export const accommodationListColumns: ColumnDef<AccommodationColumns>[] = [
           {displayedPolicies.map((policy) => (
             <HoverCard openDelay={0} closeDelay={0} key={policy.title}>
               <HoverCardTrigger asChild>
-                <li className="flex cursor-default items-center gap-1 rounded-full border border-dashed border-slate-600 px-3 py-2 text-slate-600">
+                <li className="flex cursor-default items-center gap-1 rounded-full border border-dashed border-slate-600 bg-slate-50/50 px-3 py-2 text-slate-600">
                   <DynamicIcon name={policy.icon} size={16} />
                   <p className="text-sm">{policy.title}</p>
                 </li>

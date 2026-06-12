@@ -2,7 +2,7 @@ export { AccommodationFormSkeleton } from './components/AccommodationFormSkeleto
 export { AccommodationFormsWrapper } from './components/AccommodationFormsWrapper';
 export { AccommodationList } from './components/AccommodationList';
 
-export { Amenity } from './components/amenity/Amenity';
-export { Policy } from './components/policy/Policy';
+export { AccommodationAmenity } from './components/amenity/AccommodationAmenity';
+export { AccommodationPolicy } from './components/policy/AccommodationPolicy';
 
 export { getAccommodationById } from './api/queries';

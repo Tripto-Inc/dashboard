@@ -8,11 +8,15 @@ datasource db {
 }
 
 model Destination {
-  id          String  @id @default(uuid())
-  description String
-  season      Season
-  isActive    Boolean @default(true)
-  addressId   String
+  id String @id @default(uuid())
+
+  city    String
+  country String
+  slogan  String
+
+  seasons Season[]
+
+  isActive Boolean @default(true)
 
   createdById String?
   updatedById String?
@@ -20,17 +24,13 @@ model Destination {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  address        Address         @relation("DestinationAddress", fields: [addressId], references: [id])
   accommodations Accommodation[] @relation("DestinationAccommodations")
 
   createdBy User? @relation("DestinationCreatedBy", fields: [createdById], references: [id])
   updatedBy User? @relation("DestinationUpdatedBy", fields: [updatedById], references: [id])
 
-  @@index([season])
+  @@unique([country, city, slogan])
   @@index([isActive])
-  @@index([addressId])
-  @@index([createdById])
-  @@index([updatedById])
 }
 
 model Activity {
@@ -78,7 +78,6 @@ model Address {
   updatedById String?
 
   activities     Activity[]      @relation("ActivityAddress")
-  destinations   Destination[]   @relation("DestinationAddress")
   accommodations Accommodation[] @relation("AccommodationAddress")
 
   createdBy User? @relation("AddressCreatedBy", fields: [createdById], references: [id])
@@ -282,6 +281,7 @@ model User {
   image         String?
   password      String?
   username      String?   @unique
+  role          String?   @default("Guest")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

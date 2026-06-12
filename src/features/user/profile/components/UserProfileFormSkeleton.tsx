@@ -2,6 +2,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { FC } from 'react';
 import { Fragment } from 'react/jsx-runtime';
 import { UserProfileFieldSkeleton } from './UserProfileFieldSkeleton';
+import { ModificationFormSectionSkeleton } from '@/components/shared/ModificationFormSection';
 
 export const UserProfileFormSkeleton: FC = () => {
   return (
@@ -26,15 +27,10 @@ export const UserProfileFormSkeleton: FC = () => {
 
               <div className="mt-4">
                 <Skeleton className="mb-0.5 h-6 w-1/3 min-w-28 rounded-sm" />
-                <Skeleton className="h-5 w-3/4 rounded-sm" />
                 <Skeleton className="mt-2 h-5 w-2/5 min-w-36 rounded-sm" />
               </div>
 
               <div className="mt-6 space-y-3 border-t border-slate-100 pt-6">
-                <div className="flex items-center justify-between text-sm">
-                  <Skeleton className="h-5 w-20 rounded-sm" />
-                  <Skeleton className="h-5 w-26 rounded-sm" />
-                </div>
                 <div className="flex items-center justify-between text-sm">
                   <Skeleton className="h-5 w-20 rounded-sm" />
                   <Skeleton className="h-5 w-26 rounded-sm" />
@@ -58,15 +54,7 @@ export const UserProfileFormSkeleton: FC = () => {
         </div>
 
         <div className="space-y-6 lg:col-span-2">
-          <div className="rounded-3xl border border-slate-200 bg-white p-8">
-            <div className="mb-6 flex items-center gap-2 border-b border-slate-100 pb-4">
-              <Skeleton className="flex size-10 items-center justify-center rounded-lg" />
-              <div>
-                <Skeleton className="mb-0.5 h-4.5 w-36 rounded-sm" />
-                <Skeleton className="mt-0.5 h-3.5 w-50 rounded-[4px]" />
-              </div>
-            </div>
-
+          <ModificationFormSectionSkeleton>
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-2">
               <UserProfileFieldSkeleton />
               <UserProfileFieldSkeleton />
@@ -75,7 +63,7 @@ export const UserProfileFormSkeleton: FC = () => {
               <UserProfileFieldSkeleton />
               <UserProfileFieldSkeleton />
             </div>
-          </div>
+          </ModificationFormSectionSkeleton>
 
           <div className="rounded-3xl border border-slate-200 bg-white p-8">
             <div className="mb-6 flex items-center gap-2 border-b border-slate-100 pb-4">

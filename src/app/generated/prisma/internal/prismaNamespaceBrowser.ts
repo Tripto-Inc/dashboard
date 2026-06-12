@@ -85,10 +85,11 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const DestinationScalarFieldEnum = {
   id: 'id',
-  description: 'description',
-  season: 'season',
+  city: 'city',
+  country: 'country',
+  slogan: 'slogan',
+  seasons: 'seasons',
   isActive: 'isActive',
-  addressId: 'addressId',
   createdById: 'createdById',
   updatedById: 'updatedById',
   createdAt: 'createdAt',
@@ -250,6 +251,7 @@ export const UserScalarFieldEnum = {
   image: 'image',
   password: 'password',
   username: 'username',
+  role: 'role',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

@@ -27,7 +27,6 @@ export const mainMenuItems = [
 
 export const inventoryItems = [
   {
-    disabled: true,
     icon: IconMapPin,
     id: 'destinations',
     href: '/destinations',

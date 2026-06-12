@@ -1,6 +1,7 @@
 import { FieldWithErrorSkeleton } from '@/components/shared/FieldWithError';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Fragment, type FC } from 'react';
+import { type FC, Fragment } from 'react';
+import { ModificationFormSectionSkeleton } from '@/components/shared/ModificationFormSection';
 
 export const ActivityFormSkeleton: FC = () => {
   return (
@@ -15,12 +16,9 @@ export const ActivityFormSkeleton: FC = () => {
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         <div className="space-y-6 lg:col-span-2">
-          <div className="rounded-3xl border border-slate-200 bg-white p-8">
-            <div className="mb-6 flex items-center justify-between border-b border-slate-100 pb-4">
-              <Skeleton className="h-6 w-45 rounded-sm" />
-              <Skeleton className="h-6 w-30 rounded-sm" />
-            </div>
-
+          <ModificationFormSectionSkeleton
+            headerExtraElements={<Skeleton className="h-6 w-30 rounded-sm" />}
+          >
             <div className="grid grid-cols-1 gap-x-6 md:grid-cols-2">
               <FieldWithErrorSkeleton />
               <FieldWithErrorSkeleton />
@@ -30,30 +28,24 @@ export const ActivityFormSkeleton: FC = () => {
               <Skeleton className="mb-1 h-5 w-30 rounded-sm" />
               <Skeleton className="mb-6 h-64 w-full" />
             </div>
-          </div>
+          </ModificationFormSectionSkeleton>
 
-          <div className="rounded-3xl border border-slate-200 bg-white p-8">
-            <div className="mb-6 flex items-center gap-2 border-b border-slate-100 pb-4">
-              <Skeleton className="h-6 w-45 rounded-sm" />
-            </div>
+          <ModificationFormSectionSkeleton>
             <div className="grid grid-cols-1 gap-x-6 md:grid-cols-2">
               <FieldWithErrorSkeleton />
               <FieldWithErrorSkeleton />
               <FieldWithErrorSkeleton />
               <FieldWithErrorSkeleton />
             </div>
-          </div>
+          </ModificationFormSectionSkeleton>
         </div>
 
         <div className="space-y-6">
-          <div className="rounded-3xl border border-slate-200 bg-white p-8">
-            <div className="mb-6 flex items-center gap-2 border-b border-slate-100 pb-4">
-              <Skeleton className="h-6 w-45 rounded-sm" />
-            </div>
+          <ModificationFormSectionSkeleton>
             <FieldWithErrorSkeleton />
             <FieldWithErrorSkeleton />
             <FieldWithErrorSkeleton />
-          </div>
+          </ModificationFormSectionSkeleton>
 
           <div className="rounded-3xl border border-slate-200 bg-white p-8">
             <Skeleton className="mb-2 h-7 w-40 rounded-sm" />

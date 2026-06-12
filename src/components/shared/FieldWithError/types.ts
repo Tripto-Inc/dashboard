@@ -7,3 +7,7 @@ export interface FieldWithErrorProps extends PropsWithChildren {
   required?: boolean;
   className?: string;
 }
+
+export  type FieldWithErrorSkeletonProps = {
+  className?: string;
+}

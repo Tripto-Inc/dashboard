@@ -26,10 +26,10 @@ export type AggregateDestination = {
 
 export type DestinationMinAggregateOutputType = {
   id: string | null
-  description: string | null
-  season: $Enums.Season | null
+  city: string | null
+  country: string | null
+  slogan: string | null
   isActive: boolean | null
-  addressId: string | null
   createdById: string | null
   updatedById: string | null
   createdAt: Date | null
@@ -38,10 +38,10 @@ export type DestinationMinAggregateOutputType = {
 
 export type DestinationMaxAggregateOutputType = {
   id: string | null
-  description: string | null
-  season: $Enums.Season | null
+  city: string | null
+  country: string | null
+  slogan: string | null
   isActive: boolean | null
-  addressId: string | null
   createdById: string | null
   updatedById: string | null
   createdAt: Date | null
@@ -50,10 +50,11 @@ export type DestinationMaxAggregateOutputType = {
 
 export type DestinationCountAggregateOutputType = {
   id: number
-  description: number
-  season: number
+  city: number
+  country: number
+  slogan: number
+  seasons: number
   isActive: number
-  addressId: number
   createdById: number
   updatedById: number
   createdAt: number
@@ -64,10 +65,10 @@ export type DestinationCountAggregateOutputType = {
 
 export type DestinationMinAggregateInputType = {
   id?: true
-  description?: true
-  season?: true
+  city?: true
+  country?: true
+  slogan?: true
   isActive?: true
-  addressId?: true
   createdById?: true
   updatedById?: true
   createdAt?: true
@@ -76,10 +77,10 @@ export type DestinationMinAggregateInputType = {
 
 export type DestinationMaxAggregateInputType = {
   id?: true
-  description?: true
-  season?: true
+  city?: true
+  country?: true
+  slogan?: true
   isActive?: true
-  addressId?: true
   createdById?: true
   updatedById?: true
   createdAt?: true
@@ -88,10 +89,11 @@ export type DestinationMaxAggregateInputType = {
 
 export type DestinationCountAggregateInputType = {
   id?: true
-  description?: true
-  season?: true
+  city?: true
+  country?: true
+  slogan?: true
+  seasons?: true
   isActive?: true
-  addressId?: true
   createdById?: true
   updatedById?: true
   createdAt?: true
@@ -173,10 +175,11 @@ export type DestinationGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 
 export type DestinationGroupByOutputType = {
   id: string
-  description: string
-  season: $Enums.Season
+  city: string
+  country: string
+  slogan: string
+  seasons: $Enums.Season[]
   isActive: boolean
-  addressId: string
   createdById: string | null
   updatedById: string | null
   createdAt: Date
@@ -206,15 +209,15 @@ export type DestinationWhereInput = {
   OR?: Prisma.DestinationWhereInput[]
   NOT?: Prisma.DestinationWhereInput | Prisma.DestinationWhereInput[]
   id?: Prisma.StringFilter<"Destination"> | string
-  description?: Prisma.StringFilter<"Destination"> | string
-  season?: Prisma.EnumSeasonFilter<"Destination"> | $Enums.Season
+  city?: Prisma.StringFilter<"Destination"> | string
+  country?: Prisma.StringFilter<"Destination"> | string
+  slogan?: Prisma.StringFilter<"Destination"> | string
+  seasons?: Prisma.EnumSeasonNullableListFilter<"Destination">
   isActive?: Prisma.BoolFilter<"Destination"> | boolean
-  addressId?: Prisma.StringFilter<"Destination"> | string
   createdById?: Prisma.StringNullableFilter<"Destination"> | string | null
   updatedById?: Prisma.StringNullableFilter<"Destination"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Destination"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Destination"> | Date | string
-  address?: Prisma.XOR<Prisma.AddressScalarRelationFilter, Prisma.AddressWhereInput>
   accommodations?: Prisma.AccommodationListRelationFilter
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   updatedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
@@ -222,15 +225,15 @@ export type DestinationWhereInput = {
 
 export type DestinationOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  description?: Prisma.SortOrder
-  season?: Prisma.SortOrder
+  city?: Prisma.SortOrder
+  country?: Prisma.SortOrder
+  slogan?: Prisma.SortOrder
+  seasons?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  addressId?: Prisma.SortOrder
   createdById?: Prisma.SortOrderInput | Prisma.SortOrder
   updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  address?: Prisma.AddressOrderByWithRelationInput
   accommodations?: Prisma.AccommodationOrderByRelationAggregateInput
   createdBy?: Prisma.UserOrderByWithRelationInput
   updatedBy?: Prisma.UserOrderByWithRelationInput
@@ -238,29 +241,31 @@ export type DestinationOrderByWithRelationInput = {
 
 export type DestinationWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  country_city_slogan?: Prisma.DestinationCountryCitySloganCompoundUniqueInput
   AND?: Prisma.DestinationWhereInput | Prisma.DestinationWhereInput[]
   OR?: Prisma.DestinationWhereInput[]
   NOT?: Prisma.DestinationWhereInput | Prisma.DestinationWhereInput[]
-  description?: Prisma.StringFilter<"Destination"> | string
-  season?: Prisma.EnumSeasonFilter<"Destination"> | $Enums.Season
+  city?: Prisma.StringFilter<"Destination"> | string
+  country?: Prisma.StringFilter<"Destination"> | string
+  slogan?: Prisma.StringFilter<"Destination"> | string
+  seasons?: Prisma.EnumSeasonNullableListFilter<"Destination">
   isActive?: Prisma.BoolFilter<"Destination"> | boolean
-  addressId?: Prisma.StringFilter<"Destination"> | string
   createdById?: Prisma.StringNullableFilter<"Destination"> | string | null
   updatedById?: Prisma.StringNullableFilter<"Destination"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Destination"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Destination"> | Date | string
-  address?: Prisma.XOR<Prisma.AddressScalarRelationFilter, Prisma.AddressWhereInput>
   accommodations?: Prisma.AccommodationListRelationFilter
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   updatedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-}, "id">
+}, "id" | "country_city_slogan">
 
 export type DestinationOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  description?: Prisma.SortOrder
-  season?: Prisma.SortOrder
+  city?: Prisma.SortOrder
+  country?: Prisma.SortOrder
+  slogan?: Prisma.SortOrder
+  seasons?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  addressId?: Prisma.SortOrder
   createdById?: Prisma.SortOrderInput | Prisma.SortOrder
   updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -275,10 +280,11 @@ export type DestinationScalarWhereWithAggregatesInput = {
   OR?: Prisma.DestinationScalarWhereWithAggregatesInput[]
   NOT?: Prisma.DestinationScalarWhereWithAggregatesInput | Prisma.DestinationScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Destination"> | string
-  description?: Prisma.StringWithAggregatesFilter<"Destination"> | string
-  season?: Prisma.EnumSeasonWithAggregatesFilter<"Destination"> | $Enums.Season
+  city?: Prisma.StringWithAggregatesFilter<"Destination"> | string
+  country?: Prisma.StringWithAggregatesFilter<"Destination"> | string
+  slogan?: Prisma.StringWithAggregatesFilter<"Destination"> | string
+  seasons?: Prisma.EnumSeasonNullableListFilter<"Destination">
   isActive?: Prisma.BoolWithAggregatesFilter<"Destination"> | boolean
-  addressId?: Prisma.StringWithAggregatesFilter<"Destination"> | string
   createdById?: Prisma.StringNullableWithAggregatesFilter<"Destination"> | string | null
   updatedById?: Prisma.StringNullableWithAggregatesFilter<"Destination"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Destination"> | Date | string
@@ -287,12 +293,13 @@ export type DestinationScalarWhereWithAggregatesInput = {
 
 export type DestinationCreateInput = {
   id?: string
-  description: string
-  season: $Enums.Season
+  city: string
+  country: string
+  slogan: string
+  seasons?: Prisma.DestinationCreateseasonsInput | $Enums.Season[]
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  address: Prisma.AddressCreateNestedOneWithoutDestinationsInput
   accommodations?: Prisma.AccommodationCreateNestedManyWithoutDestinationInput
   createdBy?: Prisma.UserCreateNestedOneWithoutDestinationsCreatedInput
   updatedBy?: Prisma.UserCreateNestedOneWithoutDestinationsUpdatedInput
@@ -300,10 +307,11 @@ export type DestinationCreateInput = {
 
 export type DestinationUncheckedCreateInput = {
   id?: string
-  description: string
-  season: $Enums.Season
+  city: string
+  country: string
+  slogan: string
+  seasons?: Prisma.DestinationCreateseasonsInput | $Enums.Season[]
   isActive?: boolean
-  addressId: string
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
@@ -313,12 +321,13 @@ export type DestinationUncheckedCreateInput = {
 
 export type DestinationUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  season?: Prisma.EnumSeasonFieldUpdateOperationsInput | $Enums.Season
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  slogan?: Prisma.StringFieldUpdateOperationsInput | string
+  seasons?: Prisma.DestinationUpdateseasonsInput | $Enums.Season[]
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  address?: Prisma.AddressUpdateOneRequiredWithoutDestinationsNestedInput
   accommodations?: Prisma.AccommodationUpdateManyWithoutDestinationNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutDestinationsCreatedNestedInput
   updatedBy?: Prisma.UserUpdateOneWithoutDestinationsUpdatedNestedInput
@@ -326,10 +335,11 @@ export type DestinationUpdateInput = {
 
 export type DestinationUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  season?: Prisma.EnumSeasonFieldUpdateOperationsInput | $Enums.Season
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  slogan?: Prisma.StringFieldUpdateOperationsInput | string
+  seasons?: Prisma.DestinationUpdateseasonsInput | $Enums.Season[]
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  addressId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -339,10 +349,11 @@ export type DestinationUncheckedUpdateInput = {
 
 export type DestinationCreateManyInput = {
   id?: string
-  description: string
-  season: $Enums.Season
+  city: string
+  country: string
+  slogan: string
+  seasons?: Prisma.DestinationCreateseasonsInput | $Enums.Season[]
   isActive?: boolean
-  addressId: string
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
@@ -351,8 +362,10 @@ export type DestinationCreateManyInput = {
 
 export type DestinationUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  season?: Prisma.EnumSeasonFieldUpdateOperationsInput | $Enums.Season
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  slogan?: Prisma.StringFieldUpdateOperationsInput | string
+  seasons?: Prisma.DestinationUpdateseasonsInput | $Enums.Season[]
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -360,22 +373,38 @@ export type DestinationUpdateManyMutationInput = {
 
 export type DestinationUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  season?: Prisma.EnumSeasonFieldUpdateOperationsInput | $Enums.Season
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  slogan?: Prisma.StringFieldUpdateOperationsInput | string
+  seasons?: Prisma.DestinationUpdateseasonsInput | $Enums.Season[]
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  addressId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type EnumSeasonNullableListFilter<$PrismaModel = never> = {
+  equals?: $Enums.Season[] | Prisma.ListEnumSeasonFieldRefInput<$PrismaModel> | null
+  has?: $Enums.Season | Prisma.EnumSeasonFieldRefInput<$PrismaModel> | null
+  hasEvery?: $Enums.Season[] | Prisma.ListEnumSeasonFieldRefInput<$PrismaModel>
+  hasSome?: $Enums.Season[] | Prisma.ListEnumSeasonFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
+}
+
+export type DestinationCountryCitySloganCompoundUniqueInput = {
+  country: string
+  city: string
+  slogan: string
+}
+
 export type DestinationCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  description?: Prisma.SortOrder
-  season?: Prisma.SortOrder
+  city?: Prisma.SortOrder
+  country?: Prisma.SortOrder
+  slogan?: Prisma.SortOrder
+  seasons?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  addressId?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   updatedById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -384,10 +413,10 @@ export type DestinationCountOrderByAggregateInput = {
 
 export type DestinationMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  description?: Prisma.SortOrder
-  season?: Prisma.SortOrder
+  city?: Prisma.SortOrder
+  country?: Prisma.SortOrder
+  slogan?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  addressId?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   updatedById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -396,14 +425,19 @@ export type DestinationMaxOrderByAggregateInput = {
 
 export type DestinationMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  description?: Prisma.SortOrder
-  season?: Prisma.SortOrder
+  city?: Prisma.SortOrder
+  country?: Prisma.SortOrder
+  slogan?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  addressId?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   updatedById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type DestinationNullableScalarRelationFilter = {
+  is?: Prisma.DestinationWhereInput | null
+  isNot?: Prisma.DestinationWhereInput | null
 }
 
 export type DestinationListRelationFilter = {
@@ -416,17 +450,17 @@ export type DestinationOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type DestinationNullableScalarRelationFilter = {
-  is?: Prisma.DestinationWhereInput | null
-  isNot?: Prisma.DestinationWhereInput | null
+export type DestinationCreateseasonsInput = {
+  set: $Enums.Season[]
 }
 
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
 
-export type EnumSeasonFieldUpdateOperationsInput = {
-  set?: $Enums.Season
+export type DestinationUpdateseasonsInput = {
+  set?: $Enums.Season[]
+  push?: $Enums.Season | $Enums.Season[]
 }
 
 export type BoolFieldUpdateOperationsInput = {
@@ -439,48 +473,6 @@ export type DateTimeFieldUpdateOperationsInput = {
 
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
-}
-
-export type DestinationCreateNestedManyWithoutAddressInput = {
-  create?: Prisma.XOR<Prisma.DestinationCreateWithoutAddressInput, Prisma.DestinationUncheckedCreateWithoutAddressInput> | Prisma.DestinationCreateWithoutAddressInput[] | Prisma.DestinationUncheckedCreateWithoutAddressInput[]
-  connectOrCreate?: Prisma.DestinationCreateOrConnectWithoutAddressInput | Prisma.DestinationCreateOrConnectWithoutAddressInput[]
-  createMany?: Prisma.DestinationCreateManyAddressInputEnvelope
-  connect?: Prisma.DestinationWhereUniqueInput | Prisma.DestinationWhereUniqueInput[]
-}
-
-export type DestinationUncheckedCreateNestedManyWithoutAddressInput = {
-  create?: Prisma.XOR<Prisma.DestinationCreateWithoutAddressInput, Prisma.DestinationUncheckedCreateWithoutAddressInput> | Prisma.DestinationCreateWithoutAddressInput[] | Prisma.DestinationUncheckedCreateWithoutAddressInput[]
-  connectOrCreate?: Prisma.DestinationCreateOrConnectWithoutAddressInput | Prisma.DestinationCreateOrConnectWithoutAddressInput[]
-  createMany?: Prisma.DestinationCreateManyAddressInputEnvelope
-  connect?: Prisma.DestinationWhereUniqueInput | Prisma.DestinationWhereUniqueInput[]
-}
-
-export type DestinationUpdateManyWithoutAddressNestedInput = {
-  create?: Prisma.XOR<Prisma.DestinationCreateWithoutAddressInput, Prisma.DestinationUncheckedCreateWithoutAddressInput> | Prisma.DestinationCreateWithoutAddressInput[] | Prisma.DestinationUncheckedCreateWithoutAddressInput[]
-  connectOrCreate?: Prisma.DestinationCreateOrConnectWithoutAddressInput | Prisma.DestinationCreateOrConnectWithoutAddressInput[]
-  upsert?: Prisma.DestinationUpsertWithWhereUniqueWithoutAddressInput | Prisma.DestinationUpsertWithWhereUniqueWithoutAddressInput[]
-  createMany?: Prisma.DestinationCreateManyAddressInputEnvelope
-  set?: Prisma.DestinationWhereUniqueInput | Prisma.DestinationWhereUniqueInput[]
-  disconnect?: Prisma.DestinationWhereUniqueInput | Prisma.DestinationWhereUniqueInput[]
-  delete?: Prisma.DestinationWhereUniqueInput | Prisma.DestinationWhereUniqueInput[]
-  connect?: Prisma.DestinationWhereUniqueInput | Prisma.DestinationWhereUniqueInput[]
-  update?: Prisma.DestinationUpdateWithWhereUniqueWithoutAddressInput | Prisma.DestinationUpdateWithWhereUniqueWithoutAddressInput[]
-  updateMany?: Prisma.DestinationUpdateManyWithWhereWithoutAddressInput | Prisma.DestinationUpdateManyWithWhereWithoutAddressInput[]
-  deleteMany?: Prisma.DestinationScalarWhereInput | Prisma.DestinationScalarWhereInput[]
-}
-
-export type DestinationUncheckedUpdateManyWithoutAddressNestedInput = {
-  create?: Prisma.XOR<Prisma.DestinationCreateWithoutAddressInput, Prisma.DestinationUncheckedCreateWithoutAddressInput> | Prisma.DestinationCreateWithoutAddressInput[] | Prisma.DestinationUncheckedCreateWithoutAddressInput[]
-  connectOrCreate?: Prisma.DestinationCreateOrConnectWithoutAddressInput | Prisma.DestinationCreateOrConnectWithoutAddressInput[]
-  upsert?: Prisma.DestinationUpsertWithWhereUniqueWithoutAddressInput | Prisma.DestinationUpsertWithWhereUniqueWithoutAddressInput[]
-  createMany?: Prisma.DestinationCreateManyAddressInputEnvelope
-  set?: Prisma.DestinationWhereUniqueInput | Prisma.DestinationWhereUniqueInput[]
-  disconnect?: Prisma.DestinationWhereUniqueInput | Prisma.DestinationWhereUniqueInput[]
-  delete?: Prisma.DestinationWhereUniqueInput | Prisma.DestinationWhereUniqueInput[]
-  connect?: Prisma.DestinationWhereUniqueInput | Prisma.DestinationWhereUniqueInput[]
-  update?: Prisma.DestinationUpdateWithWhereUniqueWithoutAddressInput | Prisma.DestinationUpdateWithWhereUniqueWithoutAddressInput[]
-  updateMany?: Prisma.DestinationUpdateManyWithWhereWithoutAddressInput | Prisma.DestinationUpdateManyWithWhereWithoutAddressInput[]
-  deleteMany?: Prisma.DestinationScalarWhereInput | Prisma.DestinationScalarWhereInput[]
 }
 
 export type DestinationCreateNestedOneWithoutAccommodationsInput = {
@@ -583,89 +575,26 @@ export type DestinationUncheckedUpdateManyWithoutUpdatedByNestedInput = {
   deleteMany?: Prisma.DestinationScalarWhereInput | Prisma.DestinationScalarWhereInput[]
 }
 
-export type DestinationCreateWithoutAddressInput = {
-  id?: string
-  description: string
-  season: $Enums.Season
-  isActive?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  accommodations?: Prisma.AccommodationCreateNestedManyWithoutDestinationInput
-  createdBy?: Prisma.UserCreateNestedOneWithoutDestinationsCreatedInput
-  updatedBy?: Prisma.UserCreateNestedOneWithoutDestinationsUpdatedInput
-}
-
-export type DestinationUncheckedCreateWithoutAddressInput = {
-  id?: string
-  description: string
-  season: $Enums.Season
-  isActive?: boolean
-  createdById?: string | null
-  updatedById?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  accommodations?: Prisma.AccommodationUncheckedCreateNestedManyWithoutDestinationInput
-}
-
-export type DestinationCreateOrConnectWithoutAddressInput = {
-  where: Prisma.DestinationWhereUniqueInput
-  create: Prisma.XOR<Prisma.DestinationCreateWithoutAddressInput, Prisma.DestinationUncheckedCreateWithoutAddressInput>
-}
-
-export type DestinationCreateManyAddressInputEnvelope = {
-  data: Prisma.DestinationCreateManyAddressInput | Prisma.DestinationCreateManyAddressInput[]
-  skipDuplicates?: boolean
-}
-
-export type DestinationUpsertWithWhereUniqueWithoutAddressInput = {
-  where: Prisma.DestinationWhereUniqueInput
-  update: Prisma.XOR<Prisma.DestinationUpdateWithoutAddressInput, Prisma.DestinationUncheckedUpdateWithoutAddressInput>
-  create: Prisma.XOR<Prisma.DestinationCreateWithoutAddressInput, Prisma.DestinationUncheckedCreateWithoutAddressInput>
-}
-
-export type DestinationUpdateWithWhereUniqueWithoutAddressInput = {
-  where: Prisma.DestinationWhereUniqueInput
-  data: Prisma.XOR<Prisma.DestinationUpdateWithoutAddressInput, Prisma.DestinationUncheckedUpdateWithoutAddressInput>
-}
-
-export type DestinationUpdateManyWithWhereWithoutAddressInput = {
-  where: Prisma.DestinationScalarWhereInput
-  data: Prisma.XOR<Prisma.DestinationUpdateManyMutationInput, Prisma.DestinationUncheckedUpdateManyWithoutAddressInput>
-}
-
-export type DestinationScalarWhereInput = {
-  AND?: Prisma.DestinationScalarWhereInput | Prisma.DestinationScalarWhereInput[]
-  OR?: Prisma.DestinationScalarWhereInput[]
-  NOT?: Prisma.DestinationScalarWhereInput | Prisma.DestinationScalarWhereInput[]
-  id?: Prisma.StringFilter<"Destination"> | string
-  description?: Prisma.StringFilter<"Destination"> | string
-  season?: Prisma.EnumSeasonFilter<"Destination"> | $Enums.Season
-  isActive?: Prisma.BoolFilter<"Destination"> | boolean
-  addressId?: Prisma.StringFilter<"Destination"> | string
-  createdById?: Prisma.StringNullableFilter<"Destination"> | string | null
-  updatedById?: Prisma.StringNullableFilter<"Destination"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"Destination"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Destination"> | Date | string
-}
-
 export type DestinationCreateWithoutAccommodationsInput = {
   id?: string
-  description: string
-  season: $Enums.Season
+  city: string
+  country: string
+  slogan: string
+  seasons?: Prisma.DestinationCreateseasonsInput | $Enums.Season[]
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  address: Prisma.AddressCreateNestedOneWithoutDestinationsInput
   createdBy?: Prisma.UserCreateNestedOneWithoutDestinationsCreatedInput
   updatedBy?: Prisma.UserCreateNestedOneWithoutDestinationsUpdatedInput
 }
 
 export type DestinationUncheckedCreateWithoutAccommodationsInput = {
   id?: string
-  description: string
-  season: $Enums.Season
+  city: string
+  country: string
+  slogan: string
+  seasons?: Prisma.DestinationCreateseasonsInput | $Enums.Season[]
   isActive?: boolean
-  addressId: string
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
@@ -690,22 +619,24 @@ export type DestinationUpdateToOneWithWhereWithoutAccommodationsInput = {
 
 export type DestinationUpdateWithoutAccommodationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  season?: Prisma.EnumSeasonFieldUpdateOperationsInput | $Enums.Season
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  slogan?: Prisma.StringFieldUpdateOperationsInput | string
+  seasons?: Prisma.DestinationUpdateseasonsInput | $Enums.Season[]
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  address?: Prisma.AddressUpdateOneRequiredWithoutDestinationsNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutDestinationsCreatedNestedInput
   updatedBy?: Prisma.UserUpdateOneWithoutDestinationsUpdatedNestedInput
 }
 
 export type DestinationUncheckedUpdateWithoutAccommodationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  season?: Prisma.EnumSeasonFieldUpdateOperationsInput | $Enums.Season
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  slogan?: Prisma.StringFieldUpdateOperationsInput | string
+  seasons?: Prisma.DestinationUpdateseasonsInput | $Enums.Season[]
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  addressId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -714,22 +645,24 @@ export type DestinationUncheckedUpdateWithoutAccommodationsInput = {
 
 export type DestinationCreateWithoutCreatedByInput = {
   id?: string
-  description: string
-  season: $Enums.Season
+  city: string
+  country: string
+  slogan: string
+  seasons?: Prisma.DestinationCreateseasonsInput | $Enums.Season[]
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  address: Prisma.AddressCreateNestedOneWithoutDestinationsInput
   accommodations?: Prisma.AccommodationCreateNestedManyWithoutDestinationInput
   updatedBy?: Prisma.UserCreateNestedOneWithoutDestinationsUpdatedInput
 }
 
 export type DestinationUncheckedCreateWithoutCreatedByInput = {
   id?: string
-  description: string
-  season: $Enums.Season
+  city: string
+  country: string
+  slogan: string
+  seasons?: Prisma.DestinationCreateseasonsInput | $Enums.Season[]
   isActive?: boolean
-  addressId: string
   updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -748,22 +681,24 @@ export type DestinationCreateManyCreatedByInputEnvelope = {
 
 export type DestinationCreateWithoutUpdatedByInput = {
   id?: string
-  description: string
-  season: $Enums.Season
+  city: string
+  country: string
+  slogan: string
+  seasons?: Prisma.DestinationCreateseasonsInput | $Enums.Season[]
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  address: Prisma.AddressCreateNestedOneWithoutDestinationsInput
   accommodations?: Prisma.AccommodationCreateNestedManyWithoutDestinationInput
   createdBy?: Prisma.UserCreateNestedOneWithoutDestinationsCreatedInput
 }
 
 export type DestinationUncheckedCreateWithoutUpdatedByInput = {
   id?: string
-  description: string
-  season: $Enums.Season
+  city: string
+  country: string
+  slogan: string
+  seasons?: Prisma.DestinationCreateseasonsInput | $Enums.Season[]
   isActive?: boolean
-  addressId: string
   createdById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -796,6 +731,22 @@ export type DestinationUpdateManyWithWhereWithoutCreatedByInput = {
   data: Prisma.XOR<Prisma.DestinationUpdateManyMutationInput, Prisma.DestinationUncheckedUpdateManyWithoutCreatedByInput>
 }
 
+export type DestinationScalarWhereInput = {
+  AND?: Prisma.DestinationScalarWhereInput | Prisma.DestinationScalarWhereInput[]
+  OR?: Prisma.DestinationScalarWhereInput[]
+  NOT?: Prisma.DestinationScalarWhereInput | Prisma.DestinationScalarWhereInput[]
+  id?: Prisma.StringFilter<"Destination"> | string
+  city?: Prisma.StringFilter<"Destination"> | string
+  country?: Prisma.StringFilter<"Destination"> | string
+  slogan?: Prisma.StringFilter<"Destination"> | string
+  seasons?: Prisma.EnumSeasonNullableListFilter<"Destination">
+  isActive?: Prisma.BoolFilter<"Destination"> | boolean
+  createdById?: Prisma.StringNullableFilter<"Destination"> | string | null
+  updatedById?: Prisma.StringNullableFilter<"Destination"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"Destination"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Destination"> | Date | string
+}
+
 export type DestinationUpsertWithWhereUniqueWithoutUpdatedByInput = {
   where: Prisma.DestinationWhereUniqueInput
   update: Prisma.XOR<Prisma.DestinationUpdateWithoutUpdatedByInput, Prisma.DestinationUncheckedUpdateWithoutUpdatedByInput>
@@ -812,58 +763,13 @@ export type DestinationUpdateManyWithWhereWithoutUpdatedByInput = {
   data: Prisma.XOR<Prisma.DestinationUpdateManyMutationInput, Prisma.DestinationUncheckedUpdateManyWithoutUpdatedByInput>
 }
 
-export type DestinationCreateManyAddressInput = {
-  id?: string
-  description: string
-  season: $Enums.Season
-  isActive?: boolean
-  createdById?: string | null
-  updatedById?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type DestinationUpdateWithoutAddressInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  season?: Prisma.EnumSeasonFieldUpdateOperationsInput | $Enums.Season
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  accommodations?: Prisma.AccommodationUpdateManyWithoutDestinationNestedInput
-  createdBy?: Prisma.UserUpdateOneWithoutDestinationsCreatedNestedInput
-  updatedBy?: Prisma.UserUpdateOneWithoutDestinationsUpdatedNestedInput
-}
-
-export type DestinationUncheckedUpdateWithoutAddressInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  season?: Prisma.EnumSeasonFieldUpdateOperationsInput | $Enums.Season
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  accommodations?: Prisma.AccommodationUncheckedUpdateManyWithoutDestinationNestedInput
-}
-
-export type DestinationUncheckedUpdateManyWithoutAddressInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  season?: Prisma.EnumSeasonFieldUpdateOperationsInput | $Enums.Season
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
 export type DestinationCreateManyCreatedByInput = {
   id?: string
-  description: string
-  season: $Enums.Season
+  city: string
+  country: string
+  slogan: string
+  seasons?: Prisma.DestinationCreateseasonsInput | $Enums.Season[]
   isActive?: boolean
-  addressId: string
   updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -871,10 +777,11 @@ export type DestinationCreateManyCreatedByInput = {
 
 export type DestinationCreateManyUpdatedByInput = {
   id?: string
-  description: string
-  season: $Enums.Season
+  city: string
+  country: string
+  slogan: string
+  seasons?: Prisma.DestinationCreateseasonsInput | $Enums.Season[]
   isActive?: boolean
-  addressId: string
   createdById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -882,22 +789,24 @@ export type DestinationCreateManyUpdatedByInput = {
 
 export type DestinationUpdateWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  season?: Prisma.EnumSeasonFieldUpdateOperationsInput | $Enums.Season
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  slogan?: Prisma.StringFieldUpdateOperationsInput | string
+  seasons?: Prisma.DestinationUpdateseasonsInput | $Enums.Season[]
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  address?: Prisma.AddressUpdateOneRequiredWithoutDestinationsNestedInput
   accommodations?: Prisma.AccommodationUpdateManyWithoutDestinationNestedInput
   updatedBy?: Prisma.UserUpdateOneWithoutDestinationsUpdatedNestedInput
 }
 
 export type DestinationUncheckedUpdateWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  season?: Prisma.EnumSeasonFieldUpdateOperationsInput | $Enums.Season
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  slogan?: Prisma.StringFieldUpdateOperationsInput | string
+  seasons?: Prisma.DestinationUpdateseasonsInput | $Enums.Season[]
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  addressId?: Prisma.StringFieldUpdateOperationsInput | string
   updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -906,10 +815,11 @@ export type DestinationUncheckedUpdateWithoutCreatedByInput = {
 
 export type DestinationUncheckedUpdateManyWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  season?: Prisma.EnumSeasonFieldUpdateOperationsInput | $Enums.Season
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  slogan?: Prisma.StringFieldUpdateOperationsInput | string
+  seasons?: Prisma.DestinationUpdateseasonsInput | $Enums.Season[]
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  addressId?: Prisma.StringFieldUpdateOperationsInput | string
   updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -917,22 +827,24 @@ export type DestinationUncheckedUpdateManyWithoutCreatedByInput = {
 
 export type DestinationUpdateWithoutUpdatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  season?: Prisma.EnumSeasonFieldUpdateOperationsInput | $Enums.Season
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  slogan?: Prisma.StringFieldUpdateOperationsInput | string
+  seasons?: Prisma.DestinationUpdateseasonsInput | $Enums.Season[]
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  address?: Prisma.AddressUpdateOneRequiredWithoutDestinationsNestedInput
   accommodations?: Prisma.AccommodationUpdateManyWithoutDestinationNestedInput
   createdBy?: Prisma.UserUpdateOneWithoutDestinationsCreatedNestedInput
 }
 
 export type DestinationUncheckedUpdateWithoutUpdatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  season?: Prisma.EnumSeasonFieldUpdateOperationsInput | $Enums.Season
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  slogan?: Prisma.StringFieldUpdateOperationsInput | string
+  seasons?: Prisma.DestinationUpdateseasonsInput | $Enums.Season[]
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  addressId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -941,10 +853,11 @@ export type DestinationUncheckedUpdateWithoutUpdatedByInput = {
 
 export type DestinationUncheckedUpdateManyWithoutUpdatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  season?: Prisma.EnumSeasonFieldUpdateOperationsInput | $Enums.Season
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  slogan?: Prisma.StringFieldUpdateOperationsInput | string
+  seasons?: Prisma.DestinationUpdateseasonsInput | $Enums.Season[]
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  addressId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -983,15 +896,15 @@ export type DestinationCountOutputTypeCountAccommodationsArgs<ExtArgs extends ru
 
 export type DestinationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  description?: boolean
-  season?: boolean
+  city?: boolean
+  country?: boolean
+  slogan?: boolean
+  seasons?: boolean
   isActive?: boolean
-  addressId?: boolean
   createdById?: boolean
   updatedById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   accommodations?: boolean | Prisma.Destination$accommodationsArgs<ExtArgs>
   createdBy?: boolean | Prisma.Destination$createdByArgs<ExtArgs>
   updatedBy?: boolean | Prisma.Destination$updatedByArgs<ExtArgs>
@@ -1000,61 +913,59 @@ export type DestinationSelect<ExtArgs extends runtime.Types.Extensions.InternalA
 
 export type DestinationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  description?: boolean
-  season?: boolean
+  city?: boolean
+  country?: boolean
+  slogan?: boolean
+  seasons?: boolean
   isActive?: boolean
-  addressId?: boolean
   createdById?: boolean
   updatedById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.Destination$createdByArgs<ExtArgs>
   updatedBy?: boolean | Prisma.Destination$updatedByArgs<ExtArgs>
 }, ExtArgs["result"]["destination"]>
 
 export type DestinationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  description?: boolean
-  season?: boolean
+  city?: boolean
+  country?: boolean
+  slogan?: boolean
+  seasons?: boolean
   isActive?: boolean
-  addressId?: boolean
   createdById?: boolean
   updatedById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.Destination$createdByArgs<ExtArgs>
   updatedBy?: boolean | Prisma.Destination$updatedByArgs<ExtArgs>
 }, ExtArgs["result"]["destination"]>
 
 export type DestinationSelectScalar = {
   id?: boolean
-  description?: boolean
-  season?: boolean
+  city?: boolean
+  country?: boolean
+  slogan?: boolean
+  seasons?: boolean
   isActive?: boolean
-  addressId?: boolean
   createdById?: boolean
   updatedById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type DestinationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "description" | "season" | "isActive" | "addressId" | "createdById" | "updatedById" | "createdAt" | "updatedAt", ExtArgs["result"]["destination"]>
+export type DestinationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "city" | "country" | "slogan" | "seasons" | "isActive" | "createdById" | "updatedById" | "createdAt" | "updatedAt", ExtArgs["result"]["destination"]>
 export type DestinationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   accommodations?: boolean | Prisma.Destination$accommodationsArgs<ExtArgs>
   createdBy?: boolean | Prisma.Destination$createdByArgs<ExtArgs>
   updatedBy?: boolean | Prisma.Destination$updatedByArgs<ExtArgs>
   _count?: boolean | Prisma.DestinationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type DestinationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.Destination$createdByArgs<ExtArgs>
   updatedBy?: boolean | Prisma.Destination$updatedByArgs<ExtArgs>
 }
 export type DestinationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.Destination$createdByArgs<ExtArgs>
   updatedBy?: boolean | Prisma.Destination$updatedByArgs<ExtArgs>
 }
@@ -1062,17 +973,17 @@ export type DestinationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.
 export type $DestinationPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Destination"
   objects: {
-    address: Prisma.$AddressPayload<ExtArgs>
     accommodations: Prisma.$AccommodationPayload<ExtArgs>[]
     createdBy: Prisma.$UserPayload<ExtArgs> | null
     updatedBy: Prisma.$UserPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    description: string
-    season: $Enums.Season
+    city: string
+    country: string
+    slogan: string
+    seasons: $Enums.Season[]
     isActive: boolean
-    addressId: string
     createdById: string | null
     updatedById: string | null
     createdAt: Date
@@ -1471,7 +1382,6 @@ readonly fields: DestinationFieldRefs;
  */
 export interface Prisma__DestinationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  address<T extends Prisma.AddressDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AddressDefaultArgs<ExtArgs>>): Prisma.Prisma__AddressClient<runtime.Types.Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   accommodations<T extends Prisma.Destination$accommodationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Destination$accommodationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccommodationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   createdBy<T extends Prisma.Destination$createdByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Destination$createdByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   updatedBy<T extends Prisma.Destination$updatedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Destination$updatedByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -1505,10 +1415,11 @@ export interface Prisma__DestinationClient<T, Null = never, ExtArgs extends runt
  */
 export interface DestinationFieldRefs {
   readonly id: Prisma.FieldRef<"Destination", 'String'>
-  readonly description: Prisma.FieldRef<"Destination", 'String'>
-  readonly season: Prisma.FieldRef<"Destination", 'Season'>
+  readonly city: Prisma.FieldRef<"Destination", 'String'>
+  readonly country: Prisma.FieldRef<"Destination", 'String'>
+  readonly slogan: Prisma.FieldRef<"Destination", 'String'>
+  readonly seasons: Prisma.FieldRef<"Destination", 'Season[]'>
   readonly isActive: Prisma.FieldRef<"Destination", 'Boolean'>
-  readonly addressId: Prisma.FieldRef<"Destination", 'String'>
   readonly createdById: Prisma.FieldRef<"Destination", 'String'>
   readonly updatedById: Prisma.FieldRef<"Destination", 'String'>
   readonly createdAt: Prisma.FieldRef<"Destination", 'DateTime'>

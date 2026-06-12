@@ -1,11 +1,13 @@
 import z from 'zod';
-import { amenitySchema } from '../../schema/amenity';
-import { galleryImagesSchema, heroImageSchema } from '../../schema/gallery';
-import { locationSchema } from '../../schema/location';
-import { policySchema } from '../../schema/policy';
-import { seasonalPriceSchema } from './seasonalPrice';
+import { seasonSchema } from '@/features/accommodation/schema/season';
+import { locationSchema } from '@/features/accommodation/schema/location';
+import { galleryImagesSchema, heroImageSchema } from '@/features/accommodation/schema/gallery';
+import { seasonalPriceSchema } from '@/features/accommodation/house/schema/seasonalPrice';
+import { policySchema } from '@/features/accommodation/schema/policy';
+import { amenitySchema } from '@/features/accommodation/schema/amenity';
 
 export const houseSchema = z.object({
+  ...seasonSchema.shape,
   ...locationSchema.shape,
   id: z.string().optional(),
   title: z.string().min(1, 'Title is required'),

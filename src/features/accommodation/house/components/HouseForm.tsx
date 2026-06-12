@@ -1,53 +1,38 @@
 'use client';
 
 import { ButtonPrimary } from '@/components/shared/ButtonPrimary';
-import { DocumentUploader } from '@/components/shared/DocumentUploader';
 import { FieldWithError } from '@/components/shared/FieldWithError';
 import { InfiniteDropdown } from '@/components/shared/InfiniteDropdown';
 import { ModificationFormSection } from '@/components/shared/ModificationFormSection';
 import { Input } from '@/components/ui/input';
-import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
 import { Textarea } from '@/components/ui/textarea';
-import { Amenity, Policy } from '@/features/accommodation';
+import { AccommodationAmenity, AccommodationPolicy } from '@/features/accommodation';
 import { useGetCurrenciesDropdown } from '@/features/currency/hooks/useGetCurrenciesDropdown';
-import { ImagePreviewWrapper } from '@/features/document';
-import { ImagesPreviewWrapper } from '@/features/document/components/ImagesPreviewWrapper';
 import { DOCUMENT_QUERY_KEYS } from '@/features/document/constants';
 import { queryClient } from '@/lib/query-client';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  IconBath,
-  IconBed,
-  IconCalendar,
-  IconDeviceFloppy,
-  IconHome,
-  IconImageInPicture,
-  IconInfoCircle,
-  IconMapPin,
-  IconMoneybag,
-  IconRuler,
-  IconShieldCheck,
-  IconSparkles,
-  IconStackBack,
-  IconUsers,
-} from '@tabler/icons-react';
+import { IconDeviceFloppy, IconInfoCircle, IconMoneybag } from '@tabler/icons-react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { FC, useEffect, useMemo } from 'react';
 import { Controller, FormProvider, useFieldArray, useForm, useWatch } from 'react-hook-form';
-import { LocationSkeleton } from '../../components/location/LocationSkeleton';
+import { AccommodationLocationSkeleton } from '../../components/location/AccommodationLocationSkeleton';
 import { useCreateHouse } from '../hooks/useCreateHouse';
 import { useUpdateHouse } from '../hooks/useUpdateHouse';
 import { HouseSchema, houseSchema } from '../schema/house';
 import { HouseFormProps } from '../types/houseForm';
 import { SeasonalPrice } from './seasonal-price/SeasonalPrice';
 import { NumberInput } from '@/components/shared/Input/NumberInput';
+import { AccommodationGallery } from '@/features/accommodation/components/gallery/AccommodationGallery';
 
-const Location = dynamic(
-  () => import('../../components/location/Location').then((module) => module.Location),
+const AccommodationLocation = dynamic(
+  () =>
+    import('../../components/location/AccommodationLocation').then(
+      (module) => module.AccommodationLocation,
+    ),
   {
     ssr: false,
-    loading: () => <LocationSkeleton />,
+    loading: () => <AccommodationLocationSkeleton />,
   },
 );
 
@@ -57,8 +42,6 @@ export const HouseForm: FC<HouseFormProps> = ({ initialData }) => {
   const createHouseMutation = useCreateHouse();
   const updateHouseMutation = useUpdateHouse();
 
-  const heroImageObject = `${initialData?.id}/hero.webp`;
-  const galleryImagesPrefix = `${initialData?.id}/gallery`;
   const isSubmitting = updateHouseMutation.isPending || createHouseMutation.isPending;
 
   const form = useForm<HouseSchema>({
@@ -75,9 +58,10 @@ export const HouseForm: FC<HouseFormProps> = ({ initialData }) => {
       addressDetails: '',
       latitude: undefined,
       longitude: undefined,
+      season: undefined,
+
       heroImage: undefined,
       galleryImages: [],
-
       availableDates: [],
       amenities: [],
       policies: [],
@@ -350,18 +334,16 @@ export const HouseForm: FC<HouseFormProps> = ({ initialData }) => {
               </div>
             </ModificationFormSection>
 
-            <ModificationFormSection icon={IconMapPin} title="Address">
-              <Location
-                value={{ latitude, longitude }}
-                onChange={({ latitude, longitude }) => {
-                  setValue('latitude', latitude);
-                  setValue('longitude', longitude);
+            <AccommodationLocation
+              value={{ latitude, longitude }}
+              onChange={({ latitude, longitude }) => {
+                setValue('latitude', latitude);
+                setValue('longitude', longitude);
 
-                  trigger('latitude');
-                  trigger('longitude');
-                }}
-              />
-            </ModificationFormSection>
+                trigger('latitude');
+                trigger('longitude');
+              }}
+            />
 
             <ModificationFormSection icon={IconMoneybag} title="Pricing">
               <div className="grid grid-cols-1 gap-x-6 md:grid-cols-3">
@@ -432,95 +414,37 @@ export const HouseForm: FC<HouseFormProps> = ({ initialData }) => {
           </div>
 
           <div className="space-y-6">
-            <ModificationFormSection icon={IconImageInPicture} title="Gallery">
-              <div className="flex flex-col">
-                <FieldWithError
-                  label="Hero Image"
-                  htmlFor="heroImage"
-                  error={errors.heroImage?.message}
-                >
-                  <Controller
-                    name="heroImage"
-                    control={control}
-                    render={({ field }) => (
-                      <DocumentUploader
-                        ref={field.ref}
-                        value={field.value}
-                        onChange={field.onChange}
-                      />
-                    )}
-                  />
-                </FieldWithError>
-                {initialData?.id && (
-                  <ImagePreviewWrapper
-                    id={initialData.id}
-                    bucket="accommodations"
-                    object={heroImageObject}
-                    title={initialData.title}
-                  />
-                )}
-
-                <FieldWithError
-                  label="Gallery Images"
-                  htmlFor="galleryImages"
-                  error={errors.galleryImages?.message}
-                >
-                  <Controller
-                    name="galleryImages"
-                    control={control}
-                    render={({ field }) => (
-                      <DocumentUploader
-                        multiple
-                        ref={field.ref}
-                        value={field.value}
-                        onChange={field.onChange}
-                      />
-                    )}
-                  />
-                </FieldWithError>
-                {initialData?.id && (
-                  <ImagesPreviewWrapper
-                    id={initialData.id}
-                    bucket="accommodations"
-                    title={initialData.title}
-                    prefix={galleryImagesPrefix}
-                    className="size-20"
-                  />
-                )}
-              </div>
-            </ModificationFormSection>
-
-            <ModificationFormSection icon={IconSparkles} title="Amenities">
-              <Amenity
-                fields={amenityFields}
-                error={errors.amenities?.message}
-                onAppend={(val) => appendAmenity(val)}
-                onRemove={(idx) => removeAmenity(idx)}
-                onUpdate={(idx, val) => updateAmenity(idx, val)}
-              />
-            </ModificationFormSection>
-
-            <ModificationFormSection icon={IconShieldCheck} title="Policies">
-              <Policy
-                fields={policyFields}
-                addButtonTitle="Add Policy"
-                error={errors.policies?.message}
-                onAppend={(val) => appendPolicy(val)}
-                onRemove={(idx) => removePolicy(idx)}
-                onUpdate={(idx, val) => updatePolicy(idx, val)}
-                emptyFieldsMessage="No policy added yet"
-              />
-            </ModificationFormSection>
-
-            <ModificationFormSection icon={IconCalendar} title="Available Dates & Seasonal Pricing">
-              <SeasonalPrice
-                fields={dateFields}
-                onAppend={(val) => appendDate(val)}
-                onRemove={(idx) => removeDate(idx)}
-                onUpdate={(idx, val) => updateDate(idx, val)}
-                currencyId={currencyId}
-              />
-            </ModificationFormSection>
+            <AccommodationGallery
+              accommodation={
+                initialData
+                  ? {
+                      id: initialData.id,
+                      title: initialData.title,
+                    }
+                  : undefined
+              }
+            />
+            <AccommodationAmenity
+              fields={amenityFields}
+              error={errors.amenities?.message}
+              onAppend={(val) => appendAmenity(val)}
+              onRemove={(idx) => removeAmenity(idx)}
+              onUpdate={(idx, val) => updateAmenity(idx, val)}
+            />
+            <AccommodationPolicy
+              fields={policyFields}
+              error={errors.policies?.message}
+              onAppend={(val) => appendPolicy(val)}
+              onRemove={(idx) => removePolicy(idx)}
+              onUpdate={(idx, val) => updatePolicy(idx, val)}
+            />
+            <SeasonalPrice
+              fields={dateFields}
+              onAppend={(val) => appendDate(val)}
+              onRemove={(idx) => removeDate(idx)}
+              onUpdate={(idx, val) => updateDate(idx, val)}
+              currencyId={currencyId}
+            />
           </div>
         </div>
       </form>

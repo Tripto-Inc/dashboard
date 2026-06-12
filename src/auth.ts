@@ -40,9 +40,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
     }),
   ],
+
   pages: {
     signIn: '/login',
   },
+
   callbacks: {
     async authorized({ auth, request }) {
       const isLoggedIn = !!auth?.user;
@@ -50,9 +52,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       const isAuthPage = pathname.startsWith('/login') || pathname.startsWith('/signup');
 
       if (isAuthPage && isLoggedIn) return Response.redirect(new URL('/', request.nextUrl));
-      if (!isLoggedIn && !isAuthPage) return false;
-
-      return true;
+      return !(!isLoggedIn && !isAuthPage);
     },
 
     async jwt({ token, account }) {

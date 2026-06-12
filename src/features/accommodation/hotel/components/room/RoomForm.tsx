@@ -4,7 +4,7 @@ import { FieldWithError } from '@/components/shared/FieldWithError';
 import { InfiniteDropdown } from '@/components/shared/InfiniteDropdown';
 import { NumberInput } from '@/components/shared/Input/NumberInput';
 import { Input } from '@/components/ui/input';
-import { Amenity } from '@/features/accommodation/components/amenity/Amenity';
+import { AccommodationAmenity } from '@/features/accommodation/components/amenity/AccommodationAmenity';
 import { useGetCurrenciesDropdown } from '@/features/currency/hooks/useGetCurrenciesDropdown';
 import { ImagesPreviewWrapper } from '@/features/document/components/ImagesPreviewWrapper';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -391,7 +391,7 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
           <h2 className="font-bold text-slate-800">Room Amenities</h2>
         </div>
 
-        <Amenity
+        <AccommodationAmenity
           fields={amenityFields}
           error={errors.amenities?.message}
           onAppend={(val) => appendAmenity(val)}

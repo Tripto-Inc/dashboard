@@ -16,9 +16,9 @@ import {
 } from '@tabler/icons-react';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
-import { Fragment, type FC } from 'react';
+import { type FC, Fragment } from 'react';
 import { UserProfileField } from './UserProfileField';
-import { UserProfileFormSkeleton } from './UserProfileFormSkeleton';
+import { UserProfileFormSkeleton } from '@/features/user';
 
 export const UserProfileForm: FC = () => {
   const { data: session, status } = useSession();
@@ -78,23 +78,15 @@ export const UserProfileForm: FC = () => {
                     ) : null}
                   </div>
                 </div>
-                <div className="absolute -right-1 bottom-2 h-5 w-5 rounded-full border-2 border-white bg-green-500"></div>
+                <div className="absolute -right-1 bottom-0 h-5 w-5 rounded-full border-2 border-white bg-green-500"></div>
               </div>
 
               <div className="mt-4">
                 <h2 className="text-xl font-bold">{session?.user?.name}</h2>
-                <p className="text-sm font-medium text-blue-600">Role</p>
-                <div className="mt-3 flex items-center gap-2 text-sm text-slate-500">
-                  <IconMapPin size={14} />
-                  <span>N/A</span>
-                </div>
+                <p className="text-sm font-medium text-blue-600">{session?.user.role}</p>
               </div>
 
               <div className="mt-6 space-y-3 border-t border-slate-100 pt-6">
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-slate-500">Employee ID</span>
-                  <span className="font-mono font-medium">N/A</span>
-                </div>
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-slate-500">Status</span>
                   <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-bold text-green-700">

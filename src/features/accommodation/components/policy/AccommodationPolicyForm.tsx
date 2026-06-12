@@ -7,11 +7,11 @@ import { Textarea } from '@/components/ui/textarea';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FC, useEffect } from 'react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
-import { PolicySchema, policySchema } from '../../schema/policy';
-import { PolicyFormProps } from '../../types/policyForm';
+import { AccommodationPolicyFormProps } from '@/features/accommodation/types/accommodationPolicy';
+import { policySchema, PolicySchema } from '@/features/accommodation/schema/policy';
 
-export const PolicyForm: FC<PolicyFormProps> = (props) => {
-  const { currentItem, closeHandler, createHnadler, updateHnadler } = props;
+export const AccommodationPolicyForm: FC<AccommodationPolicyFormProps> = (props) => {
+  const { currentItem, closeHandler, createHandler, updateHandler } = props;
   const {
     reset,
     control,
@@ -39,8 +39,8 @@ export const PolicyForm: FC<PolicyFormProps> = (props) => {
     if (icon && title) {
       onClose();
       currentItem.index !== undefined
-        ? updateHnadler(currentItem.index, { icon, title, description })
-        : createHnadler({ icon, title, description });
+        ? updateHandler(currentItem.index, { icon, title, description })
+        : createHandler({ icon, title, description });
     }
   };
 

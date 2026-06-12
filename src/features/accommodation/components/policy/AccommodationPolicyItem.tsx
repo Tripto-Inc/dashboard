@@ -1,9 +1,9 @@
 import { DynamicIcon } from '@/components/shared/DynamicIcon';
 import { IconPencil, IconTrash } from '@tabler/icons-react';
 import { FC } from 'react';
-import { PolicyItemProps } from '../../types/policyForm';
+import { AccommodationPolicyItemProps } from '@/features/accommodation/types/accommodationPolicy';
 
-export const PolicyItem: FC<PolicyItemProps> = (props) => {
+export const AccommodationPolicyItem: FC<AccommodationPolicyItemProps> = (props) => {
   const { item, onRemove, onEdit } = props;
 
   return (

@@ -1494,10 +1494,11 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const DestinationScalarFieldEnum = {
   id: 'id',
-  description: 'description',
-  season: 'season',
+  city: 'city',
+  country: 'country',
+  slogan: 'slogan',
+  seasons: 'seasons',
   isActive: 'isActive',
-  addressId: 'addressId',
   createdById: 'createdById',
   updatedById: 'updatedById',
   createdAt: 'createdAt',
@@ -1659,6 +1660,7 @@ export const UserScalarFieldEnum = {
   image: 'image',
   password: 'password',
   username: 'username',
+  role: 'role',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1774,16 +1776,16 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 
 
 /**
- * Reference to a field of type 'Season'
+ * Reference to a field of type 'Season[]'
  */
-export type EnumSeasonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Season'>
+export type ListEnumSeasonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Season[]'>
     
 
 
 /**
- * Reference to a field of type 'Season[]'
+ * Reference to a field of type 'Season'
  */
-export type ListEnumSeasonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Season[]'>
+export type EnumSeasonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Season'>
     
 
 

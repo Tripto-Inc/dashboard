@@ -1,6 +1,8 @@
 import { FieldWithErrorSkeleton } from '@/components/shared/FieldWithError';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Fragment, type FC } from 'react';
+import { type FC, Fragment } from 'react';
+import { AccommodationGallerySkeleton } from '@/features/accommodation/components/gallery/AccommodationGallerySkeleton';
+import { ModificationFormSectionSkeleton } from '@/components/shared/ModificationFormSection';
 
 export const AccommodationFormSkeleton: FC = () => {
   return (
@@ -16,11 +18,7 @@ export const AccommodationFormSkeleton: FC = () => {
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="space-y-6 lg:col-span-2">
-          <div className="rounded-3xl border border-slate-200 bg-white p-8">
-            <div className="mb-6 flex items-center border-b border-slate-100 pb-4">
-              <Skeleton className="h-6 w-45 rounded-sm" />
-            </div>
-
+          <ModificationFormSectionSkeleton>
             <div className="grid grid-cols-1 gap-x-6 md:grid-cols-3">
               <FieldWithErrorSkeleton />
               <FieldWithErrorSkeleton />
@@ -34,12 +32,9 @@ export const AccommodationFormSkeleton: FC = () => {
               <Skeleton className="mb-1 h-5 w-30 rounded-sm" />
               <Skeleton className="mb-6 h-16 w-full" />
             </div>
-          </div>
+          </ModificationFormSectionSkeleton>
 
-          <div className="rounded-3xl border border-slate-200 bg-white p-8">
-            <div className="mb-6 flex items-center border-b border-slate-100 pb-4">
-              <Skeleton className="h-6 w-45 rounded-sm" />
-            </div>
+          <ModificationFormSectionSkeleton>
             <div className="grid grid-cols-1 gap-x-6 md:grid-cols-2">
               <Skeleton className="mb-6 h-99.5 md:col-span-2" />
               <FieldWithErrorSkeleton />
@@ -49,23 +44,17 @@ export const AccommodationFormSkeleton: FC = () => {
               <FieldWithErrorSkeleton />
               <FieldWithErrorSkeleton />
             </div>
-          </div>
+          </ModificationFormSectionSkeleton>
 
-          <div className="rounded-3xl border border-slate-200 bg-white p-8">
-            <div className="mb-6 flex items-center border-b border-slate-100 pb-4">
-              <Skeleton className="h-6 w-45 rounded-sm" />
-            </div>
+          <ModificationFormSectionSkeleton>
             <div className="grid grid-cols-1 gap-x-6 md:grid-cols-3">
               <FieldWithErrorSkeleton />
               <FieldWithErrorSkeleton />
               <FieldWithErrorSkeleton />
             </div>
-          </div>
+          </ModificationFormSectionSkeleton>
 
-          <div className="rounded-3xl border border-slate-200 bg-white p-8">
-            <div className="mb-6 flex items-center border-b border-slate-100 pb-4">
-              <Skeleton className="h-6 w-45 rounded-sm" />
-            </div>
+          <ModificationFormSectionSkeleton>
             <div className="flex flex-col gap-6">
               <Skeleton className="h-10 w-full rounded-sm" />
               <div className="flex flex-wrap items-center gap-3">
@@ -75,38 +64,13 @@ export const AccommodationFormSkeleton: FC = () => {
                 <Skeleton className="h-12.5 w-34 rounded-sm" />
               </div>
             </div>
-          </div>
+          </ModificationFormSectionSkeleton>
         </div>
 
         <div className="space-y-6">
-          <div className="rounded-3xl border border-slate-200 bg-white p-8">
-            <div className="mb-6 flex items-center border-b border-slate-100 pb-4">
-              <Skeleton className="h-6 w-45 rounded-sm" />
-            </div>
-            <div className="flex flex-col gap-6">
-              <div>
-                <Skeleton className="mb-1 h-5 w-30 rounded-sm" />
-                <Skeleton className="mb-6 h-58 w-full" />
-                <div className="mb-5">
-                  <Skeleton className="size-24" />
-                </div>
-              </div>
-              <div>
-                <Skeleton className="mb-1 h-5 w-30 rounded-sm" />
-                <Skeleton className="mb-6 h-58 w-full" />
-                <div className="flex items-center gap-2">
-                  <Skeleton className="size-20" />
-                  <Skeleton className="size-20" />
-                  <Skeleton className="size-20" />
-                </div>
-              </div>
-            </div>
-          </div>
+          <AccommodationGallerySkeleton />
 
-          <div className="rounded-3xl border border-slate-200 bg-white p-8">
-            <div className="mb-6 flex items-center border-b border-slate-100 pb-4">
-              <Skeleton className="h-6 w-45 rounded-sm" />
-            </div>
+          <ModificationFormSectionSkeleton>
             <div className="flex flex-col gap-6">
               <Skeleton className="h-10 w-full rounded-sm" />
               <div className="flex flex-wrap items-center gap-3">
@@ -116,12 +80,9 @@ export const AccommodationFormSkeleton: FC = () => {
                 <Skeleton className="h-9.5 w-28 rounded-full" />
               </div>
             </div>
-          </div>
+          </ModificationFormSectionSkeleton>
 
-          <div className="rounded-3xl border border-slate-200 bg-white p-8">
-            <div className="mb-6 flex items-center border-b border-slate-100 pb-4">
-              <Skeleton className="h-6 w-45 rounded-sm" />
-            </div>
+          <ModificationFormSectionSkeleton>
             <div className="flex flex-col gap-6">
               <Skeleton className="h-10 w-full rounded-sm" />
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
@@ -130,7 +91,7 @@ export const AccommodationFormSkeleton: FC = () => {
                 <Skeleton className="h-13.5 w-full rounded-md" />
               </div>
             </div>
-          </div>
+          </ModificationFormSectionSkeleton>
         </div>
       </div>
     </Fragment>

@@ -29,13 +29,6 @@ export type StringFilter<$PrismaModel = never> = {
   not?: Prisma.NestedStringFilter<$PrismaModel> | string
 }
 
-export type EnumSeasonFilter<$PrismaModel = never> = {
-  equals?: $Enums.Season | Prisma.EnumSeasonFieldRefInput<$PrismaModel>
-  in?: $Enums.Season[] | Prisma.ListEnumSeasonFieldRefInput<$PrismaModel>
-  notIn?: $Enums.Season[] | Prisma.ListEnumSeasonFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumSeasonFilter<$PrismaModel> | $Enums.Season
-}
-
 export type BoolFilter<$PrismaModel = never> = {
   equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>
   not?: Prisma.NestedBoolFilter<$PrismaModel> | boolean
@@ -88,16 +81,6 @@ export type StringWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedStringFilter<$PrismaModel>
   _max?: Prisma.NestedStringFilter<$PrismaModel>
-}
-
-export type EnumSeasonWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.Season | Prisma.EnumSeasonFieldRefInput<$PrismaModel>
-  in?: $Enums.Season[] | Prisma.ListEnumSeasonFieldRefInput<$PrismaModel>
-  notIn?: $Enums.Season[] | Prisma.ListEnumSeasonFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumSeasonWithAggregatesFilter<$PrismaModel> | $Enums.Season
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumSeasonFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumSeasonFilter<$PrismaModel>
 }
 
 export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -389,13 +372,6 @@ export type NestedStringFilter<$PrismaModel = never> = {
   not?: Prisma.NestedStringFilter<$PrismaModel> | string
 }
 
-export type NestedEnumSeasonFilter<$PrismaModel = never> = {
-  equals?: $Enums.Season | Prisma.EnumSeasonFieldRefInput<$PrismaModel>
-  in?: $Enums.Season[] | Prisma.ListEnumSeasonFieldRefInput<$PrismaModel>
-  notIn?: $Enums.Season[] | Prisma.ListEnumSeasonFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumSeasonFilter<$PrismaModel> | $Enums.Season
-}
-
 export type NestedBoolFilter<$PrismaModel = never> = {
   equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>
   not?: Prisma.NestedBoolFilter<$PrismaModel> | boolean
@@ -452,16 +428,6 @@ export type NestedIntFilter<$PrismaModel = never> = {
   gt?: number | Prisma.IntFieldRefInput<$PrismaModel>
   gte?: number | Prisma.IntFieldRefInput<$PrismaModel>
   not?: Prisma.NestedIntFilter<$PrismaModel> | number
-}
-
-export type NestedEnumSeasonWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.Season | Prisma.EnumSeasonFieldRefInput<$PrismaModel>
-  in?: $Enums.Season[] | Prisma.ListEnumSeasonFieldRefInput<$PrismaModel>
-  notIn?: $Enums.Season[] | Prisma.ListEnumSeasonFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumSeasonWithAggregatesFilter<$PrismaModel> | $Enums.Season
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumSeasonFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumSeasonFilter<$PrismaModel>
 }
 
 export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {

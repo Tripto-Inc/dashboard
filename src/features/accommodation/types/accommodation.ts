@@ -5,8 +5,8 @@ import {
   Hotel as PrismaHotel,
   Room as PrismaRoom,
 } from '@/app/generated/prisma/client';
-import { Amenity } from './amenityForm';
-import { Policy } from './policyForm';
+import { Amenity } from './accommodationAmenity';
+import { Policy } from './accommodationPolicy';
 
 export type Accommodation = PrismaAccommodation;
 export type AccommodationType = 'HOUSE' | 'HOTEL';
