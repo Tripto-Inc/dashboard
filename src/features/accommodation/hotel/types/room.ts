@@ -1,4 +1,4 @@
-import { Amenity } from '../../types/accommodationAmenity';
+import { AccommodationAmenity } from '../../types/accommodationAmenity';
 
 export type Beds = {
   king?: number;
@@ -18,7 +18,7 @@ export type Room = {
   capacity: number;
   bedrooms: number;
   bathrooms: number;
-  amenities: Array<Amenity>;
+  amenities: Array<AccommodationAmenity>;
   galleryImages?: Array<File> | null;
   beds: Beds;
 };
