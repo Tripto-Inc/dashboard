@@ -4,7 +4,7 @@
 // biome-ignore-all lint: generated file
 // @ts-nocheck 
 /*
- * This file exports the `Room` model and its related types.
+ * This file exports the `AccommodationRoom` model and its related types.
  *
  * 🟢 You can import this file directly.
  */
@@ -13,7 +13,7 @@ import type * as $Enums from "../enums"
 import type * as Prisma from "../internal/prismaNamespace"
 
 /**
- * Model Room
+ * Model AccommodationRoom
  * 
  */
 export type RoomModel = runtime.Types.Result.DefaultSelection<Prisma.$RoomPayload>
@@ -183,7 +183,7 @@ export type RoomCountAggregateInputType = {
 
 export type RoomAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Filter which Room to aggregate.
+   * Filter which AccommodationRoom to aggregate.
    */
   where?: Prisma.RoomWhereInput
   /**
@@ -311,23 +311,23 @@ export type RoomWhereInput = {
   AND?: Prisma.RoomWhereInput | Prisma.RoomWhereInput[]
   OR?: Prisma.RoomWhereInput[]
   NOT?: Prisma.RoomWhereInput | Prisma.RoomWhereInput[]
-  id?: Prisma.StringFilter<"Room"> | string
-  title?: Prisma.StringFilter<"Room"> | string
-  count?: Prisma.IntFilter<"Room"> | number
-  area?: Prisma.IntFilter<"Room"> | number
-  price?: Prisma.FloatFilter<"Room"> | number
-  discount?: Prisma.FloatNullableFilter<"Room"> | number | null
-  capacity?: Prisma.IntFilter<"Room"> | number
-  bedrooms?: Prisma.IntFilter<"Room"> | number
-  bathrooms?: Prisma.IntFilter<"Room"> | number
-  amenities?: Prisma.JsonFilter<"Room">
-  beds?: Prisma.JsonFilter<"Room">
-  hotelId?: Prisma.StringFilter<"Room"> | string
-  currencyId?: Prisma.StringFilter<"Room"> | string
-  createdById?: Prisma.StringNullableFilter<"Room"> | string | null
-  updatedById?: Prisma.StringNullableFilter<"Room"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"Room"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Room"> | Date | string
+  id?: Prisma.StringFilter<"AccommodationRoom"> | string
+  title?: Prisma.StringFilter<"AccommodationRoom"> | string
+  count?: Prisma.IntFilter<"AccommodationRoom"> | number
+  area?: Prisma.IntFilter<"AccommodationRoom"> | number
+  price?: Prisma.FloatFilter<"AccommodationRoom"> | number
+  discount?: Prisma.FloatNullableFilter<"AccommodationRoom"> | number | null
+  capacity?: Prisma.IntFilter<"AccommodationRoom"> | number
+  bedrooms?: Prisma.IntFilter<"AccommodationRoom"> | number
+  bathrooms?: Prisma.IntFilter<"AccommodationRoom"> | number
+  amenities?: Prisma.JsonFilter<"AccommodationRoom">
+  beds?: Prisma.JsonFilter<"AccommodationRoom">
+  hotelId?: Prisma.StringFilter<"AccommodationRoom"> | string
+  currencyId?: Prisma.StringFilter<"AccommodationRoom"> | string
+  createdById?: Prisma.StringNullableFilter<"AccommodationRoom"> | string | null
+  updatedById?: Prisma.StringNullableFilter<"AccommodationRoom"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"AccommodationRoom"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"AccommodationRoom"> | Date | string
   hotel?: Prisma.XOR<Prisma.HotelScalarRelationFilter, Prisma.HotelWhereInput>
   currency?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
@@ -364,22 +364,22 @@ export type RoomWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.RoomWhereInput | Prisma.RoomWhereInput[]
   OR?: Prisma.RoomWhereInput[]
   NOT?: Prisma.RoomWhereInput | Prisma.RoomWhereInput[]
-  title?: Prisma.StringFilter<"Room"> | string
-  count?: Prisma.IntFilter<"Room"> | number
-  area?: Prisma.IntFilter<"Room"> | number
-  price?: Prisma.FloatFilter<"Room"> | number
-  discount?: Prisma.FloatNullableFilter<"Room"> | number | null
-  capacity?: Prisma.IntFilter<"Room"> | number
-  bedrooms?: Prisma.IntFilter<"Room"> | number
-  bathrooms?: Prisma.IntFilter<"Room"> | number
-  amenities?: Prisma.JsonFilter<"Room">
-  beds?: Prisma.JsonFilter<"Room">
-  hotelId?: Prisma.StringFilter<"Room"> | string
-  currencyId?: Prisma.StringFilter<"Room"> | string
-  createdById?: Prisma.StringNullableFilter<"Room"> | string | null
-  updatedById?: Prisma.StringNullableFilter<"Room"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"Room"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Room"> | Date | string
+  title?: Prisma.StringFilter<"AccommodationRoom"> | string
+  count?: Prisma.IntFilter<"AccommodationRoom"> | number
+  area?: Prisma.IntFilter<"AccommodationRoom"> | number
+  price?: Prisma.FloatFilter<"AccommodationRoom"> | number
+  discount?: Prisma.FloatNullableFilter<"AccommodationRoom"> | number | null
+  capacity?: Prisma.IntFilter<"AccommodationRoom"> | number
+  bedrooms?: Prisma.IntFilter<"AccommodationRoom"> | number
+  bathrooms?: Prisma.IntFilter<"AccommodationRoom"> | number
+  amenities?: Prisma.JsonFilter<"AccommodationRoom">
+  beds?: Prisma.JsonFilter<"AccommodationRoom">
+  hotelId?: Prisma.StringFilter<"AccommodationRoom"> | string
+  currencyId?: Prisma.StringFilter<"AccommodationRoom"> | string
+  createdById?: Prisma.StringNullableFilter<"AccommodationRoom"> | string | null
+  updatedById?: Prisma.StringNullableFilter<"AccommodationRoom"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"AccommodationRoom"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"AccommodationRoom"> | Date | string
   hotel?: Prisma.XOR<Prisma.HotelScalarRelationFilter, Prisma.HotelWhereInput>
   currency?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
@@ -415,23 +415,23 @@ export type RoomScalarWhereWithAggregatesInput = {
   AND?: Prisma.RoomScalarWhereWithAggregatesInput | Prisma.RoomScalarWhereWithAggregatesInput[]
   OR?: Prisma.RoomScalarWhereWithAggregatesInput[]
   NOT?: Prisma.RoomScalarWhereWithAggregatesInput | Prisma.RoomScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"Room"> | string
-  title?: Prisma.StringWithAggregatesFilter<"Room"> | string
-  count?: Prisma.IntWithAggregatesFilter<"Room"> | number
-  area?: Prisma.IntWithAggregatesFilter<"Room"> | number
-  price?: Prisma.FloatWithAggregatesFilter<"Room"> | number
-  discount?: Prisma.FloatNullableWithAggregatesFilter<"Room"> | number | null
-  capacity?: Prisma.IntWithAggregatesFilter<"Room"> | number
-  bedrooms?: Prisma.IntWithAggregatesFilter<"Room"> | number
-  bathrooms?: Prisma.IntWithAggregatesFilter<"Room"> | number
-  amenities?: Prisma.JsonWithAggregatesFilter<"Room">
-  beds?: Prisma.JsonWithAggregatesFilter<"Room">
-  hotelId?: Prisma.StringWithAggregatesFilter<"Room"> | string
-  currencyId?: Prisma.StringWithAggregatesFilter<"Room"> | string
-  createdById?: Prisma.StringNullableWithAggregatesFilter<"Room"> | string | null
-  updatedById?: Prisma.StringNullableWithAggregatesFilter<"Room"> | string | null
-  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Room"> | Date | string
-  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Room"> | Date | string
+  id?: Prisma.StringWithAggregatesFilter<"AccommodationRoom"> | string
+  title?: Prisma.StringWithAggregatesFilter<"AccommodationRoom"> | string
+  count?: Prisma.IntWithAggregatesFilter<"AccommodationRoom"> | number
+  area?: Prisma.IntWithAggregatesFilter<"AccommodationRoom"> | number
+  price?: Prisma.FloatWithAggregatesFilter<"AccommodationRoom"> | number
+  discount?: Prisma.FloatNullableWithAggregatesFilter<"AccommodationRoom"> | number | null
+  capacity?: Prisma.IntWithAggregatesFilter<"AccommodationRoom"> | number
+  bedrooms?: Prisma.IntWithAggregatesFilter<"AccommodationRoom"> | number
+  bathrooms?: Prisma.IntWithAggregatesFilter<"AccommodationRoom"> | number
+  amenities?: Prisma.JsonWithAggregatesFilter<"AccommodationRoom">
+  beds?: Prisma.JsonWithAggregatesFilter<"AccommodationRoom">
+  hotelId?: Prisma.StringWithAggregatesFilter<"AccommodationRoom"> | string
+  currencyId?: Prisma.StringWithAggregatesFilter<"AccommodationRoom"> | string
+  createdById?: Prisma.StringNullableWithAggregatesFilter<"AccommodationRoom"> | string | null
+  updatedById?: Prisma.StringNullableWithAggregatesFilter<"AccommodationRoom"> | string | null
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"AccommodationRoom"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"AccommodationRoom"> | Date | string
 }
 
 export type RoomCreateInput = {
@@ -897,23 +897,23 @@ export type RoomScalarWhereInput = {
   AND?: Prisma.RoomScalarWhereInput | Prisma.RoomScalarWhereInput[]
   OR?: Prisma.RoomScalarWhereInput[]
   NOT?: Prisma.RoomScalarWhereInput | Prisma.RoomScalarWhereInput[]
-  id?: Prisma.StringFilter<"Room"> | string
-  title?: Prisma.StringFilter<"Room"> | string
-  count?: Prisma.IntFilter<"Room"> | number
-  area?: Prisma.IntFilter<"Room"> | number
-  price?: Prisma.FloatFilter<"Room"> | number
-  discount?: Prisma.FloatNullableFilter<"Room"> | number | null
-  capacity?: Prisma.IntFilter<"Room"> | number
-  bedrooms?: Prisma.IntFilter<"Room"> | number
-  bathrooms?: Prisma.IntFilter<"Room"> | number
-  amenities?: Prisma.JsonFilter<"Room">
-  beds?: Prisma.JsonFilter<"Room">
-  hotelId?: Prisma.StringFilter<"Room"> | string
-  currencyId?: Prisma.StringFilter<"Room"> | string
-  createdById?: Prisma.StringNullableFilter<"Room"> | string | null
-  updatedById?: Prisma.StringNullableFilter<"Room"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"Room"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Room"> | Date | string
+  id?: Prisma.StringFilter<"AccommodationRoom"> | string
+  title?: Prisma.StringFilter<"AccommodationRoom"> | string
+  count?: Prisma.IntFilter<"AccommodationRoom"> | number
+  area?: Prisma.IntFilter<"AccommodationRoom"> | number
+  price?: Prisma.FloatFilter<"AccommodationRoom"> | number
+  discount?: Prisma.FloatNullableFilter<"AccommodationRoom"> | number | null
+  capacity?: Prisma.IntFilter<"AccommodationRoom"> | number
+  bedrooms?: Prisma.IntFilter<"AccommodationRoom"> | number
+  bathrooms?: Prisma.IntFilter<"AccommodationRoom"> | number
+  amenities?: Prisma.JsonFilter<"AccommodationRoom">
+  beds?: Prisma.JsonFilter<"AccommodationRoom">
+  hotelId?: Prisma.StringFilter<"AccommodationRoom"> | string
+  currencyId?: Prisma.StringFilter<"AccommodationRoom"> | string
+  createdById?: Prisma.StringNullableFilter<"AccommodationRoom"> | string | null
+  updatedById?: Prisma.StringNullableFilter<"AccommodationRoom"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"AccommodationRoom"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"AccommodationRoom"> | Date | string
 }
 
 export type RoomCreateWithoutHotelInput = {
@@ -1527,7 +1527,7 @@ export type RoomIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 }
 
 export type $RoomPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  name: "Room"
+  name: "AccommodationRoom"
   objects: {
     hotel: Prisma.$HotelPayload<ExtArgs>
     currency: Prisma.$CurrencyPayload<ExtArgs>
@@ -1564,12 +1564,12 @@ export type RoomCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   }
 
 export interface RoomDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Room'], meta: { name: 'Room' } }
+  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Room'], meta: { name: 'AccommodationRoom' } }
   /**
-   * Find zero or one Room that matches the filter.
-   * @param {RoomFindUniqueArgs} args - Arguments to find a Room
+   * Find zero or one AccommodationRoom that matches the filter.
+   * @param {RoomFindUniqueArgs} args - Arguments to find a AccommodationRoom
    * @example
-   * // Get one Room
+   * // Get one AccommodationRoom
    * const room = await prisma.room.findUnique({
    *   where: {
    *     // ... provide filter here
@@ -1579,11 +1579,11 @@ export interface RoomDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
   findUnique<T extends RoomFindUniqueArgs>(args: Prisma.SelectSubset<T, RoomFindUniqueArgs<ExtArgs>>): Prisma.Prisma__RoomClient<runtime.Types.Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
   /**
-   * Find one Room that matches the filter or throw an error with `error.code='P2025'`
+   * Find one AccommodationRoom that matches the filter or throw an error with `error.code='P2025'`
    * if no matches were found.
-   * @param {RoomFindUniqueOrThrowArgs} args - Arguments to find a Room
+   * @param {RoomFindUniqueOrThrowArgs} args - Arguments to find a AccommodationRoom
    * @example
-   * // Get one Room
+   * // Get one AccommodationRoom
    * const room = await prisma.room.findUniqueOrThrow({
    *   where: {
    *     // ... provide filter here
@@ -1593,12 +1593,12 @@ export interface RoomDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
   findUniqueOrThrow<T extends RoomFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, RoomFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__RoomClient<runtime.Types.Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
-   * Find the first Room that matches the filter.
+   * Find the first AccommodationRoom that matches the filter.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {RoomFindFirstArgs} args - Arguments to find a Room
+   * @param {RoomFindFirstArgs} args - Arguments to find a AccommodationRoom
    * @example
-   * // Get one Room
+   * // Get one AccommodationRoom
    * const room = await prisma.room.findFirst({
    *   where: {
    *     // ... provide filter here
@@ -1608,13 +1608,13 @@ export interface RoomDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
   findFirst<T extends RoomFindFirstArgs>(args?: Prisma.SelectSubset<T, RoomFindFirstArgs<ExtArgs>>): Prisma.Prisma__RoomClient<runtime.Types.Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
   /**
-   * Find the first Room that matches the filter or
+   * Find the first AccommodationRoom that matches the filter or
    * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {RoomFindFirstOrThrowArgs} args - Arguments to find a Room
+   * @param {RoomFindFirstOrThrowArgs} args - Arguments to find a AccommodationRoom
    * @example
-   * // Get one Room
+   * // Get one AccommodationRoom
    * const room = await prisma.room.findFirstOrThrow({
    *   where: {
    *     // ... provide filter here
@@ -1642,13 +1642,13 @@ export interface RoomDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
   findMany<T extends RoomFindManyArgs>(args?: Prisma.SelectSubset<T, RoomFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
   /**
-   * Create a Room.
-   * @param {RoomCreateArgs} args - Arguments to create a Room.
+   * Create a AccommodationRoom.
+   * @param {RoomCreateArgs} args - Arguments to create a AccommodationRoom.
    * @example
-   * // Create one Room
-   * const Room = await prisma.room.create({
+   * // Create one AccommodationRoom
+   * const AccommodationRoom = await prisma.room.create({
    *   data: {
-   *     // ... data to create a Room
+   *     // ... data to create a AccommodationRoom
    *   }
    * })
    * 
@@ -1694,13 +1694,13 @@ export interface RoomDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
   createManyAndReturn<T extends RoomCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, RoomCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
   /**
-   * Delete a Room.
-   * @param {RoomDeleteArgs} args - Arguments to delete one Room.
+   * Delete a AccommodationRoom.
+   * @param {RoomDeleteArgs} args - Arguments to delete one AccommodationRoom.
    * @example
-   * // Delete one Room
-   * const Room = await prisma.room.delete({
+   * // Delete one AccommodationRoom
+   * const AccommodationRoom = await prisma.room.delete({
    *   where: {
-   *     // ... filter to delete one Room
+   *     // ... filter to delete one AccommodationRoom
    *   }
    * })
    * 
@@ -1708,10 +1708,10 @@ export interface RoomDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
   delete<T extends RoomDeleteArgs>(args: Prisma.SelectSubset<T, RoomDeleteArgs<ExtArgs>>): Prisma.Prisma__RoomClient<runtime.Types.Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
-   * Update one Room.
-   * @param {RoomUpdateArgs} args - Arguments to update one Room.
+   * Update one AccommodationRoom.
+   * @param {RoomUpdateArgs} args - Arguments to update one AccommodationRoom.
    * @example
-   * // Update one Room
+   * // Update one AccommodationRoom
    * const room = await prisma.room.update({
    *   where: {
    *     // ... provide filter here
@@ -1788,19 +1788,19 @@ export interface RoomDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
   updateManyAndReturn<T extends RoomUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, RoomUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
-   * Create or update one Room.
-   * @param {RoomUpsertArgs} args - Arguments to update or create a Room.
+   * Create or update one AccommodationRoom.
+   * @param {RoomUpsertArgs} args - Arguments to update or create a AccommodationRoom.
    * @example
-   * // Update or create a Room
+   * // Update or create a AccommodationRoom
    * const room = await prisma.room.upsert({
    *   create: {
-   *     // ... data to create a Room
+   *     // ... data to create a AccommodationRoom
    *   },
    *   update: {
    *     // ... in case it already exists, update
    *   },
    *   where: {
-   *     // ... the filter for the Room we want to update
+   *     // ... the filter for the AccommodationRoom we want to update
    *   }
    * })
    */
@@ -1831,7 +1831,7 @@ export interface RoomDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
   >
 
   /**
-   * Allows you to perform aggregations operations on a Room.
+   * Allows you to perform aggregations operations on a AccommodationRoom.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
    * @param {RoomAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
@@ -1857,7 +1857,7 @@ export interface RoomDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
   aggregate<T extends RoomAggregateArgs>(args: Prisma.Subset<T, RoomAggregateArgs>): Prisma.PrismaPromise<GetRoomAggregateType<T>>
 
   /**
-   * Group by Room.
+   * Group by AccommodationRoom.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
    * @param {RoomGroupByArgs} args - Group by arguments.
@@ -1933,13 +1933,13 @@ export interface RoomDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
       }[OrderFields]
   >(args: Prisma.SubsetIntersection<T, RoomGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRoomGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
 /**
- * Fields of the Room model
+ * Fields of the AccommodationRoom model
  */
 readonly fields: RoomFieldRefs;
 }
 
 /**
- * The delegate class that acts as a "Promise-like" for Room.
+ * The delegate class that acts as a "Promise-like" for AccommodationRoom.
  * Why is this prefixed with `Prisma__`?
  * Because we want to prevent naming conflicts as mentioned in
  * https://github.com/prisma/prisma-client-js/issues/707
@@ -1976,40 +1976,40 @@ export interface Prisma__RoomClient<T, Null = never, ExtArgs extends runtime.Typ
 
 
 /**
- * Fields of the Room model
+ * Fields of the AccommodationRoom model
  */
 export interface RoomFieldRefs {
-  readonly id: Prisma.FieldRef<"Room", 'String'>
-  readonly title: Prisma.FieldRef<"Room", 'String'>
-  readonly count: Prisma.FieldRef<"Room", 'Int'>
-  readonly area: Prisma.FieldRef<"Room", 'Int'>
-  readonly price: Prisma.FieldRef<"Room", 'Float'>
-  readonly discount: Prisma.FieldRef<"Room", 'Float'>
-  readonly capacity: Prisma.FieldRef<"Room", 'Int'>
-  readonly bedrooms: Prisma.FieldRef<"Room", 'Int'>
-  readonly bathrooms: Prisma.FieldRef<"Room", 'Int'>
-  readonly amenities: Prisma.FieldRef<"Room", 'Json'>
-  readonly beds: Prisma.FieldRef<"Room", 'Json'>
-  readonly hotelId: Prisma.FieldRef<"Room", 'String'>
-  readonly currencyId: Prisma.FieldRef<"Room", 'String'>
-  readonly createdById: Prisma.FieldRef<"Room", 'String'>
-  readonly updatedById: Prisma.FieldRef<"Room", 'String'>
-  readonly createdAt: Prisma.FieldRef<"Room", 'DateTime'>
-  readonly updatedAt: Prisma.FieldRef<"Room", 'DateTime'>
+  readonly id: Prisma.FieldRef<"AccommodationRoom", 'String'>
+  readonly title: Prisma.FieldRef<"AccommodationRoom", 'String'>
+  readonly count: Prisma.FieldRef<"AccommodationRoom", 'Int'>
+  readonly area: Prisma.FieldRef<"AccommodationRoom", 'Int'>
+  readonly price: Prisma.FieldRef<"AccommodationRoom", 'Float'>
+  readonly discount: Prisma.FieldRef<"AccommodationRoom", 'Float'>
+  readonly capacity: Prisma.FieldRef<"AccommodationRoom", 'Int'>
+  readonly bedrooms: Prisma.FieldRef<"AccommodationRoom", 'Int'>
+  readonly bathrooms: Prisma.FieldRef<"AccommodationRoom", 'Int'>
+  readonly amenities: Prisma.FieldRef<"AccommodationRoom", 'Json'>
+  readonly beds: Prisma.FieldRef<"AccommodationRoom", 'Json'>
+  readonly hotelId: Prisma.FieldRef<"AccommodationRoom", 'String'>
+  readonly currencyId: Prisma.FieldRef<"AccommodationRoom", 'String'>
+  readonly createdById: Prisma.FieldRef<"AccommodationRoom", 'String'>
+  readonly updatedById: Prisma.FieldRef<"AccommodationRoom", 'String'>
+  readonly createdAt: Prisma.FieldRef<"AccommodationRoom", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"AccommodationRoom", 'DateTime'>
 }
     
 
 // Custom InputTypes
 /**
- * Room findUnique
+ * AccommodationRoom findUnique
  */
 export type RoomFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Room
+   * Select specific fields to fetch from the AccommodationRoom
    */
   select?: Prisma.RoomSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Room
+   * Omit specific fields from the AccommodationRoom
    */
   omit?: Prisma.RoomOmit<ExtArgs> | null
   /**
@@ -2017,21 +2017,21 @@ export type RoomFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   include?: Prisma.RoomInclude<ExtArgs> | null
   /**
-   * Filter, which Room to fetch.
+   * Filter, which AccommodationRoom to fetch.
    */
   where: Prisma.RoomWhereUniqueInput
 }
 
 /**
- * Room findUniqueOrThrow
+ * AccommodationRoom findUniqueOrThrow
  */
 export type RoomFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Room
+   * Select specific fields to fetch from the AccommodationRoom
    */
   select?: Prisma.RoomSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Room
+   * Omit specific fields from the AccommodationRoom
    */
   omit?: Prisma.RoomOmit<ExtArgs> | null
   /**
@@ -2039,21 +2039,21 @@ export type RoomFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   include?: Prisma.RoomInclude<ExtArgs> | null
   /**
-   * Filter, which Room to fetch.
+   * Filter, which AccommodationRoom to fetch.
    */
   where: Prisma.RoomWhereUniqueInput
 }
 
 /**
- * Room findFirst
+ * AccommodationRoom findFirst
  */
 export type RoomFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Room
+   * Select specific fields to fetch from the AccommodationRoom
    */
   select?: Prisma.RoomSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Room
+   * Omit specific fields from the AccommodationRoom
    */
   omit?: Prisma.RoomOmit<ExtArgs> | null
   /**
@@ -2061,7 +2061,7 @@ export type RoomFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    */
   include?: Prisma.RoomInclude<ExtArgs> | null
   /**
-   * Filter, which Room to fetch.
+   * Filter, which AccommodationRoom to fetch.
    */
   where?: Prisma.RoomWhereInput
   /**
@@ -2097,15 +2097,15 @@ export type RoomFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 /**
- * Room findFirstOrThrow
+ * AccommodationRoom findFirstOrThrow
  */
 export type RoomFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Room
+   * Select specific fields to fetch from the AccommodationRoom
    */
   select?: Prisma.RoomSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Room
+   * Omit specific fields from the AccommodationRoom
    */
   omit?: Prisma.RoomOmit<ExtArgs> | null
   /**
@@ -2113,7 +2113,7 @@ export type RoomFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   include?: Prisma.RoomInclude<ExtArgs> | null
   /**
-   * Filter, which Room to fetch.
+   * Filter, which AccommodationRoom to fetch.
    */
   where?: Prisma.RoomWhereInput
   /**
@@ -2149,15 +2149,15 @@ export type RoomFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
- * Room findMany
+ * AccommodationRoom findMany
  */
 export type RoomFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Room
+   * Select specific fields to fetch from the AccommodationRoom
    */
   select?: Prisma.RoomSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Room
+   * Omit specific fields from the AccommodationRoom
    */
   omit?: Prisma.RoomOmit<ExtArgs> | null
   /**
@@ -2201,15 +2201,15 @@ export type RoomFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 }
 
 /**
- * Room create
+ * AccommodationRoom create
  */
 export type RoomCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Room
+   * Select specific fields to fetch from the AccommodationRoom
    */
   select?: Prisma.RoomSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Room
+   * Omit specific fields from the AccommodationRoom
    */
   omit?: Prisma.RoomOmit<ExtArgs> | null
   /**
@@ -2217,13 +2217,13 @@ export type RoomCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   include?: Prisma.RoomInclude<ExtArgs> | null
   /**
-   * The data needed to create a Room.
+   * The data needed to create a AccommodationRoom.
    */
   data: Prisma.XOR<Prisma.RoomCreateInput, Prisma.RoomUncheckedCreateInput>
 }
 
 /**
- * Room createMany
+ * AccommodationRoom createMany
  */
 export type RoomCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
@@ -2234,15 +2234,15 @@ export type RoomCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Room createManyAndReturn
+ * AccommodationRoom createManyAndReturn
  */
 export type RoomCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Room
+   * Select specific fields to fetch from the AccommodationRoom
    */
   select?: Prisma.RoomSelectCreateManyAndReturn<ExtArgs> | null
   /**
-   * Omit specific fields from the Room
+   * Omit specific fields from the AccommodationRoom
    */
   omit?: Prisma.RoomOmit<ExtArgs> | null
   /**
@@ -2257,15 +2257,15 @@ export type RoomCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
 }
 
 /**
- * Room update
+ * AccommodationRoom update
  */
 export type RoomUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Room
+   * Select specific fields to fetch from the AccommodationRoom
    */
   select?: Prisma.RoomSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Room
+   * Omit specific fields from the AccommodationRoom
    */
   omit?: Prisma.RoomOmit<ExtArgs> | null
   /**
@@ -2273,17 +2273,17 @@ export type RoomUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   include?: Prisma.RoomInclude<ExtArgs> | null
   /**
-   * The data needed to update a Room.
+   * The data needed to update a AccommodationRoom.
    */
   data: Prisma.XOR<Prisma.RoomUpdateInput, Prisma.RoomUncheckedUpdateInput>
   /**
-   * Choose, which Room to update.
+   * Choose, which AccommodationRoom to update.
    */
   where: Prisma.RoomWhereUniqueInput
 }
 
 /**
- * Room updateMany
+ * AccommodationRoom updateMany
  */
 export type RoomUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
@@ -2301,15 +2301,15 @@ export type RoomUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Room updateManyAndReturn
+ * AccommodationRoom updateManyAndReturn
  */
 export type RoomUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Room
+   * Select specific fields to fetch from the AccommodationRoom
    */
   select?: Prisma.RoomSelectUpdateManyAndReturn<ExtArgs> | null
   /**
-   * Omit specific fields from the Room
+   * Omit specific fields from the AccommodationRoom
    */
   omit?: Prisma.RoomOmit<ExtArgs> | null
   /**
@@ -2331,15 +2331,15 @@ export type RoomUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
 }
 
 /**
- * Room upsert
+ * AccommodationRoom upsert
  */
 export type RoomUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Room
+   * Select specific fields to fetch from the AccommodationRoom
    */
   select?: Prisma.RoomSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Room
+   * Omit specific fields from the AccommodationRoom
    */
   omit?: Prisma.RoomOmit<ExtArgs> | null
   /**
@@ -2347,29 +2347,29 @@ export type RoomUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   include?: Prisma.RoomInclude<ExtArgs> | null
   /**
-   * The filter to search for the Room to update in case it exists.
+   * The filter to search for the AccommodationRoom to update in case it exists.
    */
   where: Prisma.RoomWhereUniqueInput
   /**
-   * In case the Room found by the `where` argument doesn't exist, create a new Room with this data.
+   * In case the AccommodationRoom found by the `where` argument doesn't exist, create a new AccommodationRoom with this data.
    */
   create: Prisma.XOR<Prisma.RoomCreateInput, Prisma.RoomUncheckedCreateInput>
   /**
-   * In case the Room was found with the provided `where` argument, update it with this data.
+   * In case the AccommodationRoom was found with the provided `where` argument, update it with this data.
    */
   update: Prisma.XOR<Prisma.RoomUpdateInput, Prisma.RoomUncheckedUpdateInput>
 }
 
 /**
- * Room delete
+ * AccommodationRoom delete
  */
 export type RoomDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Room
+   * Select specific fields to fetch from the AccommodationRoom
    */
   select?: Prisma.RoomSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Room
+   * Omit specific fields from the AccommodationRoom
    */
   omit?: Prisma.RoomOmit<ExtArgs> | null
   /**
@@ -2377,13 +2377,13 @@ export type RoomDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   include?: Prisma.RoomInclude<ExtArgs> | null
   /**
-   * Filter which Room to delete.
+   * Filter which AccommodationRoom to delete.
    */
   where: Prisma.RoomWhereUniqueInput
 }
 
 /**
- * Room deleteMany
+ * AccommodationRoom deleteMany
  */
 export type RoomDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
@@ -2397,7 +2397,7 @@ export type RoomDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Room.createdBy
+ * AccommodationRoom.createdBy
  */
 export type Room$createdByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
@@ -2416,7 +2416,7 @@ export type Room$createdByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Room.updatedBy
+ * AccommodationRoom.updatedBy
  */
 export type Room$updatedByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
@@ -2435,15 +2435,15 @@ export type Room$updatedByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Room without action
+ * AccommodationRoom without action
  */
 export type RoomDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Room
+   * Select specific fields to fetch from the AccommodationRoom
    */
   select?: Prisma.RoomSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Room
+   * Omit specific fields from the AccommodationRoom
    */
   omit?: Prisma.RoomOmit<ExtArgs> | null
   /**

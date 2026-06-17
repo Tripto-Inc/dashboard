@@ -48,14 +48,14 @@ export const AccommodationAmenityForm: FC<AccommodationAmenityFormProps> = (prop
 
   return (
     <div className="animate-in fade-in slide-in-from-top-2 relative grid grid-cols-1 gap-x-4 rounded-2xl border border-slate-200/60 bg-slate-50/50 p-5 shadow-inner duration-200 sm:grid-cols-2 lg:grid-cols-1">
-      <FieldWithError required htmlFor="title" label="Title" error={errors.title?.message}>
+      <FieldWithError required htmlFor="amenity-title" label="Title" error={errors.title?.message}>
         <Controller
           name="title"
           control={control}
           render={({ field }) => (
             <Input
-              id="title"
               {...field}
+              id="amenity-title"
               className="bg-white"
               placeholder="Enter a title"
               aria-invalid={!!errors.title?.message}
@@ -64,15 +64,15 @@ export const AccommodationAmenityForm: FC<AccommodationAmenityFormProps> = (prop
         />
       </FieldWithError>
 
-      <FieldWithError required htmlFor="icon" label="Icon" error={errors.icon?.message}>
+      <FieldWithError required htmlFor="amenity-icon" label="Icon" error={errors.icon?.message}>
         <Controller
           name="icon"
           control={control}
           render={({ field }) => (
             <InputGroup className="bg-white">
               <InputGroupInput
-                id="icon"
                 {...field}
+                id="amenity-icon"
                 placeholder="Enter a Tabler Icon name"
                 aria-invalid={!!errors.icon?.message}
               />

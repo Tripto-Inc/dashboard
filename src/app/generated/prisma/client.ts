@@ -87,7 +87,7 @@ export type House = Prisma.HouseModel
  */
 export type Hotel = Prisma.HotelModel
 /**
- * Model Room
+ * Model AccommodationRoom
  * 
  */
 export type Room = Prisma.RoomModel

@@ -17,11 +17,16 @@ import {
 } from '@tabler/icons-react';
 import { FC, useEffect } from 'react';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
-import { roomSchema, RoomSchema } from '../../schema/room';
-import { RoomFormProps } from '../../types/room';
+import { RoomFormProps } from '@/features/accommodation/hotel/types/room';
+import { roomSchema, RoomSchema } from '@/features/accommodation/hotel/schema/room';
 
-export const RoomForm: FC<RoomFormProps> = (props) => {
-  const { accommodationId, currentItem, closeHandler, createHnadler, updateHnadler } = props;
+export const AccommodationRoomForm: FC<RoomFormProps> = ({
+  currentItem,
+  closeHandler,
+  createHandler,
+  updateHandler,
+  accommodationId,
+}) => {
   const {
     reset,
     control,
@@ -84,8 +89,8 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
       const values = getValues();
       onClose();
       currentItem.index !== undefined
-        ? updateHnadler(currentItem.index, values)
-        : createHnadler(values);
+        ? updateHandler(currentItem.index, values)
+        : createHandler(values);
     }
   };
 
@@ -128,7 +133,6 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
             render={({ field, fieldState }) => (
               <NumberInput
                 {...field}
-                step={0.1}
                 id="capacity"
                 className="bg-white"
                 placeholder="Enter a capacity"
@@ -172,27 +176,6 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
 
         <FieldWithError
           required
-          label="Room Bedrooms"
-          htmlFor="bedrooms"
-          error={errors.bedrooms?.message}
-        >
-          <Controller
-            name="bedrooms"
-            control={control}
-            render={({ field, fieldState }) => (
-              <NumberInput
-                {...field}
-                id="bedrooms"
-                className="bg-white"
-                placeholder="Enter bedrooms count"
-                ariaInvalid={!!fieldState.error}
-              />
-            )}
-          />
-        </FieldWithError>
-
-        <FieldWithError
-          required
           label="Room Bathrooms"
           htmlFor="bathrooms"
           error={errors.bathrooms?.message}
@@ -206,6 +189,22 @@ export const RoomForm: FC<RoomFormProps> = (props) => {
                 id="bathrooms"
                 className="bg-white"
                 placeholder="Enter bathrooms count"
+                ariaInvalid={!!fieldState.error}
+              />
+            )}
+          />
+        </FieldWithError>
+
+        <FieldWithError htmlFor="bedrooms" label="Room Bedrooms" error={errors.bedrooms?.message}>
+          <Controller
+            name="bedrooms"
+            control={control}
+            render={({ field, fieldState }) => (
+              <NumberInput
+                {...field}
+                id="bedrooms"
+                className="bg-white"
+                placeholder="Enter bedrooms count"
                 ariaInvalid={!!fieldState.error}
               />
             )}

@@ -60,7 +60,7 @@ export const ModelName = {
   FavoriteAccommodation: 'FavoriteAccommodation',
   House: 'House',
   Hotel: 'Hotel',
-  Room: 'Room',
+  Room: 'AccommodationRoom',
   User: 'User',
   Account: 'Account',
   VerificationToken: 'VerificationToken',

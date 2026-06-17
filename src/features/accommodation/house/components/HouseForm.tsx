@@ -58,7 +58,6 @@ export const HouseForm: FC<HouseFormProps> = ({ initialData }) => {
       addressDetails: '',
       latitude: undefined,
       longitude: undefined,
-      season: undefined,
 
       heroImage: undefined,
       galleryImages: [],
@@ -138,45 +137,45 @@ export const HouseForm: FC<HouseFormProps> = ({ initialData }) => {
   const onSubmit = async (formData: HouseSchema) => {
     const { heroImage, galleryImages, ...data } = formData;
 
-    initialData?.id
-      ? updateHouseMutation
-          .mutateAsync({
-            id: initialData.id,
-            data: {
-              ...data,
-              latitude: data.latitude as number,
-              longitude: data.longitude as number,
-            },
-            heroImage,
-            galleryImages,
-          })
-          .then(() => {
-            queryClient.invalidateQueries({
-              queryKey: DOCUMENT_QUERY_KEYS.document({
-                category: 'hero',
-                id: initialData.id,
-                bucket: 'accommodations',
-              }),
-            });
-            queryClient.invalidateQueries({
-              queryKey: DOCUMENT_QUERY_KEYS.document({
-                id: initialData.id,
-                category: 'gallery',
-                bucket: 'accommodations',
-              }),
-            });
-          })
-      : createHouseMutation
-          .mutateAsync({
-            data: {
-              ...data,
-              latitude: data.latitude as number,
-              longitude: data.longitude as number,
-            },
-            heroImage,
-            galleryImages,
-          })
-          .then(() => router.push('/accommodations'));
+    if (initialData?.id) {
+      await updateHouseMutation.mutateAsync({
+        id: initialData.id,
+        data: {
+          ...data,
+          latitude: data.latitude as number,
+          longitude: data.longitude as number,
+        },
+        heroImage,
+        galleryImages,
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: DOCUMENT_QUERY_KEYS.document({
+          category: 'hero',
+          id: initialData.id,
+          bucket: 'accommodations',
+        }),
+      });
+      queryClient.invalidateQueries({
+        queryKey: DOCUMENT_QUERY_KEYS.document({
+          id: initialData.id,
+          category: 'gallery',
+          bucket: 'accommodations',
+        }),
+      });
+    } else {
+      await createHouseMutation.mutateAsync({
+        data: {
+          ...data,
+          latitude: data.latitude as number,
+          longitude: data.longitude as number,
+        },
+        heroImage,
+        galleryImages,
+      });
+
+      router.push('/accommodations');
+    }
   };
 
   return (

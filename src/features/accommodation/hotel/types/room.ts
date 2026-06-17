@@ -16,7 +16,7 @@ export type Room = {
   currencyId: string;
   discount?: number | null;
   capacity: number;
-  bedrooms: number;
+  bedrooms?: number;
   bathrooms: number;
   amenities: Array<AccommodationAmenity>;
   galleryImages?: Array<File> | null;
@@ -44,8 +44,8 @@ export type RoomFormProps = {
   accommodationId?: string;
   currentItem: SelectedRoom;
   closeHandler: () => void;
-  createHnadler: (room: Room) => void;
-  updateHnadler: (index: number, room: Room) => void;
+  createHandler: (room: Room) => void;
+  updateHandler: (index: number, room: Room) => void;
 };
 
 export type SelectedRoom = {

@@ -1,5 +1,6 @@
 import { PageBreadcrumb } from '@/components/shared/PageBreadcrumb';
 import { DestinationForm, getDestinationById } from '@/features/destination';
+import { prisma } from '@/lib/prisma';
 
 interface DestinationParams {
   id: string;
@@ -18,6 +19,59 @@ export const generateMetadata = async ({
 const DestinationEditPage = async ({ params }: { params: Promise<DestinationParams> }) => {
   const { id } = await params;
   const destination = await getDestinationById(id);
+
+  const houses = await prisma.house.findMany({
+    where: {
+      accommodation: {
+        destination: {
+          seasons: {
+            has: 'SPRING',
+          },
+        },
+      },
+    },
+    include: {
+      accommodation: true,
+    },
+  });
+
+  const rooms = await prisma.room.findMany({
+    where: {
+      hotel: {
+        accommodation: {
+          destination: {
+            seasons: {
+              has: 'SPRING',
+            },
+          },
+        },
+      },
+    },
+    include: {
+      hotel: {
+        include: {
+          accommodation: true,
+        },
+      },
+    },
+  });
+
+  const units = [
+    ...houses.map((house) => ({
+      type: 'HOUSE' as const,
+      price: house.price,
+      house,
+    })),
+    ...rooms.map((room) => ({
+      type: 'ROOM' as const,
+      price: room.price,
+      room,
+    })),
+  ]
+    .sort((a, b) => a.price - b.price)
+    .slice(0, 4);
+
+  console.log(units);
 
   return (
     <article className="mx-auto">

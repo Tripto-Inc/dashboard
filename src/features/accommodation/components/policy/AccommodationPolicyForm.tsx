@@ -50,14 +50,14 @@ export const AccommodationPolicyForm: FC<AccommodationPolicyFormProps> = (props)
 
   return (
     <div className="animate-in fade-in slide-in-from-top-2 relative grid grid-cols-1 gap-x-4 rounded-2xl border border-slate-200/60 bg-slate-50/50 p-5 shadow-inner duration-200 sm:grid-cols-2 lg:grid-cols-1">
-      <FieldWithError required htmlFor="title" label="Title" error={errors.title?.message}>
+      <FieldWithError required htmlFor="policy-title" label="Title" error={errors.title?.message}>
         <Controller
           name="title"
           control={control}
           render={({ field }) => (
             <Input
-              id="title"
               {...field}
+              id="policy-title"
               className="bg-white"
               placeholder="Enter a title"
               aria-invalid={!!errors.title?.message}
@@ -66,15 +66,15 @@ export const AccommodationPolicyForm: FC<AccommodationPolicyFormProps> = (props)
         />
       </FieldWithError>
 
-      <FieldWithError required htmlFor="icon" label="Icon" error={errors.icon?.message}>
+      <FieldWithError required htmlFor="policy-icon" label="Icon" error={errors.icon?.message}>
         <Controller
           name="icon"
           control={control}
           render={({ field }) => (
             <InputGroup className="bg-white">
               <InputGroupInput
-                id="icon"
                 {...field}
+                id="policy-icon"
                 placeholder="Enter a Tabler Icon name"
                 aria-invalid={!!errors.icon?.message}
               />
@@ -89,7 +89,7 @@ export const AccommodationPolicyForm: FC<AccommodationPolicyFormProps> = (props)
       <FieldWithError
         required
         label="Description"
-        htmlFor="description"
+        htmlFor="policy-description"
         className="sm:col-span-2 lg:col-span-1"
         error={errors.description?.message}
       >
@@ -98,8 +98,8 @@ export const AccommodationPolicyForm: FC<AccommodationPolicyFormProps> = (props)
           control={control}
           render={({ field }) => (
             <Textarea
-              id="description"
               {...field}
+              id="policy-description"
               className="bg-white"
               placeholder="Enter a description"
               aria-invalid={!!errors.title?.message}

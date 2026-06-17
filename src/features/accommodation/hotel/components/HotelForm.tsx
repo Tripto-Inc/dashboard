@@ -8,7 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { DOCUMENT_QUERY_KEYS } from '@/features/document/constants';
 import { queryClient } from '@/lib/query-client';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { IconBed, IconDeviceFloppy, IconInfoCircle } from '@tabler/icons-react';
+import { IconDeviceFloppy, IconInfoCircle } from '@tabler/icons-react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { FC, useEffect, useMemo } from 'react';
@@ -19,9 +19,8 @@ import { useCreateHotel } from '../hooks/useCreateHotel';
 import { useUpdateHotel } from '../hooks/useUpdateHotel';
 import { hotelSchema, HotelSchema } from '../schema/hotel';
 import { HotelFormProps } from '../types/hotelForm';
-import { Room } from './room/Room';
+import { AccommodationRoom } from './room/AccommodationRoom';
 import { AccommodationGallery } from '@/features/accommodation/components/gallery/AccommodationGallery';
-import { AccommodationGallerySkeleton } from '@/features/accommodation/components/gallery/AccommodationGallerySkeleton';
 
 const AccommodationLocation = dynamic(
   () =>
@@ -136,56 +135,58 @@ export const HotelForm: FC<HotelFormProps> = ({ initialData }) => {
       ({ galleryImages }) => galleryImages?.filter((image) => image != null) || [],
     );
 
-    initialData?.id
-      ? updateHotelMutation
-          .mutateAsync({
-            id: initialData.id,
-            data: {
-              ...data,
-              rooms,
-              latitude: data.latitude as number,
-              longitude: data.longitude as number,
-            },
-            heroImage,
-            galleryImages,
-            roomsGalleryImages,
-          })
-          .then(() => {
-            queryClient.invalidateQueries({
-              queryKey: DOCUMENT_QUERY_KEYS.document({
-                category: 'hero',
-                id: initialData.id,
-                bucket: 'accommodations',
-              }),
-            });
-            queryClient.invalidateQueries({
-              queryKey: DOCUMENT_QUERY_KEYS.document({
-                id: initialData.id,
-                category: 'gallery',
-                bucket: 'accommodations',
-              }),
-            });
-            queryClient.invalidateQueries({
-              queryKey: DOCUMENT_QUERY_KEYS.document({
-                bucket: 'accommodations',
-                category: 'roomGallery',
-              }),
-            });
-          })
-      : createHotelMutation
-          .mutateAsync({
-            data: {
-              ...data,
-              rooms,
-              latitude: data.latitude as number,
-              longitude: data.longitude as number,
-            },
-            heroImage,
-            galleryImages,
-            roomsGalleryImages,
-          })
-          .then(() => router.push('/accommodations'));
+    if (initialData?.id) {
+      await updateHotelMutation.mutateAsync({
+        id: initialData.id,
+        data: {
+          ...data,
+          rooms,
+          latitude: data.latitude as number,
+          longitude: data.longitude as number,
+        },
+        heroImage,
+        galleryImages,
+        roomsGalleryImages,
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: DOCUMENT_QUERY_KEYS.document({
+          category: 'hero',
+          id: initialData.id,
+          bucket: 'accommodations',
+        }),
+      });
+      queryClient.invalidateQueries({
+        queryKey: DOCUMENT_QUERY_KEYS.document({
+          id: initialData.id,
+          category: 'gallery',
+          bucket: 'accommodations',
+        }),
+      });
+      queryClient.invalidateQueries({
+        queryKey: DOCUMENT_QUERY_KEYS.document({
+          bucket: 'accommodations',
+          category: 'roomGallery',
+        }),
+      });
+    } else {
+      await createHotelMutation.mutateAsync({
+        data: {
+          ...data,
+          rooms,
+          latitude: data.latitude as number,
+          longitude: data.longitude as number,
+        },
+        heroImage,
+        galleryImages,
+        roomsGalleryImages,
+      });
+
+      router.push('/accommodations');
+    }
   };
+
+  console.log(form.formState.errors);
 
   return (
     <FormProvider {...form}>
@@ -216,6 +217,7 @@ export const HotelForm: FC<HotelFormProps> = ({ initialData }) => {
                       <Input
                         id="title"
                         {...field}
+                        aria-label='Hotel Title'
                         placeholder="Enter a title"
                         aria-invalid={!!errors.title?.message}
                       />
@@ -237,6 +239,7 @@ export const HotelForm: FC<HotelFormProps> = ({ initialData }) => {
                         id="description"
                         {...field}
                         className="resize-none"
+                        aria-label='Hotel Description'
                         placeholder="Enter a description"
                         aria-invalid={!!errors.description?.message}
                       />
@@ -257,20 +260,17 @@ export const HotelForm: FC<HotelFormProps> = ({ initialData }) => {
               }}
             />
 
-            <ModificationFormSection icon={IconBed} title="Available Rooms">
-              <Room
-                fields={roomFields}
-                error={errors.rooms?.message}
-                accommodationId={initialData?.id}
-                onAppend={(val) => appendRoom(val)}
-                onRemove={(idx) => removeRoom(idx)}
-                onUpdate={(idx, val) => updateRoom(idx, val)}
-              />
-            </ModificationFormSection>
+            <AccommodationRoom
+              fields={roomFields}
+              error={errors.rooms?.message}
+              accommodationId={initialData?.id}
+              onAppend={(val) => appendRoom(val)}
+              onRemove={(idx) => removeRoom(idx)}
+              onUpdate={(idx, val) => updateRoom(idx, val)}
+            />
           </div>
 
           <div className="space-y-6">
-            <AccommodationGallerySkeleton />
             <AccommodationGallery
               accommodation={
                 initialData
@@ -281,7 +281,6 @@ export const HotelForm: FC<HotelFormProps> = ({ initialData }) => {
                   : undefined
               }
             />
-
             <AccommodationAmenity
               fields={amenityFields}
               error={errors.amenities?.message}
@@ -289,7 +288,6 @@ export const HotelForm: FC<HotelFormProps> = ({ initialData }) => {
               onRemove={(idx) => removeAmenity(idx)}
               onUpdate={(idx, val) => updateAmenity(idx, val)}
             />
-
             <AccommodationPolicy
               fields={policyFields}
               error={errors.policies?.message}

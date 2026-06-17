@@ -175,63 +175,56 @@ export const DestinationForm: FC<DestinationFormProps> = ({ initialData }) => {
           </ModificationFormSection>
         </div>
 
-        <div>
-          <ModificationFormSection icon={IconCalendarEvent} title="Seasonal Highlight">
-            <FieldWithError
-              required
-              label="Season"
-              htmlFor="season"
-              error={errors.seasons?.message}
-            >
-              <Controller
-                name="seasons"
-                control={control}
-                render={({ field, fieldState }) => {
-                  const value: string[] = field.value ?? [];
+        <ModificationFormSection icon={IconCalendarEvent} title="Seasonal Highlight">
+          <FieldWithError required label="Season" htmlFor="season" error={errors.seasons?.message}>
+            <Controller
+              name="seasons"
+              control={control}
+              render={({ field, fieldState }) => {
+                const value: string[] = field.value ?? [];
 
-                  const toggle = (seasonValue: string) => {
-                    const next = value.includes(seasonValue)
-                      ? value.filter((v) => v !== seasonValue)
-                      : [...value, seasonValue];
+                const toggle = (seasonValue: string) => {
+                  const next = value.includes(seasonValue)
+                    ? value.filter((v) => v !== seasonValue)
+                    : [...value, seasonValue];
 
-                    field.onChange(next);
-                  };
+                  field.onChange(next);
+                };
 
-                  return (
-                    <div className="grid grid-cols-1 gap-4 md:grid-cols-4 lg:grid-cols-1 xl:grid-cols-2">
-                      {SEASONS.map((season) => {
-                        const Icon = season.icon;
-                        const checked = value.includes(season.value);
+                return (
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-4 lg:grid-cols-1 xl:grid-cols-2">
+                    {SEASONS.map((season) => {
+                      const Icon = season.icon;
+                      const checked = value.includes(season.value);
 
-                        return (
-                          <CheckboxPrimitive.Root
-                            key={season.value}
-                            checked={checked}
-                            aria-invalid={!!fieldState.error}
-                            onCheckedChange={() => toggle(season.value)}
-                            className={clsx(
-                              'relative rounded-lg border px-3 py-5 transition-all',
-                              'aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40',
-                              checked
-                                ? 'border-blue-500 ring-[3px] ring-blue-500/40'
-                                : 'border-slate-200 bg-slate-50/50',
-                            )}
-                          >
-                            <div className="flex cursor-pointer flex-col items-center gap-3 text-center after:absolute after:inset-0">
-                              <Icon className="size-7 text-blue-600" />
-                              <p className="text-base font-semibold">{season.title}</p>
-                              <span className="text-sm text-slate-400">{season.description}</span>
-                            </div>
-                          </CheckboxPrimitive.Root>
-                        );
-                      })}
-                    </div>
-                  );
-                }}
-              />
-            </FieldWithError>
-          </ModificationFormSection>
-        </div>
+                      return (
+                        <CheckboxPrimitive.Root
+                          key={season.value}
+                          checked={checked}
+                          aria-invalid={!!fieldState.error}
+                          onCheckedChange={() => toggle(season.value)}
+                          className={clsx(
+                            'relative rounded-lg border px-3 py-5 transition-all',
+                            'aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40',
+                            checked
+                              ? 'border-blue-500 ring-[3px] ring-blue-500/40'
+                              : 'border-slate-200 bg-slate-50/50',
+                          )}
+                        >
+                          <div className="flex cursor-pointer flex-col items-center gap-3 text-center after:absolute after:inset-0">
+                            <Icon className="size-7 text-blue-600" />
+                            <p className="text-base font-semibold">{season.title}</p>
+                            <span className="text-sm text-slate-400">{season.description}</span>
+                          </div>
+                        </CheckboxPrimitive.Root>
+                      );
+                    })}
+                  </div>
+                );
+              }}
+            />
+          </FieldWithError>
+        </ModificationFormSection>
       </div>
     </form>
   );

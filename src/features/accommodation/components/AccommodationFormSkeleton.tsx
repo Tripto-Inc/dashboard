@@ -3,6 +3,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { type FC, Fragment } from 'react';
 import { AccommodationGallerySkeleton } from '@/features/accommodation/components/gallery/AccommodationGallerySkeleton';
 import { ModificationFormSectionSkeleton } from '@/components/shared/ModificationFormSection';
+import { AccommodationLocationSkeleton } from '@/features/accommodation/components/location/AccommodationLocationSkeleton';
 
 export const AccommodationFormSkeleton: FC = () => {
   return (
@@ -34,17 +35,7 @@ export const AccommodationFormSkeleton: FC = () => {
             </div>
           </ModificationFormSectionSkeleton>
 
-          <ModificationFormSectionSkeleton>
-            <div className="grid grid-cols-1 gap-x-6 md:grid-cols-2">
-              <Skeleton className="mb-6 h-99.5 md:col-span-2" />
-              <FieldWithErrorSkeleton />
-              <FieldWithErrorSkeleton />
-              <FieldWithErrorSkeleton />
-              <FieldWithErrorSkeleton />
-              <FieldWithErrorSkeleton />
-              <FieldWithErrorSkeleton />
-            </div>
-          </ModificationFormSectionSkeleton>
+          <AccommodationLocationSkeleton />
 
           <ModificationFormSectionSkeleton>
             <div className="grid grid-cols-1 gap-x-6 md:grid-cols-3">

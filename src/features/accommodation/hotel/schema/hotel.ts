@@ -1,5 +1,4 @@
 import z from 'zod';
-import { seasonSchema } from '@/features/accommodation/schema/season';
 import { locationSchema } from '@/features/accommodation/schema/location';
 import { galleryImagesSchema, heroImageSchema } from '@/features/accommodation/schema/gallery';
 import { roomSchema } from '@/features/accommodation/hotel/schema/room';
@@ -7,7 +6,6 @@ import { policySchema } from '@/features/accommodation/schema/policy';
 import { amenitySchema } from '@/features/accommodation/schema/amenity';
 
 export const hotelSchema = z.object({
-  ...seasonSchema.shape,
   ...locationSchema.shape,
   id: z.string().optional(),
   title: z.string().min(1, 'Title is required'),

@@ -8,16 +8,15 @@ import {
   IconHome,
   IconMeterSquare,
   IconPencil,
-  IconPhoto,
   IconRuler,
   IconTrash,
   IconUsers,
 } from '@tabler/icons-react';
-import { FC, Fragment, useMemo } from 'react';
+import { FC, useMemo } from 'react';
 import { RoomItemProps } from '../../types/room';
 import { SafeImage } from '@/components/shared/SafeImage';
 
-export const RoomItem: FC<RoomItemProps> = (props) => {
+export const AccommodationRoomItem: FC<RoomItemProps> = (props) => {
   const { item, accommodationId, onRemove, onEdit } = props;
   const { data: currency } = useGetCurrency(item.currencyId);
   const { data } = useGetDocuments({
@@ -94,7 +93,7 @@ export const RoomItem: FC<RoomItemProps> = (props) => {
 
       <div className="flex flex-col gap-2 p-4">
         <h4 className="truncate text-lg leading-tight font-bold text-slate-900 sm:text-xl">
-          {item.title || 'Untitled Room Type'}
+          {item.title || 'Untitled AccommodationRoom Type'}
         </h4>
 
         <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-2">
