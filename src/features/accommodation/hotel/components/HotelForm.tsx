@@ -186,8 +186,6 @@ export const HotelForm: FC<HotelFormProps> = ({ initialData }) => {
     }
   };
 
-  console.log(form.formState.errors);
-
   return (
     <FormProvider {...form}>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -217,7 +215,7 @@ export const HotelForm: FC<HotelFormProps> = ({ initialData }) => {
                       <Input
                         id="title"
                         {...field}
-                        aria-label='Hotel Title'
+                        aria-label="Hotel Title"
                         placeholder="Enter a title"
                         aria-invalid={!!errors.title?.message}
                       />
@@ -239,7 +237,7 @@ export const HotelForm: FC<HotelFormProps> = ({ initialData }) => {
                         id="description"
                         {...field}
                         className="resize-none"
-                        aria-label='Hotel Description'
+                        aria-label="Hotel Description"
                         placeholder="Enter a description"
                         aria-invalid={!!errors.description?.message}
                       />
