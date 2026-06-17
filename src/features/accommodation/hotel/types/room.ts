@@ -13,11 +13,11 @@ export type Room = {
   area: number;
   count: number;
   price: number;
+  capacity: number;
+  bathrooms: number;
   currencyId: string;
   discount?: number | null;
-  capacity: number;
-  bedrooms?: number;
-  bathrooms: number;
+  bedrooms?: number | null;
   amenities: Array<AccommodationAmenity>;
   galleryImages?: Array<File> | null;
   beds: Beds;
