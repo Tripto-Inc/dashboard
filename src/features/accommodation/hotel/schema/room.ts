@@ -12,7 +12,7 @@ export const roomSchema = z.object({
   currencyId: z.string({ error: 'Currency is required' }).min(1, 'Currency is required'),
   discount: z.number().positive('Discount must be positive').nullish(),
   capacity: z.number({ error: 'Capacity is required' }).positive('Capacity must be positive'),
-  bedrooms: z.number().nonnegative('Bedrooms cannot be negative').optional(),
+  bedrooms: z.number().nonnegative('Bedrooms cannot be negative').nullish(),
   bathrooms: z
     .number({ error: 'Bathrooms count is required' })
     .positive('Bathrooms count must be positive'),

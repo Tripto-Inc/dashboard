@@ -25,6 +25,8 @@ const AccommodationEditPage = async ({ params }: { params: Promise<Accommodation
   const accommodation = await getAccommodationById(id);
   const countryFlag = convertCountryCodeToFlag(accommodation.address.countryCode);
 
+  console.log(accommodation);
+
   return (
     <article className="mx-auto">
       <PageBreadcrumb
