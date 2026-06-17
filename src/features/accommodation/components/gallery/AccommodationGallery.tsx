@@ -17,7 +17,7 @@ export const AccommodationGallery: FC<AccommodationGalleryProps> = ({ accommodat
   } = useFormContext();
 
   const heroImageObject = `${accommodation?.id}/hero.webp`;
-  const galleryImagesPrefix = `${accommodation?.title}/gallery`;
+  const galleryImagesPrefix = `${accommodation?.id}/gallery`;
 
   return (
     <ModificationFormSection icon={IconImageInPicture} title="Gallery">
