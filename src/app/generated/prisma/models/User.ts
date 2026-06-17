@@ -5670,11 +5670,11 @@ export type User$hotelsUpdatedArgs<ExtArgs extends runtime.Types.Extensions.Inte
  */
 export type User$roomsCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the AccommodationRoom
+   * Select specific fields to fetch from the Room
    */
   select?: Prisma.RoomSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the AccommodationRoom
+   * Omit specific fields from the Room
    */
   omit?: Prisma.RoomOmit<ExtArgs> | null
   /**
@@ -5694,11 +5694,11 @@ export type User$roomsCreatedArgs<ExtArgs extends runtime.Types.Extensions.Inter
  */
 export type User$roomsUpdatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the AccommodationRoom
+   * Select specific fields to fetch from the Room
    */
   select?: Prisma.RoomSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the AccommodationRoom
+   * Omit specific fields from the Room
    */
   omit?: Prisma.RoomOmit<ExtArgs> | null
   /**

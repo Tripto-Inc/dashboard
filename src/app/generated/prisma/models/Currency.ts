@@ -2038,11 +2038,11 @@ export type Currency$housesArgs<ExtArgs extends runtime.Types.Extensions.Interna
  */
 export type Currency$roomsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the AccommodationRoom
+   * Select specific fields to fetch from the Room
    */
   select?: Prisma.RoomSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the AccommodationRoom
+   * Omit specific fields from the Room
    */
   omit?: Prisma.RoomOmit<ExtArgs> | null
   /**

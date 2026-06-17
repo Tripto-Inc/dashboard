@@ -1614,11 +1614,11 @@ export type HotelDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
  */
 export type Hotel$roomsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the AccommodationRoom
+   * Select specific fields to fetch from the Room
    */
   select?: Prisma.RoomSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the AccommodationRoom
+   * Omit specific fields from the Room
    */
   omit?: Prisma.RoomOmit<ExtArgs> | null
   /**

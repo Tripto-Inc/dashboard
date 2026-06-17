@@ -246,7 +246,7 @@ model Room {
   price     Float
   discount  Float?
   capacity  Int
-  bedrooms  Int
+  bedrooms  Int?
   bathrooms Int
   amenities Json
   beds      Json
