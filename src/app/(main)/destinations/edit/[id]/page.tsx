@@ -1,7 +1,6 @@
 import { PageBreadcrumb } from '@/components/shared/PageBreadcrumb';
-import { DestinationForm } from '@/features/destination';
+import { DestinationForm, getDestinationById } from '@/features/destination';
 import { prisma } from '@/lib/prisma';
-import { DestinationService } from '@/features/destination/services';
 
 interface DestinationParams {
   id: string;
@@ -13,13 +12,13 @@ export const generateMetadata = async ({
   params: Promise<DestinationParams>;
 }): Promise<{ title: string }> => {
   const { id } = await params;
-  const { country, city } = await DestinationService.findById(id);
+  const { country, city } = await getDestinationById(id);
   return { title: `${country}, ${city}` };
 };
 
 const DestinationEditPage = async ({ params }: { params: Promise<DestinationParams> }) => {
   const { id } = await params;
-  const destination = await DestinationService.findById(id);
+  const destination = await getDestinationById(id);
 
   const houses = await prisma.house.findMany({
     where: {

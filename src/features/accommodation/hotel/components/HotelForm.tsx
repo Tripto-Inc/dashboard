@@ -165,8 +165,8 @@ export const HotelForm: FC<HotelFormProps> = ({ initialData }) => {
       });
       queryClient.invalidateQueries({
         queryKey: DOCUMENT_QUERY_KEYS.document({
-          bucket: 'accommodations',
           category: 'roomGallery',
+          bucket: 'accommodations',
         }),
       });
     } else {

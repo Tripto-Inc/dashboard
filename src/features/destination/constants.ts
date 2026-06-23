@@ -12,7 +12,6 @@ export const DESTINATION_ERRORS = {
   DUPLICATE_LOCATION_SLOGAN: 'Destination with this city, country and slogan already exists',
   DUPLICATE_TITLE: 'Destination with this name already exists',
   NOT_FOUND: 'Destination not found',
-  ID_REQUIRED: 'Destination id is required',
   NO_ACCOMMODATION_IN_LOCATION: 'No accommodation exists for this location',
   GET_FAILED: 'Failed to get destination. Please try again.',
   GET_LIST_FAILED: 'Failed to get destinations. Please try again.',

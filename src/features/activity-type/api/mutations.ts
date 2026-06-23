@@ -1,68 +1,49 @@
-'use server';
-
-import { prisma } from '@/lib/prisma';
-import { revalidatePath } from 'next/cache';
-import { ACTIVITY_TYPE_ERRORS } from '../constants';
-import { ActivityTypeFormData } from '../types';
-import { auth } from '@/auth';
+import { ActivityTypeFormData } from '@/features/activity-type/types';
+import { ACTIVITY_TYPE_ERRORS } from '@/features/activity-type/constants';
 
 export const createActivityType = async (data: ActivityTypeFormData) => {
-  const session = await auth();
-  const existing = await prisma.activityType.findUnique({
-    where: {
-      name_title: {
-        name: data.name,
-        title: data.title,
-      },
+  const response = await fetch('/api/activity-types', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
     },
+    body: JSON.stringify(data),
   });
 
-  if (existing) throw new Error(ACTIVITY_TYPE_ERRORS.DUPLICATE_NAME_TITLE);
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.error || ACTIVITY_TYPE_ERRORS.CREATE_FAILED);
+  }
 
-  const activityType = await prisma.activityType.create({
-    data: {
-      name: data.name,
-      icon: data.icon,
-      title: data.title,
-      emoji: data.emoji,
-      isActive: data.isActive,
-      createdById: session?.user?.id,
-    },
-  });
-
-  return activityType;
+  return response.json();
 };
 
 export const updateActivityType = async (id: string, data: ActivityTypeFormData) => {
-  if (!id) throw new Error(ACTIVITY_TYPE_ERRORS.ID_REQUIRED);
-  const session = await auth();
-  const existing = await prisma.activityType.findUnique({ where: { id } });
-
-  if (!existing) throw new Error(ACTIVITY_TYPE_ERRORS.NOT_FOUND);
-
-  const activityType = await prisma.activityType.update({
-    where: { id },
-    data: {
-      name: data.name,
-      icon: data.icon,
-      title: data.title,
-      emoji: data.emoji,
-      isActive: data.isActive,
-      updatedAt: new Date(),
-      updatedById: session?.user?.id,
+  const response = await fetch(`/api/activity-types/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
     },
+    body: JSON.stringify(data),
   });
 
-  revalidatePath(`/activity-types/edit/${id}`);
-  return activityType;
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.error || ACTIVITY_TYPE_ERRORS.UPDATE_FAILED);
+  }
+
+  return response.json();
 };
 
 export const deleteActivityType = async (id: string) => {
-  const existing = await prisma.activityType.findUnique({ where: { id } });
+  const response = await fetch(`/api/activity-types/${id}`, {
+    method: 'DELETE',
+  });
 
-  if (!existing) throw new Error(ACTIVITY_TYPE_ERRORS.NOT_FOUND);
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.error || ACTIVITY_TYPE_ERRORS.DELETE_FAILED);
+  }
 
-  await prisma.activityType.delete({ where: { id } });
-
-  return existing.id;
+  return response.json();
 };
