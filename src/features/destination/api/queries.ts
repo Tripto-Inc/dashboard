@@ -1,54 +1,37 @@
-'use server';
-
 import { ServerTableParams, ServerTableResponse } from '@/components/shared/DataTable/types';
-import { prisma } from '@/lib/prisma';
 import { Destination } from '@/features/destination/types';
 import { DESTINATION_ERRORS } from '@/features/destination/constants';
 
 export const getDestinations = async (
   params: ServerTableParams,
 ): Promise<ServerTableResponse<Destination>> => {
-  const { page, pageSize, filter, sort } = params;
-  const take = pageSize;
-  const skip = (page - 1) * pageSize;
-  const sortBy = sort[0]?.id;
-  const sortOrder = sort[0]?.desc ? 'desc' : 'asc';
-  const where = filter
-    ? {
-        OR: [
-          { city: { contains: filter, mode: 'insensitive' as const } },
-          { slogan: { contains: filter, mode: 'insensitive' as const } },
-          { country: { contains: filter, mode: 'insensitive' as const } },
-        ],
-      }
-    : {};
+  const searchParams = new URLSearchParams();
+  searchParams.set('page', params.page.toString());
+  searchParams.set('pageSize', params.pageSize.toString());
 
-  const orderBy = sortBy ? { [sortBy]: sortOrder } : { id: 'desc' as const };
+  if (params.filter) searchParams.set('filter', params.filter);
+  if (params.sort?.[0]) {
+    searchParams.set('sortBy', params.sort[0].id);
+    searchParams.set('sortOrder', params.sort[0].desc ? 'desc' : 'asc');
+  }
 
-  const [destinations, total] = await Promise.all([
-    prisma.destination.findMany({
-      where,
-      orderBy,
-      skip,
-      take,
-    }),
-    prisma.destination.count({ where }),
-  ]);
+  const response = await fetch(`/api/destinations?${searchParams.toString()}`);
 
-  return {
-    data: destinations,
-    total,
-  };
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.error || DESTINATION_ERRORS.GET_LIST_FAILED);
+  }
+
+  return response.json();
 };
 
 export const getDestinationById = async (id: string): Promise<Destination> => {
-  const destination = await prisma.destination.findUnique({
-    where: { id },
-  });
+  const response = await fetch(`/api/destinations/${id}`);
 
-  if (!destination) {
-    throw new Error(DESTINATION_ERRORS.NOT_FOUND);
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.error || DESTINATION_ERRORS.GET_FAILED);
   }
 
-  return destination;
+  return response.json();
 };

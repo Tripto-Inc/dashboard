@@ -1,7 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
 import { auth } from '@/auth';
 import { DESTINATION_ERRORS } from '@/features/destination/constants';
+import { revalidatePath } from 'next/cache';
+import { DestinationService } from '@/features/destination/services';
+
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  try {
+    const { id } = await params;
+    const destination = await DestinationService.findById(id);
+
+    return NextResponse.json(destination);
+  } catch (error) {
+    if (error instanceof Error && error.message === DESTINATION_ERRORS.NOT_FOUND) {
+      return NextResponse.json({ error: DESTINATION_ERRORS.NOT_FOUND }, { status: 404 });
+    }
+
+    console.error('Error fetching destination:', error);
+    return NextResponse.json({ error: DESTINATION_ERRORS.GET_FAILED }, { status: 500 });
+  }
+}
 
 export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
@@ -14,46 +31,25 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
     const { id } = await params;
     const data = await request.json();
 
-    const existing = await prisma.destination.findUnique({
-      where: { id },
-    });
+    const destination = await DestinationService.update(id, data, session.user.id);
 
-    if (!existing) {
-      return NextResponse.json({ error: DESTINATION_ERRORS.NOT_FOUND }, { status: 404 });
-    }
-
-    const duplicate = await prisma.destination.findUnique({
-      where: {
-        country_city_slogan: {
-          city: data.city,
-          slogan: data.slogan,
-          country: data.country,
-        },
-      },
-    });
-
-    if (duplicate) {
-      return NextResponse.json(
-        { error: DESTINATION_ERRORS.DUPLICATE_LOCATION_SLOGAN },
-        { status: 409 },
-      );
-    }
-
-    const destination = await prisma.destination.update({
-      where: { id },
-      data: {
-        city: data.city,
-        slogan: data.slogan,
-        country: data.country,
-        seasons: data.seasons,
-        isActive: data.isActive,
-        updatedAt: new Date(),
-        updatedById: session.user.id,
-      },
-    });
+    revalidatePath('/api/destinations');
+    revalidatePath(`/api/destinations/${id}`);
 
     return NextResponse.json(destination);
   } catch (error) {
+    if (error instanceof Error) {
+      if (error.message === DESTINATION_ERRORS.NOT_FOUND) {
+        return NextResponse.json({ error: DESTINATION_ERRORS.NOT_FOUND }, { status: 404 });
+      }
+      if (error.message === DESTINATION_ERRORS.DUPLICATE_LOCATION_SLOGAN) {
+        return NextResponse.json(
+          { error: DESTINATION_ERRORS.DUPLICATE_LOCATION_SLOGAN },
+          { status: 409 },
+        );
+      }
+    }
+
     console.error('Update destination error:', error);
     return NextResponse.json({ error: DESTINATION_ERRORS.UPDATE_FAILED }, { status: 500 });
   }
@@ -72,18 +68,19 @@ export async function DELETE(
 
     const { id } = await params;
 
-    const existing = await prisma.destination.findUnique({
-      where: { id },
-    });
+    await DestinationService.delete(id);
 
-    if (!existing) {
-      return NextResponse.json({ error: DESTINATION_ERRORS.NOT_FOUND }, { status: 404 });
-    }
-
-    await prisma.destination.delete({ where: { id } });
+    revalidatePath('/api/destinations');
+    revalidatePath(`/api/destinations/${id}`);
 
     return NextResponse.json({ id });
   } catch (error) {
+    if (error instanceof Error) {
+      if (error.message === DESTINATION_ERRORS.NOT_FOUND) {
+        return NextResponse.json({ error: DESTINATION_ERRORS.NOT_FOUND }, { status: 404 });
+      }
+    }
+
     console.error('Delete destination error:', error);
     return NextResponse.json({ error: DESTINATION_ERRORS.DELETE_FAILED }, { status: 500 });
   }
