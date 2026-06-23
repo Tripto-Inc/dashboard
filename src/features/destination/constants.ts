@@ -6,7 +6,6 @@ export const DESTINATION_QUERY_KEYS = {
   list: (params: ServerTableParams) => [...DESTINATION_QUERY_KEYS.lists(), params] as const,
   details: () => [...DESTINATION_QUERY_KEYS.all, 'detail'] as const,
   detail: (id: string) => [...DESTINATION_QUERY_KEYS.details(), id] as const,
-  dropdown: () => [...DESTINATION_QUERY_KEYS.all, 'dropdown'] as const,
 };
 
 export const DESTINATION_ERRORS = {
@@ -14,7 +13,6 @@ export const DESTINATION_ERRORS = {
   DUPLICATE_TITLE: 'Destination with this name already exists',
   NOT_FOUND: 'Destination not found',
   ID_REQUIRED: 'Destination id is required',
-  IN_USE: 'Cannot delete destination because it is being used by activities or accommodations',
   NO_ACCOMMODATION_IN_LOCATION: 'No accommodation exists for this location',
   CREATE_FAILED: 'Failed to create destination. Please try again.',
   UPDATE_FAILED: 'Failed to update destination. Please try again.',
