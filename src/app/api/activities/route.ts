@@ -51,6 +51,11 @@ export async function GET(request: NextRequest) {
         orderBy,
         skip,
         take: pageSize,
+        include: {
+          address: true,
+          currency: true,
+          activityType: true,
+        },
       }),
       prisma.activity.count({ where }),
     ]);
