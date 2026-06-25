@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "icons:build": "svgr --typescript --icon --out-dir src/assets/icons src/assets/icons",
     "start": "next start",
     "lint": "eslint"
   },

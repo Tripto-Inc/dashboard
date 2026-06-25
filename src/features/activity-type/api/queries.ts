@@ -1,4 +1,4 @@
-import { createListFetcher, createSingleFetcher } from '@/utils/apiClient';
+import { createDropdownFetcher, createListFetcher, createSingleFetcher } from '@/utils/apiClient';
 import { ACTIVITY_TYPE_ERRORS } from '@/features/activity-type/constants';
 import { ActivityType, ActivityTypeOption } from '@/features/activity-type/types';
 
@@ -13,23 +13,7 @@ export const getActivityTypeById = createSingleFetcher<ActivityType>({
   defaultError: ACTIVITY_TYPE_ERRORS.GET_FAILED,
 });
 
-export const getActivityTypesDropdown = async (
-  onlyActive: boolean = true,
-): Promise<ActivityTypeOption[]> => {
-  // const activityTypes = await prisma.activityType.findMany({
-  //   where: onlyActive ? { isActive: true } : undefined,
-  //   orderBy: { title: 'asc' },
-  //   select: {
-  //     id: true,
-  //     emoji: true,
-  //     title: true,
-  //   },
-  // });
-  //
-  // return activityTypes.map((activityType) => ({
-  //   value: activityType.id,
-  //   label: `${activityType.emoji} - ${activityType.title}`,
-  // }));
-
-  return [];
-};
+export const getActivityTypesDropdown = createDropdownFetcher<ActivityTypeOption>({
+  endpoint: '/api/activity-types/dropdown?onlyActive=true',
+  defaultError: ACTIVITY_TYPE_ERRORS.GET_LIST_FAILED,
+});

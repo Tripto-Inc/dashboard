@@ -1,10 +1,40 @@
 import { ServerTableParams, ServerTableResponse } from '@/components/shared/DataTable/types';
 
-interface FetchListOptions {
+type FetchListOptions = {
   endpoint: string;
   baseUrl?: string;
   defaultError: string;
-}
+};
+
+type FetchDropdownOptions = {
+  endpoint: string;
+  baseUrl?: string;
+  defaultError: string;
+};
+
+export const createDropdownFetcher = <T>({
+  endpoint,
+  defaultError,
+  baseUrl,
+}: FetchDropdownOptions) => {
+  return async (onlyActive: boolean = true): Promise<T[]> => {
+    const searchParams = new URLSearchParams();
+    searchParams.set('onlyActive', String(onlyActive));
+
+    const url = baseUrl
+      ? `${baseUrl}${endpoint}?${searchParams.toString()}`
+      : `${endpoint}?${searchParams.toString()}`;
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || defaultError);
+    }
+
+    return response.json();
+  };
+};
 
 export const createListFetcher = <T>({ endpoint, defaultError, baseUrl }: FetchListOptions) => {
   return async (params: ServerTableParams): Promise<ServerTableResponse<T>> => {

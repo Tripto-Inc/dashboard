@@ -3,9 +3,7 @@
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
@@ -49,7 +47,7 @@ export const InfiniteDropdown = <T extends InfiniteDropdownOption>(
       >
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent position='popper' className='max-h-80 overflow-y-auto'>
         {data?.map((item) => (
           <SelectItem key={item.value} value={item.value}>
             {renderCustomItem ? renderCustomItem(item) : item.label}
