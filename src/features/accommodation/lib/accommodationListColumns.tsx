@@ -131,7 +131,7 @@ export const accommodationListColumns: ColumnDef<AccommodationColumns>[] = [
           ))}
           {hasMore && (
             <li className="flex items-center gap-1 rounded-full bg-slate-500 px-3 py-2 text-white">
-              <p className="text-sm">+{policies.length - 4} more</p>
+              <p className="text-sm">+{policies.length - 3} more</p>
             </li>
           )}
         </ul>
