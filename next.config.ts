@@ -43,6 +43,11 @@ const nextConfig: NextConfig = {
         hostname: 'azdorurafvditwvuieqw.storage.supabase.co',
         pathname: '/storage/v1/s3/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'randomuser.me',
+        pathname: '/api/**',
+      },
     ],
   },
 };
