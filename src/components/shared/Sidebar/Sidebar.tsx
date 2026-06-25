@@ -5,18 +5,19 @@ import { FC, Fragment } from 'react';
 import { SidebarContent } from './SidebarContent';
 import { SidebarProps } from './types';
 
-export const Sidebar:FC<SidebarProps> = (props) => {
-  const {isOpen,onToggleSidebar} = props
-  
+export const Sidebar: FC<SidebarProps> = (props) => {
+  const { isOpen, onToggleSidebar } = props;
+
   return (
-    <AnimatePresence>
+    <AnimatePresence mode='wait'>
       {isOpen && (
         <Fragment>
           <motion.aside
             animate={{ x: 0 }}
             exit={{ x: -300 }}
             initial={{ x: 0 }}
-            className="hidden absolute inset-y-0 left-0 z-50 lg:flex w-64 flex-col border-r border-slate-200 bg-white lg:fixed">
+            className="absolute inset-y-0 left-0 z-50 hidden w-64 flex-col border-r border-slate-200 bg-white lg:fixed lg:flex"
+          >
             <SidebarContent />
           </motion.aside>
           <Fragment>
@@ -41,4 +42,4 @@ export const Sidebar:FC<SidebarProps> = (props) => {
       )}
     </AnimatePresence>
   );
-}
+};
