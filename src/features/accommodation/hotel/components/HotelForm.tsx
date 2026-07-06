@@ -48,7 +48,7 @@ export const HotelForm: FC<HotelFormProps> = ({ initialData }) => {
     resolver: zodResolver(hotelSchema),
     defaultValues: {
       title: '',
-      accommodationTagId: '',
+      tagId: '',
       description: '',
       country: '',
       countryCode: '',
@@ -226,18 +226,13 @@ export const HotelForm: FC<HotelFormProps> = ({ initialData }) => {
                   />
                 </FieldWithError>
 
-                <FieldWithError
-                  required
-                  htmlFor="tag"
-                  label="Tag"
-                  error={errors.accommodationTagId?.message}
-                >
+                <FieldWithError required htmlFor="tag" label="Tag" error={errors.tagId?.message}>
                   <Controller
-                    name="accommodationTagId"
+                    name="tagId"
                     control={control}
                     render={({ field, fieldState }) => (
                       <InfiniteDropdown
-                        id="accommodationTagId"
+                        id="tagId"
                         value={field.value}
                         onChange={field.onChange}
                         placeholder="Select a tag"
@@ -252,7 +247,7 @@ export const HotelForm: FC<HotelFormProps> = ({ initialData }) => {
                   required
                   label="Description"
                   htmlFor="description"
-                  className='lg:col-span-2'
+                  className="lg:col-span-2"
                   error={errors.description?.message}
                 >
                   <Controller

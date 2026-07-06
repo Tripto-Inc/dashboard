@@ -53,7 +53,7 @@ export const HouseForm: FC<HouseFormProps> = ({ initialData }) => {
       description: '',
       capacity: undefined,
       currencyId: '',
-      accommodationTagId: '',
+      tagId: '',
       country: '',
       countryCode: '',
       city: '',
@@ -216,18 +216,13 @@ export const HouseForm: FC<HouseFormProps> = ({ initialData }) => {
                   />
                 </FieldWithError>
 
-                <FieldWithError
-                  required
-                  htmlFor="tag"
-                  label="Tag"
-                  error={errors.accommodationTagId?.message}
-                >
+                <FieldWithError required htmlFor="tag" label="Tag" error={errors.tagId?.message}>
                   <Controller
-                    name="accommodationTagId"
+                    name="tagId"
                     control={control}
                     render={({ field, fieldState }) => (
                       <InfiniteDropdown
-                        id="accommodationTagId"
+                        id="tagId"
                         value={field.value}
                         onChange={field.onChange}
                         placeholder="Select a tag"

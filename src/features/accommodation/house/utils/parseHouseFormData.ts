@@ -29,6 +29,7 @@ export const parseHouseFormData = (formData: FormData) => {
     floors: getNumber('floors'),
     bedrooms: getNumber('bedrooms'),
     bathrooms: getNumber('bathrooms'),
+    tagId: get('tagId'),
     currencyId: get('currencyId'),
     heroImage: formData.get('heroImage') as File | null,
     galleryImages: formData.getAll('galleryImages') as File[],

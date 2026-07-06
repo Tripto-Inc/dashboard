@@ -43,6 +43,7 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
         amenities: data.amenities,
         updatedAt: new Date(),
         updatedBy: { connect: { id: session.user.id } },
+        tag: { connect: { id: data.tagId } },
 
         address: {
           update: {

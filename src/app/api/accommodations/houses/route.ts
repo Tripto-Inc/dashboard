@@ -58,6 +58,7 @@ export async function POST(request: NextRequest) {
           description: data.description,
           policies: data.policies,
           amenities: data.amenities,
+          tag: { connect: { id: data.tagId } },
           createdBy: { connect: { id: session.user.id } },
           address: { connect: { id: address.id } },
           house: {

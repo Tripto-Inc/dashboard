@@ -18,7 +18,7 @@ export const houseSchema = z.object({
   bathrooms: z
     .number({ error: 'Bathrooms count is required' })
     .positive('Bathrooms count must be positive'),
-  accommodationTagId: z.string({ error: 'Tag is required' }).min(1, 'Tag is required'),
+  tagId: z.string({ error: 'Tag is required' }).min(1, 'Tag is required'),
   description: z
     .string()
     .min(1, 'Description is required')

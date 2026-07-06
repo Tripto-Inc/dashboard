@@ -60,6 +60,7 @@ export async function POST(request: NextRequest) {
           amenities: data.amenities,
           createdBy: { connect: { id: session.user.id } },
           address: { connect: { id: address.id } },
+          tag: { connect: { id: data.tagId } },
           hotel: {
             create: {
               rooms: {
