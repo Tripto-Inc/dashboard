@@ -19,7 +19,12 @@ export const accommodationTagListColumns: ColumnDef<AccommodationTag>[] = [
     cell: ({ row }) => {
       const { textColor } = row.original;
 
-      return <div className="mx-auto size-7 rounded-sm" style={{ backgroundColor: textColor }} />;
+      return (
+        <div className="flex flex-col gap-1">
+          <div className="size-5 rounded-sm" style={{ backgroundColor: textColor }} />
+          <p className="text-xs">{textColor}</p>
+        </div>
+      );
     },
   },
   {
@@ -30,7 +35,12 @@ export const accommodationTagListColumns: ColumnDef<AccommodationTag>[] = [
     cell: ({ row }) => {
       const { borderColor } = row.original;
 
-      return <div className="mx-auto size-7 rounded-sm" style={{ backgroundColor: borderColor }} />;
+      return (
+        <div className="flex flex-col gap-1">
+          <div className="size-5 rounded-sm" style={{ backgroundColor: borderColor }} />
+          <p className="text-xs">{borderColor}</p>
+        </div>
+      );
     },
   },
   {
@@ -41,7 +51,12 @@ export const accommodationTagListColumns: ColumnDef<AccommodationTag>[] = [
     cell: ({ row }) => {
       const { backgroundColor } = row.original;
 
-      return <div className="mx-auto size-7 rounded-sm" style={{ backgroundColor }} />;
+      return (
+        <div className="flex flex-col gap-1">
+          <div className="size-5 rounded-sm" style={{ backgroundColor }} />
+          <p className='text-xs'>{backgroundColor}</p>
+        </div>
+      );
     },
   },
   {
