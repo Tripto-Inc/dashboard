@@ -34,14 +34,13 @@ model Destination {
 }
 
 model Activity {
-  id             String  @id @default(uuid())
-  title          String  @unique
-  isActive       Boolean @default(true)
-  price          Float
-  discount       Float?
-  currencyId     String
-  addressId      String
-  activityTypeId String
+  id         String  @id @default(uuid())
+  title      String  @unique
+  isActive   Boolean @default(true)
+  price      Float
+  discount   Float?
+  currencyId String
+  addressId  String
 
   createdById String?
   updatedById String?
@@ -49,9 +48,11 @@ model Activity {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  activityType ActivityType @relation("ActivityActivityType", fields: [activityTypeId], references: [id])
-  address      Address      @relation("ActivityAddress", fields: [addressId], references: [id])
-  currency     Currency     @relation("ActivityCurrency", fields: [currencyId], references: [id])
+  activityType   ActivityType @relation("ActivityActivityType", fields: [activityTypeId], references: [id])
+  activityTypeId String
+
+  address  Address  @relation("ActivityAddress", fields: [addressId], references: [id])
+  currency Currency @relation("ActivityCurrency", fields: [currencyId], references: [id])
 
   createdBy User? @relation("ActivityCreatedBy", fields: [createdById], references: [id])
   updatedBy User? @relation("ActivityUpdatedBy", fields: [updatedById], references: [id])
@@ -143,6 +144,33 @@ model ActivityType {
   @@index([updatedById])
 }
 
+model AccommodationTag {
+  id              String  @id @default(uuid())
+  title           String
+  emoji           String
+  textColor       String
+  borderColor     String
+  backgroundColor String
+  isActive        Boolean
+
+  createdById String?
+  updatedById String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  createdBy User? @relation("AccommodationTagCreatedBy", fields: [createdById], references: [id])
+  updatedBy User? @relation("AccommodationTagUpdatedBy", fields: [updatedById], references: [id])
+
+  accommodations Accommodation[] @relation("AccommodationTag")
+
+  @@unique([title, emoji, textColor, borderColor, backgroundColor])
+  @@index([title])
+  @@index([isActive])
+  @@index([createdById])
+  @@index([updatedById])
+}
+
 model Accommodation {
   id            String  @id @default(uuid())
   title         String
@@ -167,6 +195,9 @@ model Accommodation {
 
   address     Address      @relation("AccommodationAddress", fields: [addressId], references: [id])
   destination Destination? @relation("DestinationAccommodations", fields: [destinationId], references: [id])
+
+  tag   AccommodationTag @relation("AccommodationTag", fields: [tagId], references: [id])
+  tagId String
 
   createdBy User? @relation("AccommodationCreatedBy", fields: [createdById], references: [id])
   updatedBy User? @relation("AccommodationUpdatedBy", fields: [updatedById], references: [id])
@@ -304,6 +335,9 @@ model User {
 
   activityTypesCreated ActivityType[] @relation("ActivityTypeCreatedBy")
   activityTypesUpdated ActivityType[] @relation("ActivityTypeUpdatedBy")
+
+  accommodationTagsCreated AccommodationTag[] @relation("AccommodationTagCreatedBy")
+  accommodationTagsUpdated AccommodationTag[] @relation("AccommodationTagUpdatedBy")
 
   accommodationsCreated Accommodation[] @relation("AccommodationCreatedBy")
   accommodationsUpdated Accommodation[] @relation("AccommodationUpdatedBy")

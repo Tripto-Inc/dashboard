@@ -9,6 +9,7 @@ export const hotelSchema = z.object({
   ...locationSchema.shape,
   id: z.string().optional(),
   title: z.string().min(1, 'Title is required'),
+  accommodationTagId: z.string({ error: 'Tag is required' }).min(1, 'Tag is required'),
   description: z
     .string()
     .min(1, 'Description is required')

@@ -6,16 +6,17 @@ import { uploadDocument } from '@/features/document';
 import { BUCKETS } from '@/features/document/constants';
 import { ACCOMMODATION_ERRORS } from '@/features/accommodation/constants';
 import { createHash } from 'crypto';
+import { parseHouseFormData } from '@/features/accommodation/house/utils/parseHouseFormData';
 
 export async function POST(request: NextRequest) {
   try {
     const session = await auth();
-
     if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const data = await request.json();
+    const formData = await request.formData();
+    const data = await parseHouseFormData(formData);
     const bucket = BUCKETS.accommodations;
 
     const accommodation = await prisma.$transaction(async (tx) => {
@@ -35,7 +36,7 @@ export async function POST(request: NextRequest) {
           longitude: data.longitude,
           details: data.addressDetails,
           countryCode: data.countryCode,
-          createdById: session?.user?.id,
+          createdById: session.user.id,
         },
       });
 
@@ -47,7 +48,6 @@ export async function POST(request: NextRequest) {
           },
         },
       });
-
       if (existing) {
         throw new Error(ACCOMMODATION_ERRORS.DUPLICATE);
       }
@@ -56,18 +56,10 @@ export async function POST(request: NextRequest) {
         data: {
           title: data.title,
           description: data.description,
-
           policies: data.policies,
           amenities: data.amenities,
-
-          createdBy: {
-            connect: { id: session?.user?.id },
-          },
-
-          address: {
-            connect: { id: address.id },
-          },
-
+          createdBy: { connect: { id: session.user.id } },
+          address: { connect: { id: address.id } },
           house: {
             create: {
               price: data.price,
@@ -78,14 +70,12 @@ export async function POST(request: NextRequest) {
               bedrooms: data.bedrooms,
               bathrooms: data.bathrooms,
               currencyId: data.currencyId,
-              createdById: session?.user?.id,
-              availableDates: JSON.parse(JSON.stringify(data.availableDates)),
+              createdById: session.user.id,
+              availableDates: data.availableDates,
             },
           },
         },
-        include: {
-          house: true,
-        },
+        include: { house: true },
       });
     });
 
@@ -95,22 +85,20 @@ export async function POST(request: NextRequest) {
         file: data.heroImage,
         object: `${accommodation.id}/hero.webp`,
       });
-
-      if (!uploadResult.success)
+      if (!uploadResult.success) {
         return NextResponse.json(
           { error: ACCOMMODATION_ERRORS.CREATE_IMAGE_FAILED },
           { status: 500 },
         );
+      }
     }
 
-    if (data.galleryImages?.length) {
+    if (data.galleryImages.length > 0) {
       const results = await Promise.allSettled(
         data.galleryImages.map(async (file: File) => {
           const bytes = await file.arrayBuffer();
           const buffer = Buffer.from(bytes);
-
           const hash = createHash('sha256').update(buffer).digest('hex');
-
           return uploadDocument({
             bucket,
             object: `${accommodation.id}/gallery/${hash}.webp`,
@@ -120,18 +108,20 @@ export async function POST(request: NextRequest) {
       );
 
       const failed = results.some((r) => r.status === 'rejected');
-
-      if (failed)
+      if (failed) {
         return NextResponse.json(
           { error: ACCOMMODATION_ERRORS.CREATE_SOME_GALLERY_FAILED },
           { status: 500 },
         );
+      }
     }
 
     revalidatePath('/api/accommodations');
     return NextResponse.json(accommodation, { status: 201 });
   } catch (error) {
     console.error('Create accommodation error:', error);
-    return NextResponse.json({ error: ACCOMMODATION_ERRORS.CREATE_FAILED }, { status: 500 });
+    const message = error instanceof Error ? error.message : ACCOMMODATION_ERRORS.CREATE_FAILED;
+    const status = message === ACCOMMODATION_ERRORS.DUPLICATE ? 409 : 500;
+    return NextResponse.json({ error: message }, { status });
   }
 }

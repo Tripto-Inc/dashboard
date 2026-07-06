@@ -5,6 +5,7 @@ import { revalidatePath } from 'next/cache';
 import { ACTIVITY_ERRORS } from '@/features/activity/constants';
 import { BUCKETS } from '@/features/document/constants';
 import { deleteDocument, uploadDocument } from '@/features/document';
+import { parseActivityFormData } from '@/features/activity/utils/parseActivityFormData';
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
@@ -35,19 +36,18 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const session = await auth();
-
     if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const { id } = await params;
-    const object = `${id}/hero.webp`;
-    const data = await request.json();
-    const bucket = BUCKETS.activities;
+    const formData = await request.formData();
+    const data = await parseActivityFormData(formData);
 
     const existing = await prisma.activity.findUnique({ where: { id } });
-
-    if (!existing) return NextResponse.json({ error: ACTIVITY_ERRORS.NOT_FOUND }, { status: 404 });
+    if (!existing) {
+      return NextResponse.json({ error: ACTIVITY_ERRORS.NOT_FOUND }, { status: 404 });
+    }
 
     const activity = await prisma.activity.update({
       where: { id },
@@ -56,15 +56,8 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
         price: data.price,
         discount: data.discount,
         isActive: data.isActive,
-
-        currency: {
-          connect: { id: data.currencyId },
-        },
-
-        activityType: {
-          connect: { id: data.activityTypeId },
-        },
-
+        currency: { connect: { id: data.currencyId } },
+        activityType: { connect: { id: data.activityTypeId } },
         address: {
           connectOrCreate: {
             where: {
@@ -79,27 +72,27 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
               country: data.country,
               details: data.addressDetails,
               countryCode: data.countryCode,
-              createdById: session?.user?.id,
+              createdById: session.user.id,
             },
           },
         },
-
         updatedAt: new Date(),
-        updatedBy: {
-          connect: { id: session?.user?.id },
-        },
+        updatedBy: { connect: { id: session.user.id } },
       },
     });
 
     if (data.heroImage) {
+      const bucket = BUCKETS.activities;
+      const objectKey = `${id}/hero.webp`;
+
       const uploadResult = await uploadDocument({
         bucket,
-        object,
         file: data.heroImage,
+        object: objectKey,
       });
-
-      if (!uploadResult.success)
-        NextResponse.json({ error: ACTIVITY_ERRORS.UPDATE_IMAGE_FAILED }, { status: 500 });
+      if (!uploadResult.success) {
+        return NextResponse.json({ error: ACTIVITY_ERRORS.UPDATE_IMAGE_FAILED }, { status: 500 });
+      }
     }
 
     revalidatePath('/api/activities');

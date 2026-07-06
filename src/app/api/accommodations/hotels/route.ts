@@ -1,22 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { auth } from '@/auth';
 import { revalidatePath } from 'next/cache';
-import { uploadDocument } from '@/features/document';
+import { createHash } from 'crypto';
+import { parseHotelFormData } from '@/features/accommodation/hotel/utils/parseHotelFormData';
+import { auth } from '@/auth';
 import { BUCKETS } from '@/features/document/constants';
 import { ACCOMMODATION_ERRORS } from '@/features/accommodation/constants';
-import { createHash } from 'crypto';
+import { uploadDocument } from '@/features/document';
 import { Room } from '@/features/accommodation/hotel/types/room';
 
 export async function POST(request: NextRequest) {
   try {
     const session = await auth();
-
     if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const data = await request.json();
+    const formData = await request.formData();
+    const { data, heroImage, galleryImages, roomsGalleryImages } =
+      await parseHotelFormData(formData);
     const bucket = BUCKETS.accommodations;
 
     const accommodation = await prisma.$transaction(async (tx) => {
@@ -36,7 +38,7 @@ export async function POST(request: NextRequest) {
           longitude: data.longitude,
           details: data.addressDetails,
           countryCode: data.countryCode,
-          createdById: session?.user?.id,
+          createdById: session.user.id,
         },
       });
 
@@ -48,26 +50,16 @@ export async function POST(request: NextRequest) {
           },
         },
       });
+      if (existing) throw new Error(ACCOMMODATION_ERRORS.DUPLICATE);
 
-      if (existing) {
-        throw new Error(ACCOMMODATION_ERRORS.DUPLICATE);
-      }
-
-      const accommodation = await tx.accommodation.create({
+      return tx.accommodation.create({
         data: {
           title: data.title,
           description: data.description,
           policies: data.policies,
           amenities: data.amenities,
-
-          createdBy: {
-            connect: { id: session?.user?.id },
-          },
-
-          address: {
-            connect: { id: address.id },
-          },
-
+          createdBy: { connect: { id: session.user.id } },
+          address: { connect: { id: address.id } },
           hotel: {
             create: {
               rooms: {
@@ -75,45 +67,37 @@ export async function POST(request: NextRequest) {
                   ...room,
                   beds: room.beds,
                   amenities: room.amenities,
-                  createdById: session?.user?.id,
+                  createdById: session.user.id,
                 })),
               },
             },
           },
         },
         include: {
-          hotel: {
-            include: {
-              rooms: true,
-            },
-          },
+          hotel: { include: { rooms: true } },
         },
       });
-
-      return accommodation;
     });
 
-    if (data.heroImage) {
-      const uploadResult = await uploadDocument({
+    if (heroImage) {
+      const result = await uploadDocument({
         bucket,
-        file: data.heroImage,
+        file: heroImage,
         object: `${accommodation.id}/hero.webp`,
       });
-
-      if (!uploadResult.success)
+      if (!result.success) {
         return NextResponse.json(
           { error: ACCOMMODATION_ERRORS.CREATE_IMAGE_FAILED },
           { status: 500 },
         );
+      }
     }
 
-    if (data.galleryImages?.length) {
+    if (galleryImages.length) {
       const results = await Promise.allSettled(
-        data.galleryImages.map(async (file: File) => {
-          const bytes = await file.arrayBuffer();
-          const buffer = Buffer.from(bytes);
+        galleryImages.map(async (file) => {
+          const buffer = Buffer.from(await file.arrayBuffer());
           const hash = createHash('sha256').update(buffer).digest('hex');
-
           return uploadDocument({
             bucket,
             object: `${accommodation.id}/gallery/${hash}.webp`,
@@ -121,35 +105,35 @@ export async function POST(request: NextRequest) {
           });
         }),
       );
-
-      const failed = results.some((r) => r.status === 'rejected');
-
-      if (failed)
+      if (results.some((r) => r.status === 'rejected')) {
         return NextResponse.json(
           { error: ACCOMMODATION_ERRORS.CREATE_SOME_GALLERY_FAILED },
           { status: 500 },
         );
+      }
     }
 
-    if (data.roomsGalleryImages?.length) {
-      for (let roomIndex = 0; roomIndex < data.roomsGalleryImages.length; roomIndex++) {
-        const roomImages = data.roomsGalleryImages[roomIndex];
-        const room = accommodation.hotel?.rooms[roomIndex];
+    const rooms = accommodation.hotel?.rooms || [];
+    for (let i = 0; i < rooms.length; i++) {
+      const room = rooms[i];
+      const files = roomsGalleryImages[i] || [];
+      if (!files.length) continue;
 
-        if (!room || !roomImages?.length) continue;
-
-        await Promise.allSettled(
-          roomImages.map(async (file: File) => {
-            const bytes = await file.arrayBuffer();
-            const buffer = Buffer.from(bytes);
-            const hash = createHash('sha256').update(buffer).digest('hex');
-
-            return uploadDocument({
-              bucket,
-              object: `${accommodation.id}/rooms/${room.id}/gallery/${hash}.webp`,
-              file,
-            });
-          }),
+      const results = await Promise.allSettled(
+        files.map(async (file) => {
+          const buffer = Buffer.from(await file.arrayBuffer());
+          const hash = createHash('sha256').update(buffer).digest('hex');
+          return uploadDocument({
+            bucket,
+            object: `${accommodation.id}/rooms/${room.id}/gallery/${hash}.webp`,
+            file,
+          });
+        }),
+      );
+      if (results.some((r) => r.status === 'rejected')) {
+        return NextResponse.json(
+          { error: ACCOMMODATION_ERRORS.CREATE_SOME_GALLERY_FAILED },
+          { status: 500 },
         );
       }
     }
@@ -157,7 +141,9 @@ export async function POST(request: NextRequest) {
     revalidatePath('/api/accommodations');
     return NextResponse.json(accommodation, { status: 201 });
   } catch (error) {
-    console.error('Create accommodation error:', error);
-    return NextResponse.json({ error: ACCOMMODATION_ERRORS.CREATE_FAILED }, { status: 500 });
+    console.error('Create hotel error:', error);
+    const message = error instanceof Error ? error.message : ACCOMMODATION_ERRORS.CREATE_FAILED;
+    const status = message === ACCOMMODATION_ERRORS.DUPLICATE ? 409 : 500;
+    return NextResponse.json({ error: message }, { status });
   }
 }

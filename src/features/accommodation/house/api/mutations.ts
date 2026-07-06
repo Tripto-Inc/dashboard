@@ -6,12 +6,32 @@ export const createHouse = async (
   heroImage?: File | null,
   galleryImages?: Array<File> | null,
 ) => {
+  const formData = new FormData();
+
+  Object.entries(data).forEach(([key, value]) => {
+    if (value === undefined || value === null) return;
+
+    if (key === 'policies' || key === 'amenities' || key === 'availableDates') {
+      formData.append(key, JSON.stringify(value));
+      return;
+    }
+
+    formData.append(key, String(value));
+  });
+
+  if (heroImage) {
+    formData.append('heroImage', heroImage);
+  }
+
+  if (galleryImages && galleryImages.length > 0) {
+    galleryImages.forEach((file) => {
+      formData.append('galleryImages', file);
+    });
+  }
+
   const response = await fetch('/api/accommodations/houses', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ ...data, heroImage, galleryImages }),
+    body: formData,
   });
 
   if (!response.ok) {
@@ -28,12 +48,32 @@ export const updateHouse = async (
   heroImage?: File | null,
   galleryImages?: Array<File> | null,
 ) => {
+  const formData = new FormData();
+
+  Object.entries(data).forEach(([key, value]) => {
+    if (value === undefined || value === null) return;
+
+    if (key === 'policies' || key === 'amenities' || key === 'availableDates') {
+      formData.append(key, JSON.stringify(value));
+      return;
+    }
+
+    formData.append(key, String(value));
+  });
+
+  if (heroImage) {
+    formData.append('heroImage', heroImage);
+  }
+
+  if (galleryImages && galleryImages.length > 0) {
+    galleryImages.forEach((file) => {
+      formData.append('galleryImages', file);
+    });
+  }
+
   const response = await fetch(`/api/accommodations/houses/${id}`, {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ ...data, heroImage, galleryImages }),
+    body: formData,
   });
 
   if (!response.ok) {

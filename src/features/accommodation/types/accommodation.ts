@@ -7,6 +7,7 @@ import {
 } from '@/app/generated/prisma/client';
 import { AccommodationAmenity } from './accommodationAmenity';
 import { AccommodationPolicy } from './accommodationPolicy';
+import { AccommodationTag } from '@/features/accommodation-tag/types';
 
 export type Accommodation = PrismaAccommodation;
 export type AccommodationType = 'HOUSE' | 'HOTEL';
@@ -26,6 +27,7 @@ export type AccommodationColumns = {
   id: string;
   title: string;
   address: Address;
+  tag: AccommodationTag
   type?: AccommodationType;
   policies: Array<AccommodationPolicy>;
   amenities: Array<AccommodationAmenity>;

@@ -6,12 +6,27 @@ import { ACCOMMODATION_ERRORS } from '@/features/accommodation/constants';
 
 export const createHotel = async (payload: CreateHotelPayload) => {
   const { data, heroImage, galleryImages, roomsGalleryImages } = payload;
+
+  const formData = new FormData();
+  formData.append('data', JSON.stringify(data));
+
+  if (heroImage) formData.append('heroImage', heroImage);
+
+  if (galleryImages?.length) {
+    galleryImages.forEach((file) => formData.append('galleryImages', file));
+  }
+
+  if (roomsGalleryImages?.length) {
+    roomsGalleryImages.forEach((roomFiles, index) => {
+      roomFiles.forEach((file) => {
+        formData.append(`roomsGalleryImages_${index}`, file);
+      });
+    });
+  }
+
   const response = await fetch('/api/accommodations/hotels', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ ...data, heroImage, galleryImages, roomsGalleryImages }),
+    body: formData,
   });
 
   if (!response.ok) {
@@ -24,12 +39,27 @@ export const createHotel = async (payload: CreateHotelPayload) => {
 
 export const updateHotel = async (payload: UpdateHotelPayload) => {
   const { id, data, heroImage, galleryImages, roomsGalleryImages } = payload;
+
+  const formData = new FormData();
+  formData.append('data', JSON.stringify(data));
+
+  if (heroImage) formData.append('heroImage', heroImage);
+
+  if (galleryImages?.length) {
+    galleryImages.forEach((file) => formData.append('galleryImages', file));
+  }
+
+  if (roomsGalleryImages?.length) {
+    roomsGalleryImages.forEach((roomFiles, index) => {
+      roomFiles.forEach((file) => {
+        formData.append(`roomsGalleryImages_${index}`, file);
+      });
+    });
+  }
+
   const response = await fetch(`/api/accommodations/hotels/${id}`, {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ ...data, heroImage, galleryImages, roomsGalleryImages }),
+    body: formData,
   });
 
   if (!response.ok) {

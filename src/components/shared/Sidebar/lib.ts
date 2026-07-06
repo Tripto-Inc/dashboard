@@ -6,6 +6,7 @@ import {
   IconHome,
   IconMapPin,
   IconSettings,
+  IconTag,
   IconTicket,
 } from '@tabler/icons-react';
 
@@ -49,6 +50,12 @@ export const inventoryItems = [
     id: 'activityTypes',
     href: '/activity-types',
     label: 'Activity Types',
+  },
+  {
+    icon: IconTag,
+    id: 'accommodationTags',
+    href: '/accommodation-tags',
+    label: 'Accommodation Tags',
   },
   {
     id: 'accommodations',

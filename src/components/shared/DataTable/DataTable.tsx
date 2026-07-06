@@ -29,7 +29,7 @@ import { DataTableSkeletonRow } from './DataTableSkeletonRow';
 import { DataTableToolbar } from './DataTableToolbar';
 import { DataTableProps } from './types';
 
-export const DataTable = <TData extends { id: string }, TValue>({
+export const DataTable = <T extends { id: string }>({
   columns,
   initialPageSize = 10,
   initialSort = { id: 'createdAt', desc: false },
@@ -39,7 +39,7 @@ export const DataTable = <TData extends { id: string }, TValue>({
   showCreateButton,
   showRefetchButton,
   entityName,
-}: DataTableProps<TData, TValue>) => {
+}: DataTableProps<T>) => {
   const [globalFilter, setGlobalFilter] = useState('');
   const [sorting, setSorting] = useState<SortingState>([initialSort]);
   const [globalFilterInput, setGlobalFilterInput] = useState('');
@@ -74,10 +74,10 @@ export const DataTable = <TData extends { id: string }, TValue>({
         ...columns,
         {
           id: 'actions',
-          header: ({ column }: { column: Column<TData> }) => (
+          header: ({ column }: { column: Column<T> }) => (
             <DataTableColumnHeader column={column} title="Actions" />
           ),
-          cell: ({ row }: { row: Row<TData> }) => {
+          cell: ({ row }: { row: Row<T> }) => {
             const { id } = row.original;
 
             return (
@@ -158,7 +158,7 @@ export const DataTable = <TData extends { id: string }, TValue>({
           <TableBody>
             {isFetching ? (
               Array.from({ length: pagination.pageSize }).map((_, idx) => (
-                <DataTableSkeletonRow key={idx} columns={tableColumns.length} />
+                <DataTableSkeletonRow<T> key={idx} columns={tableColumns} />
               ))
             ) : isError ? (
               <TableRow>

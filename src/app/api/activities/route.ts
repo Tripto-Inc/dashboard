@@ -5,6 +5,7 @@ import { revalidatePath } from 'next/cache';
 import { ACTIVITY_ERRORS } from '@/features/activity/constants';
 import { uploadDocument } from '@/features/document';
 import { BUCKETS } from '@/features/document/constants';
+import { parseActivityFormData } from '@/features/activity/utils/parseActivityFormData';
 
 export async function GET(request: NextRequest) {
   try {
@@ -70,13 +71,12 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const session = await auth();
-
     if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const bucket = BUCKETS.activities;
-    const data = await request.json();
+    const formData = await request.formData();
+    const data = await parseActivityFormData(formData);
 
     const existing = await prisma.activity.findUnique({
       where: {
@@ -86,7 +86,6 @@ export async function POST(request: NextRequest) {
         },
       },
     });
-
     if (existing) {
       return NextResponse.json({ error: ACTIVITY_ERRORS.DUPLICATE }, { status: 409 });
     }
@@ -97,19 +96,9 @@ export async function POST(request: NextRequest) {
         price: data.price,
         discount: data.discount,
         isActive: data.isActive,
-
-        createdBy: {
-          connect: { id: session?.user?.id },
-        },
-
-        currency: {
-          connect: { id: data.currencyId },
-        },
-
-        activityType: {
-          connect: { id: data.activityTypeId },
-        },
-
+        createdBy: { connect: { id: session.user.id } },
+        currency: { connect: { id: data.currencyId } },
+        activityType: { connect: { id: data.activityTypeId } },
         address: {
           connectOrCreate: {
             where: {
@@ -124,7 +113,7 @@ export async function POST(request: NextRequest) {
               country: data.country,
               details: data.addressDetails,
               countryCode: data.countryCode,
-              createdById: session?.user?.id,
+              createdById: session.user.id,
             },
           },
         },
@@ -133,19 +122,19 @@ export async function POST(request: NextRequest) {
 
     if (data.heroImage) {
       const uploadResult = await uploadDocument({
-        bucket,
+        bucket: BUCKETS.activities,
         file: data.heroImage,
         object: `${activity.id}/hero.webp`,
       });
-
-      if (!uploadResult.success)
+      if (!uploadResult.success) {
         return NextResponse.json({ error: ACTIVITY_ERRORS.CREATE_IMAGE_FAILED }, { status: 500 });
+      }
     }
 
     revalidatePath('/api/activities');
     return NextResponse.json(activity, { status: 201 });
   } catch (error) {
-    console.error('Create destination error:', error);
+    console.error('Create activity error:', error);
     return NextResponse.json({ error: ACTIVITY_ERRORS.CREATE_FAILED }, { status: 500 });
   }
 }

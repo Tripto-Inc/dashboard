@@ -21,6 +21,8 @@ import { hotelSchema, HotelSchema } from '../schema/hotel';
 import { HotelFormProps } from '../types/hotelForm';
 import { AccommodationRoom } from './room/AccommodationRoom';
 import { AccommodationGallery } from '@/features/accommodation/components/gallery/AccommodationGallery';
+import { InfiniteDropdown } from '@/components/shared/InfiniteDropdown';
+import { useGetAccommodationTagsDropdown } from '@/features/accommodation-tag/hooks/useGetAccommodationTagsDropdown';
 
 const AccommodationLocation = dynamic(
   () =>
@@ -46,6 +48,7 @@ export const HotelForm: FC<HotelFormProps> = ({ initialData }) => {
     resolver: zodResolver(hotelSchema),
     defaultValues: {
       title: '',
+      accommodationTagId: '',
       description: '',
       country: '',
       countryCode: '',
@@ -201,7 +204,7 @@ export const HotelForm: FC<HotelFormProps> = ({ initialData }) => {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           <div className="space-y-6 lg:col-span-2">
             <ModificationFormSection icon={IconInfoCircle} title="General Information">
-              <div className="grid grid-cols-1 gap-x-6">
+              <div className="grid grid-cols-1 gap-x-6 lg:grid-cols-2">
                 <FieldWithError
                   required
                   htmlFor="title"
@@ -225,8 +228,31 @@ export const HotelForm: FC<HotelFormProps> = ({ initialData }) => {
 
                 <FieldWithError
                   required
-                  htmlFor="description"
+                  htmlFor="tag"
+                  label="Tag"
+                  error={errors.accommodationTagId?.message}
+                >
+                  <Controller
+                    name="accommodationTagId"
+                    control={control}
+                    render={({ field, fieldState }) => (
+                      <InfiniteDropdown
+                        id="accommodationTagId"
+                        value={field.value}
+                        onChange={field.onChange}
+                        placeholder="Select a tag"
+                        ariaInvalid={!!fieldState.error}
+                        useDataHook={useGetAccommodationTagsDropdown}
+                      />
+                    )}
+                  />
+                </FieldWithError>
+
+                <FieldWithError
+                  required
                   label="Description"
+                  htmlFor="description"
+                  className='lg:col-span-2'
                   error={errors.description?.message}
                 >
                   <Controller

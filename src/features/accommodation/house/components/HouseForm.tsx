@@ -24,6 +24,7 @@ import { HouseFormProps } from '../types/houseForm';
 import { SeasonalPrice } from './seasonal-price/SeasonalPrice';
 import { NumberInput } from '@/components/shared/Input/NumberInput';
 import { AccommodationGallery } from '@/features/accommodation/components/gallery/AccommodationGallery';
+import { useGetAccommodationTagsDropdown } from '@/features/accommodation-tag/hooks/useGetAccommodationTagsDropdown';
 
 const AccommodationLocation = dynamic(
   () =>
@@ -52,6 +53,7 @@ export const HouseForm: FC<HouseFormProps> = ({ initialData }) => {
       description: '',
       capacity: undefined,
       currencyId: '',
+      accommodationTagId: '',
       country: '',
       countryCode: '',
       city: '',
@@ -209,6 +211,28 @@ export const HouseForm: FC<HouseFormProps> = ({ initialData }) => {
                         {...field}
                         placeholder="Enter a title"
                         aria-invalid={!!fieldState.error}
+                      />
+                    )}
+                  />
+                </FieldWithError>
+
+                <FieldWithError
+                  required
+                  htmlFor="tag"
+                  label="Tag"
+                  error={errors.accommodationTagId?.message}
+                >
+                  <Controller
+                    name="accommodationTagId"
+                    control={control}
+                    render={({ field, fieldState }) => (
+                      <InfiniteDropdown
+                        id="accommodationTagId"
+                        value={field.value}
+                        onChange={field.onChange}
+                        placeholder="Select a tag"
+                        ariaInvalid={!!fieldState.error}
+                        useDataHook={useGetAccommodationTagsDropdown}
                       />
                     )}
                   />

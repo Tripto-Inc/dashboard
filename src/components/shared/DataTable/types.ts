@@ -22,8 +22,8 @@ export type UseDataTableQuery<TData> = (params: ServerTableParams) => {
   error?: unknown;
 };
 
-export type DataTableProps<TData, TValue> = {
-  columns: ColumnDef<TData, TValue>[];
+export type DataTableProps<TData> = {
+  columns: ColumnDef<TData>[];
   initialSort?: { id: string; desc: boolean };
   initialPageSize?: number;
   useGetHook: (params: { pageSize: number; page: number; filter: string; sort: SortingState }) => {

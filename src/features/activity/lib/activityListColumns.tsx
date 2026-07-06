@@ -26,7 +26,7 @@ export const activityListColumns: ColumnDef<ActivityColumnDTO>[] = [
   },
   {
     accessorKey: 'title',
-    size: 300,
+    size: 10000,
     header: ({ column }) => <DataTableColumnHeader column={column} title="Title" />,
   },
   {
@@ -108,13 +108,13 @@ export const activityListColumns: ColumnDef<ActivityColumnDTO>[] = [
       const isActive = row.getValue();
 
       return (
-        <div>
+        <>
           {isActive ? (
-            <CheckIcon size={20} className="text-green-600" />
+            <CheckIcon size={20} className="text-green-600 mx-auto" />
           ) : (
-            <XIcon size={20} className="text-red-600" />
+            <XIcon size={20} className="text-red-600 mx-auto" />
           )}
-        </div>
+        </>
       );
     },
   },

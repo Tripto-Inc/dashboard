@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.6.0
- * Query Engine version: 75cbdc1eb7150937890ad5465d861175c6624711
+ * Prisma Client JS version: 7.8.0
+ * Query Engine version: 3c6e192761c0362d496ed980de936e2f3cebcd3a
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.6.0",
-  engine: "75cbdc1eb7150937890ad5465d861175c6624711"
+  client: "7.8.0",
+  engine: "3c6e192761c0362d496ed980de936e2f3cebcd3a"
 }
 
 /**
@@ -389,6 +389,7 @@ export const ModelName = {
   Address: 'Address',
   Currency: 'Currency',
   ActivityType: 'ActivityType',
+  AccommodationTag: 'AccommodationTag',
   Accommodation: 'Accommodation',
   FavoriteAccommodation: 'FavoriteAccommodation',
   House: 'House',
@@ -413,7 +414,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "destination" | "activity" | "address" | "currency" | "activityType" | "accommodation" | "favoriteAccommodation" | "house" | "hotel" | "room" | "user" | "account" | "verificationToken" | "session"
+    modelProps: "destination" | "activity" | "address" | "currency" | "activityType" | "accommodationTag" | "accommodation" | "favoriteAccommodation" | "house" | "hotel" | "room" | "user" | "account" | "verificationToken" | "session"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -784,6 +785,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.ActivityTypeCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.ActivityTypeCountAggregateOutputType> | number
+        }
+      }
+    }
+    AccommodationTag: {
+      payload: Prisma.$AccommodationTagPayload<ExtArgs>
+      fields: Prisma.AccommodationTagFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AccommodationTagFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccommodationTagPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AccommodationTagFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccommodationTagPayload>
+        }
+        findFirst: {
+          args: Prisma.AccommodationTagFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccommodationTagPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AccommodationTagFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccommodationTagPayload>
+        }
+        findMany: {
+          args: Prisma.AccommodationTagFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccommodationTagPayload>[]
+        }
+        create: {
+          args: Prisma.AccommodationTagCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccommodationTagPayload>
+        }
+        createMany: {
+          args: Prisma.AccommodationTagCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AccommodationTagCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccommodationTagPayload>[]
+        }
+        delete: {
+          args: Prisma.AccommodationTagDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccommodationTagPayload>
+        }
+        update: {
+          args: Prisma.AccommodationTagUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccommodationTagPayload>
+        }
+        deleteMany: {
+          args: Prisma.AccommodationTagDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AccommodationTagUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AccommodationTagUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccommodationTagPayload>[]
+        }
+        upsert: {
+          args: Prisma.AccommodationTagUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccommodationTagPayload>
+        }
+        aggregate: {
+          args: Prisma.AccommodationTagAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAccommodationTag>
+        }
+        groupBy: {
+          args: Prisma.AccommodationTagGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AccommodationTagGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AccommodationTagCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AccommodationTagCountAggregateOutputType> | number
         }
       }
     }
@@ -1516,11 +1591,11 @@ export const ActivityScalarFieldEnum = {
   discount: 'discount',
   currencyId: 'currencyId',
   addressId: 'addressId',
-  activityTypeId: 'activityTypeId',
   createdById: 'createdById',
   updatedById: 'updatedById',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  activityTypeId: 'activityTypeId'
 } as const
 
 export type ActivityScalarFieldEnum = (typeof ActivityScalarFieldEnum)[keyof typeof ActivityScalarFieldEnum]
@@ -1572,6 +1647,23 @@ export const ActivityTypeScalarFieldEnum = {
 export type ActivityTypeScalarFieldEnum = (typeof ActivityTypeScalarFieldEnum)[keyof typeof ActivityTypeScalarFieldEnum]
 
 
+export const AccommodationTagScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  emoji: 'emoji',
+  textColor: 'textColor',
+  borderColor: 'borderColor',
+  backgroundColor: 'backgroundColor',
+  isActive: 'isActive',
+  createdById: 'createdById',
+  updatedById: 'updatedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AccommodationTagScalarFieldEnum = (typeof AccommodationTagScalarFieldEnum)[keyof typeof AccommodationTagScalarFieldEnum]
+
+
 export const AccommodationScalarFieldEnum = {
   id: 'id',
   title: 'title',
@@ -1584,7 +1676,8 @@ export const AccommodationScalarFieldEnum = {
   createdById: 'createdById',
   updatedById: 'updatedById',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  tagId: 'tagId'
 } as const
 
 export type AccommodationScalarFieldEnum = (typeof AccommodationScalarFieldEnum)[keyof typeof AccommodationScalarFieldEnum]
@@ -1944,6 +2037,21 @@ export type PrismaClientOptions = ({
    * ```
    */
   comments?: runtime.SqlCommenterPlugin[]
+  /**
+   * Optional maximum size for the query plan cache. If not provided, a default size will be used.
+   * A value of `0` can be used to disable the cache entirely. A higher cache size can improve
+   * performance for applications that execute a large number of unique queries, while a smaller
+   * cache size can reduce memory usage.
+   * 
+   * @example
+   * ```
+   * const prisma = new PrismaClient({
+   *   adapter,
+   *   queryPlanCacheMaxSize: 100,
+   * })
+   * ```
+   */
+  queryPlanCacheMaxSize?: number
 }
 export type GlobalOmitConfig = {
   destination?: Prisma.DestinationOmit
@@ -1951,6 +2059,7 @@ export type GlobalOmitConfig = {
   address?: Prisma.AddressOmit
   currency?: Prisma.CurrencyOmit
   activityType?: Prisma.ActivityTypeOmit
+  accommodationTag?: Prisma.AccommodationTagOmit
   accommodation?: Prisma.AccommodationOmit
   favoriteAccommodation?: Prisma.FavoriteAccommodationOmit
   house?: Prisma.HouseOmit

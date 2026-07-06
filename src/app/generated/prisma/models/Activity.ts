@@ -44,11 +44,11 @@ export type ActivityMinAggregateOutputType = {
   discount: number | null
   currencyId: string | null
   addressId: string | null
-  activityTypeId: string | null
   createdById: string | null
   updatedById: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  activityTypeId: string | null
 }
 
 export type ActivityMaxAggregateOutputType = {
@@ -59,11 +59,11 @@ export type ActivityMaxAggregateOutputType = {
   discount: number | null
   currencyId: string | null
   addressId: string | null
-  activityTypeId: string | null
   createdById: string | null
   updatedById: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  activityTypeId: string | null
 }
 
 export type ActivityCountAggregateOutputType = {
@@ -74,11 +74,11 @@ export type ActivityCountAggregateOutputType = {
   discount: number
   currencyId: number
   addressId: number
-  activityTypeId: number
   createdById: number
   updatedById: number
   createdAt: number
   updatedAt: number
+  activityTypeId: number
   _all: number
 }
 
@@ -101,11 +101,11 @@ export type ActivityMinAggregateInputType = {
   discount?: true
   currencyId?: true
   addressId?: true
-  activityTypeId?: true
   createdById?: true
   updatedById?: true
   createdAt?: true
   updatedAt?: true
+  activityTypeId?: true
 }
 
 export type ActivityMaxAggregateInputType = {
@@ -116,11 +116,11 @@ export type ActivityMaxAggregateInputType = {
   discount?: true
   currencyId?: true
   addressId?: true
-  activityTypeId?: true
   createdById?: true
   updatedById?: true
   createdAt?: true
   updatedAt?: true
+  activityTypeId?: true
 }
 
 export type ActivityCountAggregateInputType = {
@@ -131,11 +131,11 @@ export type ActivityCountAggregateInputType = {
   discount?: true
   currencyId?: true
   addressId?: true
-  activityTypeId?: true
   createdById?: true
   updatedById?: true
   createdAt?: true
   updatedAt?: true
+  activityTypeId?: true
   _all?: true
 }
 
@@ -233,11 +233,11 @@ export type ActivityGroupByOutputType = {
   discount: number | null
   currencyId: string
   addressId: string
-  activityTypeId: string
   createdById: string | null
   updatedById: string | null
   createdAt: Date
   updatedAt: Date
+  activityTypeId: string
   _count: ActivityCountAggregateOutputType | null
   _avg: ActivityAvgAggregateOutputType | null
   _sum: ActivitySumAggregateOutputType | null
@@ -271,11 +271,11 @@ export type ActivityWhereInput = {
   discount?: Prisma.FloatNullableFilter<"Activity"> | number | null
   currencyId?: Prisma.StringFilter<"Activity"> | string
   addressId?: Prisma.StringFilter<"Activity"> | string
-  activityTypeId?: Prisma.StringFilter<"Activity"> | string
   createdById?: Prisma.StringNullableFilter<"Activity"> | string | null
   updatedById?: Prisma.StringNullableFilter<"Activity"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Activity"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Activity"> | Date | string
+  activityTypeId?: Prisma.StringFilter<"Activity"> | string
   activityType?: Prisma.XOR<Prisma.ActivityTypeScalarRelationFilter, Prisma.ActivityTypeWhereInput>
   address?: Prisma.XOR<Prisma.AddressScalarRelationFilter, Prisma.AddressWhereInput>
   currency?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
@@ -291,11 +291,11 @@ export type ActivityOrderByWithRelationInput = {
   discount?: Prisma.SortOrderInput | Prisma.SortOrder
   currencyId?: Prisma.SortOrder
   addressId?: Prisma.SortOrder
-  activityTypeId?: Prisma.SortOrder
   createdById?: Prisma.SortOrderInput | Prisma.SortOrder
   updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  activityTypeId?: Prisma.SortOrder
   activityType?: Prisma.ActivityTypeOrderByWithRelationInput
   address?: Prisma.AddressOrderByWithRelationInput
   currency?: Prisma.CurrencyOrderByWithRelationInput
@@ -315,11 +315,11 @@ export type ActivityWhereUniqueInput = Prisma.AtLeast<{
   discount?: Prisma.FloatNullableFilter<"Activity"> | number | null
   currencyId?: Prisma.StringFilter<"Activity"> | string
   addressId?: Prisma.StringFilter<"Activity"> | string
-  activityTypeId?: Prisma.StringFilter<"Activity"> | string
   createdById?: Prisma.StringNullableFilter<"Activity"> | string | null
   updatedById?: Prisma.StringNullableFilter<"Activity"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Activity"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Activity"> | Date | string
+  activityTypeId?: Prisma.StringFilter<"Activity"> | string
   activityType?: Prisma.XOR<Prisma.ActivityTypeScalarRelationFilter, Prisma.ActivityTypeWhereInput>
   address?: Prisma.XOR<Prisma.AddressScalarRelationFilter, Prisma.AddressWhereInput>
   currency?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
@@ -335,11 +335,11 @@ export type ActivityOrderByWithAggregationInput = {
   discount?: Prisma.SortOrderInput | Prisma.SortOrder
   currencyId?: Prisma.SortOrder
   addressId?: Prisma.SortOrder
-  activityTypeId?: Prisma.SortOrder
   createdById?: Prisma.SortOrderInput | Prisma.SortOrder
   updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  activityTypeId?: Prisma.SortOrder
   _count?: Prisma.ActivityCountOrderByAggregateInput
   _avg?: Prisma.ActivityAvgOrderByAggregateInput
   _max?: Prisma.ActivityMaxOrderByAggregateInput
@@ -358,11 +358,11 @@ export type ActivityScalarWhereWithAggregatesInput = {
   discount?: Prisma.FloatNullableWithAggregatesFilter<"Activity"> | number | null
   currencyId?: Prisma.StringWithAggregatesFilter<"Activity"> | string
   addressId?: Prisma.StringWithAggregatesFilter<"Activity"> | string
-  activityTypeId?: Prisma.StringWithAggregatesFilter<"Activity"> | string
   createdById?: Prisma.StringNullableWithAggregatesFilter<"Activity"> | string | null
   updatedById?: Prisma.StringNullableWithAggregatesFilter<"Activity"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Activity"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Activity"> | Date | string
+  activityTypeId?: Prisma.StringWithAggregatesFilter<"Activity"> | string
 }
 
 export type ActivityCreateInput = {
@@ -388,11 +388,11 @@ export type ActivityUncheckedCreateInput = {
   discount?: number | null
   currencyId: string
   addressId: string
-  activityTypeId: string
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  activityTypeId: string
 }
 
 export type ActivityUpdateInput = {
@@ -418,11 +418,11 @@ export type ActivityUncheckedUpdateInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   currencyId?: Prisma.StringFieldUpdateOperationsInput | string
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
-  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ActivityCreateManyInput = {
@@ -433,11 +433,11 @@ export type ActivityCreateManyInput = {
   discount?: number | null
   currencyId: string
   addressId: string
-  activityTypeId: string
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  activityTypeId: string
 }
 
 export type ActivityUpdateManyMutationInput = {
@@ -458,11 +458,11 @@ export type ActivityUncheckedUpdateManyInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   currencyId?: Prisma.StringFieldUpdateOperationsInput | string
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
-  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ActivityTitleActivityTypeIdCompoundUniqueInput = {
@@ -478,11 +478,11 @@ export type ActivityCountOrderByAggregateInput = {
   discount?: Prisma.SortOrder
   currencyId?: Prisma.SortOrder
   addressId?: Prisma.SortOrder
-  activityTypeId?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   updatedById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  activityTypeId?: Prisma.SortOrder
 }
 
 export type ActivityAvgOrderByAggregateInput = {
@@ -498,11 +498,11 @@ export type ActivityMaxOrderByAggregateInput = {
   discount?: Prisma.SortOrder
   currencyId?: Prisma.SortOrder
   addressId?: Prisma.SortOrder
-  activityTypeId?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   updatedById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  activityTypeId?: Prisma.SortOrder
 }
 
 export type ActivityMinOrderByAggregateInput = {
@@ -513,11 +513,11 @@ export type ActivityMinOrderByAggregateInput = {
   discount?: Prisma.SortOrder
   currencyId?: Prisma.SortOrder
   addressId?: Prisma.SortOrder
-  activityTypeId?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   updatedById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  activityTypeId?: Prisma.SortOrder
 }
 
 export type ActivitySumOrderByAggregateInput = {
@@ -782,11 +782,11 @@ export type ActivityUncheckedCreateWithoutAddressInput = {
   price: number
   discount?: number | null
   currencyId: string
-  activityTypeId: string
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  activityTypeId: string
 }
 
 export type ActivityCreateOrConnectWithoutAddressInput = {
@@ -826,11 +826,11 @@ export type ActivityScalarWhereInput = {
   discount?: Prisma.FloatNullableFilter<"Activity"> | number | null
   currencyId?: Prisma.StringFilter<"Activity"> | string
   addressId?: Prisma.StringFilter<"Activity"> | string
-  activityTypeId?: Prisma.StringFilter<"Activity"> | string
   createdById?: Prisma.StringNullableFilter<"Activity"> | string | null
   updatedById?: Prisma.StringNullableFilter<"Activity"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Activity"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Activity"> | Date | string
+  activityTypeId?: Prisma.StringFilter<"Activity"> | string
 }
 
 export type ActivityCreateWithoutCurrencyInput = {
@@ -854,11 +854,11 @@ export type ActivityUncheckedCreateWithoutCurrencyInput = {
   price: number
   discount?: number | null
   addressId: string
-  activityTypeId: string
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  activityTypeId: string
 }
 
 export type ActivityCreateOrConnectWithoutCurrencyInput = {
@@ -963,10 +963,10 @@ export type ActivityUncheckedCreateWithoutCreatedByInput = {
   discount?: number | null
   currencyId: string
   addressId: string
-  activityTypeId: string
   updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  activityTypeId: string
 }
 
 export type ActivityCreateOrConnectWithoutCreatedByInput = {
@@ -1001,10 +1001,10 @@ export type ActivityUncheckedCreateWithoutUpdatedByInput = {
   discount?: number | null
   currencyId: string
   addressId: string
-  activityTypeId: string
   createdById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  activityTypeId: string
 }
 
 export type ActivityCreateOrConnectWithoutUpdatedByInput = {
@@ -1056,11 +1056,11 @@ export type ActivityCreateManyAddressInput = {
   price: number
   discount?: number | null
   currencyId: string
-  activityTypeId: string
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  activityTypeId: string
 }
 
 export type ActivityUpdateWithoutAddressInput = {
@@ -1084,11 +1084,11 @@ export type ActivityUncheckedUpdateWithoutAddressInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   currencyId?: Prisma.StringFieldUpdateOperationsInput | string
-  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ActivityUncheckedUpdateManyWithoutAddressInput = {
@@ -1098,11 +1098,11 @@ export type ActivityUncheckedUpdateManyWithoutAddressInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   currencyId?: Prisma.StringFieldUpdateOperationsInput | string
-  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ActivityCreateManyCurrencyInput = {
@@ -1112,11 +1112,11 @@ export type ActivityCreateManyCurrencyInput = {
   price: number
   discount?: number | null
   addressId: string
-  activityTypeId: string
   createdById?: string | null
   updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  activityTypeId: string
 }
 
 export type ActivityUpdateWithoutCurrencyInput = {
@@ -1140,11 +1140,11 @@ export type ActivityUncheckedUpdateWithoutCurrencyInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
-  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ActivityUncheckedUpdateManyWithoutCurrencyInput = {
@@ -1154,11 +1154,11 @@ export type ActivityUncheckedUpdateManyWithoutCurrencyInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
-  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ActivityCreateManyActivityTypeInput = {
@@ -1225,10 +1225,10 @@ export type ActivityCreateManyCreatedByInput = {
   discount?: number | null
   currencyId: string
   addressId: string
-  activityTypeId: string
   updatedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  activityTypeId: string
 }
 
 export type ActivityCreateManyUpdatedByInput = {
@@ -1239,10 +1239,10 @@ export type ActivityCreateManyUpdatedByInput = {
   discount?: number | null
   currencyId: string
   addressId: string
-  activityTypeId: string
   createdById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  activityTypeId: string
 }
 
 export type ActivityUpdateWithoutCreatedByInput = {
@@ -1267,10 +1267,10 @@ export type ActivityUncheckedUpdateWithoutCreatedByInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   currencyId?: Prisma.StringFieldUpdateOperationsInput | string
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
-  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ActivityUncheckedUpdateManyWithoutCreatedByInput = {
@@ -1281,10 +1281,10 @@ export type ActivityUncheckedUpdateManyWithoutCreatedByInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   currencyId?: Prisma.StringFieldUpdateOperationsInput | string
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
-  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   updatedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ActivityUpdateWithoutUpdatedByInput = {
@@ -1309,10 +1309,10 @@ export type ActivityUncheckedUpdateWithoutUpdatedByInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   currencyId?: Prisma.StringFieldUpdateOperationsInput | string
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
-  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ActivityUncheckedUpdateManyWithoutUpdatedByInput = {
@@ -1323,10 +1323,10 @@ export type ActivityUncheckedUpdateManyWithoutUpdatedByInput = {
   discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   currencyId?: Prisma.StringFieldUpdateOperationsInput | string
   addressId?: Prisma.StringFieldUpdateOperationsInput | string
-  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activityTypeId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -1339,11 +1339,11 @@ export type ActivitySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   discount?: boolean
   currencyId?: boolean
   addressId?: boolean
-  activityTypeId?: boolean
   createdById?: boolean
   updatedById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  activityTypeId?: boolean
   activityType?: boolean | Prisma.ActivityTypeDefaultArgs<ExtArgs>
   address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
@@ -1359,11 +1359,11 @@ export type ActivitySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   discount?: boolean
   currencyId?: boolean
   addressId?: boolean
-  activityTypeId?: boolean
   createdById?: boolean
   updatedById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  activityTypeId?: boolean
   activityType?: boolean | Prisma.ActivityTypeDefaultArgs<ExtArgs>
   address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
@@ -1379,11 +1379,11 @@ export type ActivitySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   discount?: boolean
   currencyId?: boolean
   addressId?: boolean
-  activityTypeId?: boolean
   createdById?: boolean
   updatedById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  activityTypeId?: boolean
   activityType?: boolean | Prisma.ActivityTypeDefaultArgs<ExtArgs>
   address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
@@ -1399,14 +1399,14 @@ export type ActivitySelectScalar = {
   discount?: boolean
   currencyId?: boolean
   addressId?: boolean
-  activityTypeId?: boolean
   createdById?: boolean
   updatedById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  activityTypeId?: boolean
 }
 
-export type ActivityOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "isActive" | "price" | "discount" | "currencyId" | "addressId" | "activityTypeId" | "createdById" | "updatedById" | "createdAt" | "updatedAt", ExtArgs["result"]["activity"]>
+export type ActivityOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "isActive" | "price" | "discount" | "currencyId" | "addressId" | "createdById" | "updatedById" | "createdAt" | "updatedAt" | "activityTypeId", ExtArgs["result"]["activity"]>
 export type ActivityInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   activityType?: boolean | Prisma.ActivityTypeDefaultArgs<ExtArgs>
   address?: boolean | Prisma.AddressDefaultArgs<ExtArgs>
@@ -1446,11 +1446,11 @@ export type $ActivityPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     discount: number | null
     currencyId: string
     addressId: string
-    activityTypeId: string
     createdById: string | null
     updatedById: string | null
     createdAt: Date
     updatedAt: Date
+    activityTypeId: string
   }, ExtArgs["result"]["activity"]>
   composites: {}
 }
@@ -1886,11 +1886,11 @@ export interface ActivityFieldRefs {
   readonly discount: Prisma.FieldRef<"Activity", 'Float'>
   readonly currencyId: Prisma.FieldRef<"Activity", 'String'>
   readonly addressId: Prisma.FieldRef<"Activity", 'String'>
-  readonly activityTypeId: Prisma.FieldRef<"Activity", 'String'>
   readonly createdById: Prisma.FieldRef<"Activity", 'String'>
   readonly updatedById: Prisma.FieldRef<"Activity", 'String'>
   readonly createdAt: Prisma.FieldRef<"Activity", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Activity", 'DateTime'>
+  readonly activityTypeId: Prisma.FieldRef<"Activity", 'String'>
 }
     
 

@@ -49,6 +49,7 @@ export async function GET(request: NextRequest) {
           policies: true,
           hotel: true,
           house: true,
+          tag: true,
         },
       }),
       prisma.accommodation.count({ where }),
@@ -57,6 +58,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       data: data.map((accommodation) => ({
         id: accommodation.id,
+        tag: accommodation.tag,
         title: accommodation.title,
         address: accommodation.address,
         policies: JSON.parse(JSON.stringify(accommodation.policies)),

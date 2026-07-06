@@ -2,12 +2,19 @@ import { ACTIVITY_ERRORS } from '../constants';
 import { ActivityFormData } from '../types';
 
 export const createActivity = async (data: ActivityFormData, heroImage?: File | null) => {
+  const formData = new FormData();
+  Object.entries(data).forEach(([key, value]) => {
+    if (value !== undefined && value !== null) {
+      formData.append(key, String(value));
+    }
+  });
+  if (heroImage) {
+    formData.append('heroImage', heroImage);
+  }
+
   const response = await fetch('/api/activities', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ ...data, heroImage }),
+    body: formData,
   });
 
   if (!response.ok) {
@@ -23,12 +30,19 @@ export const updateActivity = async (
   data: ActivityFormData,
   heroImage?: File | null,
 ) => {
+  const formData = new FormData();
+  Object.entries(data).forEach(([key, value]) => {
+    if (value !== undefined && value !== null) {
+      formData.append(key, String(value));
+    }
+  });
+  if (heroImage) {
+    formData.append('heroImage', heroImage);
+  }
+
   const response = await fetch(`/api/activities/${id}`, {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ ...data, heroImage }),
+    body: formData,
   });
 
   if (!response.ok) {

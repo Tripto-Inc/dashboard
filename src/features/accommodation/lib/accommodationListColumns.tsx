@@ -7,6 +7,7 @@ import { convertCountryCodeToFlag } from '@/utils/convertCountryCodeToFlag';
 import { IconBuilding, IconHome } from '@tabler/icons-react';
 import { ColumnDef } from '@tanstack/react-table';
 import { AccommodationColumns } from '../types/accommodation';
+import { AccommodationTag } from '@/features/accommodation-tag/components/AccommodationTag';
 
 export const accommodationListColumns: ColumnDef<AccommodationColumns>[] = [
   {
@@ -45,7 +46,7 @@ export const accommodationListColumns: ColumnDef<AccommodationColumns>[] = [
   },
   {
     accessorKey: 'title',
-    size: 300,
+    size: 10000,
     header: ({ column }) => <DataTableColumnHeader column={column} title="Title" />,
   },
   {
@@ -74,12 +75,23 @@ export const accommodationListColumns: ColumnDef<AccommodationColumns>[] = [
   {
     size: 150,
     enableSorting: false,
+    accessorKey: 'tag',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="Tag" />,
+    cell: ({ row }) => {
+      const { tag } = row.original;
+
+      return <AccommodationTag {...tag} title={tag.title} emoji={tag.emoji} />;
+    },
+  },
+  {
+    size: 150,
+    enableSorting: false,
     accessorKey: 'amenities',
     header: ({ column }) => <DataTableColumnHeader column={column} title="Amenities" />,
     cell: ({ row }) => {
       const { amenities } = row.original;
-      const displayedAmenities = amenities.slice(0, 4);
-      const hasMore = amenities.length > 4;
+      const displayedAmenities = amenities.slice(0, 2);
+      const hasMore = amenities.length > 2;
 
       return (
         <ul className="flex flex-wrap items-center gap-1">
@@ -94,7 +106,7 @@ export const accommodationListColumns: ColumnDef<AccommodationColumns>[] = [
           ))}
           {hasMore && (
             <li className="flex items-center gap-1 rounded-full bg-indigo-500 px-3 py-2 text-white">
-              <p className="text-sm">+{amenities.length - 4} more</p>
+              <p className="text-sm">+{amenities.length - 2} more</p>
             </li>
           )}
         </ul>
@@ -108,8 +120,8 @@ export const accommodationListColumns: ColumnDef<AccommodationColumns>[] = [
     header: ({ column }) => <DataTableColumnHeader column={column} title="Policies" />,
     cell: ({ row }) => {
       const { policies } = row.original;
-      const displayedPolicies = policies.slice(0, 3);
-      const hasMore = policies.length > 3;
+      const displayedPolicies = policies.slice(0, 2);
+      const hasMore = policies.length > 2;
 
       return (
         <ul className="flex flex-wrap items-center gap-1">
@@ -131,7 +143,7 @@ export const accommodationListColumns: ColumnDef<AccommodationColumns>[] = [
           ))}
           {hasMore && (
             <li className="flex items-center gap-1 rounded-full bg-slate-500 px-3 py-2 text-white">
-              <p className="text-sm">+{policies.length - 3} more</p>
+              <p className="text-sm">+{policies.length - 2} more</p>
             </li>
           )}
         </ul>

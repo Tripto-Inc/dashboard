@@ -569,7 +569,6 @@ async function main() {
     nightlife,
     shopping,
     photography,
-    wildlifeSafari,
     historicalTours,
     artMuseums,
     extremeSports,
@@ -2179,7 +2178,7 @@ async function main() {
     },
   ];
 
-  const activities = await Promise.all(
+  await Promise.all(
     activitiesData.map((data) =>
       prisma.activity.create({
         data: {
@@ -2193,6 +2192,292 @@ async function main() {
 
   console.log('✅ Created 60 activities');
 
+  console.log('🏷️ Creating accommodation tags...');
+  const accommodationTags = await Promise.all([
+    prisma.accommodationTag.create({
+      data: {
+        id: crypto.randomUUID(),
+        title: 'Best Value',
+        backgroundColor: '#F0E5FF',
+        textColor: '#6B21A8',
+        borderColor: '#9D7ED1',
+        emoji: '💰',
+        isActive: true,
+        createdById: adminUser.id,
+      },
+    }),
+    prisma.accommodationTag.create({
+      data: {
+        id: crypto.randomUUID(),
+        title: 'Best Location',
+        backgroundColor: '#DBEAFE',
+        textColor: '#1E40AF',
+        borderColor: '#93C5FD',
+        emoji: '📍',
+        isActive: true,
+        createdById: adminUser.id,
+      },
+    }),
+    prisma.accommodationTag.create({
+      data: {
+        id: crypto.randomUUID(),
+        title: 'Getaway Deal',
+        backgroundColor: '#D1FAE5',
+        textColor: '#047857',
+        borderColor: '#6EE7B7',
+        emoji: '🏖️',
+        isActive: true,
+        createdById: contentManager.id,
+      },
+    }),
+    prisma.accommodationTag.create({
+      data: {
+        id: crypto.randomUUID(),
+        title: 'Guest Favorite',
+        backgroundColor: '#FEF3C7',
+        textColor: '#B45309',
+        borderColor: '#FCD34D',
+        emoji: '⭐',
+        isActive: true,
+        createdById: contentManager.id,
+      },
+    }),
+    prisma.accommodationTag.create({
+      data: {
+        id: crypto.randomUUID(),
+        title: 'New Listing',
+        backgroundColor: '#E0F2FE',
+        textColor: '#0369A1',
+        borderColor: '#7DD3FC',
+        emoji: '🆕',
+        isActive: true,
+        createdById: adminUser.id,
+      },
+    }),
+    prisma.accommodationTag.create({
+      data: {
+        id: crypto.randomUUID(),
+        title: 'Luxury Stay',
+        backgroundColor: '#FAF5FF',
+        textColor: '#7C3AED',
+        borderColor: '#C4B5FD',
+        emoji: '💎',
+        isActive: true,
+        createdById: contentManager.id,
+      },
+    }),
+    prisma.accommodationTag.create({
+      data: {
+        id: crypto.randomUUID(),
+        title: 'Designer Stay',
+        backgroundColor: '#FEFCE8',
+        textColor: '#A16207',
+        borderColor: '#FDE68A',
+        emoji: '🎨',
+        isActive: true,
+        createdById: editor.id,
+      },
+    }),
+    prisma.accommodationTag.create({
+      data: {
+        id: crypto.randomUUID(),
+        title: 'Cultural Experience',
+        backgroundColor: '#F0FDF4',
+        textColor: '#166534',
+        borderColor: '#86EFAC',
+        emoji: '🏛️',
+        isActive: true,
+        createdById: contentManager.id,
+      },
+    }),
+    prisma.accommodationTag.create({
+      data: {
+        id: crypto.randomUUID(),
+        title: 'Historic Stay',
+        backgroundColor: '#F5F3FF',
+        textColor: '#5B21B6',
+        borderColor: '#A78BFA',
+        emoji: '🏰',
+        isActive: true,
+        createdById: adminUser.id,
+      },
+    }),
+    prisma.accommodationTag.create({
+      data: {
+        id: crypto.randomUUID(),
+        title: 'Nature Views',
+        backgroundColor: '#ECFDF5',
+        textColor: '#065F46',
+        borderColor: '#6EE7B7',
+        emoji: '🌄',
+        isActive: true,
+        createdById: contentManager.id,
+      },
+    }),
+    prisma.accommodationTag.create({
+      data: {
+        id: crypto.randomUUID(),
+        title: 'Beachfront',
+        backgroundColor: '#E0F2FE',
+        textColor: '#0369A1',
+        borderColor: '#7DD3FC',
+        emoji: '🏝️',
+        isActive: true,
+        createdById: adminUser.id,
+      },
+    }),
+    prisma.accommodationTag.create({
+      data: {
+        id: crypto.randomUUID(),
+        title: 'Mountain Views',
+        backgroundColor: '#F0F9FF',
+        textColor: '#0C4A6E',
+        borderColor: '#BAE6FD',
+        emoji: '⛰️',
+        isActive: true,
+        createdById: contentManager.id,
+      },
+    }),
+    prisma.accommodationTag.create({
+      data: {
+        id: crypto.randomUUID(),
+        title: 'Waterfront',
+        backgroundColor: '#EFF6FF',
+        textColor: '#1D4ED8',
+        borderColor: '#93C5FD',
+        emoji: '🌊',
+        isActive: true,
+        createdById: adminUser.id,
+      },
+    }),
+    prisma.accommodationTag.create({
+      data: {
+        id: crypto.randomUUID(),
+        title: 'Adventure Ready',
+        backgroundColor: '#FFEDD5',
+        textColor: '#C2410C',
+        borderColor: '#FDBA74',
+        emoji: '🧗',
+        isActive: true,
+        createdById: editor.id,
+      },
+    }),
+    prisma.accommodationTag.create({
+      data: {
+        id: crypto.randomUUID(),
+        title: 'Ski Resort',
+        backgroundColor: '#FEE2E2',
+        textColor: '#B91C1C',
+        borderColor: '#FCA5A5',
+        emoji: '⛷️',
+        isActive: true,
+        createdById: contentManager.id,
+      },
+    }),
+    prisma.accommodationTag.create({
+      data: {
+        id: crypto.randomUUID(),
+        title: 'Foodie Paradise',
+        backgroundColor: '#FDF2F8',
+        textColor: '#BE185D',
+        borderColor: '#F9A8D4',
+        emoji: '🍽️',
+        isActive: true,
+        createdById: adminUser.id,
+      },
+    }),
+    prisma.accommodationTag.create({
+      data: {
+        id: crypto.randomUUID(),
+        title: 'Local Experience',
+        backgroundColor: '#F5F3FF',
+        textColor: '#5B21B6',
+        borderColor: '#A78BFA',
+        emoji: '🏮',
+        isActive: true,
+        createdById: contentManager.id,
+      },
+    }),
+    prisma.accommodationTag.create({
+      data: {
+        id: crypto.randomUUID(),
+        title: 'Unique Architecture',
+        backgroundColor: '#F0FDFA',
+        textColor: '#0F766E',
+        borderColor: '#5EEAD4',
+        emoji: '🏛️',
+        isActive: true,
+        createdById: editor.id,
+      },
+    }),
+    prisma.accommodationTag.create({
+      data: {
+        id: crypto.randomUUID(),
+        title: 'Artistic Stay',
+        backgroundColor: '#F8FAFC',
+        textColor: '#334155',
+        borderColor: '#CBD5E1',
+        emoji: '🎭',
+        isActive: true,
+        createdById: adminUser.id,
+      },
+    }),
+    prisma.accommodationTag.create({
+      data: {
+        id: crypto.randomUUID(),
+        title: 'Traditional Stay',
+        backgroundColor: '#FEFCE8',
+        textColor: '#854D0E',
+        borderColor: '#FDE68A',
+        emoji: '🎎',
+        isActive: true,
+        createdById: contentManager.id,
+      },
+    }),
+    prisma.accommodationTag.create({
+      data: {
+        id: crypto.randomUUID(),
+        title: 'Family Friendly',
+        backgroundColor: '#E0E7FF',
+        textColor: '#3730A3',
+        borderColor: '#A5B4FC',
+        emoji: '👨‍👩‍👧‍👦',
+        isActive: true,
+        createdById: adminUser.id,
+      },
+    }),
+    prisma.accommodationTag.create({
+      data: {
+        id: crypto.randomUUID(),
+        title: 'Romantic Getaway',
+        backgroundColor: '#FDF2F8',
+        textColor: '#9D174D',
+        borderColor: '#F9A8D4',
+        emoji: '💖',
+        isActive: true,
+        createdById: contentManager.id,
+      },
+    }),
+    prisma.accommodationTag.create({
+      data: {
+        id: crypto.randomUUID(),
+        title: 'City Escape',
+        backgroundColor: '#F1F5F9',
+        textColor: '#475569',
+        borderColor: '#CBD5E1',
+        emoji: '🏙️',
+        isActive: true,
+        createdById: editor.id,
+      },
+    }),
+  ]);
+  console.log(`✅ Created ${accommodationTags.length} accommodation tags...`);
+
+  function getRandomTagId(): string {
+    const randomIndex = Math.floor(Math.random() * accommodationTags.length);
+    return accommodationTags[randomIndex].id;
+  }
+
   // Create Accommodations (30 accommodations - mix of hotels and houses)
   console.log('🏨 Creating accommodations...');
 
@@ -2205,6 +2490,7 @@ async function main() {
         'Experience unparalleled luxury in the heart of Paris, just steps from the Champs-Élysées. Overlooking the Seine River with stunning Eiffel Tower views from our rooftop terrace.',
       addressId: hotelParisAddr.id,
       destinationId: paris.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconWifi', title: 'Free High-Speed WiFi' },
         { id: crypto.randomUUID(), icon: 'IconPool', title: 'Indoor Heated Pool' },
@@ -2329,6 +2615,7 @@ async function main() {
         'Charming boutique apartments in the trendy Le Marais district. Each apartment features exposed beams, modern amenities, and walking distance to Notre-Dame and Place des Vosges.',
       addressId: concordeAddr.id,
       destinationId: paris.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconWifi', title: 'Free WiFi' },
         { id: crypto.randomUUID(), icon: 'IconToolsKitchen2', title: 'Full Kitchen' },
@@ -2414,6 +2701,7 @@ async function main() {
         'A beautiful loft in the heart of Montmartre with stunning views of Sacré-Cœur. This former artist studio features high ceilings, abundant natural light, and a private rooftop terrace.',
       addressId: louvreAddr.id,
       destinationId: paris.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconWifi', title: 'High-Speed WiFi' },
         { id: crypto.randomUUID(), icon: 'IconToolsKitchen2', title: 'Chef Kitchen' },
@@ -2479,6 +2767,7 @@ async function main() {
         'Immerse yourself in authentic Japanese hospitality. This traditional ryokan features tatami rooms, natural onsen hot springs, and exquisite kaiseki dining in quiet Shinjuku.',
       addressId: shinjukuAddr.id,
       destinationId: tokyo.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconDroplet', title: 'Natural Onsen Hot Spring' },
         { id: crypto.randomUUID(), icon: 'IconWifi', title: 'Free WiFi Throughout' },
@@ -2577,6 +2866,7 @@ async function main() {
         'A futuristic capsule hotel experience in the heart of Tokyo. Sleek, minimalist design with pod-style sleeping quarters and shared luxury bathing facilities. Perfect for the modern traveler.',
       addressId: akasakaAddr.id,
       destinationId: tokyo.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconWifi', title: 'Free High-Speed WiFi' },
         { id: crypto.randomUUID(), icon: 'IconDroplet', title: 'Shared Japanese Bath' },
@@ -2649,6 +2939,7 @@ async function main() {
         'A sleek three-story townhouse in the vibrant Shibuya district. Walking distance to the famous crossing, with a rooftop terrace offering stunning city views.',
       addressId: shibuyaAddr.id,
       destinationId: tokyo.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconWifi', title: 'Fiber Internet' },
         { id: crypto.randomUUID(), icon: 'IconToolsKitchen2', title: 'Smart Kitchen' },
@@ -2713,6 +3004,7 @@ async function main() {
         'Beautiful beachfront house with direct access to Barceloneta Beach. Modern design with traditional Mediterranean touches, featuring a stunning rooftop terrace.',
       addressId: parkGuellAddr.id,
       destinationId: barcelona.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconBeach', title: 'Direct Beach Access' },
         { id: crypto.randomUUID(), icon: 'IconBalcony', title: 'Rooftop Terrace with Sea View' },
@@ -2777,6 +3069,7 @@ async function main() {
         "An iconic sail-shaped hotel on Barcelona's coastline. Features designer rooms with Mediterranean views, a rooftop bar, and world-class spa facilities.",
       addressId: passeigGraciaAddr.id,
       destinationId: barcelona.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconPool', title: 'Rooftop Infinity Pool' },
         { id: crypto.randomUUID(), icon: 'IconMassage', title: 'Bliss Spa' },
@@ -2868,6 +3161,7 @@ async function main() {
         'A magnificent chalet with breathtaking views of the Swiss Alps. Features traditional Swiss architecture with modern luxury, private sauna, and outdoor hot tub.',
       addressId: zurichOldAddr.id,
       destinationId: zurich.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconFireplace', title: 'Grand Stone Fireplace' },
         {
@@ -2946,6 +3240,7 @@ async function main() {
         'A legendary hotel overlooking Lake Zurich and the Alps. Family-owned since 1844, offering timeless elegance with modern comfort in the heart of Zurich.',
       addressId: zurichRennwegAddr.id,
       destinationId: zurich.id,
+      tagId: getRandomTagId(),
       amenities: [
         {
           id: crypto.randomUUID(),
@@ -3021,6 +3316,7 @@ async function main() {
         'An elegant boutique hotel in prestigious Mayfair. Just a short stroll from Buckingham Palace and Hyde Park, this Georgian townhouse offers refined luxury with personalized service.',
       addressId: buckinghamAddr.id,
       destinationId: london.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconWifi', title: 'Free Ultra-Fast WiFi' },
         {
@@ -3145,6 +3441,7 @@ async function main() {
         'A colorful ground-floor flat in the heart of Notting Hill. Private garden access, walking distance to Portobello Road Market and Hyde Park. Perfect for couples or small families.',
       addressId: bakerStreetAddr.id,
       destinationId: london.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconWifi', title: 'Fast WiFi' },
         { id: crypto.randomUUID(), icon: 'IconToolsKitchen2', title: 'Modern Kitchen' },
@@ -3207,6 +3504,7 @@ async function main() {
         'A stunning penthouse apartment with floor-to-ceiling windows offering panoramic views of The Shard and Tower Bridge. Ultra-modern design with smart home technology.',
       addressId: downingStreetAddr.id,
       destinationId: london.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconWifi', title: 'Gigabit WiFi' },
         { id: crypto.randomUUID(), icon: 'IconToolsKitchen2', title: 'Chef Kitchen' },
@@ -3273,6 +3571,7 @@ async function main() {
         'A stunning private villa near the historic Villa Borghese gardens with panoramic views of Rome. Features a private pool, expansive gardens, and authentic Roman architecture.',
       addressId: villaTuscanyAddr.id,
       destinationId: rome.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconPool', title: 'Private Infinity Pool' },
         { id: crypto.randomUUID(), icon: 'IconTrees', title: 'Mediterranean Garden' },
@@ -3354,6 +3653,7 @@ async function main() {
         'A luxurious hotel between Piazza del Popolo and the Spanish Steps. Famous for its terraced Secret Garden, where you can dine among Roman ruins and lush citrus trees.',
       addressId: spanishStepsAddr.id,
       destinationId: rome.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconTrees', title: 'Secret Garden Terrace' },
         { id: crypto.randomUUID(), icon: 'IconMassage', title: 'De Russie Spa' },
@@ -3445,6 +3745,7 @@ async function main() {
         'The iconic sail-shaped hotel offering the ultimate in luxury. Each suite features floor-to-ceiling windows with Arabian Gulf views and a private butler.',
       addressId: dubaiBeachAddr.id,
       destinationId: dubai.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconPool', title: 'Infinity Pools' },
         { id: crypto.randomUUID(), icon: 'IconMassage', title: 'Talise Spa' },
@@ -3540,6 +3841,7 @@ async function main() {
         'A luxury Bedouin-style retreat nestled in the Dubai Desert Conservation Reserve. Features private pools overlooking endless dunes, wildlife encounters, and traditional Arabian experiences.',
       addressId: dubaiBurjAddr.id,
       destinationId: dubai.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconPool', title: 'Private Temperature-Controlled Pool' },
         { id: crypto.randomUUID(), icon: 'IconMassage', title: 'Timeless Spa' },
@@ -3618,6 +3920,7 @@ async function main() {
         "A legendary New York icon at the corner of Fifth Avenue and Central Park South. Experience timeless elegance with modern luxury at one of the world's most famous hotels.",
       addressId: newYorkEmpireAddr.id,
       destinationId: newYork.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconMassage', title: 'Guerlain Spa' },
         { id: crypto.randomUUID(), icon: 'IconToolsKitchen2', title: 'Palm Court Restaurant' },
@@ -3707,6 +4010,7 @@ async function main() {
         'A stunning converted warehouse loft in the heart of SoHo. Features 14-foot ceilings, exposed brick walls, oversized windows, and modern art installations throughout.',
       addressId: newYorkLibertyAddr.id,
       destinationId: newYork.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconWifi', title: 'Fiber WiFi' },
         { id: crypto.randomUUID(), icon: 'IconToolsKitchen2', title: 'Professional Kitchen' },
@@ -3772,6 +4076,7 @@ async function main() {
         'A collection of 17th-century canal palaces transformed into an exquisite hotel along the Herengracht. Features a Guerlain spa, Michelin-starred dining, and private garden.',
       addressId: amsterdamDamAddr.id,
       destinationId: amsterdam.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconTrees', title: 'Private Canal Garden' },
         { id: crypto.randomUUID(), icon: 'IconMassage', title: 'Guerlain Spa' },
@@ -3847,6 +4152,7 @@ async function main() {
         'A luxury resort built into the steep rice terraces of Ubud. Famous for its iconic split-level infinity pool cascading through the jungle, private villas with personal pools.',
       addressId: baliUbudAddr.id,
       destinationId: bali.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconPool', title: 'Twin-Tiered Infinity Pool' },
         { id: crypto.randomUUID(), icon: 'IconMassage', title: 'Riverside Spa' },
@@ -3916,6 +4222,7 @@ async function main() {
         'A modern tropical villa in the hip Canggu area, walking distance to surf breaks. Features an open-plan living space, private pool, and rooftop sunset lounge.',
       addressId: baliKutaAddr.id,
       destinationId: bali.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconPool', title: 'Private Pool' },
         { id: crypto.randomUUID(), icon: 'IconWind', title: 'Surfboard Storage' },
@@ -3981,6 +4288,7 @@ async function main() {
         'An eco-luxury resort offering overwater villas with private pools, personal butler service, and the world-famous outdoor cinema. Experience barefoot luxury at its finest.',
       addressId: maldivesAtollAddr.id,
       destinationId: maldives.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconPool', title: 'Private Infinity Pool' },
         { id: crypto.randomUUID(), icon: 'IconMassage', title: 'Overwater Spa' },
@@ -4059,6 +4367,7 @@ async function main() {
         'A unique cave house carved into the Caldera cliffs of Oia. Features traditional Cycladic architecture with modern luxury, a private plunge pool, and the most famous sunset views in the world.',
       addressId: santoriniOiaAddr.id,
       destinationId: santorini.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconPool', title: 'Private Plunge Pool' },
         { id: crypto.randomUUID(), icon: 'IconSun', title: 'Caldera View Terrace' },
@@ -4119,6 +4428,7 @@ async function main() {
         "Voted one of the world's best hotels, built into the Caldera cliffs of Oia. Features infinity pools seemingly merging with the Aegean Sea, and suites carved from volcanic rock.",
       addressId: santoriniOiaAddr.id,
       destinationId: santorini.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconPool', title: 'Infinity Pool' },
         { id: crypto.randomUUID(), icon: 'IconMassage', title: 'Spa & Wellness' },
@@ -4189,6 +4499,7 @@ async function main() {
         'A stunning glass-roofed cabin located in the Icelandic wilderness, perfect for watching the Northern Lights from the comfort of your bed. Features geothermal heating and a private hot spring.',
       addressId: reykjavikChurchAddr.id,
       destinationId: reykjavik.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconDroplet', title: 'Private Geothermal Hot Spring' },
         { id: crypto.randomUUID(), icon: 'IconGlass', title: 'Glass Roof for Aurora Viewing' },
@@ -4261,6 +4572,7 @@ async function main() {
         'Located on the banks of the Vltava River, this hotel combines Renaissance and Baroque architecture with modern luxury. Steps from Charles Bridge and Prague Castle.',
       addressId: pragueCastleAddr.id,
       destinationId: prague.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconWifi', title: 'Free WiFi' },
         { id: crypto.randomUUID(), icon: 'IconMassage', title: 'Spa & Wellness' },
@@ -4331,6 +4643,7 @@ async function main() {
         "A beautifully converted century-old prison in the heart of Istanbul's Old City. Features a courtyard garden, rooftop views of Hagia Sophia, and authentic Turkish hospitality.",
       addressId: istanbulSultanAddr.id,
       destinationId: istanbul.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconTrees', title: 'Courtyard Garden' },
         { id: crypto.randomUUID(), icon: 'IconMassage', title: 'Luxury Spa & Turkish Bath' },
@@ -4401,6 +4714,7 @@ async function main() {
         'The ultimate Sydney Harbour experience, positioned directly under the Harbour Bridge with Opera House views. Features a rooftop pool and world-class Australian dining.',
       addressId: sydneyOperaAddr.id,
       destinationId: sydney.id,
+      tagId: getRandomTagId(),
       amenities: [
         { id: crypto.randomUUID(), icon: 'IconPool', title: 'Rooftop Pool' },
         { id: crypto.randomUUID(), icon: 'IconMassage', title: 'Spa & Wellness' },

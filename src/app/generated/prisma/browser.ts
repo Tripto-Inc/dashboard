@@ -43,6 +43,11 @@ export type Currency = Prisma.CurrencyModel
  */
 export type ActivityType = Prisma.ActivityTypeModel
 /**
+ * Model AccommodationTag
+ * 
+ */
+export type AccommodationTag = Prisma.AccommodationTagModel
+/**
  * Model Accommodation
  * 
  */
